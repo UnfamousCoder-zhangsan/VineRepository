@@ -1,0 +1,20 @@
+PODS:
+  - JXCategoryView (1.5.2)
+  - JXPagingView/Pager (2.0.1)
+
+DEPENDENCIES:
+  - JXCategoryView
+  - JXPagingView/Pager
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JXCategoryView
+    - JXPagingView
+
+SPEC CHECKSUMS:
+  JXCategoryView: b284d35a7a8772eada05dd78642233e1eb763ea8
+  JXPagingView: cacaf7512d223e21133bd71ca245126acc5f535a
+
+PODFILE CHECKSUM: 1ce8dd4ee785dda8f2c6b637a30eb69c0c1581e4
+
+COCOAPODS: 1.8.4
