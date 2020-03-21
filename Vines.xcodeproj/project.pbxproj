@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,8 +15,32 @@
 		312B3E4824263E0B00B8C4F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 312B3E4724263E0B00B8C4F2 /* Assets.xcassets */; };
 		312B3E4B24263E0B00B8C4F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312B3E4924263E0B00B8C4F2 /* LaunchScreen.storyboard */; };
 		312B3E4E24263E0B00B8C4F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 312B3E4D24263E0B00B8C4F2 /* main.m */; };
+		31D833D9242658BE008DAAE8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833D8242658BD008DAAE8 /* CFNetwork.framework */; };
+		31D833DB242658CC008DAAE8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833DA242658CC008DAAE8 /* CoreGraphics.framework */; };
+		31D833DD242658D9008DAAE8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833DC242658D9008DAAE8 /* CoreMotion.framework */; };
+		31D833DF242658EB008DAAE8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833DE242658EB008DAAE8 /* CoreTelephony.framework */; };
+		31D833E1242658F6008DAAE8 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833E0242658F6008DAAE8 /* CoreText.framework */; };
+		31D833E424265925008DAAE8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833E324265925008DAAE8 /* QuartzCore.framework */; };
+		31D833E62426593A008DAAE8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833E524265939008DAAE8 /* SystemConfiguration.framework */; };
+		31D833E824265953008DAAE8 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833E724265953008DAAE8 /* QMUIKit.framework */; };
+		31D833E924265953008DAAE8 /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833E724265953008DAAE8 /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		31D833EC2426596C008DAAE8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D833EB2426596C008DAAE8 /* UserNotifications.framework */; };
 		863EFFE556AF4EADAE316BBE /* Pods_Vines.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6475E5DA47546C98380A3733 /* Pods_Vines.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		31D833EA24265953008DAAE8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				31D833E924265953008DAAE8 /* QMUIKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		312B3E3524263E0800B8C4F2 /* Vines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vines.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +56,16 @@
 		312B3E4A24263E0B00B8C4F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		312B3E4C24263E0B00B8C4F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		312B3E4D24263E0B00B8C4F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		31D833D8242658BD008DAAE8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		31D833DA242658CC008DAAE8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		31D833DC242658D9008DAAE8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		31D833DE242658EB008DAAE8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		31D833E0242658F6008DAAE8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		31D833E22426590D008DAAE8 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		31D833E324265925008DAAE8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		31D833E524265939008DAAE8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		31D833E724265953008DAAE8 /* QMUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QMUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31D833EB2426596C008DAAE8 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		6475E5DA47546C98380A3733 /* Pods_Vines.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vines.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E845A2B0E2DED0BCAD0FA86C /* Pods-Vines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vines.release.xcconfig"; path = "Target Support Files/Pods-Vines/Pods-Vines.release.xcconfig"; sourceTree = "<group>"; };
 		EEF7CD1C8A021415C8102371 /* Pods-Vines.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vines.debug.xcconfig"; path = "Target Support Files/Pods-Vines/Pods-Vines.debug.xcconfig"; sourceTree = "<group>"; };
@@ -42,7 +76,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D833EC2426596C008DAAE8 /* UserNotifications.framework in Frameworks */,
+				31D833E824265953008DAAE8 /* QMUIKit.framework in Frameworks */,
+				31D833DB242658CC008DAAE8 /* CoreGraphics.framework in Frameworks */,
+				31D833D9242658BE008DAAE8 /* CFNetwork.framework in Frameworks */,
+				31D833E424265925008DAAE8 /* QuartzCore.framework in Frameworks */,
+				31D833E1242658F6008DAAE8 /* CoreText.framework in Frameworks */,
+				31D833DF242658EB008DAAE8 /* CoreTelephony.framework in Frameworks */,
 				863EFFE556AF4EADAE316BBE /* Pods_Vines.framework in Frameworks */,
+				31D833E62426593A008DAAE8 /* SystemConfiguration.framework in Frameworks */,
+				31D833DD242658D9008DAAE8 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +95,16 @@
 		01238CBCEF0AC138C61418B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31D833EB2426596C008DAAE8 /* UserNotifications.framework */,
+				31D833E724265953008DAAE8 /* QMUIKit.framework */,
+				31D833E524265939008DAAE8 /* SystemConfiguration.framework */,
+				31D833E324265925008DAAE8 /* QuartzCore.framework */,
+				31D833E22426590D008DAAE8 /* libc++.tbd */,
+				31D833E0242658F6008DAAE8 /* CoreText.framework */,
+				31D833DE242658EB008DAAE8 /* CoreTelephony.framework */,
+				31D833DC242658D9008DAAE8 /* CoreMotion.framework */,
+				31D833DA242658CC008DAAE8 /* CoreGraphics.framework */,
+				31D833D8242658BD008DAAE8 /* CFNetwork.framework */,
 				6475E5DA47546C98380A3733 /* Pods_Vines.framework */,
 			);
 			name = Frameworks;
@@ -100,7 +153,6 @@
 				EEF7CD1C8A021415C8102371 /* Pods-Vines.debug.xcconfig */,
 				E845A2B0E2DED0BCAD0FA86C /* Pods-Vines.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -116,6 +168,7 @@
 				312B3E3224263E0800B8C4F2 /* Frameworks */,
 				312B3E3324263E0800B8C4F2 /* Resources */,
 				E10C4287CED0F85425938DF9 /* [CP] Embed Pods Frameworks */,
+				31D833EA24265953008DAAE8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -372,7 +425,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kobe.Vines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -390,7 +443,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kobe.Vines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
