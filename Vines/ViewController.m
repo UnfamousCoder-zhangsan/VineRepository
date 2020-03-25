@@ -11,6 +11,7 @@
 
 @interface ViewController ()<JXCategoryViewDelegate>
 @property(nonatomic, strong)JXCategoryTitleView *categoryView;
+@property(nonatomic, strong)UIButton *btn;
 
 @end
 
@@ -40,6 +41,12 @@
     self.categoryView.indicators = @[lineView];
     
     //self.listContainerView = [[JXCategoryListContainerView alloc] initWithType:JXCategoryListContainerType_ScrollView delegate:self];
+    //创建图片
+    UIImage *image = [UIImage imageNamed:@""];
+    
+    //拉伸图片
+    [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    
     
 }
 
