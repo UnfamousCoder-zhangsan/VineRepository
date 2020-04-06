@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -38,4 +37,3 @@ extension Reactive where Base: UIViewController {
 		return trigger(for: #selector(Base.viewDidLayoutSubviews))
 	}
 }
-#endif

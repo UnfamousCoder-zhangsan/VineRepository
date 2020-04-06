@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(tvOS) && !os(watchOS)
 import UIKit
 import ReactiveSwift
 
@@ -28,4 +27,3 @@ extension Reactive where Base: UISlider {
 		return mapControlEvents(.valueChanged) { $0.value }
 	}
 }
-#endif

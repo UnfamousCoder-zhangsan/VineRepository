@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -58,4 +57,3 @@ extension Reactive where Base: UITextField {
 		return makeBindingTarget { $0.isSecureTextEntry = $1 }
 	}
 }
-#endif

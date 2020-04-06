@@ -1,7 +1,3 @@
-import Foundation
-#if SWIFT_PACKAGE
-import ReactiveCocoaObjC
-#endif
 import ReactiveSwift
 
 internal struct AssociationKey<Value> {

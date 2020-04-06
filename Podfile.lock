@@ -14,6 +14,8 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AlipaySDK-iOS (15.6.8)
+  - AliyunOSSiOS (2.10.7)
   - Aspects (1.4.1)
   - AXIndicatorView (0.1.1)
   - AXNavigationBackItemInjection (0.0.2)
@@ -24,35 +26,27 @@ PODS:
     - AXNavigationBackItemInjection
     - AXPracticalHUD
     - NJKWebViewProgress
-  - BRPickerView (2.5.3):
-    - BRPickerView/AddressPickerView (= 2.5.3)
-    - BRPickerView/Base (= 2.5.3)
-    - BRPickerView/DatePickerView (= 2.5.3)
-    - BRPickerView/StringPickerView (= 2.5.3)
-  - BRPickerView/AddressPickerView (2.5.3):
-    - BRPickerView/Base
-  - BRPickerView/Base (2.5.3)
-  - BRPickerView/DatePickerView (2.5.3):
-    - BRPickerView/Base
-  - BRPickerView/StringPickerView (2.5.3):
-    - BRPickerView/Base
-  - CRToast (0.0.9)
-  - DACircularProgress (2.3.1)
+  - BaiduMapKit (5.1.0)
+  - BMKLocationKit (1.8.5)
+  - Bugtags (3.2.1):
+    - Bugtags/Core (= 3.2.1)
+  - Bugtags/Core (3.2.1)
+  - Charts (3.4.0):
+    - Charts/Core (= 3.4.0)
+  - Charts/Core (3.4.0)
+  - CRBoxInputView (1.1.5):
+    - Masonry
   - EFQRCode (5.1.6):
     - EFQRCode/Core (= 5.1.6)
   - EFQRCode/Core (5.1.6)
-  - IDMPhotoBrowser (1.11.3):
-    - DACircularProgress
-    - pop
-    - SDWebImage (= 4.0.0)
-  - JSQSystemSoundPlayer (2.0.1)
+  - GKPageScrollView (1.3.3)
+  - HandyJSON (5.0.1)
   - JXCategoryView (1.5.2)
-  - JXPagingView/Pager (2.0.1)
   - LBXPermission/Base (1.0.5)
   - LBXPermission/Camera (1.0.5)
   - LBXPermission/Photo (1.0.5)
   - Masonry (1.1.0)
-  - MGSwipeTableCell (1.6.11)
+  - MISFloatingBall (1.1.1)
   - MJExtension (3.2.1)
   - MJRefresh (3.3.1)
   - NJKWebViewProgress (0.2.3):
@@ -60,8 +54,8 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
-  - pop (1.0.12)
-  - PPBadgeView (3.1.0)
+  - PageControls/SnakePageControl (1.0.1)
+  - Pulsator (0.6.0)
   - QMUIKit (4.0.4):
     - QMUIKit/QMUIComponents (= 4.0.4)
     - QMUIKit/QMUICore (= 4.0.4)
@@ -352,110 +346,148 @@ PODS:
     - QMUIKit/QMUICore
     - QMUIKit/QMUILog
   - QMUIKit/QMUIWeakObjectContainer (4.0.4)
-  - ReactiveCocoa (10.2.0):
-    - ReactiveSwift (~> 6.2)
+  - ReactiveCocoa (10.1.0):
+    - ReactiveSwift (~> 6.1)
   - ReactiveObjC (3.1.1)
-  - ReactiveSwift (6.2.0)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
+  - ReactiveSwift (6.1.0)
+  - RKNotificationHub (2.0.5)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
+  - SDCycleScrollView (1.80):
+    - SDWebImage (>= 5.0.0)
+  - SDWebImage (5.1.1):
+    - SDWebImage/Core (= 5.1.1)
+  - SDWebImage/Core (5.1.1)
+  - SnapKit (4.2.0)
   - SVProgressHUD (2.2.5)
-  - TZImagePickerController (3.3.1)
+  - TOCropViewController (2.5.2)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.0)
+  - AFNetworking (~> 3.2.1)
+  - AlipaySDK-iOS
+  - AliyunOSSiOS
   - AXWebViewController
-  - BRPickerView
-  - CRToast (~> 0.0.9)
+  - BaiduMapKit
+  - BMKLocationKit
+  - Bugtags
+  - Charts
+  - CRBoxInputView
   - EFQRCode
-  - IDMPhotoBrowser (~> 1.11.3)
-  - JSQSystemSoundPlayer (~> 2.0)
+  - GKPageScrollView
+  - HandyJSON
   - JXCategoryView
-  - JXPagingView/Pager
   - LBXPermission/Base
   - LBXPermission/Camera
   - LBXPermission/Photo
   - Masonry
-  - MGSwipeTableCell
+  - MISFloatingBall
   - MJExtension
   - MJRefresh
-  - PPBadgeView
-  - QMUIKit (~> 4.0.3)
+  - PageControls/SnakePageControl
+  - Pulsator
+  - QMUIKit
   - ReactiveCocoa
   - ReactiveObjC
-  - SDWebImage
+  - RKNotificationHub
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
+  - SDCycleScrollView
+  - SDWebImage (~> 5.1.0)
+  - SnapKit
   - SVProgressHUD
-  - TZImagePickerController
+  - TOCropViewController
   - YYKit
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - AlipaySDK-iOS
+    - AliyunOSSiOS
     - Aspects
     - AXIndicatorView
     - AXNavigationBackItemInjection
     - AXPracticalHUD
     - AXWebViewController
-    - BRPickerView
-    - CRToast
-    - DACircularProgress
+    - BaiduMapKit
+    - BMKLocationKit
+    - Bugtags
+    - Charts
+    - CRBoxInputView
     - EFQRCode
-    - IDMPhotoBrowser
-    - JSQSystemSoundPlayer
+    - GKPageScrollView
+    - HandyJSON
     - JXCategoryView
-    - JXPagingView
     - LBXPermission
     - Masonry
-    - MGSwipeTableCell
+    - MISFloatingBall
     - MJExtension
     - MJRefresh
     - NJKWebViewProgress
-    - pop
-    - PPBadgeView
+    - PageControls
+    - Pulsator
     - QMUIKit
     - ReactiveCocoa
     - ReactiveObjC
     - ReactiveSwift
+    - RKNotificationHub
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SDCycleScrollView
     - SDWebImage
+    - SnapKit
     - SVProgressHUD
-    - TZImagePickerController
+    - TOCropViewController
     - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AlipaySDK-iOS: 703a55774a37f412410ab04af96c011b91ec58cb
+  AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   AXIndicatorView: 566b490a2dd9781d4ffbcc9752be9b9cdc6e728e
   AXNavigationBackItemInjection: efe0446967f3cbcc85a9118decd1e145138912dd
   AXPracticalHUD: 821d170b31e050c426ef8754b07b4264a8b1d861
   AXWebViewController: 96566c473fce2806f4da696132b31777f5404c9f
-  BRPickerView: c23447ce60d40a4109eb6c93b0cec3a96bf1726c
-  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
-  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  BaiduMapKit: be03d7c0d625e2106ba04691e4be45f71f8dee7f
+  BMKLocationKit: fd3d6b4a9a3a1a2763819f56b780bda5fc5b8726
+  Bugtags: 015bc05c97c0ac5168a6256eaaf18eb41d7394bc
+  Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  CRBoxInputView: 40aeedca17d33f7464cc3c3b7d75019ae5a9533b
   EFQRCode: a7ea2e517912f5bf6ba258b631327a83cd8084a5
-  IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
-  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  GKPageScrollView: fef66b0200cbf7cf6b6819aaa62843ae1602bc19
+  HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
   JXCategoryView: b284d35a7a8772eada05dd78642233e1eb763ea8
-  JXPagingView: cacaf7512d223e21133bd71ca245126acc5f535a
   LBXPermission: e03503500e9540efb75d5f206b82a1a760fd0b26
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  MISFloatingBall: c2b0c60baaa87cc5675ef33159d3b999f82253a3
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
-  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
-  PPBadgeView: b50a223638970fd0781e8753250385864b6dd2fe
+  PageControls: fc2436c93e79419521a6de5d46d84722593e2949
+  Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   QMUIKit: 73899f707bdd51f44d16e10d11f224fb821fbe74
-  ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
+  ReactiveCocoa: 2f1d942d79072eded6d8c3bc7c2a641d40855a56
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  ReactiveSwift: 3dc8800378110b13d40b46ab362afa9f6bcffc6c
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  ReactiveSwift: b78c7259f8ca46368238c895ae33a6a3bf9f811c
+  RKNotificationHub: e926748820d719f21ff374657a47fceefa1796b4
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
+  SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
+  TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 3f1eba060432d82f8b747adeba70c36abf7e5077
+PODFILE CHECKSUM: fe3bc79cfbb0229b188ada4e83df2cf3a8370e1e
 
 COCOAPODS: 1.8.4

@@ -1,4 +1,3 @@
-import Foundation
 import ReactiveSwift
 
 extension Action {

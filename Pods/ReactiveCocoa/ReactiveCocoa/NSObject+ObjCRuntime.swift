@@ -1,5 +1,3 @@
-import Foundation
-
 extension NSObject {
 	/// The class of the instance reported by the ObjC `-class:` message.
 	///

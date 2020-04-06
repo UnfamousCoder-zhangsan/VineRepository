@@ -1,7 +1,4 @@
 import Foundation
-#if SWIFT_PACKAGE
-import ReactiveCocoaObjC
-#endif
 import ReactiveSwift
 
 extension Reactive where Base: NSObject {

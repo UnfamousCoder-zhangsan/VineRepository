@@ -1,7 +1,4 @@
 import Foundation
-#if SWIFT_PACKAGE
-import ReactiveCocoaObjC
-#endif
 import ReactiveSwift
 
 /// Whether the runtime subclass has already been prepared for method

@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(tvOS) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -28,4 +27,3 @@ extension Reactive where Base: UISwitch {
 		return mapControlEvents(.valueChanged) { $0.isOn }
 	}
 }
-#endif

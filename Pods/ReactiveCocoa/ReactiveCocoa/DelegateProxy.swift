@@ -1,4 +1,3 @@
-import Foundation
 import ReactiveSwift
 
 internal class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {

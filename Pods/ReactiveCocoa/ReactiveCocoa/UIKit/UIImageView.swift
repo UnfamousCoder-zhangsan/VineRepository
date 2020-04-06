@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -13,4 +12,3 @@ extension Reactive where Base: UIImageView {
 		return makeBindingTarget { $0.highlightedImage = $1 }
 	}
 }
-#endif

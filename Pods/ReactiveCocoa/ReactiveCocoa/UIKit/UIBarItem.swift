@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -18,4 +17,3 @@ extension Reactive where Base: UIBarItem {
 		return makeBindingTarget { $0.title = $1 }
 	}
 }
-#endif

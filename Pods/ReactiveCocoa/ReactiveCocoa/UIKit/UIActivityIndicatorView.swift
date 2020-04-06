@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -8,4 +7,3 @@ extension Reactive where Base: UIActivityIndicatorView {
 		return makeBindingTarget { $1 ? $0.startAnimating() : $0.stopAnimating() }
 	}
 }
-#endif

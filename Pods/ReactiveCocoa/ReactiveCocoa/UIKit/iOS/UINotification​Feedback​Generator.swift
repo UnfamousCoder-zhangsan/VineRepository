@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(tvOS) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -9,4 +8,3 @@ extension Reactive where Base: UINotificationFeedbackGenerator {
 		return makeBindingTarget { $0.notificationOccurred($1) }
 	}
 }
-#endif

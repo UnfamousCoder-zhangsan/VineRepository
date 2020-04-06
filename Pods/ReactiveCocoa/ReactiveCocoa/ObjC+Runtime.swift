@@ -1,5 +1,3 @@
-import Foundation
-
 /// Search in `class` for any method that matches the supplied selector without
 /// propagating to the ancestors.
 ///

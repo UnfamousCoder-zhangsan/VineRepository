@@ -1,5 +1,3 @@
-#if canImport(UIKit) && !os(tvOS) && !os(watchOS)
-import Foundation
 import ReactiveSwift
 import UIKit
 
@@ -41,4 +39,3 @@ extension Reactive where Base: UIPickerView {
 			.map { (row: $0[1] as! Int, component: $0[2] as! Int) }
 	}
 }
-#endif

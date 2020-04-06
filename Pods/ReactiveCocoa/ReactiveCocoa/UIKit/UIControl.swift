@@ -1,4 +1,3 @@
-#if canImport(UIKit) && !os(watchOS)
 import ReactiveSwift
 import UIKit
 
@@ -110,4 +109,3 @@ extension Reactive where Base: UIControl {
 		return makeBindingTarget { $0.isHighlighted = $1 }
 	}
 }
-#endif

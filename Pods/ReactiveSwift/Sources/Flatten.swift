@@ -12,7 +12,6 @@ public struct FlattenStrategy {
 		case concurrent(limit: UInt)
 		case latest
 		case race
-		case throttle
 	}
 
 	fileprivate let kind: Kind
@@ -97,21 +96,6 @@ public struct FlattenStrategy {
 	/// Any failure from the inner streams is propagated immediately to the flattened
 	/// stream of values.
 	public static let race = FlattenStrategy(kind: .race)
-
-	/// Given a first inner stream, all subsequent inner streams sent by the upstream would
-	/// be dropped until the first inner stream has completed. The whole process repeats
-	/// indefinitely until the upstream terminates. The behavior is akin to `throttle(_:on:)`
-	/// except for operating in the domain of streams instead of time.
-	///
-	/// The flattened stream of values completes only when the stream of streams has completed,
-	/// and first inner stream has completed if exists.
-	///
-	/// Any interruption of inner streams is propagated immediately to the flattened
-	/// stream of values.
-	///
-	/// Any failure from the inner streams is propagated immediately to the flattened
-	/// stream of values.
-	public static let throttle = FlattenStrategy(kind: .throttle)
 }
 
 extension Signal where Value: SignalProducerConvertible, Error == Value.Error {
@@ -136,9 +120,6 @@ extension Signal where Value: SignalProducerConvertible, Error == Value.Error {
 
 		case .race:
 			return self.race()
-
-		case .throttle:
-			return self.throttle()
 		}
 	}
 }
@@ -181,9 +162,6 @@ extension Signal where Value: SignalProducerConvertible, Error == Never, Value.E
 
 		case .race:
 			return self.race()
-
-		case .throttle:
-			return self.throttle()
 		}
 	}
 }
@@ -227,9 +205,6 @@ extension SignalProducer where Value: SignalProducerConvertible, Error == Value.
 
 		case .race:
 			return self.race()
-
-		case .throttle:
-			return self.throttle()
 		}
 	}
 }
@@ -272,9 +247,6 @@ extension SignalProducer where Value: SignalProducerConvertible, Error == Never,
 
 		case .race:
 			return self.race()
-
-		case .throttle:
-			return self.throttle()
 		}
 	}
 }
@@ -845,112 +817,6 @@ private struct RaceState {
 	var outerSignalComplete = false
 	var innerSignalComplete = true
 	var isActivated = false
-}
-
-extension Signal where Value: SignalProducerConvertible, Error == Value.Error {
-	/// Returns a signal that forwards values from the "first inner producer" if not exists,
-	/// ignoring values sent from other inner producers until first inner producer is completed.
-	/// Note that next inner producer after previous completion can become
-	/// first inner producer again.
-	///
-	/// An error sent on `self` or the first inner producer will be sent on the
-	/// returned signal.
-	///
-	/// The returned signal completes when `self` is completed, and also first inner producer
-	/// is completed if it exists.
-	fileprivate func throttle() -> Signal<Value.Value, Error> {
-		return Signal<Value.Value, Error> { observer, lifetime in
-			let relayDisposable = CompositeDisposable()
-			lifetime += relayDisposable
-			lifetime += self.observeThrottle(observer, relayDisposable)
-		}
-	}
-
-	fileprivate func observeThrottle(_ observer: Signal<Value.Value, Error>.Observer, _ relayDisposable: CompositeDisposable) -> Disposable? {
-		let state = Atomic(ThrottleState())
-
-		return self.observe { event in
-			switch event {
-			case let .value(innerProducer):
-				let isFirstInnerProducer: Bool = state.modify { state in
-					guard !state.hasFirstInnerProducer else {
-						return false
-					}
-
-					state.hasFirstInnerProducer = true
-					return true
-				}
-
-				// Ignore consecutive `innerProducer`s while `isFirstInnerProducer` is true.
-				guard isFirstInnerProducer else { return }
-
-				innerProducer.producer.startWithSignal { innerSignal, innerDisposable in
-					relayDisposable.add(innerDisposable)
-
-					innerSignal.observe { event in
-						switch event {
-						case .completed:
-							let shouldComplete: Bool = state.modify { state in
-								state.hasFirstInnerProducer = false
-								return state.outerSignalComplete
-							}
-
-							if shouldComplete {
-								observer.sendCompleted()
-							}
-
-						case .value, .failed, .interrupted:
-							observer.send(event)
-						}
-					}
-				}
-
-			case let .failed(error):
-				observer.send(error: error)
-
-			case .completed:
-				let shouldComplete: Bool = state.modify { state in
-					state.outerSignalComplete = true
-					return !state.hasFirstInnerProducer
-				}
-
-				if shouldComplete {
-					observer.sendCompleted()
-				}
-
-			case .interrupted:
-				observer.sendInterrupted()
-			}
-		}
-	}
-}
-
-extension SignalProducer where Value: SignalProducerConvertible, Error == Value.Error {
-	/// Returns a producer that forwards values from the "first inner producer" if not exists,
-	/// ignoring values sent from other inner producers until first inner producer is completed.
-	/// Note that next inner producer after previous completion can become first inner producer again.
-	///
-	/// An error sent on `self` or the first inner producer will be sent on the
-	/// returned producer.
-	///
-	/// The returned signal completes when `self` is completed, and also first inner producer
-	/// is completed if it exists.
-	fileprivate func throttle() -> SignalProducer<Value.Value, Error> {
-		return SignalProducer<Value.Value, Error> { observer, lifetime in
-			let relayDisposable = CompositeDisposable()
-			lifetime += relayDisposable
-
-			self.startWithSignal { signal, signalDisposable in
-				lifetime += signalDisposable
-				lifetime += signal.observeThrottle(observer, relayDisposable)
-			}
-		}
-	}
-}
-
-private struct ThrottleState {
-	var outerSignalComplete = false
-	var hasFirstInnerProducer = false
 }
 
 extension Signal {

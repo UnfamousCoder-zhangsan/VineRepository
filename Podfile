@@ -1,43 +1,71 @@
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/aliyun/aliyun-specs.git'
-platform :ios, '10.0'
+platform :ios, '9.0'
+inhibit_all_warnings!
 use_frameworks!
 
-target 'Vines' do
-  pod 'JXCategoryView'
-  pod 'JXPagingView/Pager'
+target ‘Project’ do
+  
 
-  pod 'SDWebImage'
-
-  pod 'AFNetworking', '~> 3.0'
+  pod 'AFNetworking', '~> 3.2.1'
   
   pod 'ReactiveObjC'
   pod 'ReactiveCocoa'
+  
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  
   pod 'Masonry'
-  pod 'JSQSystemSoundPlayer', '~> 2.0'
-
+  
+  pod 'SnapKit'
+  
   pod 'SVProgressHUD'
   
-  pod 'IDMPhotoBrowser', '~> 1.11.3'
+  pod 'MJRefresh'
   
   pod 'MJExtension'
   
-  pod 'MJRefresh'
-  pod 'QMUIKit', '~> 4.0.3'
-
-  pod 'LBXPermission/Base'
-  pod 'TZImagePickerController'
-  pod 'MGSwipeTableCell'
-  pod 'EFQRCode'
-  
-  pod 'CRToast', '~> 0.0.9'
-
-  pod 'AXWebViewController'
-  
   pod 'YYKit'
   
-  pod 'PPBadgeView'
-  pod 'BRPickerView'
+  pod 'QMUIKit'
+  
+  pod 'AXWebViewController'
+  
+  pod 'RKNotificationHub'
+  
+  pod 'MISFloatingBall'
+  
+  pod 'HandyJSON'
+  
+  pod 'SDWebImage', '~> 5.1.0'
+  
+  pod 'Pulsator'
+  
+  pod 'TOCropViewController'
+  
+  pod 'LBXPermission/Base'
   pod 'LBXPermission/Camera'
   pod 'LBXPermission/Photo'
+  
+  pod 'EFQRCode'
+  
+  pod 'PageControls/SnakePageControl'
+  
+  pod 'CRBoxInputView'
+  
+  pod 'Bugtags'
+  
+  pod 'AliyunOSSiOS'
+  
+  pod 'AlipaySDK-iOS'
+  
+  pod 'SDCycleScrollView'
+  pod 'Charts'
+  
+  pod 'BaiduMapKit' #百度地图SDK
+  pod 'BMKLocationKit'
+  
+  pod 'JXCategoryView'
+  pod 'GKPageScrollView'
+  
 end
