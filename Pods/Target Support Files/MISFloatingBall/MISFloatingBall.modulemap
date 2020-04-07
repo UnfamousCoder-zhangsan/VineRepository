@@ -1,0 +1,6 @@
+framework module MISFloatingBall {
+  umbrella header "MISFloatingBall-umbrella.h"
+
+  export *
+  module * { export * }
+}
