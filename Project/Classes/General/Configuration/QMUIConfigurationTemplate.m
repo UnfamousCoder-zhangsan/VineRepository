@@ -108,7 +108,7 @@
     
     QMUICMI.tabBarBackgroundImage = [[UIImage qmui_imageWithColor:UIColorMakeWithHex(@"#222222")] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1)];   // TabBarBackgroundImage : UITabBar 的背景图，建议使用 resizableImage，否则在 UITabBar (NavigationController) 的 setBackgroundImage: 里会每次都视为 image 发生了变化（isEqual: 为 NO）
     QMUICMI.tabBarBarTintColor = nil;                                           // TabBarBarTintColor : UITabBar 的 barTintColor
-    QMUICMI.tabBarShadowImageColor = UIColorMakeWithHex(@"#F2F2F2");                          // TabBarShadowImageColor : UITabBar 的 shadowImage 的颜色，会自动创建一张 1px 高的图片
+    QMUICMI.tabBarShadowImageColor = UIColorMakeWithHex(@"#000000");                          // TabBarShadowImageColor : UITabBar 的 shadowImage 的颜色，会自动创建一张 1px 高的图片
     QMUICMI.tabBarStyle = UIBarStyleDefault;                                    // TabBarStyle : UITabBar 的 barStyle
     QMUICMI.tabBarItemTitleColor = UIColorMakeWithHex(@"#888888");                                // TabBarItemTitleColor : 未选中的 UITabBarItem 的标题颜色
     QMUICMI.tabBarItemTitleColorSelected = UIColorMakeWithHex(@"#FFFFFF");

@@ -27,17 +27,18 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"附近";
     [self setupBaseView];
     [self loadData];
 }
 
 - (UIImage *)navigationBarBackgroundImage{
-    return [[UIImage alloc] init];
+    return [UIImage imageWithColor:UIColorMakeWithHex(@"#222222")];
 }
 
 - (BOOL)preferredNavigationBarHidden
 {
-    return YES;
+    return NO;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -52,11 +53,11 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 #pragma mark - SetupBase
 
 - (void)setupBaseView {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = UIColorMakeWithHex(@"#222222");
     DDAnimationLayout *layout = [[DDAnimationLayout alloc]init];
     layout.rowsOrColumnsCount = 2;
-    layout.rowMargin = 0;
-    layout.columnMargin = 1;
+    layout.rowMargin = 5;
+    layout.columnMargin = 5;
     layout.delegate = self;
     layout.sectionInset = UIEdgeInsetsMake(0, 8, 0, 8);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;

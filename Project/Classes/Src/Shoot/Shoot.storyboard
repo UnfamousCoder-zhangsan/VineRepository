@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ShootVC-->
+        <scene sceneID="V7G-vS-sgZ">
+            <objects>
+                <viewController storyboardIdentifier="KB_ShootVC" id="BIn-RY-Hm5" customClass="KB_ShootVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7ra-Dz-52O" customClass="KB_Sh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yDD-cz-0Gb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="788"/>
+                                <color key="backgroundColor" red="0.058823529409999999" green="0.6859595070422535" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxS-cB-7FT" customClass="翻转">
+                                <rect key="frame" x="369" y="74" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.25490196079999999" green="0.32156862749999998" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="62H-EU-H4g"/>
+                                    <constraint firstAttribute="height" constant="30" id="gBo-8N-Xzg"/>
+                                </constraints>
+                                <state key="normal" title="翻转"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-0c-5Kg">
+                                <rect key="frame" x="361" y="121" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25490196079999999" green="0.32156862749999998" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="倒计时"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzv-t0-fvF">
+                                <rect key="frame" x="177" y="722" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.058823529409999999" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="8XF-8d-WFV"/>
+                                    <constraint firstAttribute="width" constant="60" id="yNQ-rg-f9q"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5Z-az-Qkx">
+                                <rect key="frame" x="15" y="59" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.57254901960000004" green="0.62352941179999999" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KcC-lB-j53"/>
+                                    <constraint firstAttribute="width" constant="40" id="mfY-zf-CI9"/>
+                                </constraints>
+                                <state key="normal" title="关闭"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pxS-cB-7FT" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="30" id="8il-dt-ZDF"/>
+                            <constraint firstItem="yDD-cz-0Gb" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" id="AO6-a4-qzq"/>
+                            <constraint firstItem="yDD-cz-0Gb" firstAttribute="leading" secondItem="7Vc-p1-kMH" secondAttribute="leading" id="YLU-rk-fmU"/>
+                            <constraint firstItem="Nzv-t0-fvF" firstAttribute="centerX" secondItem="yDD-cz-0Gb" secondAttribute="centerX" id="cHa-KL-FOn"/>
+                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="bottom" secondItem="yDD-cz-0Gb" secondAttribute="bottom" constant="30" id="iiI-cD-NPR"/>
+                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="pxS-cB-7FT" secondAttribute="trailing" constant="15" id="jRu-4o-hT1"/>
+                            <constraint firstItem="E5Z-az-Qkx" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="15" id="sB2-a8-j7S"/>
+                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="yDD-cz-0Gb" secondAttribute="trailing" id="uT7-AW-DWz"/>
+                            <constraint firstItem="E5Z-az-Qkx" firstAttribute="leading" secondItem="7Vc-p1-kMH" secondAttribute="leading" constant="15" id="wMO-Ry-nIi"/>
+                            <constraint firstItem="Nzv-t0-fvF" firstAttribute="bottom" secondItem="yDD-cz-0Gb" secondAttribute="bottom" constant="-50" id="zd9-8E-eBP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Vc-p1-kMH"/>
+                    </view>
+                    <connections>
+                        <outlet property="shootImage" destination="yDD-cz-0Gb" id="i32-Ot-rM0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V1J-Oj-Ojw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141" y="100"/>
+        </scene>
+    </scenes>
+</document>

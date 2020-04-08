@@ -11,11 +11,6 @@
 #import "CommentMessageCell.h"
 //#import "IQKeyboardManager.h"
 #import "CommentInputView.h"
-//#import "NSString+XPKit.h"
-//#import "LoadingStatus.h"
-//#import "CommentHeaderView.h"
-//#import "RTCacheManager.h"
-//#import "iToast.h"
 #import "CommentTextView.h"
 //#import "UIButton+CustomCategory.h"
 #import "CommentModel.h"
@@ -63,7 +58,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         self.isDragTableView = NO;
         self.lastDrapDistance = 0.0;
         self.frame = [UIScreen mainScreen].bounds;
-        self.backgroundColor = RGBA(0, 0, 0, 0.5);
+        self.backgroundColor = UIColorMakeWithHex(@"#222222");
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGuesture:)];
         self.tapGestureRecognizer = tapGestureRecognizer;
         tapGestureRecognizer.delegate = self;
@@ -123,12 +118,9 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35  , SCREEN_WIDTH, _container.height - 35   - _commentTextView.container.height) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
-//        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, 0.01f)];
-//        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
-        if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
-        }else {
-            self.viewController.automaticallyAdjustsScrollViewInsets = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        if(@available(iOS 11.0, *)){
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.estimatedRowHeight = 150  ;
         _tableView.delegate = self;

@@ -84,6 +84,11 @@
 		3130FC78243CADDC00B9A0D6 /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC38243CADDB00B9A0D6 /* ASValueTrackingSlider.m */; };
 		3130FC79243CADDC00B9A0D6 /* DDVideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC39243CADDB00B9A0D6 /* DDVideoPlayerManager.m */; };
 		3130FC7D243CBBAF00B9A0D6 /* KB_NewsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC7C243CBBAF00B9A0D6 /* KB_NewsTVC.m */; };
+		3130FC84243E1B8D00B9A0D6 /* KB_MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC83243E1B8D00B9A0D6 /* KB_MineHeaderView.m */; };
+		3130FC87243E1DE200B9A0D6 /* KB_BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC86243E1DE200B9A0D6 /* KB_BaseTableViewController.m */; };
+		3130FC8A243E208300B9A0D6 /* KB_ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC89243E208300B9A0D6 /* KB_ListViewController.m */; };
+		3130FC8C243E2D0900B9A0D6 /* Shoot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */; };
+		3130FC90243E33EB00B9A0D6 /* KB_CamerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */; };
 		313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */; };
 		313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */; };
 		313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */; };
@@ -370,6 +375,15 @@
 		3130FC39243CADDB00B9A0D6 /* DDVideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDVideoPlayerManager.m; sourceTree = "<group>"; };
 		3130FC7B243CBBAF00B9A0D6 /* KB_NewsTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_NewsTVC.h; sourceTree = "<group>"; };
 		3130FC7C243CBBAF00B9A0D6 /* KB_NewsTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_NewsTVC.m; sourceTree = "<group>"; };
+		3130FC82243E1B8D00B9A0D6 /* KB_MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineHeaderView.h; sourceTree = "<group>"; };
+		3130FC83243E1B8D00B9A0D6 /* KB_MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineHeaderView.m; sourceTree = "<group>"; };
+		3130FC85243E1DE200B9A0D6 /* KB_BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_BaseTableViewController.h; sourceTree = "<group>"; };
+		3130FC86243E1DE200B9A0D6 /* KB_BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseTableViewController.m; sourceTree = "<group>"; };
+		3130FC88243E208300B9A0D6 /* KB_ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_ListViewController.h; sourceTree = "<group>"; };
+		3130FC89243E208300B9A0D6 /* KB_ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ListViewController.m; sourceTree = "<group>"; };
+		3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shoot.storyboard; sourceTree = "<group>"; };
+		3130FC8E243E33EB00B9A0D6 /* KB_CamerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_CamerManager.h; sourceTree = "<group>"; };
+		3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_CamerManager.m; sourceTree = "<group>"; };
 		313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomePageViewController.h; sourceTree = "<group>"; };
 		313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_HomePageViewController.m; sourceTree = "<group>"; };
 		313A34A2243B3A2700A4F1F9 /* KB_MineTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineTVC.h; sourceTree = "<group>"; };
@@ -1010,6 +1024,49 @@
 			path = News;
 			sourceTree = "<group>";
 		};
+		3130FC7E243E160A00B9A0D6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3130FC85243E1DE200B9A0D6 /* KB_BaseTableViewController.h */,
+				3130FC86243E1DE200B9A0D6 /* KB_BaseTableViewController.m */,
+				3130FC88243E208300B9A0D6 /* KB_ListViewController.h */,
+				3130FC89243E208300B9A0D6 /* KB_ListViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		3130FC7F243E161500B9A0D6 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3130FC80243E161C00B9A0D6 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3130FC82243E1B8D00B9A0D6 /* KB_MineHeaderView.h */,
+				3130FC83243E1B8D00B9A0D6 /* KB_MineHeaderView.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3130FC81243E162B00B9A0D6 /* C */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3130FC8D243E33B000B9A0D6 /* customShoot */ = {
+			isa = PBXGroup;
+			children = (
+				3130FC8E243E33EB00B9A0D6 /* KB_CamerManager.h */,
+				3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */,
+			);
+			path = customShoot;
+			sourceTree = "<group>";
+		};
 		313A34A5243B3AF000A4F1F9 /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -1022,8 +1079,10 @@
 		313A34A9243B3B9100A4F1F9 /* Shoot */ = {
 			isa = PBXGroup;
 			children = (
+				3130FC8D243E33B000B9A0D6 /* customShoot */,
 				313A34AA243B3BBA00A4F1F9 /* KB_ShootVC.h */,
 				313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */,
+				3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */,
 			);
 			path = Shoot;
 			sourceTree = "<group>";
@@ -1081,6 +1140,10 @@
 		5E8E040323B060BE0023A484 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				3130FC81243E162B00B9A0D6 /* C */,
+				3130FC80243E161C00B9A0D6 /* V */,
+				3130FC7F243E161500B9A0D6 /* M */,
+				3130FC7E243E160A00B9A0D6 /* Base */,
 				313A34A2243B3A2700A4F1F9 /* KB_MineTVC.h */,
 				313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */,
 			);
@@ -1887,6 +1950,7 @@
 				926ADECB23F127E200844868 /* custom_map_config in Resources */,
 				5E8E043923B068120023A484 /* UMSocialSDKResources.bundle in Resources */,
 				E6C8A4541D405B880075353A /* Assets.xcassets in Resources */,
+				3130FC8C243E2D0900B9A0D6 /* Shoot.storyboard in Resources */,
 				CB86BC18231785430011207A /* PayInputItem.xib in Resources */,
 				5E8E043623B068120023A484 /* UMCommonLog.bundle in Resources */,
 				5E8E044023B06CA40023A484 /* Login.storyboard in Resources */,
@@ -2003,6 +2067,7 @@
 				3130FC45243CADDB00B9A0D6 /* KTVHCDataRequest.m in Sources */,
 				3130FB9D243CACA300B9A0D6 /* DDAnimationLayout.m in Sources */,
 				3130FC62243CADDC00B9A0D6 /* DDRange.m in Sources */,
+				3130FC84243E1B8D00B9A0D6 /* KB_MineHeaderView.m in Sources */,
 				5E8E041223B0618A0023A484 /* LoginVC.m in Sources */,
 				3130FC67243CADDC00B9A0D6 /* ZFDouYinPlayerControlView.m in Sources */,
 				3130FC40243CADDB00B9A0D6 /* KTVHCDataUnitPool.m in Sources */,
@@ -2018,6 +2083,7 @@
 				A48C36BF205E2FD5003EBDDA /* QDMultipleImagePickerPreviewViewController.m in Sources */,
 				3130FC59243CADDC00B9A0D6 /* HTTPLogging.m in Sources */,
 				3130FC6F243CADDC00B9A0D6 /* UIViewController+ZFPlayerRotation.m in Sources */,
+				3130FC87243E1DE200B9A0D6 /* KB_BaseTableViewController.m in Sources */,
 				3130FC77243CADDC00B9A0D6 /* ZFSuspendPlayerControlView.m in Sources */,
 				CBA10512230E717300CD84E9 /* UtilsHelper.m in Sources */,
 				3130FC4B243CADDB00B9A0D6 /* KTVHCDataUnitQueue.m in Sources */,
@@ -2059,6 +2125,7 @@
 				3130FC63243CADDC00B9A0D6 /* HTTPServer.m in Sources */,
 				5E6D2E0C23FE8FF9002BF332 /* LMRLabel.m in Sources */,
 				3130FC44243CADDB00B9A0D6 /* KTVHCDataUnit.m in Sources */,
+				3130FC8A243E208300B9A0D6 /* KB_ListViewController.m in Sources */,
 				A48C36B6205E2FD5003EBDDA /* UIView+LSCore.m in Sources */,
 				CBA1060D230E71E900CD84E9 /* InputItem.m in Sources */,
 				86B2BD07230E6B5100273AA3 /* BRStringPickerView.m in Sources */,
@@ -2127,6 +2194,7 @@
 				86B2BD09230E6B5100273AA3 /* BRDatePickerView.m in Sources */,
 				5EBF20B9237E398E003DD0A7 /* AlertHelper.m in Sources */,
 				A48C36BB205E2FD5003EBDDA /* QDCommonUI.m in Sources */,
+				3130FC90243E33EB00B9A0D6 /* KB_CamerManager.m in Sources */,
 				3130FC6E243CADDC00B9A0D6 /* UINavigationController+ZFPlayerRotation.m in Sources */,
 				92CBDFE923FD792C0022866B /* DHGifImageOperation.m in Sources */,
 				5EBF20BC237E3D79003DD0A7 /* NSString+Date.m in Sources */,

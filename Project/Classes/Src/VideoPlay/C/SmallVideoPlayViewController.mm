@@ -44,14 +44,8 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [self.videoPlayerManager autoPlay];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
+- (UIImage *)navigationBarBackgroundImage{
+   return [[UIImage alloc] init];
 }
 
 - (void)createUI {

@@ -37,12 +37,14 @@
 - (void)setupBaseView {
     self.contentView.layer.masksToBounds = YES;
     UIView *bottomView = [[UIView alloc] init];
+    // 底部view
     [self.contentView addSubview:bottomView];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.with.offset(0);
-        make.height.mas_equalTo(30 );
+        make.height.mas_equalTo(40 );
     }];
     
+    // 评论image
     self.commentImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SmallVideoComment"]];
     self.commentImageView.contentMode = UIViewContentModeScaleAspectFit;
     [bottomView addSubview:self.commentImageView];
@@ -51,6 +53,7 @@
         make.width.mas_equalTo(15 );
         make.top.bottom.with.offset(0);
     }];
+    // 评论数
     self.commentNumLabel = [[UILabel alloc] init];
     [bottomView addSubview:self.commentNumLabel];
     self.commentNumLabel.text = @"1234";
@@ -62,6 +65,7 @@
     }];
    
     
+    // 点赞 image
     self.concernImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SmallVideoConcern"]];
     self.concernImageView.contentMode = UIViewContentModeScaleAspectFit;
     [bottomView addSubview:self.concernImageView];
@@ -71,6 +75,7 @@
         make.width.mas_equalTo(15 );
         make.top.bottom.with.offset(0);
     }];
+    // 点赞数
     self.concernNumLabel = [[UILabel alloc] init];
     [bottomView addSubview:self.concernNumLabel];
     self.concernNumLabel.text = @"1234";
@@ -81,15 +86,18 @@
         make.right.equalTo(self.concernImageView.mas_left).with.offset(-4);
     }];
     
+    // 第一帧图片
     self.videoImageView = [[UIImageView alloc] init];
-//    self.videoImageView.backgroundColor = [UIColor blackColor];
     self.videoImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.videoImageView.layer.cornerRadius = 10;
+    self.videoImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:self.videoImageView];
     [self.videoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.with.offset(0);
         make.bottom.equalTo(bottomView.mas_top).with.offset(0);
     }];
     
+    // 头像image
     self.iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
     self.iconImageView.layer.borderWidth = 1.5;
     self.iconImageView.layer.cornerRadius = 20;
@@ -100,7 +108,7 @@
     _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
 //    self.iconImageView.backgroundColor = [UIColor blackColor];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(bottomView.mas_top);
+        make.centerY.equalTo(bottomView.mas_top).offset(5);
         make.left.with.offset(9 );
         make.size.mas_equalTo(CGSizeMake(40 , 40 ));
     }];
@@ -133,13 +141,12 @@
     
     self.messageLabel = [[UILabel alloc] init];
     self.messageLabel.text = @"";
-    [self.videoImageView addSubview:self.messageLabel];
+    [bottomView addSubview:self.messageLabel];
     self.messageLabel.font = [UIFont systemFontOfSize:11 ];
     self.messageLabel.textColor = [UIColor whiteColor];
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconImageView.mas_right).with.offset(5 );
-        make.right.with.offset(-5 );
-        make.bottom.equalTo(bottomView.mas_top).with.offset(-7 );
+        make.centerY.mas_equalTo(bottomView.mas_centerY).offset(-5);
     }];
     
     

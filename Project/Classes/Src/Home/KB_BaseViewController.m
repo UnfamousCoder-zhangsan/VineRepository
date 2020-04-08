@@ -72,7 +72,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.with.offset(0);
-        make.height.offset(cellHeight);
+        make.height.offset(SCREEN_HEIGHT - TabBarHeight);
     }];
     if(@available(iOS 11.0, *)){
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
@@ -114,12 +114,12 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return cellHeight;
+    return SCREEN_HEIGHT - TabBarHeight;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     DLog(@"快点播放下一个");
-    NSInteger currentIndex = round(self.tableView.contentOffset.y / cellHeight);
+    NSInteger currentIndex = round(self.tableView.contentOffset.y / (SCREEN_HEIGHT - TabBarHeight));
     if(self.currentPlayIndex != currentIndex) {
         if(self.currentPlayIndex > currentIndex) {
             [self preLoadIndex:currentIndex-1];
@@ -133,7 +133,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    CGFloat currentIndex = self.tableView.contentOffset.y / cellHeight;
+    CGFloat currentIndex = self.tableView.contentOffset.y / (SCREEN_HEIGHT - TabBarHeight);
     if(fabs(currentIndex - self.currentPlayIndex)>1) {
         [self.videoPlayerManager resetPlayer];
         [self.preloadVideoPlayerManager resetPlayer];
