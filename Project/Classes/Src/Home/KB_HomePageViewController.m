@@ -123,6 +123,7 @@
         _contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -NavigationContentTopConstant, scrollW, scrollH)];
         _contentScrollView.pagingEnabled = YES;
         _contentScrollView.bounces = NO;
+        _contentScrollView.showsVerticalScrollIndicator = NO;
         _contentScrollView.delegate = self;
         
         [self.childVCs enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
