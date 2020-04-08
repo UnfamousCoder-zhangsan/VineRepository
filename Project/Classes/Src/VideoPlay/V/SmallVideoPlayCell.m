@@ -51,8 +51,8 @@
         bottomView.backgroundColor = [UIColor blackColor];
         [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.with.offset(0);
-            if(kDevice_Is_iPhoneX) {
-                make.height.mas_equalTo(83);
+            if(IS_NOTCHED_SCREEN) {
+                make.height.mas_equalTo(0);
             } else {
                 make.height.mas_equalTo(0);
             }
@@ -241,7 +241,7 @@
             [self commentVidieo];
         }];
         [_setRingImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(kDevice_Is_iPhoneX) {
+            if(IS_NOTCHED_SCREEN) {
                 make.bottom.with.offset(-150);
             } else {
                 make.bottom.with.offset(-135 );
@@ -270,7 +270,7 @@
         
         
         [_share mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(kDevice_Is_iPhoneX) {
+            if(IS_NOTCHED_SCREEN) {
                 make.bottom.equalTo(_setLivePhotoImage.mas_top).with.offset(-40 );
             } else {
                 make.bottom.equalTo(_setLivePhotoImage.mas_top).with.offset(-40 );
@@ -315,7 +315,7 @@
         }];
         [_artistLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.with.offset(15 );
-            if(kDevice_Is_iPhoneX) {
+            if(IS_NOTCHED_SCREEN) {
                 make.top.equalTo(self.contentView.mas_bottom).with.offset(-(83  - 10 ));
             } else {
                 make.top.equalTo(self.contentView.mas_bottom).with.offset(-83 );

@@ -114,7 +114,7 @@
     QMUICMI.tabBarItemTitleColorSelected = UIColorMakeWithHex(@"#FFFFFF");
     QMUICMI.tabBarItemImageColor = UIColorMakeWithHex(@"#222222");
     QMUICMI.tabBarItemImageColorSelected = UIColorMakeWithHex(@"#1AC095"); // TabBarItemImageColorSelected : UITabBarItem 选中时的图片颜色
-    QMUICMI.tabBarItemTitleFont = [UIFont systemFontOfSize:16];                                          // TabBarItemTitleFont : UITabBarItem 的标题字体
+    QMUICMI.tabBarItemTitleFont = nil;                                          // TabBarItemTitleFont : UITabBarItem 的标题字体
     
 #pragma mark - Toolbar
     

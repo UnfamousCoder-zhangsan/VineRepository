@@ -13,5 +13,7 @@
 @end
 
 @implementation QDTabBarViewController
-
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    LQLog(@"%@",item.title);
+}
 @end

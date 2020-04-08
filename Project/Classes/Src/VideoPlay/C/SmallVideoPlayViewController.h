@@ -6,18 +6,15 @@
 //  Copyright © 2019年 duoduo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "QDCommonViewController.h"
 @class SmallVideoPlayViewController;
 @class SmallVideoModel;
 
 
 
-
-
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SmallVideoPlayViewController : UIViewController
+@interface SmallVideoPlayViewController : QDCommonViewController
 
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, strong) NSMutableArray *modelArray;

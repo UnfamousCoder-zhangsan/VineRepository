@@ -6,11 +6,13 @@
 //  Copyright © 2020 hiKobe@lsirCode. All rights reserved.
 //
 
-#import "QDCommonTableViewController.h"
+#import "QDCommonViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KB_NewsTVC : QDCommonTableViewController
+@interface KB_NewsTVC : QDCommonViewController
+
+@property(nonatomic, strong) UICollectionView *collectionView;
 
 @end
 

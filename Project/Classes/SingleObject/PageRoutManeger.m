@@ -80,11 +80,10 @@ static PageRoutManeger *_sharedPageRoutManeger;
         [PageRoutManeger showShootVC];
     }];
     [tabBarViewController.tabBar addSubview:shootBtn];
-        return tabBarViewController;
+    return tabBarViewController;
 }
 
 + (void)showShootVC{
-    [SVProgressHUD showSuccessWithStatus:@"点击了拍摄按钮"];
     KB_ShootVC *shootVC = [[KB_ShootVC alloc] init];
     [PageRout_Maneger.currentNaviVC presentViewController:shootVC animated:YES completion:^{
         [SVProgressHUD showSuccessWithStatus:@"正在拍摄中"];

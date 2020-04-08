@@ -14,6 +14,7 @@
 #import "CommentsPopView.h"
 
 static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
+#define cellHeight SCREEN_HEIGHT - TabBarHeight
 
 @interface KB_BaseViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, SmallVideoPlayCellDlegate>
 @property (nonatomic, strong) UIView *fatherView;
@@ -62,19 +63,16 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.pagingEnabled = YES;
-    self.tableView.scrollsToTop = NO;
+    //self.tableView.bounces = NO;
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.estimatedRowHeight = SCREEN_HEIGHT - TabBarHeight;
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    self.tableView.backgroundColor = [UIColor blackColor];
+    self.tableView.backgroundColor = [UIColor yellowColor];
     [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
 
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.with.offset(0);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TabBarHeight);
+        make.height.offset(cellHeight);
     }];
     if(@available(iOS 11.0, *)){
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
@@ -89,15 +87,15 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
         }
     });
     
-    UIButton *btn = [[UIButton alloc] init];
-    [self.view addSubview:btn];
-    [btn setImage:[UIImage imageNamed:@"Comment_Navi_button_back"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(backToPreviousView:) forControlEvents:UIControlEventTouchUpInside];
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.with.offset(10);
-        make.top.with.offset(kDevice_Is_iPhoneX ? 24 : 0);
-        make.size.mas_equalTo(CGSizeMake(60, 64));
-    }];
+//    UIButton *btn = [[UIButton alloc] init];
+//    [self.view addSubview:btn];
+//    [btn setImage:[UIImage imageNamed:@"Comment_Navi_button_back"] forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(backToPreviousView:) forControlEvents:UIControlEventTouchUpInside];
+//    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.with.offset(10);
+//        make.top.with.offset(IS_NOTCHED_SCREEN ? 24 : 0);
+//        make.size.mas_equalTo(CGSizeMake(60, 64));
+//    }];
     
 }
 
@@ -111,24 +109,17 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SmallVideoPlayCell *cell = [tableView dequeueReusableCellWithIdentifier:SmallVideoCellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
-    DLog(@"cell的地址:%p   index:%ld   %ld",cell,indexPath.row,self.modelArray.count-2);
     cell.model = self.modelArray[indexPath.row];
-    NSInteger rowIndex = indexPath.row;
-    NSInteger index = self.modelArray.count - 2;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return SCREEN_HEIGHT - TabBarHeight;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    return cellHeight;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     DLog(@"快点播放下一个");
-    NSInteger currentIndex = round(self.tableView.contentOffset.y / (SCREEN_HEIGHT - TabBarHeight));
+    NSInteger currentIndex = round(self.tableView.contentOffset.y / cellHeight);
     if(self.currentPlayIndex != currentIndex) {
         if(self.currentPlayIndex > currentIndex) {
             [self preLoadIndex:currentIndex-1];
@@ -142,7 +133,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    CGFloat currentIndex = self.tableView.contentOffset.y / (SCREEN_HEIGHT - TabBarHeight);
+    CGFloat currentIndex = self.tableView.contentOffset.y / cellHeight;
     if(fabs(currentIndex - self.currentPlayIndex)>1) {
         [self.videoPlayerManager resetPlayer];
         [self.preloadVideoPlayerManager resetPlayer];
@@ -258,13 +249,13 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 
-#pragma mark - Action
-- (void) backToPreviousView:(id)sender;
-{
-    [self.videoPlayerManager resetPlayer];
-    [self.preloadVideoPlayerManager resetPlayer];
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//#pragma mark - Action
+//- (void) backToPreviousView:(id)sender;
+//{
+//    [self.videoPlayerManager resetPlayer];
+//    [self.preloadVideoPlayerManager resetPlayer];
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 
 #pragma mark - LazyLoad
