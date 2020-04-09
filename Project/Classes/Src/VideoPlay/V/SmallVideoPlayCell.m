@@ -15,15 +15,19 @@
 
 @property (nonatomic, strong) UIImageView *coverImageView;
 
+
 @property (nonatomic, strong) UIImageView *share;
 @property (nonatomic, strong) UILabel *shareNum;
 
+/// 评论
 @property (nonatomic, strong) UIImageView *comment;
 @property (nonatomic, strong) UILabel *commentNum;
 
+/// 点赞
 @property (nonatomic, strong) FavoriteView *favorite;
 @property (nonatomic, strong) UILabel *favoriteNum;
 
+///头像
 @property (nonatomic, strong) UIImageView *avatar;
 @property (nonatomic, strong) UIImageView *focus;
 
@@ -36,6 +40,7 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *artistLabel;
 
+// 删除textview 放在controller里面
 @property (nonatomic, strong) UITextView *commentTextView;
 
 @end
@@ -45,18 +50,16 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        
+        // 底部间距
         UIView *bottomView = [[UIView alloc] init];
         [self.contentView addSubview:bottomView];
         bottomView.backgroundColor = [UIColor blackColor];
         [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.with.offset(0);
-            if(IS_NOTCHED_SCREEN) {
-                make.height.mas_equalTo(0);
-            } else {
-                make.height.mas_equalTo(0);
-            }
+            make.height.mas_offset(0);
         }];
+        
+        ///待添加进度条 ？？？
         
         self.coverImageView = [[UIImageView alloc] init];
         self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -66,7 +69,7 @@
         self.contentView.backgroundColor = [UIColor blackColor];
         [self.coverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.with.offset(0);
-            make.bottom.equalTo(bottomView.mas_top);
+            make.bottom.mas_equalTo(self.mas_bottom);
         }];
         self.playerFatherView = [[UIView alloc] init];
         [self.contentView addSubview:self.playerFatherView];
@@ -187,9 +190,9 @@
         [self.contentView addSubview:_focus];
         
         
-        _commentTextView = [[UITextView alloc] init];
-        _commentTextView.backgroundColor = [UIColor redColor];
-        [self.contentView addSubview:_commentTextView];
+//        _commentTextView = [[UITextView alloc] init];
+//        _commentTextView.backgroundColor = [UIColor redColor];
+//        [self.contentView addSubview:_commentTextView];
         
         
         _artistLabel = [[UILabel alloc] init];
@@ -326,11 +329,11 @@
             make.width.mas_equalTo(SCREEN_WIDTH * 2 / 3);
             make.top.equalTo(_artistLabel.mas_bottom).with.offset(3 );
         }];
-        [_commentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
-            make.width.offset(SCREEN_WIDTH);
-            make.height.offset(50);
-        }];
+//        [_commentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
+//            make.width.offset(SCREEN_WIDTH);
+//            make.height.offset(50);
+//        }];
         
         [[RACObserve(self, model.comment_num) ignore:nil] subscribeNext:^(NSNumber *x) {
             @strongify(self);

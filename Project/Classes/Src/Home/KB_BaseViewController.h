@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL hasMore;
 
 @property (nonatomic, assign) NSInteger rid;
+
+///针对首页的是否自动播放
+@property (nonatomic, assign) BOOL isAutoPlay;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,weak) id <DDAnimationLayoutDelegate> delegate;
 
-//距离4周的宽度
+//collection距离边界的宽度
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 /** 每一列之间的间距 */
 @property (nonatomic, assign) CGFloat columnMargin;

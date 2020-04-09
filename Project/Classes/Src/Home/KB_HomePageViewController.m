@@ -140,17 +140,17 @@
 - (NSArray *)childVCs {
     if (!_childVCs) {
         [self getResource];
-        KB_BaseViewController *dynamicVC = [KB_BaseViewController new];
-        dynamicVC.modelArray = self.modelArray;
-        dynamicVC.currentPlayIndex = 0;
-        //dynamicVC.view.backgroundColor = [UIColor redColor];
+
+        KB_BaseViewController *recommendVC = [KB_BaseViewController new];
+        recommendVC.modelArray = self.modelArray;
+        recommendVC.isAutoPlay = YES;
+        recommendVC.currentPlayIndex = 0;
         
-        KB_BaseViewController *articleVC = [KB_BaseViewController new];
-        articleVC.modelArray = self.modelArray;
-        articleVC.currentPlayIndex = 0;
-        //articleVC.view.backgroundColor = [UIColor orangeColor];
+        KB_BaseViewController *focusVC = [KB_BaseViewController new];
+        focusVC.modelArray = self.modelArray;
+        focusVC.currentPlayIndex = 0;
         
-        _childVCs = @[dynamicVC, articleVC];
+        _childVCs = @[focusVC, recommendVC];
     }
     return _childVCs;
 }

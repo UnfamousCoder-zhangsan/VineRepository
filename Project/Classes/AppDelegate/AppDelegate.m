@@ -36,6 +36,8 @@
 
     // 向苹果注册推送，获取deviceToken并上报
 //    [self registerAPNS:application];
+    
+    // 初始化应用配置
     [self initAPPWithOptions:launchOptions];
 
     [self showAdImage];
@@ -344,10 +346,11 @@
     return YES;
 }
 
-#pragma mark - 显示t报告广告图
+#pragma mark - 显示广告图
 - (void)showAdImage {
     if ([kUserDefaults objectForKey:@"statistic/report/recent"]) {
-        [[DHLaunchAdPageHUD alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) aDduration:3.0 aDImageUrl:[kUserDefaults objectForKey:@"statistic/report/recent"] hideSkipButton:NO launchAdClickBlock:^{
+        [[DHLaunchAdPageHUD alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) aDduration:4.0 aDImageUrl:[kUserDefaults objectForKey:@"statistic/report/recent"] hideSkipButton:NO launchAdClickBlock:^{
+            //广告图点击跳转
         }];
     }
     
@@ -366,8 +369,6 @@
                     [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                         
                     }];
-//                    [[DHLaunchAdPageHUD alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) aDduration:3.0 aDImageUrl:path hideSkipButton:NO launchAdClickBlock:^{
-//                    }];
                 }
             }
         }

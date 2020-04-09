@@ -86,10 +86,10 @@
         make.right.equalTo(self.concernImageView.mas_left).with.offset(-4);
     }];
     
-    // 第一帧图片
+    // 封面图片
     self.videoImageView = [[UIImageView alloc] init];
     self.videoImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.videoImageView.layer.cornerRadius = 10;
+    self.videoImageView.layer.cornerRadius = 5;
     self.videoImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:self.videoImageView];
     [self.videoImageView mas_makeConstraints:^(MASConstraintMaker *make) {

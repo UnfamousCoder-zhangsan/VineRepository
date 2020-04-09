@@ -60,26 +60,26 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)createUI {
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -StatusBarHeight, SCREEN_WIDTH, self.view.bounds.size.height) style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.pagingEnabled = YES;
-    //self.tableView.bounces = NO;
+    self.tableView.bounces = NO;
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.backgroundColor = [UIColor yellowColor];
+    self.tableView.backgroundColor = UIColorMakeWithHex(@"#222222");
     [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
 
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.with.offset(0);
-        make.height.offset(SCREEN_HEIGHT - TabBarHeight);
-    }];
-    if(@available(iOS 11.0, *)){
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.right.with.offset(0);
+//        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TabBarHeight);
+//    }];
+//    if(@available(iOS 11.0, *)){
+//        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
+//    } else {
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self playIndex:self.currentPlayIndex];
         if(self.modelArray.count > (self.currentPlayIndex + 1)) {
@@ -100,6 +100,10 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 #pragma mrak - UITableViewDataSource & UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
