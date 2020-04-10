@@ -31,8 +31,8 @@
     ((UIActivityIndicatorView*)self.emptyView.loadingView).color = UIColorWhite;
     self.emptyView.backgroundColor = APPColor_BackgroudView;
     self.emptyView.detailTextLabel.font = [UIFont systemFontOfSize:15];
-    self.emptyView.detailTextLabel.textColor = UIColorMakeWithHex(@"#888888");
-    self.emptyView.textLabel.textColor = UIColorMakeWithHex(@"#888888");
+    self.emptyView.detailTextLabel.textColor = UIColorMakeWithHex(@"#222222");
+    self.emptyView.textLabel.textColor = UIColorMakeWithHex(@"#222222");
     self.emptyView.textLabel.font = [UIFont systemFontOfSize:15];
 }
 

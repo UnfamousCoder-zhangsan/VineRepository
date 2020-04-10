@@ -19,6 +19,8 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 @interface SmallVideoPlayViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, SmallVideoPlayCellDlegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView      *bottomView;
+@property (nonatomic, strong) QMUITextView *commentTextView;
 @property (nonatomic, strong) UIView *fatherView;
 //这个是播放视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *videoPlayerManager;
@@ -31,6 +33,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view openKeyboardOffsetView];
     [self createUI];
 }
 
@@ -50,44 +53,55 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)createUI {
     
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.pagingEnabled = YES;
     self.tableView.scrollsToTop = NO;
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.estimatedRowHeight = SCREEN_HEIGHT;
+    self.tableView.estimatedRowHeight = SCREEN_HEIGHT - TabBarHeight;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.backgroundColor = [UIColor blackColor];
     [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
 
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.bottom.with.offset(0);
+        make.top.left.right.with.offset(0);
+        make.height.offset(SCREEN_HEIGHT - TabBarHeight);
     }];
     if(@available(iOS 11.0, *)){
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self playIndex:self.currentPlayIndex];
         if(self.modelArray.count > (self.currentPlayIndex + 1)) {
             [self preLoadIndex:self.currentPlayIndex + 1];
         }
 //    });
-    
-    UIButton *btn = [[UIButton alloc] init];
-    [self.view addSubview:btn];
-    [btn setImage:[UIImage imageNamed:@"Comment_Navi_button_back"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(backToPreviousView:) forControlEvents:UIControlEventTouchUpInside];
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.with.offset(10);
-        make.top.with.offset(kDevice_Is_iPhoneX ? 24 : 0);
-        make.size.mas_equalTo(CGSizeMake(60, 64));
+    self.bottomView = [[UIView alloc] init];
+    self.bottomView.backgroundColor  = UIColorMakeWithHex(@"#222222");
+    [self.view addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.with.offset(0);
+        make.height.offset(TabBarHeight);
     }];
+    
+    self.commentTextView = [[QMUITextView alloc] init];
+    self.commentTextView.placeholder = @"说点什么吧";
+    self.commentTextView.font = [UIFont systemFontOfSize:14];
+    self.commentTextView.textColor = UIColorMakeWithHex(@"#FFFFFF");
+    self.commentTextView.placeholderColor = UIColorMakeWithHex(@"#666666");
+    self.commentTextView.backgroundColor = UIColorMakeWithHex(@"#222222");
+    [self.bottomView addSubview:self.commentTextView];
+    [self.commentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.with.offset(0);
+        make.height.offset(49);
+    }];
+    
     
 }
 
@@ -109,7 +123,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return SCREEN_HEIGHT;
+    return SCREEN_HEIGHT - TabBarHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -32,6 +32,18 @@ const CGFloat QDButtonSpacingHeight = 72;
     
     QMUILabel *label = [QMUILabel appearance];
     label.highlightedBackgroundColor = TableViewCellSelectedBackgroundColor;
+    
+    if (@available(iOS 13.0, *)) {
+        UITabBarAppearance *appearance = UITabBar.appearance.standardAppearance;
+        [appearance qmui_applyItemAppearanceWithBlock:^(UITabBarItemAppearance * _Nonnull itemAppearance) {
+            NSMutableDictionary<NSAttributedStringKey, id> *attributes = itemAppearance.selected.titleTextAttributes.mutableCopy;
+            attributes[NSFontAttributeName] = UIFontBoldMake(16);
+            itemAppearance.selected.titleTextAttributes = attributes.copy;
+            itemAppearance.selected.titlePositionAdjustment = UIOffsetMake(0, -20);
+            itemAppearance.normal.titlePositionAdjustment = UIOffsetMake(0, -20);
+        }];
+        UITabBar.appearance.standardAppearance = appearance;
+    }
 }
 
 @end
