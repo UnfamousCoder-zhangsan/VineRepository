@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KB_HomePageViewController : QDCommonViewController<GKPageScrollViewDelegate>
+@interface KB_HomePageViewController : QDCommonViewController
 
 // pageScrollView
 @property (nonatomic, strong) GKPageScrollView *pageScrollView;

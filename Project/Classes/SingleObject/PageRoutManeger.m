@@ -49,14 +49,15 @@ static PageRoutManeger *_sharedPageRoutManeger;
     KB_HomePageViewController *videoTVC = [[KB_HomePageViewController alloc] init];
     videoTVC.hidesBottomBarWhenPushed = NO;
     QDNavigationController *videoNavController = [[QDNavigationController alloc] initWithRootViewController:videoTVC];
-    videoNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"首页" image:[UIImageMake(@"安全检查") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImageMake(@"tabar_home_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:0];
+    videoNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"首页" image:[UIImageMake(@"tabbar_indicater_normal") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImageMake(@"tabbar_indicater_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:0];
     videoNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(20, 0, -20, 0);
     videoNavController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -20);
     
     KB_NewsTVC *newsTVC = [[KB_NewsTVC alloc] init];
     newsTVC.hidesBottomBarWhenPushed = NO;
     QDNavigationController *newsNavController = [[QDNavigationController alloc] initWithRootViewController:newsTVC];
-    newsNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"附近" image:nil selectedImage:nil tag:1];
+    newsNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"附近" image:[UIImageMake(@"tabbar_indicater_normal") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImageMake(@"tabbar_indicater_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:1];
+    newsNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(20, 0, -20, 0);
     newsNavController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -20);
     
     UIViewController *tempVC = [[UIViewController alloc] init];
@@ -66,20 +67,22 @@ static PageRoutManeger *_sharedPageRoutManeger;
     KB_MessageTVC *messageTVC = [[KB_MessageTVC alloc] init];
     messageTVC.hidesBottomBarWhenPushed = NO;
     QDNavigationController *messageNavController = [[QDNavigationController alloc] initWithRootViewController:messageTVC];
-    messageNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"消息" image:nil selectedImage:nil tag:3];
+    messageNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"消息" image:[UIImageMake(@"tabbar_indicater_normal") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImageMake(@"tabbar_indicater_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:3];
+    messageNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(20, 0, -20, 0);
     messageNavController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -20);
     
     KB_MineTVC *mineTVC = [[KB_MineTVC alloc] init];
     mineTVC.hidesBottomBarWhenPushed = NO;
     QDNavigationController *mineNavController = [[QDNavigationController alloc] initWithRootViewController:mineTVC];
-    mineNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"我的" image:nil selectedImage:nil tag:4];
+    mineNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"我的" image:[UIImageMake(@"tabbar_indicater_normal") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImageMake(@"tabbar_indicater_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:4];
+    mineNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(20, 0, -20, 0);
     mineNavController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -20);
     
     tabBarViewController.viewControllers = @[videoNavController, newsNavController, tempNaviVC, messageNavController, mineNavController];
     
     
-    QMUIButton *shootBtn = [[QMUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 5 * 2, 0, SCREEN_WIDTH / 5, TabBarHeight)];
-    [shootBtn setImage:UIImageMake(@"时间") forState:UIControlStateNormal];
+    QMUIButton *shootBtn = [[QMUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 5 * 2, 0, SCREEN_WIDTH / 5, 49)];
+    [shootBtn setImage:UIImageMake(@"tabbar_shoot") forState:UIControlStateNormal];
     [[shootBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [PageRoutManeger showShootVC];
     }];
@@ -88,8 +91,8 @@ static PageRoutManeger *_sharedPageRoutManeger;
 }
 
 + (void)showShootVC{
-   // KB_ShootVC *shootVC = [[UIStoryboard storyboardWithName:@"Shoot" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_ShootVC"];
-    KB_ShootVC *shootVC =[[KB_ShootVC alloc] init];
+    KB_ShootVC *shootVC = [[UIStoryboard storyboardWithName:@"Shoot" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_ShootVC"];
+    //KB_ShootVC *shootVC =[[KB_ShootVC alloc] init];
     shootVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [PageRout_Maneger.currentNaviVC presentViewController:shootVC animated:YES completion:^{
         [SVProgressHUD showSuccessWithStatus:@"正在拍摄中"];

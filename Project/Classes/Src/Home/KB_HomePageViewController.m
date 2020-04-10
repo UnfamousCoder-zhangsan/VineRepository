@@ -10,7 +10,7 @@
 #import "KB_BaseViewController.h"
 #import "SmallVideoModel.h"
 
-@interface KB_HomePageViewController ()<UIScrollViewDelegate>
+@interface KB_HomePageViewController ()<UIScrollViewDelegate, GKPageScrollViewDelegate>
 @property(nonatomic, strong) JXCategoryTitleView *categoryView;
 
 @property (nonatomic, strong) UIImageView        *headerView;
@@ -58,10 +58,6 @@
 - (UIImage *)navigationBarBackgroundImage{
     return [UIImage new];
 }
-//-(void)setupNavigationItems{
-//    [super setupNavigationItems];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"历史检查" style:UIBarButtonItemStylePlain target:self action:@selector(toHistory)];
-//}
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     PageRout_Maneger.currentNaviVC = self.navigationController;
@@ -77,6 +73,14 @@
 
 - (NSArray<id<GKPageListViewDelegate>> *)listViewsInPageScrollView:(GKPageScrollView *)pageScrollView {
     return self.childVCs;
+}
+- (void)mainTableViewDidScroll:(UIScrollView *)scrollView isMainCanScroll:(BOOL)isMainCanScroll{
+    
+    if (scrollView.contentOffset.y < NavigationContentTopConstant) {
+        LQLog(@"%@",@(scrollView.contentOffset.y));
+        ///禁止下拉
+        self.pageScrollView.mainTableView.bounces = NO;
+    }
 }
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -143,11 +147,12 @@
 
         KB_BaseViewController *recommendVC = [KB_BaseViewController new];
         recommendVC.modelArray = self.modelArray;
-        recommendVC.isAutoPlay = YES;
+        recommendVC.isAutoPlay = NO;
         recommendVC.currentPlayIndex = 0;
         
         KB_BaseViewController *focusVC = [KB_BaseViewController new];
         focusVC.modelArray = self.modelArray;
+        focusVC.isAutoPlay = NO;
         focusVC.currentPlayIndex = 0;
         
         _childVCs = @[focusVC, recommendVC];
@@ -296,5 +301,4 @@
     model12.aspect = 1.778;
     [self.modelArray addObjectsFromArray:@[model1,model2,model3,model4,model5,model6,model7,model8,model9,model10,model11,model12]];
 }
-
 @end

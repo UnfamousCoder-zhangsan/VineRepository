@@ -23,6 +23,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 //这个是预加载视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *preloadVideoPlayerManager;
 @property (nonatomic, copy) void(^listScrollViewScrollCallback)(UIScrollView *scrollView);
+@property (nonatomic, strong) UISwipeGestureRecognizer *recognize;
 
 @end
 
@@ -32,7 +33,9 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self createUI];
-    
+    // 添加下拉刷新手势
+    self.recognize = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pullDownToRefresh)];
+    [self.tableView addGestureRecognizer:self.recognize];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -42,7 +45,12 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.videoPlayerManager autoPause];
+    if (!self.isAutoPlay) {
+        [self.videoPlayerManager pause];
+    }
+}
+- (void)pullDownToRefresh{
+    LQLog(@"下拉刷新");
 }
 
 #pragma mark - GKPageListViewDelegate
@@ -60,26 +68,24 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)createUI {
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -StatusBarHeight, SCREEN_WIDTH, self.view.bounds.size.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.pagingEnabled = YES;
     self.tableView.bounces = NO;
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.estimatedRowHeight = SCREEN_HEIGHT - TabBarHeight;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.backgroundColor = UIColorMakeWithHex(@"#222222");
     [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
 
-//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.right.with.offset(0);
-//        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-TabBarHeight);
-//    }];
-//    if(@available(iOS 11.0, *)){
-//        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
-//    } else {
-//        self.automaticallyAdjustsScrollViewInsets = NO;
-//    }
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.with.offset(0);
+        make.height.offset(SCREEN_HEIGHT - TabBarHeight);
+    }];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self playIndex:self.currentPlayIndex];
         if(self.modelArray.count > (self.currentPlayIndex + 1)) {
@@ -87,23 +93,9 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
         }
     });
     
-//    UIButton *btn = [[UIButton alloc] init];
-//    [self.view addSubview:btn];
-//    [btn setImage:[UIImage imageNamed:@"Comment_Navi_button_back"] forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(backToPreviousView:) forControlEvents:UIControlEventTouchUpInside];
-//    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.with.offset(10);
-//        make.top.with.offset(IS_NOTCHED_SCREEN ? 24 : 0);
-//        make.size.mas_equalTo(CGSizeMake(60, 64));
-//    }];
-    
 }
 
 #pragma mrak - UITableViewDataSource & UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0;
-}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

@@ -29,15 +29,16 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 
 //相机拍摄预览图层
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer * captureVideoPreviewLayer;
-@property (nonatomic, strong) UIView * contentView;
-//拍照按钮
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+//@property (nonatomic, strong) UIView * contentView;
+////拍照按钮
 @property (nonatomic, strong) UIButton * takeButton;
 //视频录制按钮
 @property (nonatomic, strong) UIButton * videoButton;
 //自动闪光灯按钮
 @property (nonatomic, strong) UIButton * flashAutoButton;
 //打开闪光灯按钮
-@property (nonatomic, strong) UIButton * flashOnButton;
+@property (nonatomic, weak)  IBOutlet UIButton * flashOnButton;
 //关闭闪光灯按钮
 @property (nonatomic, strong) UIButton * flashOffButton;
 //切换前后摄像头
@@ -52,8 +53,8 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor yellowColor];
-    self.shootImage.layer.cornerRadius = 15;
+    self.view.backgroundColor = UIColorMakeWithHex(@"#222222");
+    self.contentView.layer.cornerRadius = 15;
     [self setupUI];
     [self initCamera];
     [self.captureSession startRunning];
@@ -486,8 +487,8 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 #pragma mark - UI相关和布局
 - (void)setupUI{
     
-    [self.view addSubview:self.contentView];
-    self.contentView.frame = CGRectMake(0, 124, ScreenWith, ScreenHeight-60-124);
+//    [self.view addSubview:self.contentView];
+//    self.contentView.frame = CGRectMake(0, 124, ScreenWith, ScreenHeight-60-124);
     
     self.takeButton = [self createCustomButtonWithName:@"拍照"];
     [self.takeButton addTarget:self action:@selector(clickTakeButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -501,10 +502,6 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 
     
     CGFloat margin = ((ScreenWith - 4*60)/5);
-    self.flashOnButton = [self createCustomButtonWithName:@"打开闪光灯"];
-    [self.flashOnButton addTarget:self action:@selector(clickFlashOnButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.flashOnButton.frame = CGRectMake(margin, 64, 60, 60);
-    [self.view addSubview:self.flashOnButton];
     
     self.flashOffButton = [self createCustomButtonWithName:@"关闭闪光灯"];
     [self.flashOffButton addTarget:self action:@selector(clickFlashOffButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -530,12 +527,12 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     
 }
 
-- (UIView *)contentView{
-    if (!_contentView) {
-        _contentView = [[UIView alloc] init];
-    }
-    return _contentView;
-}
+//- (UIView *)contentView{
+//    if (!_contentView) {
+//        _contentView = [[UIView alloc] init];
+//    }
+//    return _contentView;
+//}
 
 - (UIButton *)createCustomButtonWithName:(NSString *)name{
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];

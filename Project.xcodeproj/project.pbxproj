@@ -18,7 +18,7 @@
 		3130FB9A243CAC2A00B9A0D6 /* CommentsPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FB93243CAC2A00B9A0D6 /* CommentsPopView.m */; };
 		3130FB9D243CACA300B9A0D6 /* DDAnimationLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FB9C243CACA300B9A0D6 /* DDAnimationLayout.m */; };
 		3130FBA2243CAD8100B9A0D6 /* SmallVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FB9E243CAD8100B9A0D6 /* SmallVideoListViewController.m */; };
-		3130FBA3243CAD8100B9A0D6 /* SmallVideoPlayViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3130FBA0243CAD8100B9A0D6 /* SmallVideoPlayViewController.mm */; };
+		3130FBA3243CAD8100B9A0D6 /* SmallVideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FBA0243CAD8100B9A0D6 /* SmallVideoPlayViewController.m */; };
 		3130FC3A243CADDB00B9A0D6 /* KTVHCPathTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FBA8243CADDB00B9A0D6 /* KTVHCPathTool.m */; };
 		3130FC3B243CADDB00B9A0D6 /* KTVHCURLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FBAB243CADDB00B9A0D6 /* KTVHCURLTool.m */; };
 		3130FC3C243CADDB00B9A0D6 /* KTVHCHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FBAF243CADDB00B9A0D6 /* KTVHCHTTPConnection.m */; };
@@ -236,7 +236,7 @@
 		3130FB9C243CACA300B9A0D6 /* DDAnimationLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDAnimationLayout.m; sourceTree = "<group>"; };
 		3130FB9E243CAD8100B9A0D6 /* SmallVideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallVideoListViewController.m; sourceTree = "<group>"; };
 		3130FB9F243CAD8100B9A0D6 /* SmallVideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallVideoListViewController.h; sourceTree = "<group>"; };
-		3130FBA0243CAD8100B9A0D6 /* SmallVideoPlayViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SmallVideoPlayViewController.mm; sourceTree = "<group>"; };
+		3130FBA0243CAD8100B9A0D6 /* SmallVideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallVideoPlayViewController.m; sourceTree = "<group>"; };
 		3130FBA1243CAD8100B9A0D6 /* SmallVideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallVideoPlayViewController.h; sourceTree = "<group>"; };
 		3130FBA5243CADDA00B9A0D6 /* KTVHTTPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTVHTTPCache.h; sourceTree = "<group>"; };
 		3130FBA8243CADDB00B9A0D6 /* KTVHCPathTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTVHCPathTool.m; sourceTree = "<group>"; };
@@ -718,7 +718,7 @@
 				3130FB9F243CAD8100B9A0D6 /* SmallVideoListViewController.h */,
 				3130FB9E243CAD8100B9A0D6 /* SmallVideoListViewController.m */,
 				3130FBA1243CAD8100B9A0D6 /* SmallVideoPlayViewController.h */,
-				3130FBA0243CAD8100B9A0D6 /* SmallVideoPlayViewController.mm */,
+				3130FBA0243CAD8100B9A0D6 /* SmallVideoPlayViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -2154,7 +2154,7 @@
 				A48C36B8205E2FD5003EBDDA /* NSString+Verification.m in Sources */,
 				3130FB99243CAC2A00B9A0D6 /* CommentTextView.m in Sources */,
 				514C502A2387EEEA0070E875 /* HWTFCodeView.m in Sources */,
-				3130FBA3243CAD8100B9A0D6 /* SmallVideoPlayViewController.mm in Sources */,
+				3130FBA3243CAD8100B9A0D6 /* SmallVideoPlayViewController.m in Sources */,
 				3130FC73243CADDC00B9A0D6 /* ZFPlayerControlView.m in Sources */,
 				3130FC5B243CADDC00B9A0D6 /* WebSocket.m in Sources */,
 				A48C36C3205E2FD5003EBDDA /* QDTabBarViewController.m in Sources */,

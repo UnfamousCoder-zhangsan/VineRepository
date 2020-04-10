@@ -33,7 +33,8 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view openKeyboardOffsetView];
+    // 使用这个内容会上上移
+    //[self.view openKeyboardOffsetView];
     [self createUI];
 }
 
@@ -44,9 +45,10 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.videoPlayerManager autoPlay];
+    //[self.videoPlayerManager autoPlay];
 }
 
+//设置导航栏背景色
 - (UIImage *)navigationBarBackgroundImage{
    return [[UIImage alloc] init];
 }
@@ -76,12 +78,12 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self playIndex:self.currentPlayIndex];
         if(self.modelArray.count > (self.currentPlayIndex + 1)) {
             [self preLoadIndex:self.currentPlayIndex + 1];
         }
-//    });
+    });
     self.bottomView = [[UIView alloc] init];
     self.bottomView.backgroundColor  = UIColorMakeWithHex(@"#222222");
     [self.view addSubview:self.bottomView];

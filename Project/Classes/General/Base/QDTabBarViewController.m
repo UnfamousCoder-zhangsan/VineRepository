@@ -13,6 +13,7 @@
 @end
 
 @implementation QDTabBarViewController
+/// 点击了第几个tabbar
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     LQLog(@"%@",item.title);
 }
