@@ -10,12 +10,30 @@
 
 @implementation KBPickerItem
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self addTapGesture];
+    }
+    return self;
 }
-*/
+- (void)addTapGesture
+{
+    self.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    [self addGestureRecognizer:tap];
+}
+
+- (void)tap
+{
+    if (self.PickerItemSelectedBlock) {
+        self.PickerItemSelectedBlock(self.index);
+    }
+}
+
+// 留给子类调用
+- (void)changeSizeOfItem{}
+- (void)backSizeOfItem{}
 
 @end

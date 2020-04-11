@@ -11,7 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CustomPickerItem : KBPickerItem
+/// 自定义横向滑动内容
+@property (nonatomic, strong) UILabel *itemTitle;
+@property (nonatomic, strong) NSString *title;
 
+///  设置title颜色 (默认颜色黑色)
+- (void)setItemTitleWith:(nullable UIColor *)color;
 @end
 
 NS_ASSUME_NONNULL_END

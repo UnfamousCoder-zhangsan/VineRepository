@@ -9,14 +9,18 @@
 #import "KB_ShootVC.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <AudioToolbox/AudioToolbox.h>
+
+#import "KBPickerScrollerView.h"
+#import "CustomPickerItem.h"
+#import "KBPickerModel.h"
 
 #define ScreenWith     [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight   [UIScreen mainScreen].bounds.size.height
 
 typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 
-@interface KB_ShootVC () <AVCaptureFileOutputRecordingDelegate>
-@property (strong, nonatomic) IBOutlet UIImageView *shootImage;
+@interface KB_ShootVC () <AVCaptureFileOutputRecordingDelegate, KBPickerScrollViewDelegate, KBPickerScrollViewDataSource>
 //负责输入和输出设备之间的数据传输
 @property (nonatomic, strong) AVCaptureSession * captureSession;
 //负责从AVCaptureDevice获得输入数据
@@ -30,21 +34,21 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 //相机拍摄预览图层
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer * captureVideoPreviewLayer;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
-//@property (nonatomic, strong) UIView * contentView;
-////拍照按钮
-@property (nonatomic, strong) UIButton * takeButton;
-//视频录制按钮
-@property (nonatomic, strong) UIButton * videoButton;
-//自动闪光灯按钮
-@property (nonatomic, strong) UIButton * flashAutoButton;
+
 //打开闪光灯按钮
 @property (nonatomic, weak)  IBOutlet UIButton * flashOnButton;
-//关闭闪光灯按钮
-@property (nonatomic, strong) UIButton * flashOffButton;
 //切换前后摄像头
 @property (nonatomic, strong) UIButton * exchangeCamera;
 //聚焦光标
 @property (nonatomic, strong) UIImageView * focusCursor;
+
+/// 拍摄
+@property (weak, nonatomic) IBOutlet UIButton *shootBtn;
+/// 横向选择器
+@property (weak, nonatomic) IBOutlet KBPickerScrollerView *pickerScrollView;
+/// 数据源
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
 
 @end
 
@@ -52,9 +56,8 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
     self.view.backgroundColor = UIColorMakeWithHex(@"#222222");
-    self.contentView.layer.cornerRadius = 15;
     [self setupUI];
     [self initCamera];
     [self.captureSession startRunning];
@@ -64,8 +67,9 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
         
     }];
 }
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (BOOL)preferredNavigationBarHidden
+{
+    return YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -307,30 +311,26 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     AVCaptureDevice * captureDevice = [self.captureDeviceInput device];
     AVCaptureFlashMode flashMode = captureDevice.flashMode;
     if ([captureDevice isFlashAvailable]) {
-        self.flashAutoButton.hidden = NO;
         self.flashOnButton.hidden  = NO;
-        self.flashOffButton.hidden = NO;
-        self.flashAutoButton.enabled = YES;
         self.flashOnButton.enabled = YES;
-        self.flashOffButton.enabled = YES;
         
         switch (flashMode) {
             case AVCaptureFlashModeAuto:
-                self.flashAutoButton.enabled = NO;
+               // self.flashAutoButton.enabled = NO;
                 break;
             case AVCaptureFlashModeOn:
-                self.flashOnButton.enabled = NO;
+              //  self.flashOnButton.enabled = NO;
                 break;
             case AVCaptureFlashModeOff:
-                self.flashOffButton.enabled = NO;
+              //  self.flashOffButton.enabled = NO;
                 break;
             default:
                 break;
         }
     } else {
-        self.flashAutoButton.hidden = YES;
-        self.flashOnButton.hidden   = YES;
-        self.flashOffButton.hidden  = YES;
+       // self.flashAutoButton.hidden = YES;
+       // self.flashOnButton.hidden   = YES;
+       // self.flashOffButton.hidden  = YES;
     }
     
 }
@@ -487,52 +487,39 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 #pragma mark - UI相关和布局
 - (void)setupUI{
     
-//    [self.view addSubview:self.contentView];
-//    self.contentView.frame = CGRectMake(0, 124, ScreenWith, ScreenHeight-60-124);
-    
-    self.takeButton = [self createCustomButtonWithName:@"拍照"];
-    [self.takeButton addTarget:self action:@selector(clickTakeButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.takeButton.frame = CGRectMake(ScreenWith/2-30, ScreenHeight-60, 60, 60);
-    [self.view addSubview:self.takeButton];
-    
-    self.videoButton = [self createCustomButtonWithName:@"录像"];
-    [self.videoButton addTarget:self action:@selector(clickVideoButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.videoButton.frame = CGRectMake(ScreenWith-80, ScreenHeight-60, 60, 60);
-    [self.view addSubview:self.videoButton];
-
-    
     CGFloat margin = ((ScreenWith - 4*60)/5);
-    
-    self.flashOffButton = [self createCustomButtonWithName:@"关闭闪光灯"];
-    [self.flashOffButton addTarget:self action:@selector(clickFlashOffButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.flashOffButton.frame = CGRectMake(60+2*margin, 64, 60, 60);
-    [self.view addSubview:self.flashOffButton];
-    
-    self.flashAutoButton = [self createCustomButtonWithName:@"自动闪光灯"];
-    [self.flashAutoButton addTarget:self action:@selector(clickFlashAutoButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.flashAutoButton.frame = CGRectMake(2*60+3*margin, 64, 60, 60);
-    [self.view addSubview:self.flashAutoButton];
     
     self.exchangeCamera = [self createCustomButtonWithName:@"切换"];
     [self.exchangeCamera addTarget:self action:@selector(clikcExchangeCamera:) forControlEvents:UIControlEventTouchUpInside];
-    self.exchangeCamera.frame = CGRectMake(ScreenWith-60-margin, 64, 60, 60);
+    self.exchangeCamera.frame = CGRectMake(ScreenWith-60-margin, 200, 60, 60);
     [self.view addSubview:self.exchangeCamera];
     
-    self.focusCursor = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 60, 60)];
-    self.focusCursor.backgroundColor = [UIColor redColor];
+    self.focusCursor = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.focusCursor.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.4];
     self.focusCursor.layer.cornerRadius = 30;
     self.focusCursor.layer.masksToBounds = YES;
     [self.view addSubview:self.focusCursor];
     
-    
+    self.contentView.layer.cornerRadius = 10;
+    self.dataArray = [NSMutableArray array];
+    NSArray *titleArray = @[@"拍照",@"拍15秒",@"拍60秒"];
+    for (int i = 0; i < titleArray.count; i++){
+        KBPickerModel *model = [[KBPickerModel alloc] init];
+        model.title = [titleArray objectAtIndex:i];
+        [self.dataArray addObject:model];
+    }
+    self.pickerScrollView.backgroundColor = [UIColor clearColor];
+    self.pickerScrollView.itemWidth = SCREEN_WIDTH / 5;
+    self.pickerScrollView.itemHeight = 60;
+    self.pickerScrollView.firstItemX = (_pickerScrollView.frame.size.width - _pickerScrollView.itemWidth) * 0.5;
+    self.pickerScrollView.dataSource = self;
+    self.pickerScrollView.delegate = self;
+    // 刷新数据
+    [self.pickerScrollView reloadData];
+    self.pickerScrollView.selectedIndex = 1;
+    [self.pickerScrollView scollToSelectdIndex:1];
 }
 
-//- (UIView *)contentView{
-//    if (!_contentView) {
-//        _contentView = [[UIView alloc] init];
-//    }
-//    return _contentView;
-//}
 
 - (UIButton *)createCustomButtonWithName:(NSString *)name{
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -541,5 +528,42 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     button.layer.cornerRadius = 30;
     button.layer.masksToBounds = YES;
     return button;
+}
+
+#pragma mark -KBPickerScrollViewDataSource-
+- (NSInteger)numberOfItemAtPickerScrollView:(KBPickerScrollerView *)pickerScrollView{
+    return  self.dataArray.count;
+}
+
+- (KBPickerItem *)pickerScrollView:(KBPickerScrollerView *)pickerScrollView itemAtIndex:(NSInteger)index{
+    CustomPickerItem *item = [[CustomPickerItem alloc] initWithFrame:CGRectMake(0, 0, pickerScrollView.itemWidth, pickerScrollView.itemHeight)];
+    KBPickerModel *model = [self.dataArray objectAtIndex:index];
+    model.index = index;
+    item.title = model.title;
+    [item setItemTitleWith:UIColorMakeWithHex(@"#FFFFFF")];
+    
+    item.PickerItemSelectedBlock = ^(NSInteger index) {
+        [self.pickerScrollView scollToSelectdIndex:index];
+    };
+    return item;
+}
+
+
+#pragma mark -KBPickerScrollViewDelegate-
+- (void)itemForIndexChange:(KBPickerItem *)item
+{
+    [item changeSizeOfItem];
+}
+
+- (void)itemForIndexBack:(KBPickerItem *)item
+{
+    [item backSizeOfItem];
+}
+- (void)pickerScrollView:(KBPickerScrollerView *)menuScrollView didSelectedItemAtindex:(NSInteger)index{
+    LQLog(@"当前选中 %@", @(index));
+    // 选中震动反馈
+    UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy];
+    [impactLight impactOccurred];
+    
 }
 @end

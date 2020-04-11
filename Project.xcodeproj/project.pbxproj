@@ -96,6 +96,10 @@
 		313A34AF243B784400A4F1F9 /* KB_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */; };
 		514C502A2387EEEA0070E875 /* HWTFCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50262387EEEA0070E875 /* HWTFCodeView.m */; };
 		514C502B2387EEEA0070E875 /* HWTFCodeBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50292387EEEA0070E875 /* HWTFCodeBView.m */; };
+		51588CB924418E7100F120CB /* KBPickerScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CB824418E7100F120CB /* KBPickerScrollerView.m */; };
+		51588CBC24418FBC00F120CB /* KBPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBB24418FBC00F120CB /* KBPickerItem.m */; };
+		51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBE244191D400F120CB /* CustomPickerItem.m */; };
+		51588CC2244197C700F120CB /* KBPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CC1244197C700F120CB /* KBPickerModel.m */; };
 		5E36D3F4233F5688009E06AD /* UITabBar+badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E36D3F3233F5688009E06AD /* UITabBar+badge.m */; };
 		5E6D2E0923FE8FF9002BF332 /* LMRStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0023FE8FF9002BF332 /* LMRStyle.m */; };
 		5E6D2E0A23FE8FF9002BF332 /* LMReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0123FE8FF9002BF332 /* LMReportView.m */; };
@@ -399,6 +403,14 @@
 		514C50272387EEEA0070E875 /* HWTFCodeBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeBView.h; sourceTree = "<group>"; };
 		514C50282387EEEA0070E875 /* HWTFCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeView.h; sourceTree = "<group>"; };
 		514C50292387EEEA0070E875 /* HWTFCodeBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTFCodeBView.m; sourceTree = "<group>"; };
+		51588CB724418E7100F120CB /* KBPickerScrollerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerScrollerView.h; sourceTree = "<group>"; };
+		51588CB824418E7100F120CB /* KBPickerScrollerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerScrollerView.m; sourceTree = "<group>"; };
+		51588CBA24418FBC00F120CB /* KBPickerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerItem.h; sourceTree = "<group>"; };
+		51588CBB24418FBC00F120CB /* KBPickerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerItem.m; sourceTree = "<group>"; };
+		51588CBD244191D400F120CB /* CustomPickerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPickerItem.h; sourceTree = "<group>"; };
+		51588CBE244191D400F120CB /* CustomPickerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPickerItem.m; sourceTree = "<group>"; };
+		51588CC0244197C700F120CB /* KBPickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerModel.h; sourceTree = "<group>"; };
+		51588CC1244197C700F120CB /* KBPickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerModel.m; sourceTree = "<group>"; };
 		5E36D3F2233F5688009E06AD /* UITabBar+badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+badge.h"; sourceTree = "<group>"; };
 		5E36D3F3233F5688009E06AD /* UITabBar+badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+badge.m"; sourceTree = "<group>"; };
 		5E6D2DFE23FE8FF9002BF332 /* NSIndexPath+LMReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+LMReport.h"; sourceTree = "<group>"; };
@@ -1108,6 +1120,21 @@
 			path = HWTFCodeView;
 			sourceTree = "<group>";
 		};
+		51588CB6244172DC00F120CB /* PickerScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				51588CB724418E7100F120CB /* KBPickerScrollerView.h */,
+				51588CB824418E7100F120CB /* KBPickerScrollerView.m */,
+				51588CBA24418FBC00F120CB /* KBPickerItem.h */,
+				51588CBB24418FBC00F120CB /* KBPickerItem.m */,
+				51588CBD244191D400F120CB /* CustomPickerItem.h */,
+				51588CBE244191D400F120CB /* CustomPickerItem.m */,
+				51588CC0244197C700F120CB /* KBPickerModel.h */,
+				51588CC1244197C700F120CB /* KBPickerModel.m */,
+			);
+			path = PickerScrollView;
+			sourceTree = "<group>";
+		};
 		5E6D2DFD23FE8FF9002BF332 /* LMReport */ = {
 			isa = PBXGroup;
 			children = (
@@ -1630,6 +1657,7 @@
 		A48C35D9205E2FD4003EBDDA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				51588CB6244172DC00F120CB /* PickerScrollView */,
 				5E6D2DFD23FE8FF9002BF332 /* LMReport */,
 				92CBDFE223FD792C0022866B /* DHLaunchAdPageHUD */,
 				5E8E041923B068120023A484 /* UMeng */,
@@ -2083,6 +2111,7 @@
 				A48C36BF205E2FD5003EBDDA /* QDMultipleImagePickerPreviewViewController.m in Sources */,
 				3130FC59243CADDC00B9A0D6 /* HTTPLogging.m in Sources */,
 				3130FC6F243CADDC00B9A0D6 /* UIViewController+ZFPlayerRotation.m in Sources */,
+				51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */,
 				3130FC87243E1DE200B9A0D6 /* KB_BaseTableViewController.m in Sources */,
 				3130FC77243CADDC00B9A0D6 /* ZFSuspendPlayerControlView.m in Sources */,
 				CBA10512230E717300CD84E9 /* UtilsHelper.m in Sources */,
@@ -2099,6 +2128,7 @@
 				CBA1060E230E71E900CD84E9 /* LQIMInputView.m in Sources */,
 				3130FB82243CAB7100B9A0D6 /* CommentModel.m in Sources */,
 				865E92F723164DA200F760C6 /* RightAlignedFlowLayout.m in Sources */,
+				51588CBC24418FBC00F120CB /* KBPickerItem.m in Sources */,
 				3130FC7D243CBBAF00B9A0D6 /* KB_NewsTVC.m in Sources */,
 				3130FC56243CADDC00B9A0D6 /* HTTPAsyncFileResponse.m in Sources */,
 				3130FC70243CADDC00B9A0D6 /* ZFBrightnessView.m in Sources */,
@@ -2148,6 +2178,7 @@
 				5E6D2E0D23FE8FF9002BF332 /* NSIndexPath+LMReport.m in Sources */,
 				3130FC3E243CADDB00B9A0D6 /* KTVHCHTTPServer.m in Sources */,
 				3130FC6C243CADDC00B9A0D6 /* AVPlayer+MyAvPlayerCate.m in Sources */,
+				51588CB924418E7100F120CB /* KBPickerScrollerView.m in Sources */,
 				92D5888023EC6C3000A25538 /* NSDictionary+SetNilStr.m in Sources */,
 				A48C36BE205E2FD5003EBDDA /* JWButton.m in Sources */,
 				86B2BCF5230E6B5100273AA3 /* MWGridViewController.m in Sources */,
@@ -2203,6 +2234,7 @@
 				3130FC4C243CADDB00B9A0D6 /* KTVHCDataLoader.m in Sources */,
 				3130FC58243CADDC00B9A0D6 /* HTTPMessage.m in Sources */,
 				CBA1062A230E72D100CD84E9 /* RequesetApi.m in Sources */,
+				51588CC2244197C700F120CB /* KBPickerModel.m in Sources */,
 				313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

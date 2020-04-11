@@ -11,16 +11,18 @@
 #import "SmallVideoModel.h"
 #import "DDVideoPlayerManager.h"
 #import "SDImageCache.h"
+#import "CommentTextView.h"
 #import "CommentsPopView.h"
 
 static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 
-@interface SmallVideoPlayViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, SmallVideoPlayCellDlegate>
+@interface SmallVideoPlayViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, SmallVideoPlayCellDlegate, CommentTextViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView      *bottomView;
-@property (nonatomic, strong) QMUITextView *commentTextView;
+@property (nonatomic, strong) CommentTextView *commentTextView;
+@property (nonatomic, strong) QMUIButton   *commentBtn;
 @property (nonatomic, strong) UIView *fatherView;
 //这个是播放视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *videoPlayerManager;
@@ -92,15 +94,27 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
         make.height.offset(TabBarHeight);
     }];
     
-    self.commentTextView = [[QMUITextView alloc] init];
-    self.commentTextView.placeholder = @"说点什么吧";
-    self.commentTextView.font = [UIFont systemFontOfSize:14];
-    self.commentTextView.textColor = UIColorMakeWithHex(@"#FFFFFF");
-    self.commentTextView.placeholderColor = UIColorMakeWithHex(@"#666666");
-    self.commentTextView.backgroundColor = UIColorMakeWithHex(@"#222222");
+    self.commentTextView = [CommentTextView new];
+    self.commentTextView.delegate = self;
+    self.commentTextView.placeholderLabel.text = @"有爱评论，讲一讲";
+//    self.commentTextView = [[CommentTextView alloc] init];
+//    self.commentTextView.placeholder = @"说点什么吧";
+//    self.commentTextView.font = [UIFont systemFontOfSize:14];
+//    self.commentTextView.textColor = UIColorMakeWithHex(@"#FFFFFF");
+//    self.commentTextView.placeholderColor = UIColorMakeWithHex(@"#666666");
+//    self.commentTextView.backgroundColor = UIColorMakeWithHex(@"#222222");
+//    self.commentTextView.userInteractionEnabled = NO;
     [self.bottomView addSubview:self.commentTextView];
     [self.commentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.with.offset(0);
+        make.height.offset(49);
+    }];
+    self.commentBtn  = [[QMUIButton alloc] init];
+   // [self.commentBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView addSubview:self.commentBtn];
+    
+    [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.width.offset(0);
         make.height.offset(49);
     }];
     
@@ -119,8 +133,6 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     cell.delegate = self;
     DLog(@"cell的地址:%p   index:%ld   %ld",cell,indexPath.row,self.modelArray.count-2);
     cell.model = self.modelArray[indexPath.row];
-    NSInteger rowIndex = indexPath.row;
-    NSInteger index = self.modelArray.count - 2;
     return cell;
 }
 
@@ -299,5 +311,25 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 
+
+#pragma mark - CommentTextViewDelegate
+-(void)onSendText:(NSString *)text {
+   
+    //提交评论
+//    [self requestWithAddComment];
+//    CommentModel *model = [[CommentModel alloc] init];
+//    model.name = @"锤子评论";
+//    model.cid = @(self.hotCommentArray.count + 1).stringValue;
+//    model.comment = self.commentTextView.textView.text;
+//    model.createtime = @"2019-05-29 18:27:40";
+//    model.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
+//    [self.hotCommentArray insertObject:model atIndex:0];
+    
+    self.commentTextView.textView.text = @"";
+    self.commentTextView.placeholderLabel.text = @"说点什么...";
+    
+    [self.tableView reloadData];
+    
+}
 
 @end

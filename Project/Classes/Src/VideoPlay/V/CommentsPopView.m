@@ -120,7 +120,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         if(@available(iOS 11.0, *)){
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            //self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.estimatedRowHeight = 150  ;
         _tableView.delegate = self;
@@ -437,7 +437,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     //提交评论
 //    [self requestWithAddComment];
     CommentModel *model = [[CommentModel alloc] init];
-    model.name = @"自己";
+    model.name = @"锤子评论";
     model.cid = @(self.hotCommentArray.count + 1).stringValue;
     model.comment = self.commentTextView.textView.text;
     model.createtime = @"2019-05-29 18:27:40";
