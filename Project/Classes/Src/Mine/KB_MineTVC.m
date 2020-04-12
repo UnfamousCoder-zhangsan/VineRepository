@@ -91,7 +91,7 @@
    // self.gk_navBarAlpha = alpha;
     self.titleView.alpha = alpha;
 
-    //[self.headerView scrollViewDidScroll:offsetY];
+    [self.headerView scrollViewDidScroll:offsetY];
 }
 
 #pragma mark - JXCategoryViewDelegate
