@@ -94,6 +94,11 @@
 		313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */; };
 		313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */; };
 		313A34AF243B784400A4F1F9 /* KB_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */; };
+		31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */; };
+		31C0AA6F24422DB100110B18 /* PersonalInformationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */; };
+		31C0AA7224422DE400110B18 /* PersonalInformationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */; };
+		31C0AA792442370300110B18 /* KB_PersonalInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA772442370300110B18 /* KB_PersonalInformationVC.m */; };
+		31C0AA7D2443637800110B18 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA7C2443637800110B18 /* Setting.storyboard */; };
 		514C502A2387EEEA0070E875 /* HWTFCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50262387EEEA0070E875 /* HWTFCodeView.m */; };
 		514C502B2387EEEA0070E875 /* HWTFCodeBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50292387EEEA0070E875 /* HWTFCodeBView.m */; };
 		51588CB924418E7100F120CB /* KBPickerScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CB824418E7100F120CB /* KBPickerScrollerView.m */; };
@@ -398,6 +403,13 @@
 		313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ShootVC.m; sourceTree = "<group>"; };
 		313A34AD243B784400A4F1F9 /* KB_BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_BaseViewController.h; sourceTree = "<group>"; };
 		313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseViewController.m; sourceTree = "<group>"; };
+		31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalInformation.storyboard; sourceTree = "<group>"; };
+		31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInformationHeaderView.xib; sourceTree = "<group>"; };
+		31C0AA7024422DE400110B18 /* PersonalInformationHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalInformationHeaderView.h; sourceTree = "<group>"; };
+		31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationHeaderView.m; sourceTree = "<group>"; };
+		31C0AA762442370300110B18 /* KB_PersonalInformationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PersonalInformationVC.h; sourceTree = "<group>"; };
+		31C0AA772442370300110B18 /* KB_PersonalInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PersonalInformationVC.m; sourceTree = "<group>"; };
+		31C0AA7C2443637800110B18 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		48D20748169632A7D92109D3 /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		514C50262387EEEA0070E875 /* HWTFCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTFCodeView.m; sourceTree = "<group>"; };
 		514C50272387EEEA0070E875 /* HWTFCodeBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeBView.h; sourceTree = "<group>"; };
@@ -1099,6 +1111,27 @@
 			path = Shoot;
 			sourceTree = "<group>";
 		};
+		31C0AA6B2442273700110B18 /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */,
+				31C0AA7024422DE400110B18 /* PersonalInformationHeaderView.h */,
+				31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */,
+				31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */,
+				31C0AA762442370300110B18 /* KB_PersonalInformationVC.h */,
+				31C0AA772442370300110B18 /* KB_PersonalInformationVC.m */,
+			);
+			path = Information;
+			sourceTree = "<group>";
+		};
+		31C0AA7B2443636000110B18 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				31C0AA7C2443637800110B18 /* Setting.storyboard */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		47211EE9134315FC27AC4885 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,6 +1200,8 @@
 		5E8E040323B060BE0023A484 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				31C0AA7B2443636000110B18 /* Setting */,
+				31C0AA6B2442273700110B18 /* Information */,
 				3130FC81243E162B00B9A0D6 /* C */,
 				3130FC80243E161C00B9A0D6 /* V */,
 				3130FC7F243E161500B9A0D6 /* M */,
@@ -1970,7 +2005,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31C0AA6F24422DB100110B18 /* PersonalInformationHeaderView.xib in Resources */,
 				865E93172317811300F760C6 /* GuidePageView.xib in Resources */,
+				31C0AA7D2443637800110B18 /* Setting.storyboard in Resources */,
+				31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */,
 				3130FC71243CADDC00B9A0D6 /* ZFPlayer.bundle in Resources */,
 				EA9A3E8F2060D95E004A6694 /* Launch Screen.storyboard in Resources */,
 				863C5861232750C40060A954 /* AliyunEmasServices-Info.plist in Resources */,
@@ -2067,6 +2105,7 @@
 				3130FC3C243CADDB00B9A0D6 /* KTVHCHTTPConnection.m in Sources */,
 				86B2BD0D230E6B5100273AA3 /* BRAddressPickerView.m in Sources */,
 				3130FC46243CADDB00B9A0D6 /* KTVHCDataCacheItemZone.m in Sources */,
+				31C0AA7224422DE400110B18 /* PersonalInformationHeaderView.m in Sources */,
 				86B2BCF6230E6B5100273AA3 /* MWGridCell.m in Sources */,
 				5E8CB8D0233A095C007EDEA9 /* QMUIConfigurationTemplateDark.m in Sources */,
 				3130FC69243CADDC00B9A0D6 /* UITabBarController+ZFPlayerRotation.m in Sources */,
@@ -2233,6 +2272,7 @@
 				86B2BCF4230E6B5100273AA3 /* MWTapDetectingView.m in Sources */,
 				3130FC4C243CADDB00B9A0D6 /* KTVHCDataLoader.m in Sources */,
 				3130FC58243CADDC00B9A0D6 /* HTTPMessage.m in Sources */,
+				31C0AA792442370300110B18 /* KB_PersonalInformationVC.m in Sources */,
 				CBA1062A230E72D100CD84E9 /* RequesetApi.m in Sources */,
 				51588CC2244197C700F120CB /* KBPickerModel.m in Sources */,
 				313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */,

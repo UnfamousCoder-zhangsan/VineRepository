@@ -38,12 +38,14 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 //打开闪光灯按钮
 @property (nonatomic, weak)  IBOutlet UIButton * flashOnButton;
 //切换前后摄像头
-@property (nonatomic, strong) UIButton * exchangeCamera;
+@property (nonatomic, weak) IBOutlet QMUIButton * exchangeCamera;
 //聚焦光标
 @property (nonatomic, strong) UIImageView * focusCursor;
-
 /// 拍摄
 @property (weak, nonatomic) IBOutlet UIButton *shootBtn;
+@property (weak, nonatomic) IBOutlet UILabel *pointLabel;
+
+
 /// 横向选择器
 @property (weak, nonatomic) IBOutlet KBPickerScrollerView *pickerScrollView;
 /// 数据源
@@ -305,6 +307,33 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     [self.contentView addGestureRecognizer:tapGesture];
 }
 
+- (IBAction)flashModeEvent:(UIButton *)sender {
+    AVCaptureDevice * captureDevice = [self.captureDeviceInput device];
+    AVCaptureFlashMode flashMode = captureDevice.flashMode;
+    if ([captureDevice isFlashAvailable]) {
+        self.flashOnButton.hidden  = NO;
+        self.flashOnButton.enabled = YES;
+        
+        switch (flashMode) {
+            case AVCaptureFlashModeAuto:
+               // self.flashAutoButton.enabled = NO;
+                break;
+            case AVCaptureFlashModeOn:
+              //  self.flashOnButton.enabled = NO;
+                break;
+            case AVCaptureFlashModeOff:
+              //  self.flashOffButton.enabled = NO;
+                break;
+            default:
+                break;
+        }
+    } else {
+       // self.flashAutoButton.hidden = YES;
+       // self.flashOnButton.hidden   = YES;
+       // self.flashOffButton.hidden  = YES;
+    }
+}
+
 //设置闪关灯按钮状态
 - (void)setFlashModeButtonStatus{
     
@@ -429,71 +458,40 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     [self setFlashMode:AVCaptureFlashModeAuto];
     [self setFlashModeButtonStatus];
 }
-
-//切换摄像头
-- (void)clikcExchangeCamera:(UIButton *)sender{
-    AVCaptureDevice * currentDevice = [self.captureDeviceInput device];
-    AVCaptureDevicePosition currentPosition = [currentDevice position];
-    [self removeNotificationFromCaptureDevice:currentDevice];
-    AVCaptureDevice * toChangeDevice;
-    AVCaptureDevicePosition  toChangePosition = AVCaptureDevicePositionFront;
-    if (currentPosition==AVCaptureDevicePositionUnspecified||currentPosition==AVCaptureDevicePositionFront) {
-        toChangePosition = AVCaptureDevicePositionBack;
-    }
-    toChangeDevice = [self getCameraDeviceWithPosition:toChangePosition];
-    [self addNotificationToCaptureDevice:toChangeDevice];
+- (IBAction)exchangeCameraEvent:(QMUIButton *)sender {
+    AVCapturePhotoSettings *captureDevice = [AVCapturePhotoSettings photoSettings];
     
-    //获得要调整到设备输入对象
-    AVCaptureDeviceInput * toChangeDeviceInput = [[AVCaptureDeviceInput alloc]initWithDevice:toChangeDevice error:nil];
-    
-    //改变会话到配置前一定要先开启配置，配置完成后提交配置改变
-    [self.captureSession beginConfiguration];
-    //移除原有输入对象
-    [self.captureSession removeInput:self.captureDeviceInput];
-    //添加新的输入对象
-    if ([self.captureSession canAddInput:toChangeDeviceInput]) {
-        [self.captureSession addInput:toChangeDeviceInput];
-        self.captureDeviceInput=toChangeDeviceInput;
-    }
-    
-    //提交新的输入对象
-    [self.captureSession commitConfiguration];
-    [self setFlashModeButtonStatus];
-}
-
-- (void)clickVideoButton:(UIButton *)sender{
-
-    //根据设备输出获得连接
-    AVCaptureConnection *captureConnection=[self.captureMovieFileOutPut connectionWithMediaType:AVMediaTypeVideo];
-    //根据连接取得设备输出的数据
-    if (![self.captureMovieFileOutPut isRecording]) {
-  //      self.enableRotation=NO;
-        //如果支持多任务则则开始多任务
-        if ([[UIDevice currentDevice] isMultitaskingSupported]) {
-            self.backgroundTaskIdentifier=[[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
+//    AVCaptureDevice * captureDevice = [self.captureDeviceInput device];
+    AVCaptureFlashMode flashMode = captureDevice.flashMode;
+    if ([captureDevice flashMode]) {
+        self.flashOnButton.hidden  = NO;
+        self.flashOnButton.enabled = YES;
+        
+        switch (flashMode) {
+            case AVCaptureFlashModeAuto:
+               // self.flashAutoButton.enabled = NO;
+                break;
+            case AVCaptureFlashModeOn:
+              //  self.flashOnButton.enabled = NO;
+                break;
+            case AVCaptureFlashModeOff:
+              //  self.flashOffButton.enabled = NO;
+                break;
+            default:
+                break;
         }
-        //预览图层和视频方向保持一致
-        captureConnection.videoOrientation=[self.captureVideoPreviewLayer connection].videoOrientation;
-        NSString *outputFielPath=[NSTemporaryDirectory() stringByAppendingString:@"myMovie.mov"];
-        NSLog(@"save path is :%@",outputFielPath);
-        NSURL *fileUrl=[NSURL fileURLWithPath:outputFielPath];
-        [self.captureMovieFileOutPut startRecordingToOutputFileURL:fileUrl recordingDelegate:self];
-    }
-    else{
-        [self.captureMovieFileOutPut stopRecording];//停止录制
+    } else {
+       // self.flashAutoButton.hidden = YES;
+       // self.flashOnButton.hidden   = YES;
+       // self.flashOffButton.hidden  = YES;
     }
 }
 
 #pragma mark - UI相关和布局
 - (void)setupUI{
     
-    CGFloat margin = ((ScreenWith - 4*60)/5);
-    
-    self.exchangeCamera = [self createCustomButtonWithName:@"切换"];
-    [self.exchangeCamera addTarget:self action:@selector(clikcExchangeCamera:) forControlEvents:UIControlEventTouchUpInside];
-    self.exchangeCamera.frame = CGRectMake(ScreenWith-60-margin, 200, 60, 60);
-    [self.view addSubview:self.exchangeCamera];
-    
+    self.pointLabel.layer.cornerRadius = 5;
+    self.pointLabel.layer.masksToBounds = YES;
     self.focusCursor = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
     self.focusCursor.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.4];
     self.focusCursor.layer.cornerRadius = 30;
@@ -520,15 +518,6 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     [self.pickerScrollView scollToSelectdIndex:1];
 }
 
-
-- (UIButton *)createCustomButtonWithName:(NSString *)name{
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTitle:name forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor redColor];
-    button.layer.cornerRadius = 30;
-    button.layer.masksToBounds = YES;
-    return button;
-}
 
 #pragma mark -KBPickerScrollViewDataSource-
 - (NSInteger)numberOfItemAtPickerScrollView:(KBPickerScrollerView *)pickerScrollView{
@@ -560,9 +549,13 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     [item backSizeOfItem];
 }
 - (void)pickerScrollView:(KBPickerScrollerView *)menuScrollView didSelectedItemAtindex:(NSInteger)index{
-    LQLog(@"当前选中 %@", @(index));
+    if (index == 0) {
+        [self.shootBtn setImage:UIImageMake(@"take_picture") forState:UIControlStateNormal];
+    } else {
+        [self.shootBtn setImage:UIImageMake(@"shoot_normal") forState:UIControlStateNormal];
+    }
     // 选中震动反馈
-    UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy];
+    UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
     [impactLight impactOccurred];
     
 }

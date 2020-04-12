@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,22 @@
                                 <rect key="frame" x="0.0" y="34" width="414" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxS-cB-7FT" customClass="翻转">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-0c-5Kg">
+                                <rect key="frame" x="359" y="134" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Yxl-uL-t2X"/>
+                                    <constraint firstAttribute="width" constant="40" id="jbW-mZ-ufp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="闪光灯" image="bnavi_icon_location_fixed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashModeEvent:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="1ow-7W-MIS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxS-cB-7FT" customClass="QMUIButton">
                                 <rect key="frame" x="359" y="74" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -28,22 +43,35 @@
                                     <constraint firstAttribute="height" constant="40" id="gBo-8N-Xzg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="闪光灯"/>
+                                <state key="normal" title="翻转" image="alipay_msp_refresh.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="exchangeCameraEvent:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="FuQ-Et-STB"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-0c-5Kg">
-                                <rect key="frame" x="361" y="121" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="倒计时"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUN-N0-7hD">
+                                <rect key="frame" x="359" y="194" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="F0a-kY-A4J"/>
+                                    <constraint firstAttribute="height" constant="40" id="eVZ-bd-CKh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="倒计时" image="smallVideo_personal_add_little">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzv-t0-fvF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzv-t0-fvF">
                                 <rect key="frame" x="177" y="692" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8XF-8d-WFV"/>
                                     <constraint firstAttribute="width" constant="60" id="yNQ-rg-f9q"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="shoot_normal"/>
+                                <connections>
+                                    <action selector="shootEventButton:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="9dV-wb-Bc8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5Z-az-Qkx">
                                 <rect key="frame" x="15" y="59" width="40" height="40"/>
@@ -71,17 +99,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nA-QN-h1c">
+                                <rect key="frame" x="297" y="707" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cz9-Xd-pOU"/>
+                                    <constraint firstAttribute="width" constant="30" id="tOf-aF-gQU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="QfE-PK-2ff" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="-10" id="24C-3v-e2Y"/>
+                            <constraint firstItem="8nA-QN-h1c" firstAttribute="leading" secondItem="Nzv-t0-fvF" secondAttribute="trailing" constant="60" id="69m-tS-AEY"/>
                             <constraint firstItem="pxS-cB-7FT" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="30" id="8il-dt-ZDF"/>
+                            <constraint firstItem="AUN-N0-7hD" firstAttribute="top" secondItem="Y2P-0c-5Kg" secondAttribute="bottom" constant="20" id="EHf-N8-XNh"/>
+                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="Y2P-0c-5Kg" secondAttribute="trailing" constant="15" id="IeX-QC-hCc"/>
                             <constraint firstItem="e6B-y7-4Ne" firstAttribute="leading" secondItem="7Vc-p1-kMH" secondAttribute="leading" id="KuL-u3-mj7"/>
                             <constraint firstItem="lDv-4s-kED" firstAttribute="bottom" secondItem="e6B-y7-4Ne" secondAttribute="bottom" id="Kwr-46-cqN"/>
                             <constraint firstItem="e6B-y7-4Ne" firstAttribute="top" secondItem="QfE-PK-2ff" secondAttribute="bottom" constant="8" symbolic="YES" id="N7r-J8-Q6Z"/>
@@ -90,6 +124,9 @@
                             <constraint firstItem="lDv-4s-kED" firstAttribute="centerX" secondItem="e6B-y7-4Ne" secondAttribute="centerX" id="ZuO-FI-GEb"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="bottom" secondItem="e6B-y7-4Ne" secondAttribute="bottom" id="aKm-qA-9uV"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="QfE-PK-2ff" secondAttribute="trailing" id="eD9-Bx-mC9"/>
+                            <constraint firstItem="8nA-QN-h1c" firstAttribute="centerY" secondItem="Nzv-t0-fvF" secondAttribute="centerY" id="eVu-lP-oLT"/>
+                            <constraint firstItem="Y2P-0c-5Kg" firstAttribute="top" secondItem="pxS-cB-7FT" secondAttribute="bottom" constant="20" id="fQW-bT-3aP"/>
+                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="AUN-N0-7hD" secondAttribute="trailing" constant="15" id="if5-6p-1Tq"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="pxS-cB-7FT" secondAttribute="trailing" constant="15" id="jRu-4o-hT1"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="e6B-y7-4Ne" secondAttribute="trailing" id="mNI-EL-wxs"/>
                             <constraint firstItem="E5Z-az-Qkx" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="15" id="sB2-a8-j7S"/>
@@ -101,8 +138,10 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="QfE-PK-2ff" id="ywe-tH-p7T"/>
+                        <outlet property="exchangeCamera" destination="pxS-cB-7FT" id="4FR-bZ-07x"/>
                         <outlet property="flashOnButton" destination="Y2P-0c-5Kg" id="lZS-k8-0Ow"/>
                         <outlet property="pickerScrollView" destination="e6B-y7-4Ne" id="kfu-GI-fb8"/>
+                        <outlet property="pointLabel" destination="lDv-4s-kED" id="m30-bB-QHD"/>
                         <outlet property="shootBtn" destination="Nzv-t0-fvF" id="gIw-Q6-wfI"/>
                     </connections>
                 </viewController>
@@ -112,6 +151,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alipay_msp_refresh.png" width="22" height="22"/>
         <image name="back_left" width="33" height="33"/>
+        <image name="bnavi_icon_location_fixed.png" width="27" height="27"/>
+        <image name="shoot_normal" width="44.5" height="44"/>
+        <image name="smallVideo_personal_add_little" width="11" height="11"/>
     </resources>
 </document>

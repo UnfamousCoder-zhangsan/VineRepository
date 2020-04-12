@@ -9,6 +9,7 @@
 #import "KB_MineTVC.h"
 #import "KB_MineHeaderView.h"
 #import "KB_ListViewController.h"
+#import "KB_PersonalInformationVC.h"
 
 @interface KB_MineTVC ()<GKPageScrollViewDelegate, JXCategoryViewDelegate, UIScrollViewDelegate>
 
@@ -32,13 +33,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColorMakeWithHex(@"#222222");
-    self.title = self.titleview.text;
+    /// 单独设置 title
+    self.titleView.title = self.titleview.text;
     [self.view addSubview:self.pageScrollView];
     [self.pageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     
     [self.pageScrollView reloadData];
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    PageRout_Maneger.currentNaviVC = self.navigationController;
+}
+- (void)setupNavigationItems{
+    [super setupNavigationItems];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem qmui_itemWithTitle:@"设置" target:self action:@selector(handleSettingEvent)];
+}
+
+- (void)handleSettingEvent{
+    // 跳转设置界面
+    KB_PersonalInformationVC *vc = [[UIStoryboard storyboardWithName:@"PersonalInformation" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PersonalInformationVC"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UIImage *)navigationBarBackgroundImage{
@@ -154,7 +170,7 @@
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         CGFloat scrollW = SCREEN_WIDTH;
-        CGFloat scrollH = SCREEN_HEIGHT - NavigationBarHeight - 40.0f;
+        CGFloat scrollH = SCREEN_HEIGHT - NavigationBarHeight - 40.0f - TabBarHeight;
         
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, scrollW, scrollH)];
         _scrollView.pagingEnabled = YES;

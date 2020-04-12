@@ -97,7 +97,7 @@ static PageRoutManeger *_sharedPageRoutManeger;
      QDNavigationController *naviController = [[QDNavigationController alloc] initWithRootViewController:shootVC];
     naviController.modalPresentationStyle = UIModalPresentationFullScreen;
     [PageRout_Maneger.currentNaviVC presentViewController:naviController animated:YES completion:^{
-        [SVProgressHUD showSuccessWithStatus:@"正在拍摄中"];
+        //[SVProgressHUD showSuccessWithStatus:@"正在拍摄中"];
     }];
 }
 

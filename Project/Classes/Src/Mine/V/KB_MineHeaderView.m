@@ -68,7 +68,7 @@
 - (UIImageView *)bgImgView {
     if (!_bgImgView) {
         _bgImgView = [UIImageView new];
-        _bgImgView.image = [UIImage imageNamed:@"dy_bg"];
+        _bgImgView.image = [UIImage imageNamed:@"404"];
         _bgImgView.contentMode = UIViewContentModeScaleAspectFill;
         _bgImgView.clipsToBounds = YES;
     }
@@ -86,7 +86,7 @@
 - (UIImageView *)iconImgView {
     if (!_iconImgView) {
         _iconImgView = [UIImageView new];
-        _iconImgView.image = [UIImage imageNamed:@"dy_icon"];
+        _iconImgView.image = [UIImage imageNamed:@"404"];
         _iconImgView.layer.cornerRadius = 48.0f;
         _iconImgView.layer.masksToBounds = YES;
         _iconImgView.layer.borderColor = [UIColor redColor].CGColor;
@@ -98,7 +98,7 @@
 - (UIImageView *)contentImgView {
     if (!_contentImgView) {
         _contentImgView = [UIImageView new];
-        _contentImgView.image = [UIImage imageNamed:@"dy_content"];
+        _contentImgView.image = [UIImage imageNamed:@"404"];
     }
     return _contentImgView;
 }
