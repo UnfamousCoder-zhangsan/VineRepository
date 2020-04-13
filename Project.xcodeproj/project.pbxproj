@@ -101,6 +101,9 @@
 		31C0AA7D2443637800110B18 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA7C2443637800110B18 /* Setting.storyboard */; };
 		514C502A2387EEEA0070E875 /* HWTFCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50262387EEEA0070E875 /* HWTFCodeView.m */; };
 		514C502B2387EEEA0070E875 /* HWTFCodeBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50292387EEEA0070E875 /* HWTFCodeBView.m */; };
+		5153B8412444542B0090B8A8 /* KB_SettingInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153B8402444542B0090B8A8 /* KB_SettingInformationVC.m */; };
+		5153B845244458870090B8A8 /* KB_MessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153B844244458870090B8A8 /* KB_MessageHeaderView.m */; };
+		5153B847244458A40090B8A8 /* KB_MessageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */; };
 		51588CB924418E7100F120CB /* KBPickerScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CB824418E7100F120CB /* KBPickerScrollerView.m */; };
 		51588CBC24418FBC00F120CB /* KBPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBB24418FBC00F120CB /* KBPickerItem.m */; };
 		51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBE244191D400F120CB /* CustomPickerItem.m */; };
@@ -415,6 +418,11 @@
 		514C50272387EEEA0070E875 /* HWTFCodeBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeBView.h; sourceTree = "<group>"; };
 		514C50282387EEEA0070E875 /* HWTFCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeView.h; sourceTree = "<group>"; };
 		514C50292387EEEA0070E875 /* HWTFCodeBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTFCodeBView.m; sourceTree = "<group>"; };
+		5153B83F2444542B0090B8A8 /* KB_SettingInformationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_SettingInformationVC.h; sourceTree = "<group>"; };
+		5153B8402444542B0090B8A8 /* KB_SettingInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_SettingInformationVC.m; sourceTree = "<group>"; };
+		5153B843244458870090B8A8 /* KB_MessageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MessageHeaderView.h; sourceTree = "<group>"; };
+		5153B844244458870090B8A8 /* KB_MessageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MessageHeaderView.m; sourceTree = "<group>"; };
+		5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MessageHeaderView.xib; sourceTree = "<group>"; };
 		51588CB724418E7100F120CB /* KBPickerScrollerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerScrollerView.h; sourceTree = "<group>"; };
 		51588CB824418E7100F120CB /* KBPickerScrollerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerScrollerView.m; sourceTree = "<group>"; };
 		51588CBA24418FBC00F120CB /* KBPickerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerItem.h; sourceTree = "<group>"; };
@@ -1094,6 +1102,7 @@
 		313A34A5243B3AF000A4F1F9 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				5153B842244458590090B8A8 /* V */,
 				313A34A6243B3B2E00A4F1F9 /* KB_MessageTVC.h */,
 				313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */,
 			);
@@ -1128,6 +1137,9 @@
 			isa = PBXGroup;
 			children = (
 				31C0AA7C2443637800110B18 /* Setting.storyboard */,
+				5153B83E244453EE0090B8A8 /* V */,
+				5153B83D244453E60090B8A8 /* M */,
+				5153B83C244453DF0090B8A8 /* C */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1151,6 +1163,39 @@
 				514C50292387EEEA0070E875 /* HWTFCodeBView.m */,
 			);
 			path = HWTFCodeView;
+			sourceTree = "<group>";
+		};
+		5153B83C244453DF0090B8A8 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				5153B83F2444542B0090B8A8 /* KB_SettingInformationVC.h */,
+				5153B8402444542B0090B8A8 /* KB_SettingInformationVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		5153B83D244453E60090B8A8 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		5153B83E244453EE0090B8A8 /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		5153B842244458590090B8A8 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				5153B843244458870090B8A8 /* KB_MessageHeaderView.h */,
+				5153B844244458870090B8A8 /* KB_MessageHeaderView.m */,
+				5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */,
+			);
+			path = V;
 			sourceTree = "<group>";
 		};
 		51588CB6244172DC00F120CB /* PickerScrollView */ = {
@@ -2019,6 +2064,7 @@
 				3130FC8C243E2D0900B9A0D6 /* Shoot.storyboard in Resources */,
 				CB86BC18231785430011207A /* PayInputItem.xib in Resources */,
 				5E8E043623B068120023A484 /* UMCommonLog.bundle in Resources */,
+				5153B847244458A40090B8A8 /* KB_MessageHeaderView.xib in Resources */,
 				5E8E044023B06CA40023A484 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2119,6 +2165,7 @@
 				313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */,
 				CBA1060F230E71E900CD84E9 /* LQCollectionViewHorizontalLayout.m in Sources */,
 				86B2BCEE230E6B5100273AA3 /* MWPhotoBrowser.m in Sources */,
+				5153B8412444542B0090B8A8 /* KB_SettingInformationVC.m in Sources */,
 				86B2BD08230E6B5100273AA3 /* NSDate+BRPickerView.m in Sources */,
 				86B2BCEF230E6B5100273AA3 /* MWCaptionView.m in Sources */,
 				3130FC60243CADDC00B9A0D6 /* DDNumber.m in Sources */,
@@ -2171,6 +2218,7 @@
 				3130FC7D243CBBAF00B9A0D6 /* KB_NewsTVC.m in Sources */,
 				3130FC56243CADDC00B9A0D6 /* HTTPAsyncFileResponse.m in Sources */,
 				3130FC70243CADDC00B9A0D6 /* ZFBrightnessView.m in Sources */,
+				5153B845244458870090B8A8 /* KB_MessageHeaderView.m in Sources */,
 				3130FB9A243CAC2A00B9A0D6 /* CommentsPopView.m in Sources */,
 				86B2BCF3230E6B5100273AA3 /* MWPhoto.m in Sources */,
 				3130FC61243CADDC00B9A0D6 /* DDData.m in Sources */,

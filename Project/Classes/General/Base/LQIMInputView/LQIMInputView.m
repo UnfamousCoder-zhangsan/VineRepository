@@ -26,7 +26,7 @@
 -(void)addLine{
     UIView *line = [UIView new];
     [self addSubview:line];
-    line.backgroundColor = UIColorMakeWithHex(@"f0f0f0");
+    line.backgroundColor = UIColorMakeWithHex(@"#f0f0f0");
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
         make.height.mas_equalTo(1);

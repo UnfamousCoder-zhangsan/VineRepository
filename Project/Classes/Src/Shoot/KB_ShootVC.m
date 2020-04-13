@@ -66,7 +66,6 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 }
 - (IBAction)closeEvent:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
-        
     }];
 }
 - (BOOL)preferredNavigationBarHidden

@@ -10,6 +10,7 @@
 #import "KB_MineHeaderView.h"
 #import "KB_ListViewController.h"
 #import "KB_PersonalInformationVC.h"
+#import "KB_SettingInformationVC.h"
 
 @interface KB_MineTVC ()<GKPageScrollViewDelegate, JXCategoryViewDelegate, UIScrollViewDelegate>
 
@@ -25,6 +26,8 @@
 @property (nonatomic, strong) NSArray               *childVCs;
 
 @property (nonatomic, strong) UILabel               *titleview;
+
+@property (nonatomic, strong) UIButton              *settingBtn;
 
 @end
 
@@ -48,7 +51,12 @@
 }
 - (void)setupNavigationItems{
     [super setupNavigationItems];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem qmui_itemWithTitle:@"设置" target:self action:@selector(handleSettingEvent)];
+    self.settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.settingBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.settingBtn setBackgroundImage:UIImageMake(@"mine_setting") forState:UIControlStateNormal];
+    [self.settingBtn addTarget:self action:@selector(gotoSettingVC) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithCustomView:self.settingBtn];
+    //[UIBarButtonItem qmui_itemWithTitle:@"设置" target:self action:@selector(handleSettingEvent)];
 }
 
 - (void)handleSettingEvent{
@@ -220,5 +228,15 @@
     }
     return _titleview;
 }
-
+//- (UIButton *)settingBtn{
+//    if (!_settingBtn) {
+//
+//    }
+//    return _settingBtn;
+//}
+- (void)gotoSettingVC{
+    //跳转设置
+    KB_SettingInformationVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_SettingInformationVC"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

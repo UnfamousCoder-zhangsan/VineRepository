@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Setting InformationVC-->
         <scene sceneID="n6X-Bh-NIy">
             <objects>
-                <tableViewController id="qIe-Dw-oaF" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6TT-y8-FGS">
+                <tableViewController storyboardIdentifier="KB_SettingInformationVC" id="qIe-Dw-oaF" customClass="KB_SettingInformationVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="6TT-y8-FGS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection headerTitle="关于" id="koQ-Dp-JtI">
+                            <tableViewSection id="koQ-Dp-JtI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="r1M-xF-Vrl" customClass="QMUITableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="18" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r1M-xF-Vrl" id="gVu-7W-OSm">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -42,6 +42,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.1019607843" green="0.75294117650000003" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="5pD-qQ-RsG" firstAttribute="leading" secondItem="gVu-7W-OSm" secondAttribute="leading" constant="15" id="3cI-L2-Q4A"/>
                                                 <constraint firstItem="5pD-qQ-RsG" firstAttribute="centerY" secondItem="gVu-7W-OSm" secondAttribute="centerY" id="8r5-Nf-sOc"/>
@@ -49,10 +50,11 @@
                                                 <constraint firstItem="3xn-AN-vMb" firstAttribute="leading" secondItem="5pD-qQ-RsG" secondAttribute="trailing" constant="10" id="M7b-nz-FXG"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="CbL-h9-FLn" customClass="QMUITableViewCell">
-                                        <rect key="frame" x="0.0" y="78" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="68" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CbL-h9-FLn" id="Nuj-lX-W18">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -85,7 +87,7 @@
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="nQN-f4-SQV" customClass="QMUITableViewCell">
-                                        <rect key="frame" x="0.0" y="128" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="118" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nQN-f4-SQV" id="wvJ-k5-uTo">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -118,7 +120,7 @@
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="9n1-uL-p6i" customClass="QMUITableViewCell">
-                                        <rect key="frame" x="0.0" y="178" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="168" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9n1-uL-p6i" id="21x-JG-Lsu">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -151,7 +153,7 @@
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="XMI-Mb-hr3" customClass="QMUITableViewCell">
-                                        <rect key="frame" x="0.0" y="228" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="218" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XMI-Mb-hr3" id="ImP-E8-mOm">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -184,7 +186,7 @@
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="o73-E3-Wk8" customClass="QMUITableViewCell">
-                                        <rect key="frame" x="0.0" y="278" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="268" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o73-E3-Wk8" id="hR6-KR-bx5">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
@@ -217,7 +219,7 @@
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="eHY-DF-Prw" customClass="QMUITableViewCell">
-                                        <rect key="frame" x="0.0" y="328" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="318" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eHY-DF-Prw" id="7nk-1v-CsC">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -262,7 +264,7 @@
                             <tableViewSection id="NH6-ET-kUT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="ANT-ma-0Uj">
-                                        <rect key="frame" x="0.0" y="434" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="404" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ANT-ma-0Uj" id="ega-gc-LmT">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>

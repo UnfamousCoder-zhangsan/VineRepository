@@ -112,12 +112,12 @@
     alertController.alertSeparatorColor = APPColor_DDD;
 
     NSMutableDictionary *titleAttributs = [[NSMutableDictionary alloc] initWithDictionary:alertController.alertTitleAttributes];
-    titleAttributs[NSForegroundColorAttributeName] = UIColorMakeWithHex(@"222222");
+    titleAttributs[NSForegroundColorAttributeName] = UIColorMakeWithHex(@"#222222");
     titleAttributs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:18];
     alertController.alertTitleAttributes = titleAttributs;
 
     NSMutableDictionary *messageAttributs = [[NSMutableDictionary alloc] initWithDictionary:alertController.alertMessageAttributes];
-    messageAttributs[NSForegroundColorAttributeName] = UIColorMakeWithHex(@"888888");
+    messageAttributs[NSForegroundColorAttributeName] = UIColorMakeWithHex(@"#888888");
     messageAttributs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
     NSMutableParagraphStyle *ps = [[NSMutableParagraphStyle alloc] init];
     ps.minimumLineHeight = 22;

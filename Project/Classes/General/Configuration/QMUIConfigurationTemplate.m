@@ -84,7 +84,7 @@
     QMUICMI.navBarDisabledAlpha = 0.2f;                                         // NavBarDisabledAlpha : QMUINavigationButton 在 disabled 时的 alpha
     QMUICMI.navBarButtonFont = UIFontMake(17);                                  // NavBarButtonFont : QMUINavigationButtonTypeNormal 的字体（由于系统存在一些 bug，这个属性默认不对 UIBarButtonItem 生效）
     QMUICMI.navBarButtonFontBold = UIFontBoldMake(17);                          // NavBarButtonFontBold : QMUINavigationButtonTypeBold 的字体
-    QMUICMI.navBarBackgroundImage = [UIImage imageWithColor:[UIColor colorWithHexString:@"41508E"]];   // NavBarBackgroundImage : UINavigationBar 的背景图，注意 navigationBar 的高度会受多个因素（是否全面屏、是否使用了 navigationItem.prompt、是否将 UISearchBar 作为 titleView）的影响，要检查各种情况是否都显示正常。
+    QMUICMI.navBarBackgroundImage = [UIImage imageWithColor:[UIColor colorWithHexString:@"#222222"]];   // NavBarBackgroundImage : UINavigationBar 的背景图，注意 navigationBar 的高度会受多个因素（是否全面屏、是否使用了 navigationItem.prompt、是否将 UISearchBar 作为 titleView）的影响，要检查各种情况是否都显示正常。
     QMUICMI.navBarShadowImage = [UIImage qmui_imageWithColor:UIColorClear size:CGSizeMake(4, PixelOne) cornerRadius:0]; // NavBarShadowImage : UINavigationBar.shadowImage，也即导航栏底部那条分隔线
     QMUICMI.navBarShadowImageColor = UIColorClear;
     QMUICMI.navBarTintColor = UIColorMakeWithHex(@"#222222");                                         // NavBarBarTintColor : UINavigationBar.barTintColor，也即背景色

@@ -57,7 +57,7 @@
         };
     } else {
         UIImage *img = [[UIImage imageNamed:@"呼叫"] qmui_imageResizedInLimitedSize:CGSizeMake(22, 22) resizingMode:QMUIImageResizingModeScaleToFill];
-        img = [img qmui_imageWithTintColor:UIColorMakeWithHex(@"3682ff")];
+        img = [img qmui_imageWithTintColor:UIColorMakeWithHex(@"#3682ff")];
         [AlertHelper showAlertTitle:@"拨打电话"
                             message:phoneNumber
                          cancelText:@"取消"
