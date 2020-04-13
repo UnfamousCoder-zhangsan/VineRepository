@@ -89,6 +89,8 @@
 		3130FC8A243E208300B9A0D6 /* KB_ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC89243E208300B9A0D6 /* KB_ListViewController.m */; };
 		3130FC8C243E2D0900B9A0D6 /* Shoot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */; };
 		3130FC90243E33EB00B9A0D6 /* KB_CamerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */; };
+		3132596F2444CE02002ED40A /* KB_MineInformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3132596E2444CE02002ED40A /* KB_MineInformationView.xib */; };
+		313259722444CE21002ED40A /* KB_MineInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313259712444CE21002ED40A /* KB_MineInformationView.m */; };
 		313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */; };
 		313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */; };
 		313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */; };
@@ -396,6 +398,9 @@
 		3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shoot.storyboard; sourceTree = "<group>"; };
 		3130FC8E243E33EB00B9A0D6 /* KB_CamerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_CamerManager.h; sourceTree = "<group>"; };
 		3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_CamerManager.m; sourceTree = "<group>"; };
+		3132596E2444CE02002ED40A /* KB_MineInformationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MineInformationView.xib; sourceTree = "<group>"; };
+		313259702444CE21002ED40A /* KB_MineInformationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineInformationView.h; sourceTree = "<group>"; };
+		313259712444CE21002ED40A /* KB_MineInformationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineInformationView.m; sourceTree = "<group>"; };
 		313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomePageViewController.h; sourceTree = "<group>"; };
 		313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_HomePageViewController.m; sourceTree = "<group>"; };
 		313A34A2243B3A2700A4F1F9 /* KB_MineTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineTVC.h; sourceTree = "<group>"; };
@@ -1079,6 +1084,9 @@
 			children = (
 				3130FC82243E1B8D00B9A0D6 /* KB_MineHeaderView.h */,
 				3130FC83243E1B8D00B9A0D6 /* KB_MineHeaderView.m */,
+				313259702444CE21002ED40A /* KB_MineInformationView.h */,
+				313259712444CE21002ED40A /* KB_MineInformationView.m */,
+				3132596E2444CE02002ED40A /* KB_MineInformationView.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -2061,6 +2069,7 @@
 				926ADECB23F127E200844868 /* custom_map_config in Resources */,
 				5E8E043923B068120023A484 /* UMSocialSDKResources.bundle in Resources */,
 				E6C8A4541D405B880075353A /* Assets.xcassets in Resources */,
+				3132596F2444CE02002ED40A /* KB_MineInformationView.xib in Resources */,
 				3130FC8C243E2D0900B9A0D6 /* Shoot.storyboard in Resources */,
 				CB86BC18231785430011207A /* PayInputItem.xib in Resources */,
 				5E8E043623B068120023A484 /* UMCommonLog.bundle in Resources */,
@@ -2215,6 +2224,7 @@
 				3130FB82243CAB7100B9A0D6 /* CommentModel.m in Sources */,
 				865E92F723164DA200F760C6 /* RightAlignedFlowLayout.m in Sources */,
 				51588CBC24418FBC00F120CB /* KBPickerItem.m in Sources */,
+				313259722444CE21002ED40A /* KB_MineInformationView.m in Sources */,
 				3130FC7D243CBBAF00B9A0D6 /* KB_NewsTVC.m in Sources */,
 				3130FC56243CADDC00B9A0D6 /* HTTPAsyncFileResponse.m in Sources */,
 				3130FC70243CADDC00B9A0D6 /* ZFBrightnessView.m in Sources */,

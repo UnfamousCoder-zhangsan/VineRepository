@@ -31,11 +31,11 @@
 @property (nonatomic, strong) UIImageView *avatar;
 @property (nonatomic, strong) UIImageView *focus;
 
-@property (nonatomic, strong) UIImageView *setRingImage;
-@property (nonatomic, strong) UILabel *setRingNameLabel;
+//@property (nonatomic, strong) UIImageView *setRingImage;
+//@property (nonatomic, strong) UILabel *setRingNameLabel;
 
-@property (nonatomic, strong) UIImageView *setLivePhotoImage;
-@property (nonatomic, strong) UILabel *setLivePhotoNameLabel;
+//@property (nonatomic, strong) UIImageView *setLivePhotoImage;
+//@property (nonatomic, strong) UILabel *setLivePhotoNameLabel;
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *artistLabel;
@@ -93,40 +93,6 @@
         [self.contentView.layer addSublayer:gradientLayer];
         
         
-        
-        _setRingImage = [[UIImageView alloc]init];
-        _setRingImage.contentMode = UIViewContentModeScaleAspectFit;
-        _setRingImage.image = [UIImage imageNamed:@"videoRing"];
-        _setRingImage.userInteractionEnabled = YES;
-        //        _share.tag = kAwemeListLikeShareTag;
-        //        [_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)]];
-        [self.contentView addSubview:_setRingImage];
-        
-        _setRingNameLabel = [[UILabel alloc]init];
-        _setRingNameLabel.text = @"设为铃声";
-        _setRingNameLabel.textColor = [UIColor whiteColor];//ColorWhite;
-        _setRingNameLabel.font = [UIFont systemFontOfSize:12 ];//SmallFont;
-        [self.contentView addSubview:_setRingNameLabel];
-        _setRingNameLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
-        _setRingNameLabel.layer.shadowOpacity = 0.3;
-        _setRingNameLabel.layer.shadowOffset = CGSizeMake(0, 1);
-        
-        _setLivePhotoImage = [[UIImageView alloc]init];
-        _setLivePhotoImage.contentMode = UIViewContentModeScaleAspectFit;
-        _setLivePhotoImage.image = [UIImage imageNamed:@"LivePhoto"];
-        _setLivePhotoImage.userInteractionEnabled = YES;
-        //        _share.tag = kAwemeListLikeShareTag;
-        //        [_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)]];
-        [self.contentView addSubview:_setLivePhotoImage];
-        
-        _setLivePhotoNameLabel = [[UILabel alloc]init];
-        _setLivePhotoNameLabel.text = @"动态壁纸";
-        _setLivePhotoNameLabel.textColor = [UIColor whiteColor];//ColorWhite;
-        _setLivePhotoNameLabel.font = [UIFont systemFontOfSize:12 ];//SmallFont;
-        [self.contentView addSubview:_setLivePhotoNameLabel];
-        _setLivePhotoNameLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
-        _setLivePhotoNameLabel.layer.shadowOpacity = 0.3;
-        _setLivePhotoNameLabel.layer.shadowOffset = CGSizeMake(0, 1);
         
         
         //init share、comment、like action view
@@ -213,16 +179,6 @@
         [self.contentView addSubview:_nameLabel];
         
         @weakify(self);
-        [_setRingImage whenTapped:^{
-            @strongify(self);
-            [self setRing];
-        }];
-        
-        [_setLivePhotoImage whenTapped:^{
-            @strongify(self);
-            [self setLivePhoto];
-        }];
-        
         _favorite.clickBlock = ^(BOOL isChoose) {
             @strongify(self);
             [self favoriteOrDelVideo:isChoose];
@@ -243,40 +199,12 @@
             @strongify(self);
             [self commentVidieo];
         }];
-        [_setRingImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        [_share mas_makeConstraints:^(MASConstraintMaker *make) {
             if(IS_NOTCHED_SCREEN) {
                 make.bottom.with.offset(-150);
             } else {
                 make.bottom.with.offset(-135 );
-            }
-            make.right.with.offset(-10 );
-            make.width.mas_equalTo(45 );
-            make.height.mas_equalTo(45 );
-        }];
-        [_setRingNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.setRingImage.mas_bottom).with.offset(5 );
-            make.centerX.equalTo(self.setRingImage);
-        }];
-        
-        [_setLivePhotoImage mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.bottom.equalTo(_setRingImage.mas_top).with.offset(-40 );
-            
-            make.right.with.offset(-10 );
-            make.width.mas_equalTo(50 );
-            make.height.mas_equalTo(45 );
-        }];
-        [_setLivePhotoNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.setLivePhotoImage.mas_bottom).with.offset(5 );
-            make.centerX.equalTo(self.setLivePhotoImage);
-        }];
-        
-        
-        [_share mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(IS_NOTCHED_SCREEN) {
-                make.bottom.equalTo(_setLivePhotoImage.mas_top).with.offset(-40 );
-            } else {
-                make.bottom.equalTo(_setLivePhotoImage.mas_top).with.offset(-40 );
             }
             make.right.with.offset(-10 );
             make.width.mas_equalTo(50 );

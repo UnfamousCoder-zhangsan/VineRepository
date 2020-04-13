@@ -34,7 +34,7 @@
 }
 
 - (void)setupBaseView {
-    self.backgroundColor = UIColorMakeWithHex(@"#222222");
+    self.backgroundColor = UIColorMakeWithHex(@"#FFFFFF");
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.iconButton = [[UIButton alloc]init];
     [self.contentView addSubview:self.iconButton];

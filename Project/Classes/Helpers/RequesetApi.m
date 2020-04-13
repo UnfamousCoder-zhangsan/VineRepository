@@ -3,9 +3,11 @@
 #import <AFNetworking/AFNetworking.h>
 #ifdef DEBUG
 static NSString* kAPiHost = @"http://imwork.tpddns.cn:38765";
+static NSString* kAPIHost = @"http://119.29.34.133:8080";
 
 #else
 static NSString* kAPiHost = @"http://imwork.tpddns.cn:38765";
+static NSString* kAPIHost = @"http://119.29.34.133:8080"
 #endif
 
 static NSString* kAPiPath = @"api";
@@ -34,6 +36,52 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
 //    parameters[@"version"] = App_Version;
     [parameters addEntriesFromDictionary:params];
     NSString *URL = [NSString stringWithFormat:@"%@/%@/%@",kAPiHost, kAPiPath, url];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+    requestSerializer = [AFJSONRequestSerializer serializer];
+    requestSerializer.timeoutInterval = 10;
+    [requestSerializer setValue:User_Center.authorization forHTTPHeaderField:@"Authorization"];
+    LQLog(@"%@",[User_Center modelToJSONString]);
+    manager.requestSerializer = requestSerializer;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    [manager POST:URL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        responseObject = [NSDictionary changeType:(NSDictionary*)responseObject];
+        ApiResponseModel *model = [ApiResponseModel modelWithJSON:responseObject];
+        if (model.status > 0) {
+            block ? block(model, YES): nil;
+        } else if (model.status == -3 || model.status == -6 || model.status == -8) {
+            timeoutRequestMArr = timeoutRequestMArr? : [NSMutableArray array];
+            RequestObject *timeoutRequest = [[RequestObject alloc] initWithRequestURL:url params:params completedBlock:block];
+            [timeoutRequestMArr addObject:timeoutRequest];
+            [self requestLoginAutomaticallyWithSuccess:^{
+                for (RequestObject *request in timeoutRequestMArr) {
+                    [self requestApiWithParams:request.requestParams andRequestUrl:request.requestURL completedBlock:request.completedBlock];
+                }
+                [timeoutRequestMArr removeAllObjects];
+            } failure:^{
+                [timeoutRequestMArr removeAllObjects];
+                model.msg = @"";
+                block ? block(model, NO): nil;
+            }];
+        } else {
+            block ? block(model, NO): nil;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        LQLog(@"Error: %@ ----- API:%@", task.response,url);
+        ApiResponseModel *model = [[ApiResponseModel alloc] init];
+        model.status = -2000;
+        model.msg = @"请求连接失败";
+        block ? block(model,NO) : nil;
+    }];
+    [manager invalidateSessionCancelingTasks:NO];
+}
+
++ (void)requestAPIWithParams:(NSDictionary *)params andRequestUrl:(NSString *)url completedBlock:(ApiCompletedBlock)block {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    parameters[@"version"] = App_Version;
+    [parameters addEntriesFromDictionary:params];
+    NSString *URL = [NSString stringWithFormat:@"%@/%@",kAPIHost, url];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];

@@ -92,12 +92,9 @@ static PageRoutManeger *_sharedPageRoutManeger;
 
 + (void)showShootVC{
     KB_ShootVC *shootVC = [[UIStoryboard storyboardWithName:@"Shoot" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_ShootVC"];
-    //KB_ShootVC *shootVC =[[KB_ShootVC alloc] init];
-    //shootVC.modalPresentationStyle = UIModalPresentationFullScreen;
      QDNavigationController *naviController = [[QDNavigationController alloc] initWithRootViewController:shootVC];
     naviController.modalPresentationStyle = UIModalPresentationFullScreen;
     [PageRout_Maneger.currentNaviVC presentViewController:naviController animated:YES completion:^{
-        //[SVProgressHUD showSuccessWithStatus:@"正在拍摄中"];
     }];
 }
 
