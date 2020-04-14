@@ -31,6 +31,7 @@
 #import "AlertHelper.h"
 #import <JXCategoryView/JXCategoryView.h>
 #import <GKPageScrollView.h>
+#import "BRPickerView.h"
 
 #import "NSDate+Helper.h"
 #import "UIView+CommonFunction.h"

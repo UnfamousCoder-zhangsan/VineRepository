@@ -48,8 +48,19 @@
         // 学校
     } else if(indexPath.row == 4){
         // 性别
+        NSArray *arr = @[@"男", @"女", @"未知"];
+        [BRStringPickerView showStringPickerWithTitle:@"选择性别" dataSource:arr defaultSelValue:arr[2] resultBlock:^(id selectValue) {
+            LQLog(@"%@",selectValue);
+        }];
     } else if(indexPath.row == 5){
         // 生日
+        NSDate *minDate = [NSDate date];
+        NSDate *MaxDate = [NSDate date];
+        [BRDatePickerView showDatePickerWithTitle:@"选择生日" dateType:BRDatePickerModeYMD defaultSelValue:@"等时间" minDate:minDate maxDate:MaxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+            
+        } cancelBlock:^{
+            
+        }];
     } else if(indexPath.row == 6){
         // 地区
     }
