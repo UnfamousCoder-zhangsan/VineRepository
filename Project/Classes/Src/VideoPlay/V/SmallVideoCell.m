@@ -10,9 +10,12 @@
 
 @interface SmallVideoCell ()
 
+///视频image
 @property (nonatomic, strong) UIImageView *videoImageView;
+/// 头像
 @property (nonatomic, strong) UIImageView *iconImageView;
 
+///用户名
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, strong) UIView *gradientBackView;
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;
@@ -22,6 +25,12 @@
 
 @property (nonatomic, strong) UIImageView *concernImageView;
 @property (nonatomic, strong) UILabel *concernNumLabel;
+
+///视频内容
+@property (nonatomic, strong) UILabel *comment;
+
+@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, assign) CGFloat bottomHeight;
 
 @end
 
@@ -37,11 +46,12 @@
 - (void)setupBaseView {
     self.contentView.layer.masksToBounds = YES;
     UIView *bottomView = [[UIView alloc] init];
+    bottomView.backgroundColor = [UIColor redColor];
     // 底部view
     [self.contentView addSubview:bottomView];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.with.offset(0);
-        make.height.mas_equalTo(40 );
+        make.height.mas_equalTo(self.bottomHeight);
     }];
     
     // 评论image
@@ -50,15 +60,15 @@
     [bottomView addSubview:self.commentImageView];
     [self.commentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.with.offset(-10 );
-        make.width.mas_equalTo(15 );
-        make.top.bottom.with.offset(0);
+        make.width.mas_equalTo(15);
+        make.bottom.mas_equalTo(bottomView.mas_top).offset(25);
     }];
     // 评论数
     self.commentNumLabel = [[UILabel alloc] init];
     [bottomView addSubview:self.commentNumLabel];
     self.commentNumLabel.text = @"1234";
     self.commentNumLabel.font = [UIFont systemFontOfSize:10 ];
-    self.commentNumLabel.textColor = RGBA(68, 68, 68, 1);
+    self.commentNumLabel.textColor = UIColorMakeWithHex(@"#FFFFFF");
     [self.commentNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.commentImageView);
         make.right.equalTo(self.commentImageView.mas_left).with.offset(-4 );
@@ -73,14 +83,14 @@
         make.right.equalTo(self.commentNumLabel.mas_left).with.offset(-8 );
 //        make.centerY.equalTo(bottomView);
         make.width.mas_equalTo(15 );
-        make.top.bottom.with.offset(0);
+        make.bottom.mas_equalTo(bottomView.mas_top).offset(25);
     }];
     // 点赞数
     self.concernNumLabel = [[UILabel alloc] init];
     [bottomView addSubview:self.concernNumLabel];
     self.concernNumLabel.text = @"1234";
     self.concernNumLabel.font = [UIFont systemFontOfSize:10 ];
-    self.concernNumLabel.textColor = RGBA(68, 68, 68, 1);
+    self.concernNumLabel.textColor = UIColorMakeWithHex(@"#FFFFFF");
     [self.concernNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.concernImageView);
         make.right.equalTo(self.concernImageView.mas_left).with.offset(-4);
@@ -110,7 +120,7 @@
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(bottomView.mas_top).offset(5);
         make.left.with.offset(9 );
-        make.size.mas_equalTo(CGSizeMake(40 , 40 ));
+        make.size.mas_equalTo(CGSizeMake(40,40));
     }];
     @weakify(self)
     [[RACObserve(self, model.comment_num) ignore:nil] subscribeNext:^(NSNumber *x) {
@@ -146,9 +156,19 @@
     self.messageLabel.textColor = [UIColor whiteColor];
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconImageView.mas_right).with.offset(5 );
-        make.centerY.mas_equalTo(bottomView.mas_centerY).offset(-5);
+        make.bottom.mas_equalTo(self.iconImageView.mas_bottom).offset(0);
     }];
     
+    self.comment = [[UILabel alloc] init];
+    self.comment.text = @"这是一条评论 那是你坚实的基础上看蹑手蹑脚山东农村尽可能长时间是不出所料白菜价";
+    self.comment.numberOfLines = 0;
+    [bottomView addSubview:self.comment];
+    [self.comment mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.iconImageView.mas_bottom).offset(5);
+        make.right.left.with.offset(0);
+        make.bottom.mas_equalTo(bottomView.mas_bottom).offset(0);
+    }];
+    self.bottomView = bottomView;
     
 }
 
@@ -168,6 +188,11 @@
     self.messageLabel.text = model.name;
     
     self.concernNumLabel.text = @(model.score).stringValue;
+    
+    self.bottomHeight = 100.0f;
+    [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_offset(self.bottomHeight);
+    }];
 }
 
 

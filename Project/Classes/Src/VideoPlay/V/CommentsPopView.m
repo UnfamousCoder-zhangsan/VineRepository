@@ -58,7 +58,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         self.isDragTableView = NO;
         self.lastDrapDistance = 0.0;
         self.frame = [UIScreen mainScreen].bounds;
-        self.backgroundColor = UIColorMakeWithHex(@"#222222");
+        self.backgroundColor =   [UIColor clearColor];//[[UIColor alloc] qmui_colorWithAlpha:0.1 backgroundColor:UIColorMakeWithHex(@"#222222")];
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGuesture:)];
         self.tapGestureRecognizer = tapGestureRecognizer;
         tapGestureRecognizer.delegate = self;
@@ -224,7 +224,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
 
 //update method
 - (void)showToView:(UIView *)view {
-//    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     [view addSubview:self];
     [UIView animateWithDuration:0.15f
                           delay:0.0f
@@ -236,7 +236,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
                      }
                      completion:^(BOOL finished) {
                      }];
-    [self.commentTextView showToView:self];
+    [self.commentTextView showToView:window];
 }
 
 - (void)dismiss {

@@ -156,18 +156,17 @@
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"username"] = self.userNameTextField.text;
         params[@"password"] = self.passwordTextFiled.text;
-        params[@"appLicense"] = @"ZST";
         [SVProgressHUD show];
         [UserCenter clearUserCenter];
-        [RequesetApi requestApiWithParams:params andRequestUrl:@"auth/token" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
-            if (isSuccess) {
+        [RequesetApi requestAPIWithParams:params andRequestUrl:@"login" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+             if (isSuccess) {
                 [SVProgressHUD dismiss];
                 // 保存用户名密码
                 User_Center.ID = params[@"username"];
                 if (self.rememberPassword_btn.isSelected) {
                     User_Center.pass = params[@"password"];
                 }
-                
+               
                 // 用户中心
                 [UserCenter resetUserCenterWithDictionary:apiResponseModel.data];
                 User_Center.authorization = apiResponseModel.data;
@@ -179,7 +178,7 @@
                 [subscriber sendNext:@(YES)];
                 [subscriber sendCompleted];
             }
-        }];
+         }];
         return nil;
     }];
 }

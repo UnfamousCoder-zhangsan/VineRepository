@@ -200,7 +200,7 @@
 
 - (NSArray *)titles {
     if (!_titles) {
-        _titles = @[@"作品 129", @"动态 129", @"喜欢 591"];
+        _titles = @[@"作品 129", @"喜欢 591"];
     }
     return _titles;
 }
@@ -209,11 +209,11 @@
     if (!_childVCs) {
         KB_ListViewController *publishVC = [KB_ListViewController new];
         
-        KB_ListViewController *dynamicVC = [KB_ListViewController new];
+       // KB_ListViewController *dynamicVC = [KB_ListViewController new];
         
         KB_ListViewController *lovedVC = [KB_ListViewController new];
         
-        _childVCs = @[publishVC, dynamicVC, lovedVC];
+        _childVCs = @[publishVC, lovedVC];
     }
     return _childVCs;
 }
@@ -223,7 +223,7 @@
         _titleview = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
         _titleview.font = [UIFont systemFontOfSize:18.0f];
         _titleview.textColor = [UIColor whiteColor];
-        _titleview.text = @"❤️会说话的刘二豆❤️";
+        _titleview.text = @"会说话的刘二豆";
         _titleview.alpha = 0;
     }
     return _titleview;

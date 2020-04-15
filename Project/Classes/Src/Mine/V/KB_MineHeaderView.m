@@ -56,69 +56,9 @@
         self.bgImgFrame = CGRectMake(0, 0, frame.size.width, kMineBgImgHeight);
         self.bgImgView.frame = self.bgImgFrame;
         
-        
-        
-//        self.IntroductionTextView.text = @"测试点 \n 加点东西\n 还有一点展示 👍";
-//        self.IntroductionTextView.textColor = UIColorMakeWithHex(@"#FFFFFF");
-//        [self.InformationView addSubview:self.IntroductionTextView];
-//
-//        [self.yearBtn setTitle:@"120岁" forState:UIControlStateNormal];
-//        [self.InformationView addSubview:self.yearBtn];
-//
-//        [self.areaBtn setTitle:@"四川.成都" forState:UIControlStateNormal];
-//        [self.InformationView addSubview:self.areaBtn];
-//
-//        self.praised.text = @"1002获赞";
-//        self.praised.textColor = UIColorMakeWithHex(@"#FFFFFF");
-//        [self.InformationView addSubview:self.praised];
-//
-//        self.attention.text = @"100关注";
-//        self.attention.textColor = UIColorMakeWithHex(@"#FFFFFF");
-//        [self.InformationView addSubview:self.attention];
-//
-//        self.fan.text = @"233粉丝";
-//        self.fan.textColor = UIColorMakeWithHex(@"#FFFFFF");
-//        [self.InformationView addSubview:self.fan];
-//
-//        
-//        [self.schoolBtn setTitle:@"电子科技大学成都学院" forState:UIControlStateNormal];
-//        [self.InformationView addSubview:self.schoolBtn];
-        
-//        [self.contentView addSubview:self.InformationView];
-//
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(kMineBgImgHeight, 0, 0, 0));
         }];
-//
-//        [self.iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self.contentView).offset(10.0f);
-//            make.top.equalTo(self.contentView).offset(-15.0f);
-//            make.width.height.mas_equalTo(96.0f);
-//        }];
-//
-//        [self.InformationView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.iconImgView.mas_bottom);
-//            make.left.right.bottom.equalTo(self);
-//        }];
-//
-//        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(self.InformationView.mas_left).offset(15);
-//            make.top.mas_equalTo(self.InformationView.mas_top).offset(5);
-//            make.height.offset(18);
-//        }];
-//        [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(self.InformationView.mas_left).offset(15);
-//            make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(-5);
-//            make.height.offset(12);
-//        }];
-//        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(self.InformationView.mas_left).offset(15);
-//            make.right.mas_equalTo(self.InformationView.mas_right).offset(-15);
-//            make.top.mas_equalTo(self.countLabel.mas_bottom).offset(-10);
-//            make.height.offset(1);
-//        }];
-        
-        
         
     }
     return self;
@@ -143,7 +83,7 @@
 - (UIImageView *)bgImgView {
     if (!_bgImgView) {
         _bgImgView = [UIImageView new];
-        _bgImgView.image = [UIImage imageNamed:@"404"];
+        _bgImgView.image = [UIImage imageNamed:@"guide_header"];
         _bgImgView.contentMode = UIViewContentModeScaleAspectFill;
         _bgImgView.clipsToBounds = YES;
     }
@@ -153,7 +93,7 @@
 - (UIView *)contentView {
     if (!_contentView) {
         _contentView = [[NSBundle mainBundle] loadNibNamed:@"KB_MineInformationView" owner:nil options:nil].firstObject;
-        //_contentView.backgroundColor = UIColorMakeWithHex(@"#888888");
+        _contentView.backgroundColor = UIColorMakeWithHex(@"#222222");
     }
     return _contentView;
 }

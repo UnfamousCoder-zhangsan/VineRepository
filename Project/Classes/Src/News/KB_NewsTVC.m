@@ -32,8 +32,8 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [self loadData];
 }
 
-- (UIImage *)navigationBarBackgroundImage{
-    return [UIImage imageWithColor:UIColorMakeWithHex(@"#222222")];
+- (UIImage *)navigationBarShadowImage{
+    return [UIImage imageWithColor:UIColorMakeWithHex(@"#555555")];
 }
 
 - (BOOL)preferredNavigationBarHidden
@@ -120,7 +120,7 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     CGFloat width = 0.0;
     CGFloat height = 0.0;
     width = (SCREEN_WIDTH-16) /2;
-    height = (SCREEN_WIDTH-1) /2 * model.aspect + 30;
+    height = (SCREEN_WIDTH-1) /2 * model.aspect + 90;
     return CGSizeMake(width,height);
 }
 

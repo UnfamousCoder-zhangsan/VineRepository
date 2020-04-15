@@ -8,14 +8,23 @@
 
 #import "KB_MessageHeaderView.h"
 
+@interface KB_MessageHeaderView()
+@property (weak, nonatomic) IBOutlet QMUIButton *likeBtn;
+@property (weak, nonatomic) IBOutlet QMUIButton *commentBtn;
+@property (weak, nonatomic) IBOutlet QMUIButton *fanBtn;
+
+
+@end
+
 @implementation KB_MessageHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self.likeBtn setImagePosition:QMUIButtonImagePositionTop];
+    [self.likeBtn setSpacingBetweenImageAndTitle:5];
+    [self.commentBtn setImagePosition:QMUIButtonImagePositionTop];
+    [self.commentBtn setSpacingBetweenImageAndTitle:5];
+    [self.fanBtn setImagePosition:QMUIButtonImagePositionTop];
+    [self.fanBtn setSpacingBetweenImageAndTitle:5];
 }
-*/
-
 @end

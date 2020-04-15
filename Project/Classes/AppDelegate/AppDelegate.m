@@ -156,14 +156,14 @@
 //        self.window.rootViewController = vc;
 //        [kUserDefaults setObject:App_Version forKey:@"ifFirstOpen"];
 //    } else {
-     PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
-//        if ([UserCenter checkIsLogin] && User_Center.pass.length > 0) {
-//            PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
-//        } else {
-//            [UserCenter clearUserCenter];
-//            [PageRoutManeger gotoLoginVC];
-//        }
-//    }
+    // PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
+        if ([UserCenter checkIsLogin] && User_Center.pass.length > 0) {
+            PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
+        } else {
+            [UserCenter clearUserCenter];
+            [PageRoutManeger gotoLoginVC];
+        }
+   // }
     [PageRout_Maneger.window makeKeyAndVisible];
 }
 

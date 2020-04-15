@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KB_MessageHeaderView">
             <rect key="frame" x="0.0" y="0.0" width="333" height="101"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2M-Og-7eN">
                     <rect key="frame" x="111" y="0.0" width="111" height="101"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAF-zM-Fzm" customClass="QMUIButton">
-                            <rect key="frame" x="30.5" y="25.5" width="50" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAF-zM-Fzm" customClass="QMUIButton">
+                            <rect key="frame" x="25.5" y="20.5" width="60" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="2Rb-by-29f"/>
-                                <constraint firstAttribute="height" constant="50" id="ITE-jn-6F3"/>
+                                <constraint firstAttribute="width" constant="60" id="2Rb-by-29f"/>
+                                <constraint firstAttribute="height" constant="60" id="ITE-jn-6F3"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="喜欢">
+                            <state key="normal" title="喜欢" image="每日统计">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -37,14 +36,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tuc-Iw-Ybn">
                     <rect key="frame" x="222" y="0.0" width="111" height="101"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T84-a4-lro" customClass="QMUIButton">
-                            <rect key="frame" x="30.5" y="25.5" width="50" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T84-a4-lro" customClass="QMUIButton">
+                            <rect key="frame" x="25.5" y="20.5" width="60" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="BlS-3Q-od1"/>
-                                <constraint firstAttribute="height" constant="50" id="RxZ-Tf-Fu2"/>
+                                <constraint firstAttribute="width" constant="60" id="BlS-3Q-od1"/>
+                                <constraint firstAttribute="height" constant="60" id="RxZ-Tf-Fu2"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="评论">
+                            <state key="normal" title="评论" image="每日统计">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -58,14 +56,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hh6-Qm-ugL">
                     <rect key="frame" x="0.0" y="0.0" width="111" height="101"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zab-02-76k" customClass="QMUIButton">
-                            <rect key="frame" x="30.5" y="25.5" width="50" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zab-02-76k" customClass="QMUIButton">
+                            <rect key="frame" x="25.5" y="20.5" width="60" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="Yh8-fN-PFa"/>
-                                <constraint firstAttribute="height" constant="50" id="lEh-H0-iJf"/>
+                                <constraint firstAttribute="width" constant="60" id="Yh8-fN-PFa"/>
+                                <constraint firstAttribute="height" constant="60" id="lEh-H0-iJf"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="粉丝">
+                            <state key="normal" title="粉丝" image="每日统计">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -76,6 +73,13 @@
                         <constraint firstItem="zab-02-76k" firstAttribute="centerX" secondItem="Hh6-Qm-ugL" secondAttribute="centerX" id="pw2-zs-Hnq"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YPW-AH-hDS">
+                    <rect key="frame" x="0.0" y="100" width="333" height="1"/>
+                    <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="CR8-wQ-GnF"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -84,8 +88,10 @@
                 <constraint firstItem="Hh6-Qm-ugL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AGd-Eo-wVD"/>
                 <constraint firstItem="u2M-Og-7eN" firstAttribute="height" secondItem="Hh6-Qm-ugL" secondAttribute="height" id="HWQ-nX-EqR"/>
                 <constraint firstItem="u2M-Og-7eN" firstAttribute="leading" secondItem="Hh6-Qm-ugL" secondAttribute="trailing" id="JXE-VD-oGo"/>
+                <constraint firstItem="YPW-AH-hDS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Js2-sj-Rhp"/>
                 <constraint firstAttribute="bottom" secondItem="u2M-Og-7eN" secondAttribute="bottom" id="Knf-e5-EGR"/>
                 <constraint firstItem="Tuc-Iw-Ybn" firstAttribute="leading" secondItem="u2M-Og-7eN" secondAttribute="trailing" id="QJl-8n-Ko2"/>
+                <constraint firstAttribute="bottom" secondItem="YPW-AH-hDS" secondAttribute="bottom" id="TTE-71-cbu"/>
                 <constraint firstItem="u2M-Og-7eN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TVZ-aF-jOX"/>
                 <constraint firstAttribute="bottom" secondItem="Tuc-Iw-Ybn" secondAttribute="bottom" id="XLT-YL-zmf"/>
                 <constraint firstItem="Tuc-Iw-Ybn" firstAttribute="height" secondItem="Hh6-Qm-ugL" secondAttribute="height" id="YIV-HV-eNK"/>
@@ -94,9 +100,18 @@
                 <constraint firstItem="u2M-Og-7eN" firstAttribute="width" secondItem="Hh6-Qm-ugL" secondAttribute="width" id="t0j-IM-pnG"/>
                 <constraint firstAttribute="bottom" secondItem="Hh6-Qm-ugL" secondAttribute="bottom" id="tIr-Dy-PIg"/>
                 <constraint firstItem="Hh6-Qm-ugL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wae-iz-dw1"/>
+                <constraint firstAttribute="trailing" secondItem="YPW-AH-hDS" secondAttribute="trailing" id="xlA-WQ-L0L"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="commentBtn" destination="T84-a4-lro" id="TT0-Md-21v"/>
+                <outlet property="fanBtn" destination="zab-02-76k" id="R8p-7S-XcH"/>
+                <outlet property="likeBtn" destination="gAF-zM-Fzm" id="IDD-3Y-maB"/>
+            </connections>
             <point key="canvasLocation" x="73.188405797101453" y="-132.25446428571428"/>
         </view>
     </objects>
+    <resources>
+        <image name="每日统计" width="44" height="44"/>
+    </resources>
 </document>
