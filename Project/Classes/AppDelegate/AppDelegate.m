@@ -40,7 +40,7 @@
     // 初始化应用配置
     [self initAPPWithOptions:launchOptions];
 
-    [self showAdImage];
+    //[self showAdImage];
     return YES;
 }
 
@@ -157,7 +157,7 @@
 //        [kUserDefaults setObject:App_Version forKey:@"ifFirstOpen"];
 //    } else {
     // PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
-        if ([UserCenter checkIsLogin] && User_Center.pass.length > 0) {
+        if ([UserCenter checkIsLogin]) {
             PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
         } else {
             [UserCenter clearUserCenter];

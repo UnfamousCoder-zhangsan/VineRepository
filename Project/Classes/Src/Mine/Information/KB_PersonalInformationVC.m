@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     self.tableView.backgroundColor = UIColorMakeWithHex(@"#FFFFFF");
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+   // self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"编辑个人资料";
 }
 

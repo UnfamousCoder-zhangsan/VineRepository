@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SmallVideoModel.h"
+#import "KB_HomeVideoDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SmallVideoCell : UICollectionViewCell
 
-@property (nonatomic, strong) SmallVideoModel *model;
+
+@property (nonatomic, strong) KB_HomeVideoDetailModel *model;
 
 @end
 

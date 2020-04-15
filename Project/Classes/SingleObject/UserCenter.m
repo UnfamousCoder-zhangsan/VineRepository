@@ -52,9 +52,9 @@ static UserCenter *_sharedUserCenter;
     /**
      *  保留登录名清除其他保存到数据
      */
-    NSString *ID = User_Center.id;
+    NSString *userName = User_Center.username;
     _sharedUserCenter = [[UserCenter alloc] init];
-    _sharedUserCenter.id = ID;
+    _sharedUserCenter.username = userName;
 
     [UserCenter save];
 }

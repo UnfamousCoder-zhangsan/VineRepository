@@ -96,21 +96,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
         ApiResponseModel *model = [ApiResponseModel modelWithJSON:responseObject];
         if (model.status == 200) {
             block ? block(model, YES): nil;
-        } else if (model.status == 400 || model.status == 500) {
-            timeoutRequestMArr = timeoutRequestMArr? : [NSMutableArray array];
-            RequestObject *timeoutRequest = [[RequestObject alloc] initWithRequestURL:url params:params completedBlock:block];
-            [timeoutRequestMArr addObject:timeoutRequest];
-            [self requestLoginAutomaticallyWithSuccess:^{
-                for (RequestObject *request in timeoutRequestMArr) {
-                    [self requestApiWithParams:request.requestParams andRequestUrl:request.requestURL completedBlock:request.completedBlock];
-                }
-                [timeoutRequestMArr removeAllObjects];
-            } failure:^{
-                [timeoutRequestMArr removeAllObjects];
-                model.msg = @"";
-                block ? block(model, NO): nil;
-            }];
-        } else {
+        }else {
             block ? block(model, NO): nil;
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -293,10 +279,10 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
 }
 #pragma mark - 后台自动登录请求
 + (void)requestLoginAutomaticallyWithSuccess:(void(^)(void))success failure:(void(^)(void))failure {
-    if (User_Center.id.length > 0 && User_Center.pass.length > 0) {
+    if (User_Center.username.length > 0 && User_Center.pass.length > 0) {
         if (!User_Center.isLogining) {
             User_Center.isLogining = YES;
-            [self requestApiWithParams:@{@"username": User_Center.id,
+            [self requestApiWithParams:@{@"username": User_Center.username,
                                          @"password": User_Center.pass,
                                          @"appLicense" : @"ZST"} andRequestUrl:kLoginUrl completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
                                              if(apiResponseModel) {

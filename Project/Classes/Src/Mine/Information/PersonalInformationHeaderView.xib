@@ -51,12 +51,22 @@
                         <constraint firstItem="jXQ-6w-8H6" firstAttribute="centerY" secondItem="gCk-ys-9gX" secondAttribute="centerY" id="uC6-7V-PUg"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kga-lj-eAI">
+                    <rect key="frame" x="15" y="215" width="445" height="1"/>
+                    <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Rn1-YL-jVB"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Yf9-VQ-HAZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8VJ-WX-HH0"/>
                 <constraint firstItem="Yf9-VQ-HAZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="AD4-Gb-W2Q"/>
                 <constraint firstAttribute="bottom" secondItem="Yf9-VQ-HAZ" secondAttribute="bottom" constant="20" id="TRT-gc-ZvB"/>
+                <constraint firstAttribute="trailing" secondItem="Kga-lj-eAI" secondAttribute="trailing" constant="15" id="gun-I8-lKr"/>
+                <constraint firstAttribute="bottom" secondItem="Kga-lj-eAI" secondAttribute="bottom" id="psB-lQ-APC"/>
+                <constraint firstItem="Kga-lj-eAI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="tCw-T1-Oub"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

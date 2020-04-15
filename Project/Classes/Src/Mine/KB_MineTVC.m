@@ -223,17 +223,10 @@
         _titleview = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
         _titleview.font = [UIFont systemFontOfSize:18.0f];
         _titleview.textColor = [UIColor whiteColor];
-        _titleview.text = @"会说话的刘二豆";
         _titleview.alpha = 0;
     }
     return _titleview;
 }
-//- (UIButton *)settingBtn{
-//    if (!_settingBtn) {
-//
-//    }
-//    return _settingBtn;
-//}
 - (void)gotoSettingVC{
     //跳转设置
     KB_SettingInformationVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_SettingInformationVC"];

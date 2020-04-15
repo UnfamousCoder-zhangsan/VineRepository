@@ -48,8 +48,8 @@
 - (void)initViewData
 {
     /// 填充已保存用户名密码
-    if (User_Center.id.length > 0) {
-        _userNameTextField.text = User_Center.id;
+    if (User_Center.username.length > 0) {
+        _userNameTextField.text = User_Center.username;
     }
     
     _userNameTextField.delegate = self;
@@ -134,13 +134,13 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField == _userNameTextField) {
-        if ([NSString stringWithFormat:@"%@%@", _userNameTextField.text, string].length > 11) {
+        if ([NSString stringWithFormat:@"%@%@", _userNameTextField.text, string].length > 20) {
             return NO;
         }
     }
 
     if (textField == _passwordTextFiled) {
-        if ([NSString stringWithFormat:@"%@%@", _passwordTextFiled.text, string].length > 6) {
+        if ([NSString stringWithFormat:@"%@%@", _passwordTextFiled.text, string].length > 16) {
             return NO;
         }
     }

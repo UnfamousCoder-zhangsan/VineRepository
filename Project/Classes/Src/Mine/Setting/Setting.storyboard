@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +26,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sggfdb" translatesAutoresizingMaskIntoConstraints="NO" id="5pD-qQ-RsG">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_help" translatesAutoresizingMaskIntoConstraints="NO" id="5pD-qQ-RsG">
                                                     <rect key="frame" x="15" y="5" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="kt8-05-EoU"/>
@@ -34,11 +34,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="反馈与帮助" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xn-AN-vMb">
-                                                    <rect key="frame" x="55" y="15" width="71.5" height="20"/>
+                                                    <rect key="frame" x="55" y="15" width="76.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="eIC-dU-vhO"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -60,7 +60,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcshdb" translatesAutoresizingMaskIntoConstraints="NO" id="ueF-JF-7Vu">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_privacy" translatesAutoresizingMaskIntoConstraints="NO" id="ueF-JF-7Vu">
                                                     <rect key="frame" x="15" y="5" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="6BP-JA-eQL"/>
@@ -68,11 +68,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="社区自律公约" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRD-Wd-07P">
-                                                    <rect key="frame" x="55" y="15" width="86" height="20"/>
+                                                    <rect key="frame" x="55" y="15" width="80" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="L13-2l-PBA"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -93,7 +93,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcshyy" translatesAutoresizingMaskIntoConstraints="NO" id="kVt-zM-gLn">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="用户协议" translatesAutoresizingMaskIntoConstraints="NO" id="kVt-zM-gLn">
                                                     <rect key="frame" x="15" y="5" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="hk3-pw-iZv"/>
@@ -101,11 +101,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户协议" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wto-u2-bTC">
-                                                    <rect key="frame" x="55" y="15" width="57.5" height="20"/>
+                                                    <rect key="frame" x="55" y="15" width="61.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="DWD-gF-rVt"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -126,7 +126,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sjdb" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-d7-nco">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="隐私政策" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-d7-nco">
                                                     <rect key="frame" x="15" y="5" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Dqx-L0-YRQ"/>
@@ -134,11 +134,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="隐私政策" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0I-Jx-wjP">
-                                                    <rect key="frame" x="55" y="15" width="57.5" height="20"/>
+                                                    <rect key="frame" x="55" y="15" width="61.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="WZO-Jv-Bvc"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -159,7 +159,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jtsgdb" translatesAutoresizingMaskIntoConstraints="NO" id="aTz-jb-hwp">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_abount" translatesAutoresizingMaskIntoConstraints="NO" id="aTz-jb-hwp">
                                                     <rect key="frame" x="15" y="5" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="ds3-0C-55j"/>
@@ -167,11 +167,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于Vines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYr-CP-cZU">
-                                                    <rect key="frame" x="55" y="15" width="64.5" height="20"/>
+                                                    <rect key="frame" x="55" y="15" width="68.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="NQ9-Dx-AZb"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -192,7 +192,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sggfdb" translatesAutoresizingMaskIntoConstraints="NO" id="bKe-2B-dRE">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_service" translatesAutoresizingMaskIntoConstraints="NO" id="bKe-2B-dRE">
                                                     <rect key="frame" x="15" y="5" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="AOK-1g-bxe"/>
@@ -200,11 +200,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系客服" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eO3-Xp-M8U">
-                                                    <rect key="frame" x="55" y="15" width="57.5" height="20"/>
+                                                    <rect key="frame" x="55" y="15" width="61.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="qq0-SM-Aa1"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -225,7 +225,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcshyy" translatesAutoresizingMaskIntoConstraints="NO" id="YlS-uY-5QA">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_cache" translatesAutoresizingMaskIntoConstraints="NO" id="YlS-uY-5QA">
                                                     <rect key="frame" x="15" y="5" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="2Bb-41-QM8"/>
@@ -233,11 +233,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清理缓存" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQu-k1-k67">
-                                                    <rect key="frame" x="55" y="15" width="57.5" height="20"/>
+                                                    <rect key="frame" x="55" y="15" width="61.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="ZXT-QI-NzQ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -270,7 +270,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcshyy" translatesAutoresizingMaskIntoConstraints="NO" id="C1g-kX-jEk">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_exit" translatesAutoresizingMaskIntoConstraints="NO" id="C1g-kX-jEk">
                                                     <rect key="frame" x="15" y="15" width="30" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Q0Z-4n-mFT"/>
@@ -278,11 +278,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退出登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uln-nZ-kQr">
-                                                    <rect key="frame" x="55" y="25" width="57.5" height="20"/>
+                                                    <rect key="frame" x="55" y="25" width="61.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="pIe-Ml-zeq"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -414,10 +414,13 @@
     </scenes>
     <resources>
         <image name="ax_hud_error.png" width="42" height="42"/>
-        <image name="jtsgdb" width="44" height="44"/>
-        <image name="lcshdb" width="44" height="44"/>
-        <image name="lcshyy" width="44" height="44"/>
-        <image name="sggfdb" width="44" height="44"/>
-        <image name="sjdb" width="44" height="44"/>
+        <image name="setting_abount" width="44" height="44"/>
+        <image name="setting_cache" width="44" height="44"/>
+        <image name="setting_exit" width="44" height="44"/>
+        <image name="setting_help" width="44" height="44"/>
+        <image name="setting_privacy" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="setting_service" width="44" height="44"/>
+        <image name="用户协议" width="44" height="44"/>
+        <image name="隐私政策" width="44" height="29.666666030883789"/>
     </resources>
 </document>

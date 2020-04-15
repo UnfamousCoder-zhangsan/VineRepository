@@ -92,6 +92,7 @@
 		3132596F2444CE02002ED40A /* KB_MineInformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3132596E2444CE02002ED40A /* KB_MineInformationView.xib */; };
 		313259722444CE21002ED40A /* KB_MineInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313259712444CE21002ED40A /* KB_MineInformationView.m */; };
 		313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */; };
+		313662D324474BF000FB58F9 /* KB_HomeVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 313662D224474BF000FB58F9 /* KB_HomeVideoDetailModel.m */; };
 		313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */; };
 		313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */; };
 		313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */; };
@@ -404,6 +405,8 @@
 		313259712444CE21002ED40A /* KB_MineInformationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineInformationView.m; sourceTree = "<group>"; };
 		313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomePageViewController.h; sourceTree = "<group>"; };
 		313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_HomePageViewController.m; sourceTree = "<group>"; };
+		313662D124474BF000FB58F9 /* KB_HomeVideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomeVideoDetailModel.h; sourceTree = "<group>"; };
+		313662D224474BF000FB58F9 /* KB_HomeVideoDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_HomeVideoDetailModel.m; sourceTree = "<group>"; };
 		313A34A2243B3A2700A4F1F9 /* KB_MineTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineTVC.h; sourceTree = "<group>"; };
 		313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineTVC.m; sourceTree = "<group>"; };
 		313A34A6243B3B2E00A4F1F9 /* KB_MessageTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MessageTVC.h; sourceTree = "<group>"; };
@@ -1110,6 +1113,15 @@
 			path = customShoot;
 			sourceTree = "<group>";
 		};
+		313662D024474B6800FB58F9 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				313662D124474BF000FB58F9 /* KB_HomeVideoDetailModel.h */,
+				313662D224474BF000FB58F9 /* KB_HomeVideoDetailModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
 		313A34A5243B3AF000A4F1F9 /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -1245,6 +1257,7 @@
 		5E8E040023B060930023A484 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				313662D024474B6800FB58F9 /* M */,
 				313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */,
 				313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */,
 				313A34AD243B784400A4F1F9 /* KB_BaseViewController.h */,
@@ -2238,6 +2251,7 @@
 				86B2BCF3230E6B5100273AA3 /* MWPhoto.m in Sources */,
 				3130FC61243CADDC00B9A0D6 /* DDData.m in Sources */,
 				86B2BD0A230E6B5100273AA3 /* BRBaseView.m in Sources */,
+				313662D324474BF000FB58F9 /* KB_HomeVideoDetailModel.m in Sources */,
 				865E92F823164DA200F760C6 /* LeftAlignedFlowLayout.m in Sources */,
 				3130FC3B243CADDB00B9A0D6 /* KTVHCURLTool.m in Sources */,
 				3130FC3D243CADDB00B9A0D6 /* KTVHCHTTPResponse.m in Sources */,

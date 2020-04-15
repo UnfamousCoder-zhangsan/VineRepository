@@ -12,6 +12,7 @@
 #import "DDVideoPlayerManager.h"
 #import "SDImageCache.h"
 #import "CommentsPopView.h"
+#import "KB_HomeVideoDetailModel.h"
 
 static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 #define cellHeight SCREEN_HEIGHT - TabBarHeight
@@ -36,6 +37,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     // 添加下拉刷新手势
     self.recognize = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pullDownToRefresh)];
     [self.tableView addGestureRecognizer:self.recognize];
+    [self getDataList];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -279,4 +281,18 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)getDataList{
+    [self showEmptyViewWithLoading];
+    [RequesetApi requestAPIWithParams:@{@"page":@1,@"isSaveRecord":@0,@"category":@"define"} andRequestUrl:@"video/showAll" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            [self hideEmptyView];
+            NSMutableArray *lists = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
+            LQLog(@"%@",@(lists.count));
+            
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"获取失败"];
+            [self showEmptyViewWithImage:UIImageMake(@"404") text:@"" detailText:@"加载失败" buttonTitle:@"点击重试" buttonAction:@selector(getDataList)];
+        }
+    }];
+}
 @end

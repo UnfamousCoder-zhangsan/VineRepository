@@ -123,7 +123,7 @@
         make.size.mas_equalTo(CGSizeMake(40,40));
     }];
     @weakify(self)
-    [[RACObserve(self, model.comment_num) ignore:nil] subscribeNext:^(NSNumber *x) {
+    [[RACObserve(self, model.status) ignore:nil] subscribeNext:^(NSNumber *x) {
         @strongify(self);
         self.commentNumLabel.text = x.stringValue;
     }];
@@ -180,21 +180,19 @@
 //    self.gradientLayer.frame = CGRectMake(0, videoImageFrame.size.height-30, videoImageFrame.size.width, 30);
    
 }
-
-- (void)setModel:(SmallVideoModel *)model {
+- (void)setModel:(KB_HomeVideoDetailModel *)model{
     _model = model;
-    [self.videoImageView sd_setImageWithURL:[NSURL URLWithString:model.cover_url] placeholderImage:[UIImage imageNamed:@""]];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.head_url] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
-    self.messageLabel.text = model.name;
+    [self.videoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",model.coverPath]] placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",model.face_image]] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
+    self.messageLabel.text = model.nickName;
     
-    self.concernNumLabel.text = @(model.score).stringValue;
+    self.concernNumLabel.text = @(model.likeCounts).stringValue;
     
     self.bottomHeight = 100.0f;
     [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_offset(self.bottomHeight);
     }];
 }
-
 
 
 @end

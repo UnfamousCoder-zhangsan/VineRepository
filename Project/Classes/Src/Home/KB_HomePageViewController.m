@@ -144,7 +144,6 @@
 - (NSArray *)childVCs {
     if (!_childVCs) {
         [self getResource];
-
         KB_BaseViewController *recommendVC = [KB_BaseViewController new];
         recommendVC.modelArray = self.modelArray;
         recommendVC.isAutoPlay = NO;
