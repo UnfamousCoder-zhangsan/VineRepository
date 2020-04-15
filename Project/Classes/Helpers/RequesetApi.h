@@ -10,6 +10,7 @@
 
 @interface ApiResponseModel : NSObject
 @property (nonatomic, strong) id data;
+@property (nonatomic, strong) id ok;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, strong) NSString * msg;
 @end

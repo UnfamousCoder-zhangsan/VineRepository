@@ -37,7 +37,7 @@ static UserCenter *_sharedUserCenter;
 }
 
 + (BOOL)checkIsLogin {
-    return User_Center.authorization.length;
+    return User_Center.userToken.length;
 }
 + (void)checkIsLoginState:(void(^)(void))success {
     if ([self checkIsLogin]) {
@@ -52,9 +52,9 @@ static UserCenter *_sharedUserCenter;
     /**
      *  保留登录名清除其他保存到数据
      */
-    NSString *ID = User_Center.ID;
+    NSString *ID = User_Center.id;
     _sharedUserCenter = [[UserCenter alloc] init];
-    _sharedUserCenter.ID = ID;
+    _sharedUserCenter.id = ID;
 
     [UserCenter save];
 }

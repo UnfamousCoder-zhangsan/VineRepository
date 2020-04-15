@@ -7,6 +7,7 @@
 //
 
 #import "LoginVC.h"
+#import "RegisterVC.h"
 
 @interface LoginVC() <QMUITextFieldDelegate>
 
@@ -47,8 +48,8 @@
 - (void)initViewData
 {
     /// 填充已保存用户名密码
-    if (User_Center.ID.length > 0) {
-        _userNameTextField.text = User_Center.ID;
+    if (User_Center.id.length > 0) {
+        _userNameTextField.text = User_Center.id;
     }
     
     _userNameTextField.delegate = self;
@@ -162,25 +163,30 @@
              if (isSuccess) {
                 [SVProgressHUD dismiss];
                 // 保存用户名密码
-                User_Center.ID = params[@"username"];
+                User_Center.username = params[@"username"];
                 if (self.rememberPassword_btn.isSelected) {
                     User_Center.pass = params[@"password"];
                 }
                
                 // 用户中心
                 [UserCenter resetUserCenterWithDictionary:apiResponseModel.data];
-                User_Center.authorization = apiResponseModel.data;
+                User_Center.userToken = apiResponseModel.data[@"userToken"];
                 [UserCenter save];
                 [subscriber sendNext:@(YES)];
                 [subscriber sendCompleted];
             } else {
                 [SVProgressHUD showErrorWithStatus:apiResponseModel.msg];
-                [subscriber sendNext:@(YES)];
+                [subscriber sendNext:@(NO)];
                 [subscriber sendCompleted];
             }
          }];
         return nil;
     }];
+}
+- (IBAction)gotoRegisterVC:(id)sender {
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    RegisterVC *registerVC = [SB instantiateViewControllerWithIdentifier:@"RegisterVC"];
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 
 

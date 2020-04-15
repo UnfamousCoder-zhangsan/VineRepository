@@ -3,11 +3,11 @@
 #import <AFNetworking/AFNetworking.h>
 #ifdef DEBUG
 static NSString* kAPiHost = @"http://imwork.tpddns.cn:38765";
-static NSString* kAPIHost = @"http://119.29.34.133:8080";
+static NSString* kAPIHost = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT";
 
 #else
 static NSString* kAPiHost = @"http://imwork.tpddns.cn:38765";
-static NSString* kAPIHost = @"http://119.29.34.133:8080"
+static NSString* kAPIHost = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT";
 #endif
 
 static NSString* kAPiPath = @"api";
@@ -40,7 +40,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer.timeoutInterval = 10;
-    [requestSerializer setValue:User_Center.authorization forHTTPHeaderField:@"Authorization"];
+    [requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
     LQLog(@"%@",[User_Center modelToJSONString]);
     manager.requestSerializer = requestSerializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -86,7 +86,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer.timeoutInterval = 10;
-    [requestSerializer setValue:User_Center.authorization forHTTPHeaderField:@"Authorization"];
+    [requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
     LQLog(@"%@",[User_Center modelToJSONString]);
     manager.requestSerializer = requestSerializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -94,9 +94,9 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     [manager POST:URL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         responseObject = [NSDictionary changeType:(NSDictionary*)responseObject];
         ApiResponseModel *model = [ApiResponseModel modelWithJSON:responseObject];
-        if (model.status > 0) {
+        if (model.status == 200) {
             block ? block(model, YES): nil;
-        } else if (model.status == -3 || model.status == -6 || model.status == -8) {
+        } else if (model.status == 400 || model.status == 500) {
             timeoutRequestMArr = timeoutRequestMArr? : [NSMutableArray array];
             RequestObject *timeoutRequest = [[RequestObject alloc] initWithRequestURL:url params:params completedBlock:block];
             [timeoutRequestMArr addObject:timeoutRequest];
@@ -130,7 +130,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer.timeoutInterval = 10;
-    [requestSerializer setValue:User_Center.authorization forHTTPHeaderField:@"Authorization"];
+    [requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
     LQLog(@"%@",[User_Center modelToJSONString]);
     manager.requestSerializer = requestSerializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -163,7 +163,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer.timeoutInterval = 10;
-    [requestSerializer setValue:User_Center.authorization forHTTPHeaderField:@"Authorization"];
+    [requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
     LQLog(@"%@",[User_Center modelToJSONString]);
     manager.requestSerializer = requestSerializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -208,7 +208,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer.timeoutInterval = 10;
-    [requestSerializer setValue:User_Center.authorization forHTTPHeaderField:@"Authorization"];
+    [requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
     
     manager.requestSerializer = requestSerializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -254,7 +254,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer.timeoutInterval = 10;
-    [requestSerializer setValue:User_Center.authorization forHTTPHeaderField:@"Authorization"];
+    [requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
     LQLog(@"%@",[User_Center modelToJSONString]);
     manager.requestSerializer = requestSerializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -293,10 +293,10 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
 }
 #pragma mark - 后台自动登录请求
 + (void)requestLoginAutomaticallyWithSuccess:(void(^)(void))success failure:(void(^)(void))failure {
-    if (User_Center.ID.length > 0 && User_Center.pass.length > 0) {
+    if (User_Center.id.length > 0 && User_Center.pass.length > 0) {
         if (!User_Center.isLogining) {
             User_Center.isLogining = YES;
-            [self requestApiWithParams:@{@"username": User_Center.ID,
+            [self requestApiWithParams:@{@"username": User_Center.id,
                                          @"password": User_Center.pass,
                                          @"appLicense" : @"ZST"} andRequestUrl:kLoginUrl completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
                                              if(apiResponseModel) {
@@ -304,7 +304,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
                                                      case 1:
                                                      {
                                                          [UserCenter resetUserCenterWithDictionary:apiResponseModel.data];
-                                                         User_Center.authorization = apiResponseModel.data;
+                                                         User_Center.userToken = apiResponseModel.data;
                                                          [UserCenter save];
                                                          success ? success() : nil;
                                                          [self saveCookies];

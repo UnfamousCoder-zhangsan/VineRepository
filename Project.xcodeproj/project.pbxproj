@@ -101,6 +101,7 @@
 		31C0AA7224422DE400110B18 /* PersonalInformationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */; };
 		31C0AA792442370300110B18 /* KB_PersonalInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA772442370300110B18 /* KB_PersonalInformationVC.m */; };
 		31C0AA7D2443637800110B18 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA7C2443637800110B18 /* Setting.storyboard */; };
+		514A91F52446D5D000285FD4 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A91F42446D5D000285FD4 /* RegisterVC.m */; };
 		514C502A2387EEEA0070E875 /* HWTFCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50262387EEEA0070E875 /* HWTFCodeView.m */; };
 		514C502B2387EEEA0070E875 /* HWTFCodeBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50292387EEEA0070E875 /* HWTFCodeBView.m */; };
 		5153B8412444542B0090B8A8 /* KB_SettingInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153B8402444542B0090B8A8 /* KB_SettingInformationVC.m */; };
@@ -419,6 +420,8 @@
 		31C0AA772442370300110B18 /* KB_PersonalInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PersonalInformationVC.m; sourceTree = "<group>"; };
 		31C0AA7C2443637800110B18 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		48D20748169632A7D92109D3 /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		514A91F32446D5D000285FD4 /* RegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
+		514A91F42446D5D000285FD4 /* RegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		514C50262387EEEA0070E875 /* HWTFCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTFCodeView.m; sourceTree = "<group>"; };
 		514C50272387EEEA0070E875 /* HWTFCodeBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeBView.h; sourceTree = "<group>"; };
 		514C50282387EEEA0070E875 /* HWTFCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTFCodeView.h; sourceTree = "<group>"; };
@@ -1271,6 +1274,8 @@
 				5E8E043F23B06CA40023A484 /* Login.storyboard */,
 				5E8E041123B0618A0023A484 /* LoginVC.h */,
 				5E8E040F23B0618A0023A484 /* LoginVC.m */,
+				514A91F32446D5D000285FD4 /* RegisterVC.h */,
+				514A91F42446D5D000285FD4 /* RegisterVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2284,6 +2289,7 @@
 				514C502A2387EEEA0070E875 /* HWTFCodeView.m in Sources */,
 				3130FBA3243CAD8100B9A0D6 /* SmallVideoPlayViewController.m in Sources */,
 				3130FC73243CADDC00B9A0D6 /* ZFPlayerControlView.m in Sources */,
+				514A91F52446D5D000285FD4 /* RegisterVC.m in Sources */,
 				3130FC5B243CADDC00B9A0D6 /* WebSocket.m in Sources */,
 				A48C36C3205E2FD5003EBDDA /* QDTabBarViewController.m in Sources */,
 				A48C36B9205E2FD5003EBDDA /* NSString+Size.m in Sources */,
