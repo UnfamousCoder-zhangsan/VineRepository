@@ -22,6 +22,11 @@
     self.view.backgroundColor = UIColorMakeWithHex(@"#222222");
     self.titleView.title = @"消息";
     [self initUI];
+    [self showNoDataEmptyViewWithText:@"暂无新消息" detailText:@"前往首页查看更多精彩内容"];
+}
+- (BOOL)layoutEmptyView{
+    self.emptyView.frame = CGRectMake(0, 100 + NavigationContentTopConstant, SCREEN_WIDTH, SCREEN_HEIGHT - NavigationContentTopConstant - TabBarHeight - 100);
+    return YES;
 }
 - (UIImage *)navigationBarShadowImage{
     return [UIImage imageWithColor:UIColorMakeWithHex(@"#444444")];

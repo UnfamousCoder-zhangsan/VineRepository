@@ -246,15 +246,23 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [popView showToView:self.view];
 }
 
-
-//#pragma mark - Action
-//- (void) backToPreviousView:(id)sender;
-//{
-//    [self.videoPlayerManager resetPlayer];
-//    [self.preloadVideoPlayerManager resetPlayer];
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-
+- (void)handleShareVideoModel:(SmallVideoModel *)smallVideoModel{
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    moreOperationController.cancelButtonTitleColor = UIColorMakeWithHex(@"#999999");
+    moreOperationController.items = @[
+                                     // 第一行
+                                     @[
+                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"jtsgdb") title:@"分享到微信" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
+                                             [moreOperationController hideToBottom];
+                                         }],
+                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"jtsgdb") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
+                                             [moreOperationController hideToBottom];
+                                         }
+                                         ]
+                                     ],
+    ];
+    [moreOperationController showFromBottom];
+}
 
 #pragma mark - LazyLoad
 
