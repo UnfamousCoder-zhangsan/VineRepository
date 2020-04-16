@@ -22,7 +22,7 @@
                                 <constraint firstAttribute="width" constant="60" id="2Rb-by-29f"/>
                                 <constraint firstAttribute="height" constant="60" id="ITE-jn-6F3"/>
                             </constraints>
-                            <state key="normal" title="喜欢" image="每日统计">
+                            <state key="normal" title="喜欢" image="喜欢">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -42,7 +42,7 @@
                                 <constraint firstAttribute="width" constant="60" id="BlS-3Q-od1"/>
                                 <constraint firstAttribute="height" constant="60" id="RxZ-Tf-Fu2"/>
                             </constraints>
-                            <state key="normal" title="评论" image="每日统计">
+                            <state key="normal" title="评论" image="评论">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -62,7 +62,7 @@
                                 <constraint firstAttribute="width" constant="60" id="Yh8-fN-PFa"/>
                                 <constraint firstAttribute="height" constant="60" id="lEh-H0-iJf"/>
                             </constraints>
-                            <state key="normal" title="粉丝" image="每日统计">
+                            <state key="normal" title="粉丝" image="粉丝">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -112,6 +112,8 @@
         </view>
     </objects>
     <resources>
-        <image name="每日统计" width="44" height="44"/>
+        <image name="喜欢" width="44" height="44"/>
+        <image name="粉丝" width="44" height="44"/>
+        <image name="评论" width="44" height="44"/>
     </resources>
 </document>

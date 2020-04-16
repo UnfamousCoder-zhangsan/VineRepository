@@ -31,17 +31,9 @@
 @property (nonatomic, strong) UIImageView *avatar;
 @property (nonatomic, strong) UIImageView *focus;
 
-//@property (nonatomic, strong) UIImageView *setRingImage;
-//@property (nonatomic, strong) UILabel *setRingNameLabel;
-
-//@property (nonatomic, strong) UIImageView *setLivePhotoImage;
-//@property (nonatomic, strong) UILabel *setLivePhotoNameLabel;
-
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *artistLabel;
 
-// 删除textview 放在controller里面
-@property (nonatomic, strong) UITextView *commentTextView;
 
 @end
 
@@ -156,10 +148,6 @@
         [self.contentView addSubview:_focus];
         
         
-//        _commentTextView = [[UITextView alloc] init];
-//        _commentTextView.backgroundColor = [UIColor redColor];
-//        [self.contentView addSubview:_commentTextView];
-        
         
         _artistLabel = [[UILabel alloc] init];
         _artistLabel.textColor = RGBA(255, 255, 255, 1);
@@ -257,11 +245,6 @@
             make.width.mas_equalTo(SCREEN_WIDTH * 2 / 3);
             make.top.equalTo(_artistLabel.mas_bottom).with.offset(3 );
         }];
-//        [_commentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
-//            make.width.offset(SCREEN_WIDTH);
-//            make.height.offset(50);
-//        }];
         
         [[RACObserve(self, model.comment_num) ignore:nil] subscribeNext:^(NSNumber *x) {
             @strongify(self);
@@ -276,27 +259,43 @@
 }
 
 
-- (void)setModel:(SmallVideoModel *)model {
-    _model = model;
-    self.nameLabel.text = model.name;
-    if(model.artist.length) {
-        self.artistLabel.text = [NSString stringWithFormat:@"@%@",model.artist];
-    } else {
-        self.artistLabel.text = @"";
-    }
-    
-    if(model.aspect >= 1.4) {
+//- (void)setModel:(SmallVideoModel *)model {
+//    _model = model;
+//    self.nameLabel.text = model.name;
+//    if(model.artist.length) {
+//        self.artistLabel.text = [NSString stringWithFormat:@"@%@",model.artist];
+//    } else {
+//        self.artistLabel.text = @"";
+//    }
+//
+//    if(model.aspect >= 1.4) {
+//        self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
+//    } else {
+//        self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
+//    }
+//
+//    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString: model.cover_url]];
+//    [self.avatar sd_setImageWithURL:[NSURL URLWithString:model.head_url] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
+//
+//    self.focus.hidden = NO;
+//    self.favorite.isChoose = NO;
+//
+//}
+
+- (void)setVideoModel:(KB_HomeVideoDetailModel *)videoModel{
+    _videoModel = videoModel;
+    self.nameLabel.text = videoModel.videoDesc;
+    self.artistLabel.text = [NSString stringWithFormat:@"@%@",videoModel.nickName];
+    if ((videoModel.videoHeight / videoModel.videoWidth) >= 1.4) {
         self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
     } else {
         self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
+    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",videoModel.coverPath]] placeholderImage:[UIImage imageNamed:@""]];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",videoModel.face_image]] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
     
-    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString: model.cover_url]];
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:model.head_url] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
-  
-    self.focus.hidden = NO;
-    self.favorite.isChoose = NO;
-    
+      self.focus.hidden = NO;
+      self.favorite.isChoose = NO;
 }
 
 #pragma mark - Action

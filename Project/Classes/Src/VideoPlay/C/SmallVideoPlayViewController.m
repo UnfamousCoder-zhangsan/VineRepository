@@ -96,6 +96,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     
     self.commentTextView = [CommentTextView new];
     self.commentTextView.delegate = self;
+    self.commentTextView.backgroundColor = [UIColor redColor];
     self.commentTextView.placeholderLabel.text = @"有爱评论，讲一讲";
 //    self.commentTextView = [[CommentTextView alloc] init];
 //    self.commentTextView.placeholder = @"说点什么吧";
@@ -131,7 +132,6 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SmallVideoPlayCell *cell = [tableView dequeueReusableCellWithIdentifier:SmallVideoCellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
-    DLog(@"cell的地址:%p   index:%ld   %ld",cell,indexPath.row,self.modelArray.count-2);
     cell.model = self.modelArray[indexPath.row];
     return cell;
 }
@@ -179,16 +179,18 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     BOOL useDownAndPlay = NO;
     AVLayerVideoGravity videoGravity = AVLayerVideoGravityResizeAspect;
     
-    //关注,推荐
-    SmallVideoModel *currentPlaySmallVideoModel = self.modelArray[currentIndex];
     
-    artist = currentPlaySmallVideoModel.artist;
-    title = currentPlaySmallVideoModel.name;
-    cover_url = currentPlaySmallVideoModel.cover_url;
-    videoURL = [NSURL URLWithString:currentPlaySmallVideoModel.video_url];
-    originVideoURL = [NSURL URLWithString:currentPlaySmallVideoModel.video_url];
+    KB_HomeVideoDetailModel *currentPlaySmallVideoModel = self.modelArray[currentIndex];
+    
+    artist = currentPlaySmallVideoModel.nickName;
+    title = currentPlaySmallVideoModel.videoDesc;
+    // 首帧图
+    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.coverPath];
+    // 视频地址
+    videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
+    originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
     useDownAndPlay = YES;
-    if(currentPlaySmallVideoModel.aspect >= 1.4) {
+    if((currentPlaySmallVideoModel.videoHeight / currentPlaySmallVideoModel.videoWidth) >= 1.4) {
         videoGravity = AVLayerVideoGravityResizeAspectFill;
     } else {
         videoGravity = AVLayerVideoGravityResizeAspect;
@@ -246,13 +248,15 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     NSURL *originVideoURL = nil;
     BOOL useDownAndPlay = NO;
     
-    //关注,推荐
-    SmallVideoModel *currentPlaySmallVideoModel = self.modelArray[index];
-    artist = currentPlaySmallVideoModel.artist;
-    title = currentPlaySmallVideoModel.name;
-    cover_url = currentPlaySmallVideoModel.cover_url;
-    videoURL = [NSURL URLWithString:currentPlaySmallVideoModel.video_url];
-    originVideoURL = [NSURL URLWithString:currentPlaySmallVideoModel.video_url];
+    KB_HomeVideoDetailModel *currentPlaySmallVideoModel = self.modelArray[index];
+    
+    artist = currentPlaySmallVideoModel.nickName;
+    title = currentPlaySmallVideoModel.videoDesc;
+    // 首帧图
+    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.coverPath];
+    // 视频地址
+    videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
+    originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
     useDownAndPlay = YES;
     
     self.preloadVideoPlayerManager.playerModel.title            = title;

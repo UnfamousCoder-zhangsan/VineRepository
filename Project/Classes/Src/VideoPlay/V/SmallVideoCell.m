@@ -46,7 +46,7 @@
 - (void)setupBaseView {
     self.contentView.layer.masksToBounds = YES;
     UIView *bottomView = [[UIView alloc] init];
-    bottomView.backgroundColor = [UIColor redColor];
+    bottomView.backgroundColor = UIColorMakeWithHex(@"#222222");
     // 底部view
     [self.contentView addSubview:bottomView];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -113,7 +113,7 @@
     self.iconImageView.layer.cornerRadius = 20;
     self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.iconImageView.layer.masksToBounds = YES;
-    self.iconImageView.backgroundColor = [UIColor whiteColor];
+    self.iconImageView.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.iconImageView];
     _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
 //    self.iconImageView.backgroundColor = [UIColor blackColor];
@@ -160,7 +160,8 @@
     }];
     
     self.comment = [[UILabel alloc] init];
-    self.comment.text = @"这是一条评论 那是你坚实的基础上看蹑手蹑脚山东农村尽可能长时间是不出所料白菜价";
+    self.comment.font = UIFontMake(12);
+    self.comment.textColor = UIColorMakeWithHex(@"#FFFFFF");
     self.comment.numberOfLines = 0;
     [bottomView addSubview:self.comment];
     [self.comment mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,12 +184,16 @@
 - (void)setModel:(KB_HomeVideoDetailModel *)model{
     _model = model;
     [self.videoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",model.coverPath]] placeholderImage:[UIImage imageNamed:@""]];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",model.face_image]] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",model.face_image]] placeholderImage:[UIImage imageNamed:@""]];
     self.messageLabel.text = model.nickName;
     
     self.concernNumLabel.text = @(model.likeCounts).stringValue;
-    
-    self.bottomHeight = 100.0f;
+    self.comment.text = model.videoDesc;
+    if (model.videoDesc.length > 0) {
+        self.bottomHeight = 40 + [model.videoDesc boundingRectWithSize:CGSizeMake(SCREEN_WIDTH / 2 - 30, CGFLOAT_MAX) font:UIFontMake(14) lineSpacing:5].height;
+    } else {
+        self.bottomHeight = 40;
+    }
     [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_offset(self.bottomHeight);
     }];

@@ -76,10 +76,10 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 #pragma mark - SetupBase
 
 - (void)setupBaseView {
-    self.view.backgroundColor = UIColorMakeWithHex(@"#222222");
+    self.view.backgroundColor = UIColorMakeWithHex(@"#444444");
     DDAnimationLayout *layout = [[DDAnimationLayout alloc]init];
     layout.rowsOrColumnsCount = 2;
-    layout.rowMargin = 5;
+    layout.rowMargin = 10;
     layout.columnMargin = 5;
     layout.delegate = self;
     layout.sectionInset = UIEdgeInsetsMake(0, 8, 0, 8);
@@ -146,27 +146,33 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 //创建collectionViewCell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    KB_HomeVideoDetailModel *model = self.dataArray[indexPath.item];
     SmallVideoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SmallVideoCellIdentifier forIndexPath:indexPath];
-    cell.model = model;
+    cell.model = self.dataArray[indexPath.item];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    SmallVideoPlayViewController *smallVideoPlayViewController = [[SmallVideoPlayViewController alloc] init];
-//    smallVideoPlayViewController.modelArray = self.dataArray;
-//    smallVideoPlayViewController.currentPlayIndex = indexPath.row;
-//    [PageRout_Maneger.currentNaviVC pushViewController:smallVideoPlayViewController animated:YES];
+    SmallVideoPlayViewController *smallVideoPlayViewController = [[SmallVideoPlayViewController alloc] init];
+    smallVideoPlayViewController.page = self.page;
+    smallVideoPlayViewController.modelArray = self.dataArray;
+    smallVideoPlayViewController.currentPlayIndex = indexPath.item;
+    [PageRout_Maneger.currentNaviVC pushViewController:smallVideoPlayViewController animated:YES];
 }
 
 #pragma mark - <DDAnimationLayoutDelegate>
 - (CGSize)DDAnimationLayout:(DDAnimationLayout *) layout atIndexPath:(NSIndexPath *) indexPath {
     KB_HomeVideoDetailModel *model = self.dataArray[indexPath.item];
+    CGSize size;
+    if (model.videoDesc.length > 0) {
+        size.height = [model.videoDesc boundingRectWithSize:CGSizeMake(SCREEN_WIDTH / 2 - 30, CGFLOAT_MAX) font:UIFontMake(14) lineSpacing:5].height;
+    } else {
+        size.height = 0;
+    }
     CGFloat width = 0.0;
     CGFloat height = 0.0;
     width = (SCREEN_WIDTH-21) /2;
-    height = (SCREEN_WIDTH-1) /2 * (model.videoHeight / model.videoWidth) + 90;
+    height = (SCREEN_WIDTH-1) /2 * (model.videoHeight / model.videoWidth) + size.height + 30;
     return CGSizeMake(width,height);
 }
 
@@ -185,7 +191,8 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     if (self.page == 1) {
         [self showEmptyViewWithLoading];
     }
-    [RequesetApi requestAPIWithParams:@{@"page":@(self.page),@"isSaveRecord":@0,@"category":@"food",@"videoDesc": @""} andRequestUrl:@"video/showAll" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+    NSString *url = [NSString stringWithFormat:@"video/showAll?page=%@&isSaveRecord=0&category=food",@(self.page)];
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:url completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             [self hideEmptyView];
             [self.collectionView.mj_header endRefreshing];
@@ -206,9 +213,9 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
             }
             if (self.dataArray.count == 0) {
                 [self showNoDataEmptyViewWithText:@"暂无附近数据" detailText:@"请前往首页观看更多视频"];
+            }else{
+                [self.collectionView reloadData];
             }
-            [self.collectionView reloadData];
-            LQLog(@"%@",@(datas.count));
             
         } else {
             [self hideEmptyView];

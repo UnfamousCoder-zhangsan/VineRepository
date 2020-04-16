@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SmallVideoModel.h"
+#import "KB_HomeVideoDetailModel.h"
 
 @protocol SmallVideoPlayCellDlegate <NSObject>
 //关注
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SmallVideoPlayCell : UITableViewCell
 
 @property (nonatomic, strong) SmallVideoModel *model;
+@property (nonatomic, strong) KB_HomeVideoDetailModel *videoModel;
 @property (nonatomic, strong) UIView *playerFatherView;
 
 @property (nonatomic, weak) id<SmallVideoPlayCellDlegate> delegate;

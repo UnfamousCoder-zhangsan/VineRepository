@@ -7,9 +7,11 @@
 //
 
 #import "PersonalInformationHeaderView.h"
-@interface PersonalInformationHeaderView()
+@interface PersonalInformationHeaderView()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UIView *backView;
+
+@property (nonatomic, strong) UIImagePickerController *imagePickerController;
 
 @end
 
@@ -27,12 +29,32 @@
 
 - (void)tapEvent:(UITapGestureRecognizer *)gesture
 {
+    
     //点击了更换头像
     [UtilsHelper showActionSheetWithMessage:@"选择方式" camera:^{
         //相册
+        
     } album:^{
         // 拍一张
         
     }];
+}
+- (UIImagePickerController *)imagePickerController{
+    if (!_imagePickerController) {
+        _imagePickerController = [[UIImagePickerController alloc] init];
+        _imagePickerController.delegate = self;
+        _imagePickerController.allowsEditing = true;
+    }
+    return _imagePickerController;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
+//    if (info) {
+//        <#statements#>
+//    }
+    
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self.imagePickerController dismissViewControllerAnimated:YES completion:nil];
 }
 @end

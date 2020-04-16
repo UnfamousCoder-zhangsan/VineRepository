@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="34" width="414" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-0c-5Kg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-0c-5Kg" customClass="QMUIButton">
                                 <rect key="frame" x="359" y="134" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -28,7 +28,7 @@
                                     <constraint firstAttribute="width" constant="40" id="jbW-mZ-ufp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="闪光灯" image="bnavi_icon_location_fixed.png">
+                                <state key="normal" title="闪光灯" image="shoot_flash">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="height" constant="40" id="gBo-8N-Xzg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="翻转" image="alipay_msp_refresh.png">
+                                <state key="normal" title="翻转" image="shoot_filp">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -57,7 +57,7 @@
                                     <constraint firstAttribute="height" constant="40" id="eVZ-bd-CKh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="倒计时" image="smallVideo_personal_add_little">
+                                <state key="normal" title="倒计时" image="shoot_countdown">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -100,13 +100,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nA-QN-h1c">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nA-QN-h1c">
                                 <rect key="frame" x="297" y="707" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cz9-Xd-pOU"/>
                                     <constraint firstAttribute="width" constant="30" id="tOf-aF-gQU"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="shoot_album"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -151,10 +151,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alipay_msp_refresh.png" width="22" height="22"/>
         <image name="back_left" width="33" height="33"/>
-        <image name="bnavi_icon_location_fixed.png" width="27" height="27"/>
+        <image name="shoot_album" width="66" height="66"/>
+        <image name="shoot_countdown" width="66" height="66"/>
+        <image name="shoot_filp" width="66" height="66"/>
+        <image name="shoot_flash" width="44" height="44"/>
         <image name="shoot_normal" width="44.5" height="44"/>
-        <image name="smallVideo_personal_add_little" width="11" height="11"/>
     </resources>
 </document>
