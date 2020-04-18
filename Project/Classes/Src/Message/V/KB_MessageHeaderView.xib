@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,6 +22,7 @@
                                 <constraint firstAttribute="width" constant="60" id="2Rb-by-29f"/>
                                 <constraint firstAttribute="height" constant="60" id="ITE-jn-6F3"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="喜欢" image="喜欢">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -42,6 +43,7 @@
                                 <constraint firstAttribute="width" constant="60" id="BlS-3Q-od1"/>
                                 <constraint firstAttribute="height" constant="60" id="RxZ-Tf-Fu2"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="评论" image="评论">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -62,6 +64,7 @@
                                 <constraint firstAttribute="width" constant="60" id="Yh8-fN-PFa"/>
                                 <constraint firstAttribute="height" constant="60" id="lEh-H0-iJf"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="粉丝" image="粉丝">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>

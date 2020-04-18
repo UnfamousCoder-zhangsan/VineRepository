@@ -98,6 +98,7 @@
     
     // 封面图片
     self.videoImageView = [[UIImageView alloc] init];
+    self.videoImageView.backgroundColor = UIColorMakeWithHex(@"#444444");
     self.videoImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.videoImageView.layer.cornerRadius = 5;
     self.videoImageView.layer.masksToBounds = YES;

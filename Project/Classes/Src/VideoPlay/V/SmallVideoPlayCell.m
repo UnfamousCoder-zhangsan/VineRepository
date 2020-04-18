@@ -8,7 +8,6 @@
 
 #import "SmallVideoPlayCell.h"
 #import "FavoriteView.h"
-//#import "ReactiveCocoa.h"
 
 
 @interface SmallVideoPlayCell ()

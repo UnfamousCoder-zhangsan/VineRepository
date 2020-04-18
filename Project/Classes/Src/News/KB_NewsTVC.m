@@ -20,8 +20,6 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 @interface KB_NewsTVC () <UICollectionViewDataSource, UICollectionViewDelegate, DDAnimationLayoutDelegate>
 
-//@property (nonatomic, strong) NSMutableArray<SmallVideoModel *> *modelArray;
-
 @property (nonatomic, strong) NSMutableArray<KB_HomeVideoDetailModel *> *dataArray;
 @property (nonatomic, assign) NSInteger page;
 
@@ -154,7 +152,7 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     SmallVideoPlayViewController *smallVideoPlayViewController = [[SmallVideoPlayViewController alloc] init];
-    smallVideoPlayViewController.page = self.page;
+    smallVideoPlayViewController.page = self.page; //用于请求了第页数据展示下次请求数据直接展示
     smallVideoPlayViewController.modelArray = self.dataArray;
     smallVideoPlayViewController.currentPlayIndex = indexPath.item;
     [PageRout_Maneger.currentNaviVC pushViewController:smallVideoPlayViewController animated:YES];

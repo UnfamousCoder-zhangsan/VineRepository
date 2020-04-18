@@ -18,10 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SmallVideoPlayViewController : QDCommonViewController
 
 @property (nonatomic, assign) NSUInteger page;
-@property (nonatomic, strong) NSMutableArray *modelArray;
+@property (nonatomic, strong) NSMutableArray *modelArray; //模型数据
 @property (nonatomic, assign) NSInteger currentPlayIndex;
 @property (nonatomic) BOOL hasMore;
-
 @property (nonatomic, assign) NSInteger rid;
 
 @end

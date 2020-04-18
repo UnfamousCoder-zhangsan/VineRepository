@@ -8,9 +8,11 @@
 
 #import "KB_MineTVC.h"
 #import "KB_MineHeaderView.h"
-#import "KB_ListViewController.h"
 #import "KB_PersonalInformationVC.h"
 #import "KB_SettingInformationVC.h"
+
+#import "KBBaseListViewController.h"
+#import "KB_BaseCollectionListViewController.h"
 
 @interface KB_MineTVC ()<GKPageScrollViewDelegate, JXCategoryViewDelegate, UIScrollViewDelegate>
 
@@ -18,13 +20,11 @@
 
 @property (nonatomic, strong) KB_MineHeaderView        *headerView;
 
-@property (nonatomic, strong) UIView                *pageView;
 @property (nonatomic, strong) JXCategoryTitleView   *categoryView;
-@property (nonatomic, strong) UIScrollView          *scrollView;
 
 @property (nonatomic, strong) NSArray               *titles;
-@property (nonatomic, strong) NSArray               *childVCs;
 
+/// titleView
 @property (nonatomic, strong) UILabel               *titleview;
 
 @property (nonatomic, strong) UIButton              *settingBtn;
@@ -40,7 +40,8 @@
     self.titleView.title = self.titleview.text;
     [self.view addSubview:self.pageScrollView];
     [self.pageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.right.left.with.offset(0);
+        make.height.with.offset(SCREEN_HEIGHT - TabBarHeight);
     }];
     
     [self.pageScrollView reloadData];
@@ -56,7 +57,6 @@
     [self.settingBtn setBackgroundImage:UIImageMake(@"mine_setting") forState:UIControlStateNormal];
     [self.settingBtn addTarget:self action:@selector(gotoSettingVC) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithCustomView:self.settingBtn];
-    //[UIBarButtonItem qmui_itemWithTitle:@"设置" target:self action:@selector(handleSettingEvent)];
 }
 
 - (void)handleSettingEvent{
@@ -65,21 +65,25 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+///导航栏背景色
 - (UIImage *)navigationBarBackgroundImage{
     return [UIImage imageWithColor:[UIColor clearColor]];
 }
 
 #pragma mark - GKPageScrollViewDelegate
+- (BOOL)shouldLazyLoadListInPageScrollView:(GKPageScrollView *)pageScrollView{
+    return YES;
+}
+
 - (UIView *)headerViewInPageScrollView:(GKPageScrollView *)pageScrollView {
     return self.headerView;
 }
-
-- (UIView *)pageViewInPageScrollView:(GKPageScrollView *)pageScrollView {
-    return self.pageView;
+- (UIView *)segmentedViewInPageScrollView:(GKPageScrollView *)pageScrollView{
+    return self.categoryView;
 }
 
-- (NSArray<id<GKPageListViewDelegate>> *)listViewsInPageScrollView:(GKPageScrollView *)pageScrollView {
-    return self.childVCs;
+- (NSInteger)numberOfListsInPageScrollView:(GKPageScrollView *)pageScrollView{
+    return self.titles.count;
 }
 
 - (void)mainTableViewDidScroll:(UIScrollView *)scrollView isMainCanScroll:(BOOL)isMainCanScroll {
@@ -100,6 +104,12 @@
     self.titleView.alpha = alpha;
 
     [self.headerView scrollViewDidScroll:offsetY];
+}
+- (id<GKPageListViewDelegate>)pageScrollView:(GKPageScrollView *)pageScrollView initListAtIndex:(NSInteger)index{
+    KB_BaseCollectionListViewController *listVC = [KB_BaseCollectionListViewController new];
+    listVC.shouldLoadData = YES;
+    [self addChildViewController:listVC];
+    return listVC;
 }
 
 #pragma mark - JXCategoryViewDelegate
@@ -124,6 +134,7 @@
 - (GKPageScrollView *)pageScrollView {
     if (!_pageScrollView) {
         _pageScrollView = [[GKPageScrollView alloc] initWithDelegate:self];
+        _pageScrollView.isLazyLoadList = YES;
     }
     return _pageScrollView;
 }
@@ -135,15 +146,11 @@
     return _headerView;
 }
 
-- (UIView *)pageView {
-    if (!_pageView) {
-        _pageView = [UIView new];
-        _pageView.backgroundColor = [UIColor clearColor];
-        
-        [_pageView addSubview:self.categoryView];
-        [_pageView addSubview:self.scrollView];
+- (NSArray *)titles {
+    if (!_titles) {
+        _titles = @[@"作品", @"喜欢"];
     }
-    return _pageView;
+    return _titles;
 }
 
 - (JXCategoryTitleView *)categoryView {
@@ -164,7 +171,8 @@
         lineView.lineStyle = JXCategoryIndicatorLineStyle_Normal;
         _categoryView.indicators = @[lineView];
         
-        _categoryView.contentScrollView = self.scrollView;
+        // 设置关联的scrollview
+        _categoryView.contentScrollView = self.pageScrollView.listContainerView.collectionView;
         
         // 添加分割线
         UIView *btmLineView = [UIView new];
@@ -173,49 +181,6 @@
         [_categoryView addSubview:btmLineView];
     }
     return _categoryView;
-}
-
-- (UIScrollView *)scrollView {
-    if (!_scrollView) {
-        CGFloat scrollW = SCREEN_WIDTH;
-        CGFloat scrollH = SCREEN_HEIGHT - NavigationBarHeight - 40.0f - TabBarHeight;
-        
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, scrollW, scrollH)];
-        _scrollView.pagingEnabled = YES;
-        _scrollView.bounces = NO;
-        _scrollView.delegate = self;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        
-        [self.childVCs enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self addChildViewController:vc];
-            [self->_scrollView addSubview:vc.view];
-            
-            vc.view.frame = CGRectMake(idx * scrollW, 0, scrollW, scrollH);
-        }];
-        _scrollView.contentSize = CGSizeMake(self.childVCs.count * scrollW, 0);
-        
-    }
-    return _scrollView;
-}
-
-- (NSArray *)titles {
-    if (!_titles) {
-        _titles = @[@"作品 129", @"喜欢 591"];
-    }
-    return _titles;
-}
-
-- (NSArray *)childVCs {
-    if (!_childVCs) {
-        KB_ListViewController *publishVC = [KB_ListViewController new];
-        
-       // KB_ListViewController *dynamicVC = [KB_ListViewController new];
-        
-        KB_ListViewController *lovedVC = [KB_ListViewController new];
-        
-        _childVCs = @[publishVC, lovedVC];
-    }
-    return _childVCs;
 }
 
 - (UILabel *)titleview {
