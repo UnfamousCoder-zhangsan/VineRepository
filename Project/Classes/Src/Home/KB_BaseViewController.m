@@ -37,7 +37,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     // 添加下拉刷新手势
     self.recognize = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pullDownToRefresh)];
     [self.tableView addGestureRecognizer:self.recognize];
-    [self getDataList];
+    //[self getDataList];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -242,8 +242,9 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 //评论
 - (void)handleCommentVidieoModel:(SmallVideoModel *)smallVideoModel {
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     CommentsPopView *popView = [[CommentsPopView alloc] initWithSmallVideoModel:smallVideoModel];
-    [popView showToView:self.view];
+    [popView showToView:window];
 }
 
 - (void)handleShareVideoModel:(SmallVideoModel *)smallVideoModel{
@@ -287,20 +288,5 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [self.videoPlayerManager resetPlayer];
     [self.preloadVideoPlayerManager resetPlayer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)getDataList{
-    [self showEmptyViewWithLoading];
-    [RequesetApi requestAPIWithParams:@{@"page":@1,@"isSaveRecord":@0,@"category":@"define"} andRequestUrl:@"video/showAll" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
-        if (isSuccess) {
-            [self hideEmptyView];
-            NSMutableArray *lists = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
-            LQLog(@"%@",@(lists.count));
-            
-        } else {
-            [SVProgressHUD showErrorWithStatus:@"获取失败"];
-            [self showEmptyViewWithImage:UIImageMake(@"404") text:@"" detailText:@"加载失败" buttonTitle:@"点击重试" buttonAction:@selector(getDataList)];
-        }
-    }];
 }
 @end

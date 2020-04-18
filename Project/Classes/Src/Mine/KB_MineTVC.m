@@ -41,7 +41,7 @@
     [self.view addSubview:self.pageScrollView];
     [self.pageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.left.with.offset(0);
-        make.height.with.offset(SCREEN_HEIGHT - TabBarHeight);
+        make.height.with.offset(self.otherHome ? SCREEN_HEIGHT : SCREEN_HEIGHT - TabBarHeight);
     }];
     
     [self.pageScrollView reloadData];
@@ -52,11 +52,13 @@
 }
 - (void)setupNavigationItems{
     [super setupNavigationItems];
-    self.settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.settingBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.settingBtn setBackgroundImage:UIImageMake(@"mine_setting") forState:UIControlStateNormal];
-    [self.settingBtn addTarget:self action:@selector(gotoSettingVC) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithCustomView:self.settingBtn];
+    if (!self.otherHome) {
+            self.settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.settingBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.settingBtn setBackgroundImage:UIImageMake(@"mine_setting") forState:UIControlStateNormal];
+        [self.settingBtn addTarget:self action:@selector(gotoSettingVC) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithCustomView:self.settingBtn];
+    }
 }
 
 - (void)handleSettingEvent{
@@ -196,5 +198,17 @@
     //跳转设置
     KB_SettingInformationVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_SettingInformationVC"];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark -获取网络数据 -
+- (void)getInformationData{
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:@"" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            // 请求成功
+            
+        } else {
+            //加载失败
+        }
+    }];
 }
 @end

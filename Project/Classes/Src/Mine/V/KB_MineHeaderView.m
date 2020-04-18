@@ -17,29 +17,6 @@
 @property (nonatomic, strong) UIImageView   *iconImgView;
 @property (nonatomic, strong) UIView   *InformationView;
 
-///name
-@property (nonatomic, strong) UILabel *nameLabel;
-///count
-@property (nonatomic, strong) UILabel *countLabel;
-///横线
-@property (nonatomic, strong) UIView  *lineView;
-
-///简介
-@property (nonatomic, strong) UITextView *IntroductionTextView;
-///年龄
-@property (nonatomic, strong) QMUIButton *yearBtn;
-///地区
-@property (nonatomic, strong) QMUIButton *areaBtn;
-///学校
-@property (nonatomic, strong) QMUIButton *schoolBtn;
-
-/// 获赞
-@property (nonatomic, strong) UILabel *praised;
-/// 关注
-@property (nonatomic, strong) UILabel *attention;
-/// 粉丝
-@property (nonatomic, strong) UILabel *fan;
-
 
 
 @end

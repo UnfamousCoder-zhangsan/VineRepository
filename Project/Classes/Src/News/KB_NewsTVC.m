@@ -152,9 +152,9 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     SmallVideoPlayViewController *smallVideoPlayViewController = [[SmallVideoPlayViewController alloc] init];
-    smallVideoPlayViewController.page = self.page; //用于请求了第页数据展示下次请求数据直接展示
+    smallVideoPlayViewController.page = self.page; //用于请求了第几页数据展示下次请求数据直接展示
     smallVideoPlayViewController.modelArray = self.dataArray;
-    smallVideoPlayViewController.currentPlayIndex = indexPath.item;
+    smallVideoPlayViewController.currentPlayIndex = indexPath.row;
     [PageRout_Maneger.currentNaviVC pushViewController:smallVideoPlayViewController animated:YES];
 }
 

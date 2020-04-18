@@ -106,6 +106,7 @@
 		31F8FB94244A0DDD0072609C /* KB_MineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F8FB92244A0DDD0072609C /* KB_MineCollectionViewCell.xib */; };
 		31F8FB9A244A1FC30072609C /* KB_BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8FB99244A1FC30072609C /* KB_BaseCollectionViewController.m */; };
 		31F8FB9D244A23F70072609C /* KB_BaseCollectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8FB9C244A23F70072609C /* KB_BaseCollectionListViewController.m */; };
+		31F8FBA0244AC5D90072609C /* InformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8FB9F244AC5D90072609C /* InformationModel.m */; };
 		514A91F52446D5D000285FD4 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A91F42446D5D000285FD4 /* RegisterVC.m */; };
 		514C502A2387EEEA0070E875 /* HWTFCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50262387EEEA0070E875 /* HWTFCodeView.m */; };
 		514C502B2387EEEA0070E875 /* HWTFCodeBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514C50292387EEEA0070E875 /* HWTFCodeBView.m */; };
@@ -433,6 +434,8 @@
 		31F8FB99244A1FC30072609C /* KB_BaseCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseCollectionViewController.m; sourceTree = "<group>"; };
 		31F8FB9B244A23F70072609C /* KB_BaseCollectionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_BaseCollectionListViewController.h; sourceTree = "<group>"; };
 		31F8FB9C244A23F70072609C /* KB_BaseCollectionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseCollectionListViewController.m; sourceTree = "<group>"; };
+		31F8FB9E244AC5D90072609C /* InformationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InformationModel.h; path = Project/Classes/Src/Mine/Base/InformationModel.h; sourceTree = SOURCE_ROOT; };
+		31F8FB9F244AC5D90072609C /* InformationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InformationModel.m; path = Project/Classes/Src/Mine/Base/InformationModel.m; sourceTree = SOURCE_ROOT; };
 		48D20748169632A7D92109D3 /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		514A91F32446D5D000285FD4 /* RegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		514A91F42446D5D000285FD4 /* RegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
@@ -1096,6 +1099,8 @@
 		3130FC7F243E161500B9A0D6 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				31F8FB9E244AC5D90072609C /* InformationModel.h */,
+				31F8FB9F244AC5D90072609C /* InformationModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -2236,6 +2241,7 @@
 				A48C36C6205E2FD5003EBDDA /* QDNavigationController.m in Sources */,
 				A48C36B5205E2FD5003EBDDA /* Timer+Extension.swift in Sources */,
 				CB86BC17231785430011207A /* PayInputItem.m in Sources */,
+				31F8FBA0244AC5D90072609C /* InformationModel.m in Sources */,
 				863986E42329EC8600BC6934 /* UIImage+Compression.m in Sources */,
 				313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */,
 				86B2BCF2230E6B5100273AA3 /* MWTapDetectingImageView.m in Sources */,

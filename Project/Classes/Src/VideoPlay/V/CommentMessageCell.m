@@ -67,7 +67,7 @@
     self.commentDateLabel.text = @"1小时前";
     [self.contentView addSubview:self.commentDateLabel];
     self.commentDateLabel.font = [UIFont systemFontOfSize:12.5   ];
-    self.commentDateLabel.textColor = RGBA(173, 178, 187, 1);//(0xadb2bb);
+    self.commentDateLabel.textColor = UIColorMakeWithHex(@"#F2F2F2");
     [self.commentDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nameLabel.mas_bottom).with.offset(7   );
         make.left.equalTo(self.iconButton.mas_right).with.offset(14   );
@@ -85,7 +85,7 @@
     self.commentMessageLabel.numberOfLines = 0;
     [self.contentView addSubview:self.commentMessageLabel];
     self.commentMessageLabel.font = [UIFont systemFontOfSize:14   ];
-    self.commentMessageLabel.textColor = RGBA(74, 74, 74, 1);//(0x4a4a4a);
+    self.commentMessageLabel.textColor = UIColorMakeWithHex(@"#FFFFFF");
     [self.commentMessageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.commentDateLabel.mas_bottom).with.offset(14   );
         make.left.equalTo(self.iconButton.mas_right).with.offset(14   );

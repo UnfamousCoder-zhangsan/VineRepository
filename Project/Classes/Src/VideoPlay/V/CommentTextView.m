@@ -35,17 +35,17 @@
         UIFont *textViewFont = [UIFont systemFontOfSize:15  ];
         
         _container = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - (2 * kCommentTextViewTopBottomInset + ceilf(textViewFont.lineHeight) + kCommentTextViewTopSpace + kCommentTextViewBottomSpace) - SafeAreaBottomHeight, SCREEN_WIDTH, (2 * kCommentTextViewTopBottomInset + ceilf(textViewFont.lineHeight) + kCommentTextViewTopSpace + kCommentTextViewBottomSpace) + SafeAreaBottomHeight)];
-        _container.backgroundColor = RGBA(244, 245, 246, 1);
+        _container.backgroundColor = UIColorMakeWithHex(@"#222222");
         [self addSubview:_container];
         
         _textBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, (2 * kCommentTextViewTopBottomInset + ceilf(textViewFont.lineHeight) + kCommentTextViewTopSpace + kCommentTextViewBottomSpace))];
-        _textBackView.backgroundColor = RGBA(244, 245, 246, 1);
+        _textBackView.backgroundColor = UIColorMakeWithHex(@"#222222");
         [_container addSubview:_textBackView];
         
         _textView = [[UITextView alloc] initWithFrame:CGRectMake(kCommentTextViewLeftSpace, kCommentTextViewTopSpace, SCREEN_WIDTH - kCommentTextViewLeftSpace - kCommentTextViewRightSpace, ceilf(textViewFont.lineHeight) + 2 * kCommentTextViewTopBottomInset)];
-        _textView.backgroundColor = [UIColor whiteColor];
+        _textView.backgroundColor = UIColorMakeWithHex(@"#222222");
         _textView.clipsToBounds = NO;
-        _textView.textColor = [UIColor blackColor];
+        _textView.textColor = [UIColor whiteColor];
         _textView.font = textViewFont;
         _textView.returnKeyType = UIReturnKeySend;
         _textView.scrollEnabled = NO;
@@ -76,7 +76,7 @@
         [_textBackView addSubview:sendButton];
         
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-        self.lineView.backgroundColor = RGBA(244, 245, 246, 1);
+        self.lineView.backgroundColor = UIColorMakeWithHex(@"#222222");
         [self.container addSubview:self.lineView];
 //        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.top.left.right.with.offset(0);

@@ -8,6 +8,7 @@
 
 #import "SmallVideoPlayCell.h"
 #import "FavoriteView.h"
+#import "KB_MineTVC.h"
 
 
 @interface SmallVideoPlayCell ()
@@ -134,7 +135,8 @@
         _favoriteNum.layer.shadowOpacity = 0.3;
         _favoriteNum.layer.shadowOffset = CGSizeMake(0, 1);
         
-        _avatar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+        _avatar = [[UIImageView alloc] init];
+        _avatar.backgroundColor = [UIColor clearColor];
         [_avatar createBordersWithColor:[UIColor whiteColor] withCornerRadius:25  andWidth:1];
         _avatar.layer.masksToBounds = YES;
         [self.contentView addSubview:_avatar];
@@ -245,11 +247,11 @@
             make.top.equalTo(_artistLabel.mas_bottom).with.offset(3 );
         }];
         
-        [[RACObserve(self, model.comment_num) ignore:nil] subscribeNext:^(NSNumber *x) {
+        [[RACObserve(self, videoModel.status) ignore:nil] subscribeNext:^(NSNumber *x) {
             @strongify(self);
             self.commentNum.text = x.stringValue;
         }];
-        [[RACObserve(self, model.score) ignore:nil] subscribeNext:^(NSNumber *x) {
+        [[RACObserve(self, videoModel.likeCounts) ignore:nil] subscribeNext:^(NSNumber *x) {
             @strongify(self);
             self.favoriteNum.text = x.stringValue;
         }];
@@ -258,32 +260,9 @@
 }
 
 
-//- (void)setModel:(SmallVideoModel *)model {
-//    _model = model;
-//    self.nameLabel.text = model.name;
-//    if(model.artist.length) {
-//        self.artistLabel.text = [NSString stringWithFormat:@"@%@",model.artist];
-//    } else {
-//        self.artistLabel.text = @"";
-//    }
-//
-//    if(model.aspect >= 1.4) {
-//        self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    } else {
-//        self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
-//    }
-//
-//    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString: model.cover_url]];
-//    [self.avatar sd_setImageWithURL:[NSURL URLWithString:model.head_url] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
-//
-//    self.focus.hidden = NO;
-//    self.favorite.isChoose = NO;
-//
-//}
-
 - (void)setVideoModel:(KB_HomeVideoDetailModel *)videoModel{
     _videoModel = videoModel;
-    self.nameLabel.text = videoModel.videoDesc;
+    self.nameLabel.text =  videoModel.videoDesc;
     self.artistLabel.text = [NSString stringWithFormat:@"@%@",videoModel.nickName];
     if ((videoModel.videoHeight / videoModel.videoWidth) >= 1.4) {
         self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -291,7 +270,7 @@
         self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",videoModel.coverPath]] placeholderImage:[UIImage imageNamed:@""]];
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",videoModel.face_image]] placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",videoModel.face_image]] placeholderImage:[UIImage imageNamed:@""]];
     
       self.focus.hidden = NO;
       self.favorite.isChoose = NO;
@@ -309,15 +288,11 @@
 
 //进入个人主页
 - (void)pushToPersonalMessageVC {
-//    NSArray *a = self.viewController.navigationController.childViewControllers;
-//    if(a.count > 1) {
-//        if([a[a.count-2] isMemberOfClass:[UserHomeViewController class]]) {
-//            return;
-//        }
-//    }
-//    if([self.delegate respondsToSelector:@selector(handleClickPersonIcon:)]) {
-//        [self.delegate handleClickPersonIcon:self.model];
-//    }
+    
+    KB_MineTVC *vc = [[KB_MineTVC alloc] init];
+    vc.otherHome = YES;
+    vc.userId = self.videoModel.userId;
+    [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
 }
 
 //收藏视频

@@ -43,11 +43,13 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.videoPlayerManager autoPause];
+    //[self dismiss];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //[self.videoPlayerManager autoPlay];
+    //[self showToView:self.view];
 }
 
 //设置导航栏背景色
@@ -96,27 +98,11 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     
     self.commentTextView = [CommentTextView new];
     self.commentTextView.delegate = self;
-    self.commentTextView.backgroundColor = [UIColor redColor];
-    self.commentTextView.placeholderLabel.text = @"有爱评论，讲一讲";
-//    self.commentTextView = [[CommentTextView alloc] init];
-//    self.commentTextView.placeholder = @"说点什么吧";
-//    self.commentTextView.font = [UIFont systemFontOfSize:14];
-//    self.commentTextView.textColor = UIColorMakeWithHex(@"#FFFFFF");
-//    self.commentTextView.placeholderColor = UIColorMakeWithHex(@"#666666");
-//    self.commentTextView.backgroundColor = UIColorMakeWithHex(@"#222222");
-//    self.commentTextView.userInteractionEnabled = NO;
-    [self.bottomView addSubview:self.commentTextView];
+    [self.view addSubview:self.commentTextView];
     [self.commentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.with.offset(0);
-        make.height.offset(49);
-    }];
-    self.commentBtn  = [[QMUIButton alloc] init];
-   // [self.commentBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomView addSubview:self.commentBtn];
-    
-    [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.width.offset(0);
-        make.height.offset(49);
+        make.width.offset(SCREEN_WIDTH);
+        make.height.offset(TabBarHeight);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
     }];
     
     
@@ -141,7 +127,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    // 默认不实现
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -185,7 +171,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     artist = currentPlaySmallVideoModel.nickName;
     title = currentPlaySmallVideoModel.videoDesc;
     // 首帧图
-    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.coverPath];
+    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",currentPlaySmallVideoModel.coverPath];
     // 视频地址
     videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
     originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
@@ -253,7 +239,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     artist = currentPlaySmallVideoModel.nickName;
     title = currentPlaySmallVideoModel.videoDesc;
     // 首帧图
-    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.coverPath];
+    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",currentPlaySmallVideoModel.coverPath];
     // 视频地址
     videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
     originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
@@ -334,6 +320,36 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     
     [self.tableView reloadData];
     
+}
+- (void)showToView:(UIView *)view {
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    [view addSubview:self.commentTextView];
+    [UIView animateWithDuration:0.15f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         CGRect frame = self.view.frame;
+                         frame.origin.y = frame.origin.y - frame.size.height;
+                         self.view.frame = frame;
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+    [self.commentTextView showToView:window];
+}
+
+- (void)dismiss {
+    [UIView animateWithDuration:0.15f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         CGRect frame = self.view.frame;
+                         frame.origin.y = frame.origin.y + frame.size.height;
+                         self.view.frame = frame;
+                     }
+                     completion:^(BOOL finished) {
+                        // [self removeFromSuperview];
+                         [self.commentTextView dismiss];
+                     }];
 }
 
 @end

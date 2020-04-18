@@ -184,8 +184,8 @@
 }
 - (void)setModel:(KB_HomeVideoDetailModel *)model{
     _model = model;
-    [self.videoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",model.coverPath]] placeholderImage:[UIImage imageNamed:@""]];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",model.face_image]] placeholderImage:[UIImage imageNamed:@""]];
+    [self.videoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",model.coverPath]] placeholderImage:[UIImage imageNamed:@""]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",model.face_image]] placeholderImage:[UIImage imageNamed:@""]];
     self.messageLabel.text = model.nickName;
     
     self.concernNumLabel.text = @(model.likeCounts).stringValue;

@@ -68,7 +68,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
 //        _pageIndex = 0;
 //        _pageSize = 20;
         _container = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT * 3 / 4)];
-        _container.backgroundColor = [UIColor whiteColor];//ColorBlackAlpha60;
+        _container.backgroundColor = [UIColor clearColor];//ColorBlackAlpha60;
         [self addSubview:_container];
         
         UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:_container.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10.0f , 10.0f )];
@@ -77,7 +77,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         _container.layer.mask = shape;
         
        
-        UIBlurEffect *blurEffect =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIBlurEffect *blurEffect =[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
         visualEffectView.frame = self.bounds;
         visualEffectView.alpha = 1.0f;
@@ -85,7 +85,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         
         self.numCommentLabel = [[UILabel alloc] init];
         self.numCommentLabel.textColor = [UIColor blackColor];//ColorGray;
-        self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",self.videoModel.comment_num];
+        self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",(long)self.videoModel.comment_num];
         self.numCommentLabel.font = [UIFont systemFontOfSize:14  ];//SmallFont;
         self.numCommentLabel.textAlignment = NSTextAlignmentCenter;
         [_container addSubview:self.numCommentLabel];
@@ -96,7 +96,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         @weakify(self);
         [RACObserve(self, videoModel.comment_num) subscribeNext:^(NSNumber *x) {
             @strongify(self);
-            self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",x.integerValue];
+            self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",(long)x.integerValue];
         }];
         
         
@@ -116,11 +116,11 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         _commentTextView = [CommentTextView new];
         _commentTextView.delegate = self;
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35  , SCREEN_WIDTH, _container.height - 35   - _commentTextView.container.height) style:UITableViewStyleGrouped];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35 , SCREEN_WIDTH, _container.height - 35   - _commentTextView.container.height) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         if(@available(iOS 11.0, *)){
-            //self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.estimatedRowHeight = 150  ;
         _tableView.delegate = self;
@@ -421,9 +421,13 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     CommentMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:commentMessageCellIdentifier];
     cell.delegate = self;
     cell.commentModel = model;
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
