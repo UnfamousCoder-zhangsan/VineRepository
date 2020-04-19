@@ -26,6 +26,11 @@ static NSString *const kImageSrcUpLoadUrl = @"http://47.111.169.178:9999";
 static NSString *const kImageSrcUrl = @"http://47.111.169.178:8888";
 #endif
 
+/// 微信appkey
+static NSString *const WxAppKey = @"wxbdcc8de8ed2a1110";
+/// 微信appsecret
+static NSString *const WxAppSecret = @"46ed43a3c8647ffd4e181a088c9d5f29";
+
 /// 上架bundleID: com.zhangshangtong.ryy  对应百度map
 static NSString *const kBaiDuMapAK = @"h4QHlTkAS1HKDg2sxoHbabmfNlMC7Ysp";
 

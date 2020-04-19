@@ -1052,7 +1052,6 @@
 		3130FC15243CADDB00B9A0D6 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				3130FC16243CADDB00B9A0D6 /* NSDate+Helper.m */,
 				3130FC17243CADDB00B9A0D6 /* UITabBarController+ZFPlayerRotation.m */,
 				3130FC18243CADDB00B9A0D6 /* UIView+CommonFunction.m */,
 				3130FC19243CADDB00B9A0D6 /* AVPlayerItem+MyAvPlayerItemCate.m */,
@@ -1064,6 +1063,7 @@
 				3130FC1F243CADDB00B9A0D6 /* UIView+CommonFunction.h */,
 				3130FC20243CADDB00B9A0D6 /* UITabBarController+ZFPlayerRotation.h */,
 				3130FC21243CADDB00B9A0D6 /* NSDate+Helper.h */,
+				3130FC16243CADDB00B9A0D6 /* NSDate+Helper.m */,
 				3130FC22243CADDB00B9A0D6 /* UIView+CustomControlView.m */,
 				3130FC23243CADDB00B9A0D6 /* AVPlayer+MyAvPlayerCate.h */,
 				3130FC24243CADDB00B9A0D6 /* UINavigationController+ZFPlayerRotation.m */,

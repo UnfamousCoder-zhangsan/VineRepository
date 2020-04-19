@@ -172,17 +172,18 @@
 {
     [self setupUM];
 
-    [self initBaiduMap];
+   // [self initBaiduMap];
 //    [Push_Manager initObserve];
 
 //    [CloudPushSDK sendNotificationAck:launchOptions];
-    [self initCloudPush];
+   // [self initCloudPush];
 }
 
 #pragma mark - 友盟配置
 - (void)setupUM
 {
-
+   [UMConfigure initWithAppkey:@"5e9b0800978eea083f0c79ec" channel:@"App Store"];
+   [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WxAppKey appSecret:WxAppSecret redirectURL:nil];
 }
 #pragma mark - 初始化百度地图
 - (void)initBaiduMap {

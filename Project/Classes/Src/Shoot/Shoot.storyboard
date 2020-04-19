@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -152,9 +152,9 @@
     </scenes>
     <resources>
         <image name="back_left" width="33" height="33"/>
-        <image name="shoot_album" width="66" height="66"/>
-        <image name="shoot_countdown" width="66" height="66"/>
-        <image name="shoot_filp" width="66" height="66"/>
+        <image name="shoot_album" width="44" height="44"/>
+        <image name="shoot_countdown" width="44" height="44"/>
+        <image name="shoot_filp" width="44" height="44"/>
         <image name="shoot_flash" width="44" height="44"/>
         <image name="shoot_normal" width="44.5" height="44"/>
     </resources>
