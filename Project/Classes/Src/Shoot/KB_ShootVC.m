@@ -14,32 +14,33 @@
 #import "KBPickerScrollerView.h"
 #import "CustomPickerItem.h"
 #import "KBPickerModel.h"
+#import "KB_PublishViewController.h"
 
 #define ScreenWith     [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight   [UIScreen mainScreen].bounds.size.height
 
 typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 
-@interface KB_ShootVC () <AVCaptureFileOutputRecordingDelegate, KBPickerScrollViewDelegate, KBPickerScrollViewDataSource>
-//负责输入和输出设备之间的数据传输
+@interface KB_ShootVC () <AVCaptureFileOutputRecordingDelegate, AVCapturePhotoCaptureDelegate,KBPickerScrollViewDelegate, KBPickerScrollViewDataSource>
+///负责输入和输出设备之间的数据传输
 @property (nonatomic, strong) AVCaptureSession * captureSession;
-//负责从AVCaptureDevice获得输入数据
+///负责从AVCaptureDevice获得输入数据
 @property (nonatomic, strong) AVCaptureDeviceInput * captureDeviceInput;
-//照片输出流
+///照片输出流
 @property (nonatomic, strong) AVCapturePhotoOutput * captureStillImageOutput;
-//视频输出流
+///视频输出流
 @property (nonatomic, strong) AVCaptureMovieFileOutput * captureMovieFileOutPut;
 @property (assign,nonatomic) UIBackgroundTaskIdentifier backgroundTaskIdentifier;//后台任务标识
 
-//相机拍摄预览图层
+///相机拍摄预览图层
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer * captureVideoPreviewLayer;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
-//打开闪光灯按钮
+///打开闪光灯按钮
 @property (nonatomic, weak)  IBOutlet UIButton * flashOnButton;
-//切换前后摄像头
+///切换前后摄像头
 @property (nonatomic, weak) IBOutlet QMUIButton * exchangeCamera;
-//聚焦光标
+///聚焦光标
 @property (nonatomic, strong) UIImageView * focusCursor;
 /// 拍摄
 @property (weak, nonatomic) IBOutlet UIButton *shootBtn;
@@ -452,11 +453,6 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 
 }
 
-//自动闪关灯开起
-- (void)clickFlashAutoButton:(UIButton *)sender{
-    [self setFlashMode:AVCaptureFlashModeAuto];
-    [self setFlashModeButtonStatus];
-}
 - (IBAction)exchangeCameraEvent:(QMUIButton *)sender {
     AVCapturePhotoSettings *captureDevice = [AVCapturePhotoSettings photoSettings];
     
@@ -558,4 +554,34 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     [impactLight impactOccurred];
     
 }
+- (IBAction)clickShootBtn:(UIButton *)sender {
+    // 拍照
+    AVCaptureConnection *captureConnection=[self.captureStillImageOutput connectionWithMediaType:AVMediaTypeVideo];
+    [captureConnection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+    AVCapturePhotoSettings *outputSetting = [AVCapturePhotoSettings photoSettings];
+    [self.captureStillImageOutput capturePhotoWithSettings:outputSetting delegate:self];
+}
+#pragma mark - AVCapturePhotoCaptureDelegate -
+- (void)captureOutput:(AVCapturePhotoOutput *)captureOutput didFinishProcessingPhotoSampleBuffer:(nullable CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(nullable CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(nullable AVCaptureBracketedStillImageSettings *)bracketSettings error:(nullable NSError *)error {
+    
+    NSData *data = [AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer previewPhotoSampleBuffer:previewPhotoSampleBuffer];
+    UIImage *image = [UIImage imageWithData:data];
+    
+    KB_PublishViewController *vc =[[KB_PublishViewController alloc] init];
+    vc.image = image;
+    [self.navigationController pushViewController:vc animated:YES];
+    //UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo {
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+    }else{
+        msg = @"保存图片成功" ;
+        
+    }
+    NSLog(@"+++++++++++%@", msg);
+    
+}
+
 @end

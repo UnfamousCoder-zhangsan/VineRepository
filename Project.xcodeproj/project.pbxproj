@@ -89,6 +89,9 @@
 		3130FC90243E33EB00B9A0D6 /* KB_CamerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */; };
 		3132596F2444CE02002ED40A /* KB_MineInformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3132596E2444CE02002ED40A /* KB_MineInformationView.xib */; };
 		313259722444CE21002ED40A /* KB_MineInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313259712444CE21002ED40A /* KB_MineInformationView.m */; };
+		313286B7244CA8A10022E8EC /* KB_PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313286B5244CA8A10022E8EC /* KB_PublishViewController.m */; };
+		313286BF244CAC700022E8EC /* KB_PublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313286BD244CAC700022E8EC /* KB_PublishCell.m */; };
+		313286C0244CAC700022E8EC /* KB_PublishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313286BE244CAC700022E8EC /* KB_PublishCell.xib */; };
 		313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */; };
 		313662D324474BF000FB58F9 /* KB_HomeVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 313662D224474BF000FB58F9 /* KB_HomeVideoDetailModel.m */; };
 		313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */; };
@@ -404,6 +407,11 @@
 		3132596E2444CE02002ED40A /* KB_MineInformationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MineInformationView.xib; sourceTree = "<group>"; };
 		313259702444CE21002ED40A /* KB_MineInformationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineInformationView.h; sourceTree = "<group>"; };
 		313259712444CE21002ED40A /* KB_MineInformationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineInformationView.m; sourceTree = "<group>"; };
+		313286B4244CA8A10022E8EC /* KB_PublishViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PublishViewController.h; sourceTree = "<group>"; };
+		313286B5244CA8A10022E8EC /* KB_PublishViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PublishViewController.m; sourceTree = "<group>"; };
+		313286BC244CAC700022E8EC /* KB_PublishCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PublishCell.h; sourceTree = "<group>"; };
+		313286BD244CAC700022E8EC /* KB_PublishCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PublishCell.m; sourceTree = "<group>"; };
+		313286BE244CAC700022E8EC /* KB_PublishCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_PublishCell.xib; sourceTree = "<group>"; };
 		313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomePageViewController.h; sourceTree = "<group>"; };
 		313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_HomePageViewController.m; sourceTree = "<group>"; };
 		313662D124474BF000FB58F9 /* KB_HomeVideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomeVideoDetailModel.h; sourceTree = "<group>"; };
@@ -1136,6 +1144,32 @@
 			path = customShoot;
 			sourceTree = "<group>";
 		};
+		313286B9244CAC110022E8EC /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		313286BA244CAC180022E8EC /* V */ = {
+			isa = PBXGroup;
+			children = (
+				313286BC244CAC700022E8EC /* KB_PublishCell.h */,
+				313286BD244CAC700022E8EC /* KB_PublishCell.m */,
+				313286BE244CAC700022E8EC /* KB_PublishCell.xib */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		313286BB244CAC300022E8EC /* C */ = {
+			isa = PBXGroup;
+			children = (
+				313286B4244CA8A10022E8EC /* KB_PublishViewController.h */,
+				313286B5244CA8A10022E8EC /* KB_PublishViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
 		313662D024474B6800FB58F9 /* M */ = {
 			isa = PBXGroup;
 			children = (
@@ -1158,6 +1192,9 @@
 		313A34A9243B3B9100A4F1F9 /* Shoot */ = {
 			isa = PBXGroup;
 			children = (
+				313286BB244CAC300022E8EC /* C */,
+				313286BA244CAC180022E8EC /* V */,
+				313286B9244CAC110022E8EC /* M */,
 				3130FC8D243E33B000B9A0D6 /* customShoot */,
 				313A34AA243B3BBA00A4F1F9 /* KB_ShootVC.h */,
 				313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */,
@@ -2103,6 +2140,7 @@
 				865E93172317811300F760C6 /* GuidePageView.xib in Resources */,
 				31C0AA7D2443637800110B18 /* Setting.storyboard in Resources */,
 				31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */,
+				313286C0244CAC700022E8EC /* KB_PublishCell.xib in Resources */,
 				3130FC71243CADDC00B9A0D6 /* ZFPlayer.bundle in Resources */,
 				EA9A3E8F2060D95E004A6694 /* Launch Screen.storyboard in Resources */,
 				863C5861232750C40060A954 /* AliyunEmasServices-Info.plist in Resources */,
@@ -2358,6 +2396,7 @@
 				3130FC4A243CADDB00B9A0D6 /* KTVHCDataCacheItem.m in Sources */,
 				3130FC4E243CADDB00B9A0D6 /* KTVHCLog.m in Sources */,
 				3130FC64243CADDC00B9A0D6 /* GCDAsyncSocket.m in Sources */,
+				313286B7244CA8A10022E8EC /* KB_PublishViewController.m in Sources */,
 				86B2BD0F230E6B5100273AA3 /* GSCountdownButton.swift in Sources */,
 				86B2BCF7230E6B5100273AA3 /* SDCursorView.m in Sources */,
 				865E93182317811300F760C6 /* GuidePageView.swift in Sources */,
@@ -2365,6 +2404,7 @@
 				3130FC4F243CADDB00B9A0D6 /* KTVHCRange.m in Sources */,
 				3130FC5D243CADDC00B9A0D6 /* MultipartFormDataParser.m in Sources */,
 				3130FC78243CADDC00B9A0D6 /* ASValueTrackingSlider.m in Sources */,
+				313286BF244CAC700022E8EC /* KB_PublishCell.m in Sources */,
 				5E6D2E0923FE8FF9002BF332 /* LMRStyle.m in Sources */,
 				86B2BD09230E6B5100273AA3 /* BRDatePickerView.m in Sources */,
 				5EBF20B9237E398E003DD0A7 /* AlertHelper.m in Sources */,

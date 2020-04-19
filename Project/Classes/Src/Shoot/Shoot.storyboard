@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="height" constant="40" id="gBo-8N-Xzg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="翻转" image="shoot_filp">
+                                <state key="normal" title="翻转" image="cameraex">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -70,7 +70,7 @@
                                 </constraints>
                                 <state key="normal" image="shoot_normal"/>
                                 <connections>
-                                    <action selector="shootEventButton:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="9dV-wb-Bc8"/>
+                                    <action selector="clickShootBtn:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="Awn-pG-sBz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5Z-az-Qkx">
@@ -152,9 +152,9 @@
     </scenes>
     <resources>
         <image name="back_left" width="33" height="33"/>
+        <image name="cameraex" width="28.5" height="24"/>
         <image name="shoot_album" width="44" height="44"/>
         <image name="shoot_countdown" width="44" height="44"/>
-        <image name="shoot_filp" width="44" height="44"/>
         <image name="shoot_flash" width="44" height="44"/>
         <image name="shoot_normal" width="44.5" height="44"/>
     </resources>

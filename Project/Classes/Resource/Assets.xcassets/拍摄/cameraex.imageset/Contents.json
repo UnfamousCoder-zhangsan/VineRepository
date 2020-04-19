@@ -1,16 +1,16 @@
 {
   "images" : [
     {
+      "filename" : "cameraex.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "翻转摄像头88.png",
+      "filename" : "cameraex@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "翻转摄像头132.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
