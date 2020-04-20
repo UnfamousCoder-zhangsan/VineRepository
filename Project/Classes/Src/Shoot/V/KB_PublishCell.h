@@ -11,9 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^TextViewBlock)(NSString *str);
+typedef void(^ImageViewTapBlock)(void);
 @interface KB_PublishCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIImageView *uploadImageView;
 @property (nonatomic, copy) TextViewBlock textViewBlock;
+@property (nonatomic, copy) ImageViewTapBlock imageViewTapBlock;
 @end
 
 NS_ASSUME_NONNULL_END

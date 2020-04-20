@@ -20,12 +20,13 @@
     self.textView.delegate = self;
     // 图片添加点击事件
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTapped)];
-    [self.imageView addGestureRecognizer:tapGesture];
+    [self.uploadImageView addGestureRecognizer:tapGesture];
 }
 
 - (BOOL)textViewShouldReturn:(QMUITextView *)textView {
-    [SVProgressHUD showSuccessWithStatus:textView.text];
     // return YES 表示这次 return 按钮的点击是为了触发“发送”，而不是为了输入一个换行符
+    //收起键盘
+    [self.textView resignFirstResponder];
     return YES;
 }
 // 将文字实时传递出去
@@ -40,6 +41,8 @@
 }
 #pragma mark - 点击查看图片 -
 - (void)imageTapped{
-    
+    if (self.imageViewTapBlock) {
+        self.imageViewTapBlock();
+    }
 }
 @end

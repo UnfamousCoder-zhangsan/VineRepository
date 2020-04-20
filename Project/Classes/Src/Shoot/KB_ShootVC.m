@@ -28,6 +28,8 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 @property (nonatomic, strong) AVCaptureDeviceInput * captureDeviceInput;
 ///照片输出流
 @property (nonatomic, strong) AVCapturePhotoOutput * captureStillImageOutput;
+///
+@property (nonatomic, strong) AVCaptureDevice *captureDevice;
 ///视频输出流
 @property (nonatomic, strong) AVCaptureMovieFileOutput * captureMovieFileOutPut;
 @property (assign,nonatomic) UIBackgroundTaskIdentifier backgroundTaskIdentifier;//后台任务标识
@@ -37,7 +39,7 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
 ///打开闪光灯按钮
-@property (nonatomic, weak)  IBOutlet UIButton * flashOnButton;
+@property (nonatomic, weak)  IBOutlet QMUIButton * flashOnButton;
 ///切换前后摄像头
 @property (nonatomic, weak) IBOutlet QMUIButton * exchangeCamera;
 ///聚焦光标
@@ -51,6 +53,8 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 @property (weak, nonatomic) IBOutlet KBPickerScrollerView *pickerScrollView;
 /// 数据源
 @property (nonatomic, strong) NSMutableArray *dataArray;
+/// 选择了第几种方式
+@property (nonatomic, assign) NSInteger selectedIndex;
 
 
 @end
@@ -65,6 +69,7 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     [self initCamera];
     [self.captureSession startRunning];
 }
+//关闭页面
 - (IBAction)closeEvent:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
     }];
@@ -91,8 +96,8 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     if ([_captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
         _captureSession.sessionPreset=AVCaptureSessionPreset1280x720;
     }
-    //获得输入设备
-    AVCaptureDevice * captureDevice = [self getCameraDeviceWithPosition:AVCaptureDevicePositionBack];
+    //获得输入设备 前置
+    AVCaptureDevice * captureDevice = [self getCameraDeviceWithPosition:AVCaptureDevicePositionFront];
     if (!captureDevice) {
         NSLog(@"取得后置摄像头时出现问题。");
         return;
@@ -422,23 +427,6 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     [self focusWithMode:AVCaptureFocusModeAutoFocus exposureMode:AVCaptureExposureModeAutoExpose atPoint:cameraPoint];
 }
 
-- (void)clickTakeButton:(UIButton *)sender{
-
-    //根据设备输出获得连接
-    AVCaptureConnection *captureConnection=[self.captureStillImageOutput connectionWithMediaType:AVMediaTypeVideo];
-    //根据连接取得设备输出的数据
-//    [self.captureStillImageOutput capturePhotoWithSettings:<#(nonnull AVCapturePhotoSettings *)#> delegate:self];
-//    [self.captureStillImageOutput captureStillImageAsynchronouslyFromConnection:captureConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-//        if (imageDataSampleBuffer) {
-//            NSData *imageData=[AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-//            UIImage *image=[UIImage imageWithData:imageData];
-//            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-//
-//        }
-//
-//    }];
-}
-
 // 打开闪关灯
 - (void)clickFlashOnButton:(UIButton *)sender{
     [self setFlashMode:AVCaptureFlashModeOn];
@@ -454,36 +442,46 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 }
 
 - (IBAction)exchangeCameraEvent:(QMUIButton *)sender {
-    AVCapturePhotoSettings *captureDevice = [AVCapturePhotoSettings photoSettings];
+    //获取当前相机的方向
+    AVCaptureDevicePosition position = [[self.captureDeviceInput device] position];
+    AVCaptureDevice *newCamera = nil;
+    AVCaptureDeviceInput *newInput = nil;
     
-//    AVCaptureDevice * captureDevice = [self.captureDeviceInput device];
-    AVCaptureFlashMode flashMode = captureDevice.flashMode;
-    if ([captureDevice flashMode]) {
-        self.flashOnButton.hidden  = NO;
-        self.flashOnButton.enabled = YES;
-        
-        switch (flashMode) {
-            case AVCaptureFlashModeAuto:
-               // self.flashAutoButton.enabled = NO;
-                break;
-            case AVCaptureFlashModeOn:
-              //  self.flashOnButton.enabled = NO;
-                break;
-            case AVCaptureFlashModeOff:
-              //  self.flashOffButton.enabled = NO;
-                break;
-            default:
-                break;
+    //为摄像头转换添加转换动画
+    CATransition *animation = [CATransition animation];
+    //切换速度效果
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.duration = 0.5;
+    animation.subtype = kCATransitionFromLeft;
+    animation.type = kCATransitionFade;
+    if (position == AVCaptureDevicePositionFront) {
+        //前置
+        newCamera = [self getCameraDeviceWithPosition:AVCaptureDevicePositionBack];
+    } else if (position == AVCaptureDevicePositionBack) {
+        newCamera = [self getCameraDeviceWithPosition:AVCaptureDevicePositionFront];
+    }
+    [self.contentView.layer addAnimation:animation forKey:nil];
+    newInput = [AVCaptureDeviceInput deviceInputWithDevice:newCamera error:nil];
+    if (newInput != nil) {
+        [self.captureSession beginConfiguration];
+        //先移除原来的input
+        [self.captureSession removeInput:self.captureDeviceInput];
+        if ([self.captureSession canAddInput:newInput]) {
+            [self.captureSession addInput:newInput];
+            self.captureDeviceInput = newInput;
+        } else {
+            [self.captureSession addInput:self.captureDeviceInput];
         }
-    } else {
-       // self.flashAutoButton.hidden = YES;
-       // self.flashOnButton.hidden   = YES;
-       // self.flashOffButton.hidden  = YES;
+        [self.captureSession commitConfiguration];
     }
 }
 
 #pragma mark - UI相关和布局
 - (void)setupUI{
+    
+    [self.exchangeCamera setImagePosition:QMUIButtonImagePositionTop];
+    [self.flashOnButton setImagePosition:QMUIButtonImagePositionTop];
+
     
     self.pointLabel.layer.cornerRadius = 5;
     self.pointLabel.layer.masksToBounds = YES;
@@ -549,6 +547,7 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     } else {
         [self.shootBtn setImage:UIImageMake(@"shoot_normal") forState:UIControlStateNormal];
     }
+    self.selectedIndex = index;
     // 选中震动反馈
     UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
     [impactLight impactOccurred];
@@ -556,10 +555,14 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
 }
 - (IBAction)clickShootBtn:(UIButton *)sender {
     // 拍照
-    AVCaptureConnection *captureConnection=[self.captureStillImageOutput connectionWithMediaType:AVMediaTypeVideo];
-    [captureConnection setVideoOrientation:AVCaptureVideoOrientationPortrait];
-    AVCapturePhotoSettings *outputSetting = [AVCapturePhotoSettings photoSettings];
-    [self.captureStillImageOutput capturePhotoWithSettings:outputSetting delegate:self];
+    if (self.selectedIndex != 0) {
+        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%@",@(self.selectedIndex)]];
+    }else {
+        AVCaptureConnection *captureConnection=[self.captureStillImageOutput connectionWithMediaType:AVMediaTypeVideo];
+        [captureConnection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+        AVCapturePhotoSettings *outputSetting = [AVCapturePhotoSettings photoSettings];
+        [self.captureStillImageOutput capturePhotoWithSettings:outputSetting delegate:self];
+    }
 }
 #pragma mark - AVCapturePhotoCaptureDelegate -
 - (void)captureOutput:(AVCapturePhotoOutput *)captureOutput didFinishProcessingPhotoSampleBuffer:(nullable CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(nullable CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(nullable AVCaptureBracketedStillImageSettings *)bracketSettings error:(nullable NSError *)error {
@@ -570,7 +573,10 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     KB_PublishViewController *vc =[[KB_PublishViewController alloc] init];
     vc.image = image;
     [self.navigationController pushViewController:vc animated:YES];
+    // 停止捕获
+    [self.captureSession stopRunning];
     
+    //[self.captureSession startRunning];
 }
 
 @end
