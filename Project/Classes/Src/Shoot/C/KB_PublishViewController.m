@@ -13,7 +13,7 @@
     QMUIButton *_publishBtn;
     UITableView *_tableView;
 }
-
+@property(nonatomic, strong) NSString *titleText;
 @end
 
 @implementation KB_PublishViewController
@@ -40,6 +40,7 @@
     [_publishBtn setTitle:@"发布" forState:UIControlStateNormal];
     [_publishBtn setBackgroundImage:UIImageMake(@"") forState:UIControlStateNormal];
     [_publishBtn setBackgroundColor:UIColorMakeWithHex(@"#FFFFFF")];
+    [_publishBtn addTarget:self action:@selector(updateVideoToService) forControlEvents:UIControlEventTouchUpInside];
     _publishBtn.layer.cornerRadius = 5;
     [bottomView addSubview:_publishBtn];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,10 +70,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     KB_PublishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KB_PublishCell"];
     cell.image.image = self.image;
+    @weakify(self)
+    cell.textViewBlock = ^(NSString * str) {
+        @strongify(self)
+        self.titleText = str;
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return 132;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0;
@@ -81,4 +87,8 @@
     return 0;
 }
 
+#pragma mark - 上传 -
+- (void)updateVideoToService{
+    
+}
 @end

@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^TextViewBlock)(NSString *str);
 @interface KB_PublishCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *image;
-
+@property (nonatomic, copy) TextViewBlock textViewBlock;
 @end
 
 NS_ASSUME_NONNULL_END

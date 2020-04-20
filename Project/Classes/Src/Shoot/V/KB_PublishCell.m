@@ -18,13 +18,28 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.textView.delegate = self;
+    // 图片添加点击事件
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTapped)];
+    [self.imageView addGestureRecognizer:tapGesture];
 }
 
-- (void)textView:(QMUITextView *)textView didPreventTextChangeInRange:(NSRange)range replacementText:(NSString *)replacementText{
-    if (textView.text.length > 55) {
-        [SVProgressHUD showErrorWithStatus:@"最大字符不超过55个字"];
+- (BOOL)textViewShouldReturn:(QMUITextView *)textView {
+    [SVProgressHUD showSuccessWithStatus:textView.text];
+    // return YES 表示这次 return 按钮的点击是为了触发“发送”，而不是为了输入一个换行符
+    return YES;
+}
+// 将文字实时传递出去
+- (void)textViewDidChange:(UITextView *)textView{
+    if (self.textViewBlock) {
+        self.textViewBlock(textView.text);
     }
 }
 
-
+- (void)textView:(QMUITextView *)textView didPreventTextChangeInRange:(NSRange)range replacementText:(NSString *)replacementText {
+    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"标题不超过%@个字符",@(textView.maximumTextLength)]];
+}
+#pragma mark - 点击查看图片 -
+- (void)imageTapped{
+    
+}
 @end

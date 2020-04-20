@@ -253,10 +253,10 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     moreOperationController.items = @[
                                      // 第一行
                                      @[
-                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"jtsgdb") title:@"分享到微信" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
+                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享到微信" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
                                              [moreOperationController hideToBottom];
                                          }],
-                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"jtsgdb") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
+                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
                                              [moreOperationController hideToBottom];
                                          }
                                          ]

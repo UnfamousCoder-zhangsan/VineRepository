@@ -665,7 +665,7 @@
 		CBA10621230E72D100CD84E9 /* RequesetApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequesetApi.m; sourceTree = "<group>"; };
 		E6A3A8D11D40B31C0084EFD3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E6A3A8D31D40B32D0084EFD3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		E6C8A4441D405B870075353A /* Vines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vines.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6C8A4441D405B870075353A /* OTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C8A4481D405B880075353A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6C8A4531D405B880075353A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6C8A4581D405B880075353A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2025,7 +2025,7 @@
 		E6C8A4451D405B870075353A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E6C8A4441D405B870075353A /* Vines.app */,
+				E6C8A4441D405B870075353A /* OTunes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2088,7 +2088,7 @@
 			);
 			name = Project;
 			productName = LQProject;
-			productReference = E6C8A4441D405B870075353A /* Vines.app */;
+			productReference = E6C8A4441D405B870075353A /* OTunes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2533,7 +2533,7 @@
 					"-Istdc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LQProject.zhangshangtong;
-				PRODUCT_NAME = Vines;
+				PRODUCT_NAME = OTunes;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Project/Classes/General/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2688,7 +2688,7 @@
 					"-Istdc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangshangtong.ryy;
-				PRODUCT_NAME = Vines;
+				PRODUCT_NAME = OTunes;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Project/Classes/General/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2762,7 +2762,7 @@
 					"-Istdc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LQProject.zhangshangtong;
-				PRODUCT_NAME = Vines;
+				PRODUCT_NAME = OTunes;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Project/Classes/General/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

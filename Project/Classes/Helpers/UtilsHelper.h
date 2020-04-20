@@ -17,6 +17,13 @@
 /// @param albumBlock 选择相册回调
 + (void)showActionSheetWithMessage:(NSString *)message camera:(void (^)(void))cameraBlock album:(void (^)(void))albumBlock;
 
+/// 选择拍照或从图片选择浏览大图
+/// @param message 标题
+/// @param lookBlock  查看大图
+/// @param cameraBlock 选择相机回调
+/// @param albumBlock 选择相册回调
++ (void)showActionSheetWithMessage:(NSString *)message view:(void (^)(void))lookBlock camera:(void (^)(void))cameraBlock album:(void (^)(void))albumBlock;
+
 
 /// 拨打电话
 /// @param phoneNumber 电话号

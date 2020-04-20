@@ -570,17 +570,6 @@ typedef void(^PropertyChangeBlock) (AVCaptureDevice * captureDevice);
     KB_PublishViewController *vc =[[KB_PublishViewController alloc] init];
     vc.image = image;
     [self.navigationController pushViewController:vc animated:YES];
-    //UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-}
-- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo {
-    NSString *msg = nil ;
-    if(error != NULL){
-        msg = @"保存图片失败" ;
-    }else{
-        msg = @"保存图片成功" ;
-        
-    }
-    NSLog(@"+++++++++++%@", msg);
     
 }
 

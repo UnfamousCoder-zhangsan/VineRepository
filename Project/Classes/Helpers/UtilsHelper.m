@@ -38,6 +38,32 @@
     [PageRout_Maneger.currentNaviVC presentViewController:alertController animated:YES completion:nil];
 }
 
++ (void)showActionSheetWithMessage:(NSString *)message view:(void (^)(void))lookBlock camera:(void (^)(void))cameraBlock album:(void (^)(void))albumBlock{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *lookAction = [UIAlertAction actionWithTitle:@"查看大图"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *_Nonnull action) {
+        lookBlock ? lookBlock() : nil;
+    }];
+    
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *_Nonnull action) {
+        cameraBlock ? cameraBlock() : nil;
+    }];
+    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"从相册选择"
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction *_Nonnull action) {
+        albumBlock ? albumBlock() : nil;
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:lookAction];
+    [alertController addAction:cameraAction];
+    [alertController addAction:albumAction];
+    [alertController addAction:cancelAction];
+    
+    [PageRout_Maneger.currentNaviVC presentViewController:alertController animated:YES completion:nil];
+}
 + (void)callPhone:(NSString *)phoneNumber
 {
     if (phoneNumber.length == 0) {
