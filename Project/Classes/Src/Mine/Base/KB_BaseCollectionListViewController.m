@@ -29,7 +29,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.count += 20;
             
-            if (self.count >= 100) {
+            if (self.count >= 50) {
                 [self.collectionView.mj_footer endRefreshingWithNoMoreData];
             }else {
                 [self.collectionView.mj_footer endRefreshing];
@@ -147,7 +147,7 @@
     if (!_loadingView) {
         NSMutableArray *images = [NSMutableArray new];
         for (NSInteger i = 0; i < 4; i++) {
-            NSString *imageName = [NSString stringWithFormat:@"cm2_list_icn_loading%zd", i + 1];
+            NSString *imageName = [NSString stringWithFormat:@"cm2_list_icn_loading%ld", i + 1];
             
             UIImage *img = [self changeImageWithImage:[UIImage imageNamed:imageName] color:[UIColor redColor]];
             

@@ -69,4 +69,8 @@
 {
     return nil;
 }
+
+- (CGSize)DDAnimationLayout:(DDAnimationLayout *)layout atIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeZero;
+}
 @end

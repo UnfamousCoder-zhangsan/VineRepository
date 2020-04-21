@@ -11,7 +11,6 @@
 #import "KB_PersonalInformationVC.h"
 #import "KB_SettingInformationVC.h"
 
-#import "KBBaseListViewController.h"
 #import "KB_BaseCollectionListViewController.h"
 
 @interface KB_MineTVC ()<GKPageScrollViewDelegate, JXCategoryViewDelegate, UIScrollViewDelegate>
@@ -91,9 +90,8 @@
 - (void)mainTableViewDidScroll:(UIScrollView *)scrollView isMainCanScroll:(BOOL)isMainCanScroll {
     // 导航栏显隐
     CGFloat offsetY = scrollView.contentOffset.y;
-    // 0-200 0
-    // 200 - KDYHeaderHeigh - kNavBarheight 渐变从0-1
-    // > KDYHeaderHeigh - kNavBarheight 1
+    
+    
     CGFloat alpha = 0;
     if (offsetY < 200) {
         alpha = 0;
@@ -102,7 +100,6 @@
     }else {
         alpha = (offsetY - 200) / ((SCREEN_WIDTH * 375.0f / 345.0f) - NavigationBarHeight - 200);
     }
-   // self.gk_navBarAlpha = alpha;
     self.titleView.alpha = alpha;
 
     [self.headerView scrollViewDidScroll:offsetY];
@@ -159,6 +156,10 @@
     if (!_categoryView) {
         _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40.0f)];
         _categoryView.backgroundColor = UIColorMakeWithHex(@"#222222");
+        _categoryView.contentEdgeInsetLeft = 0;
+        _categoryView.contentEdgeInsetRight = 0;
+        _categoryView.cellSpacing = 0;
+        _categoryView.cellWidth = SCREEN_WIDTH / 2;
         _categoryView.titles = self.titles;
         _categoryView.delegate = self;
         _categoryView.titleColor = [UIColor grayColor];

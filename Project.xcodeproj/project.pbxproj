@@ -103,8 +103,6 @@
 		31C0AA7224422DE400110B18 /* PersonalInformationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */; };
 		31C0AA792442370300110B18 /* KB_PersonalInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA772442370300110B18 /* KB_PersonalInformationVC.m */; };
 		31C0AA7D2443637800110B18 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA7C2443637800110B18 /* Setting.storyboard */; };
-		31F8FB8C244A03970072609C /* KBBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8FB8B244A03970072609C /* KBBaseTableViewController.m */; };
-		31F8FB8F244A04680072609C /* KBBaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8FB8E244A04680072609C /* KBBaseListViewController.m */; };
 		31F8FB93244A0DDD0072609C /* KB_MineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8FB91244A0DDD0072609C /* KB_MineCollectionViewCell.m */; };
 		31F8FB94244A0DDD0072609C /* KB_MineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F8FB92244A0DDD0072609C /* KB_MineCollectionViewCell.xib */; };
 		31F8FB9A244A1FC30072609C /* KB_BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F8FB99244A1FC30072609C /* KB_BaseCollectionViewController.m */; };
@@ -120,6 +118,7 @@
 		51588CBC24418FBC00F120CB /* KBPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBB24418FBC00F120CB /* KBPickerItem.m */; };
 		51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBE244191D400F120CB /* CustomPickerItem.m */; };
 		51588CC2244197C700F120CB /* KBPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CC1244197C700F120CB /* KBPickerModel.m */; };
+		515E57FC244E8F4F0042D822 /* KB_BaseTableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515E57FB244E8F4F0042D822 /* KB_BaseTableListViewController.m */; };
 		5E36D3F4233F5688009E06AD /* UITabBar+badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E36D3F3233F5688009E06AD /* UITabBar+badge.m */; };
 		5E6D2E0923FE8FF9002BF332 /* LMRStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0023FE8FF9002BF332 /* LMRStyle.m */; };
 		5E6D2E0A23FE8FF9002BF332 /* LMReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0123FE8FF9002BF332 /* LMReportView.m */; };
@@ -431,10 +430,6 @@
 		31C0AA762442370300110B18 /* KB_PersonalInformationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PersonalInformationVC.h; sourceTree = "<group>"; };
 		31C0AA772442370300110B18 /* KB_PersonalInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PersonalInformationVC.m; sourceTree = "<group>"; };
 		31C0AA7C2443637800110B18 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
-		31F8FB8A244A03970072609C /* KBBaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBBaseTableViewController.h; sourceTree = "<group>"; };
-		31F8FB8B244A03970072609C /* KBBaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBBaseTableViewController.m; sourceTree = "<group>"; };
-		31F8FB8D244A04680072609C /* KBBaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBBaseListViewController.h; sourceTree = "<group>"; };
-		31F8FB8E244A04680072609C /* KBBaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBBaseListViewController.m; sourceTree = "<group>"; };
 		31F8FB90244A0DDD0072609C /* KB_MineCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineCollectionViewCell.h; sourceTree = "<group>"; };
 		31F8FB91244A0DDD0072609C /* KB_MineCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineCollectionViewCell.m; sourceTree = "<group>"; };
 		31F8FB92244A0DDD0072609C /* KB_MineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MineCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -464,6 +459,8 @@
 		51588CBE244191D400F120CB /* CustomPickerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPickerItem.m; sourceTree = "<group>"; };
 		51588CC0244197C700F120CB /* KBPickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerModel.h; sourceTree = "<group>"; };
 		51588CC1244197C700F120CB /* KBPickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerModel.m; sourceTree = "<group>"; };
+		515E57FA244E8F4F0042D822 /* KB_BaseTableListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_BaseTableListViewController.h; sourceTree = "<group>"; };
+		515E57FB244E8F4F0042D822 /* KB_BaseTableListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseTableListViewController.m; sourceTree = "<group>"; };
 		5E36D3F2233F5688009E06AD /* UITabBar+badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+badge.h"; sourceTree = "<group>"; };
 		5E36D3F3233F5688009E06AD /* UITabBar+badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+badge.m"; sourceTree = "<group>"; };
 		5E6D2DFE23FE8FF9002BF332 /* NSIndexPath+LMReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+LMReport.h"; sourceTree = "<group>"; };
@@ -1092,10 +1089,6 @@
 		3130FC7E243E160A00B9A0D6 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				31F8FB8A244A03970072609C /* KBBaseTableViewController.h */,
-				31F8FB8B244A03970072609C /* KBBaseTableViewController.m */,
-				31F8FB8D244A04680072609C /* KBBaseListViewController.h */,
-				31F8FB8E244A04680072609C /* KBBaseListViewController.m */,
 				31F8FB98244A1FC30072609C /* KB_BaseCollectionViewController.h */,
 				31F8FB99244A1FC30072609C /* KB_BaseCollectionViewController.m */,
 				31F8FB9B244A23F70072609C /* KB_BaseCollectionListViewController.h */,
@@ -1296,6 +1289,15 @@
 			path = PickerScrollView;
 			sourceTree = "<group>";
 		};
+		515E57F9244E89D30042D822 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				515E57FA244E8F4F0042D822 /* KB_BaseTableListViewController.h */,
+				515E57FB244E8F4F0042D822 /* KB_BaseTableListViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		5E6D2DFD23FE8FF9002BF332 /* LMReport */ = {
 			isa = PBXGroup;
 			children = (
@@ -1317,6 +1319,7 @@
 		5E8E040023B060930023A484 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				515E57F9244E89D30042D822 /* Base */,
 				313662D024474B6800FB58F9 /* M */,
 				313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */,
 				313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */,
@@ -2289,14 +2292,12 @@
 				3130FC59243CADDC00B9A0D6 /* HTTPLogging.m in Sources */,
 				3130FC6F243CADDC00B9A0D6 /* UIViewController+ZFPlayerRotation.m in Sources */,
 				51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */,
-				31F8FB8F244A04680072609C /* KBBaseListViewController.m in Sources */,
 				3130FC77243CADDC00B9A0D6 /* ZFSuspendPlayerControlView.m in Sources */,
 				CBA10512230E717300CD84E9 /* UtilsHelper.m in Sources */,
 				3130FC4B243CADDB00B9A0D6 /* KTVHCDataUnitQueue.m in Sources */,
 				86B2BCED230E6B5100273AA3 /* DACircularProgressView.m in Sources */,
 				3130FC57243CADDC00B9A0D6 /* HTTPRedirectResponse.m in Sources */,
 				A48C36DF205E2FD5003EBDDA /* UserCenter.m in Sources */,
-				31F8FB8C244A03970072609C /* KBBaseTableViewController.m in Sources */,
 				313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */,
 				3130FC3A243CADDB00B9A0D6 /* KTVHCPathTool.m in Sources */,
 				A48C36B0205E2FD5003EBDDA /* QMUIConfigurationTemplate.m in Sources */,
@@ -2337,6 +2338,7 @@
 				5E6D2E0C23FE8FF9002BF332 /* LMRLabel.m in Sources */,
 				3130FC44243CADDB00B9A0D6 /* KTVHCDataUnit.m in Sources */,
 				A48C36B6205E2FD5003EBDDA /* UIView+LSCore.m in Sources */,
+				515E57FC244E8F4F0042D822 /* KB_BaseTableListViewController.m in Sources */,
 				CBA1060D230E71E900CD84E9 /* InputItem.m in Sources */,
 				86B2BD07230E6B5100273AA3 /* BRStringPickerView.m in Sources */,
 				3130FB94243CAC2A00B9A0D6 /* SmallVideoCell.m in Sources */,

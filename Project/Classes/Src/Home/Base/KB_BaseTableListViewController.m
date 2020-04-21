@@ -1,12 +1,12 @@
 //
-//  KB_BaseViewController.m
+//  KB_BaseTableListViewController.m
 //  Project
 //
-//  Created by hi  kobe on 2020/4/6.
+//  Created by hualv on 2020/4/21.
 //  Copyright © 2020 hiKobe@lsirCode. All rights reserved.
 //
 
-#import "KB_BaseViewController.h"
+#import "KB_BaseTableListViewController.h"
 #import "SmallVideoPlayCell.h"
 #import "SmallVideoModel.h"
 #import "DDVideoPlayerManager.h"
@@ -15,30 +15,73 @@
 #import "KB_HomeVideoDetailModel.h"
 
 static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
-#define cellHeight SCREEN_HEIGHT - TabBarHeight
+@interface KB_BaseTableListViewController ()<ZFManagerPlayerDelegate, SmallVideoPlayCellDlegate>
 
-@interface KB_BaseViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, SmallVideoPlayCellDlegate>
+@property (nonatomic, strong) UIImageView  *loadingView;
+@property (nonatomic, strong) UILabel      *loadLabel;
+/// 记录当前播放的视频
+@property (nonatomic, assign) NSInteger currentPlayIndex;
 @property (nonatomic, strong) UIView *fatherView;
-//这个是播放视频的管理器
+///这个是播放视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *videoPlayerManager;
-//这个是预加载视频的管理器
+///这个是预加载视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *preloadVideoPlayerManager;
+///视频数据
+@property (nonatomic, strong) NSMutableArray *modelArray;
+
 @property (nonatomic, copy) void(^listScrollViewScrollCallback)(UIScrollView *scrollView);
-@property (nonatomic, strong) UISwipeGestureRecognizer *recognize;
 
 @end
 
-@implementation KB_BaseViewController
+@implementation KB_BaseTableListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self createUI];
-    // 添加下拉刷新手势
-    self.recognize = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pullDownToRefresh)];
-    self.recognize.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.tableView addGestureRecognizer:self.recognize];
-    //[self getDataList];
+    self.currentPlayIndex = 0;
+    
+    if (self.shouldLoadData) {
+         [self.tableView addSubview:self.loadingView];
+         [self.tableView addSubview:self.loadLabel];
+         [self.loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.centerY.equalTo(self.tableView);
+             make.centerX.equalTo(self.tableView);
+         }];
+         
+         [self.loadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.top.equalTo(self.loadingView.mas_bottom).offset(10.0f);
+             make.centerX.equalTo(self.loadingView);
+         }];
+         
+         //[self loadData];
+     }
+}
+
+- (void)initTableView{
+    [super initTableView];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.pagingEnabled = YES;
+    self.tableView.bounces = NO;
+    [self.view addSubview:self.tableView];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.estimatedRowHeight = SCREEN_HEIGHT - TabBarHeight;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.backgroundColor = UIColorMakeWithHex(@"#FFFFFF");
+    [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
+
+    [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.with.offset(0);
+        make.height.offset(SCREEN_HEIGHT - TabBarHeight);
+    }];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self playIndex:self.currentPlayIndex];
+        if(self.modelArray.count > (self.currentPlayIndex + 1)) {
+            [self preLoadIndex:self.currentPlayIndex + 1];
+        }
+    });
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -56,11 +99,20 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
         [self.videoPlayerManager autoPause];
     }
 }
-- (void)pullDownToRefresh{
-    LQLog(@"tableview 下拉刷新");
+- (void)addHeaderRefresh {
+    
+    ///网络数据加载
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.tableView.mj_header endRefreshing];
+//
+//            self.count = 30;
+//            [self.tableView reloadData];
+//        });
+//    }];
 }
-
 #pragma mark - GKPageListViewDelegate
+
 - (UIView *)listView {
     return self.view;
 }
@@ -73,40 +125,79 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     self.listScrollViewScrollCallback = callback;
 }
 
-- (void)createUI {
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.pagingEnabled = YES;
-    self.tableView.bounces = NO;
-    [self.view addSubview:self.tableView];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.tableView.estimatedRowHeight = SCREEN_HEIGHT - TabBarHeight;
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    self.tableView.backgroundColor = UIColorMakeWithHex(@"#222222");
-    [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
-
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.with.offset(0);
-        make.height.offset(SCREEN_HEIGHT - TabBarHeight);
-    }];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self playIndex:self.currentPlayIndex];
-        if(self.modelArray.count > (self.currentPlayIndex + 1)) {
-            [self preLoadIndex:self.currentPlayIndex + 1];
-        }
-    });
-    
+- (void)showLoading {
+    self.loadingView.hidden = NO;
+    self.loadLabel.hidden   = NO;
+    [self.loadingView startAnimating];
 }
 
+- (void)hideLoading {
+    [self.loadingView stopAnimating];
+    self.loadingView.hidden = YES;
+    self.loadLabel.hidden   = YES;
+}
+
+- (UIImage *)changeImageWithImage:(UIImage *)image color:(UIColor *)color {
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0, image.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    CGContextClipToMask(context, rect, image.CGImage);
+    [color setFill];
+    CGContextFillRect(context, rect);
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+#pragma mark - 懒加载
+- (UIImageView *)loadingView {
+    if (!_loadingView) {
+        NSMutableArray *images = [NSMutableArray new];
+        for (NSInteger i = 0; i < 4; i++) {
+            NSString *imageName = [NSString stringWithFormat:@"cm2_list_icn_loading%ld", i + 1];
+            
+            UIImage *img = [self changeImageWithImage:[UIImage imageNamed:imageName] color:[UIColor redColor]];
+            
+            [images addObject:img];
+        }
+        
+        for (NSInteger i = 4; i > 0; i--) {
+            NSString *imageName = [NSString stringWithFormat:@"cm2_list_icn_loading%zd", i];
+            
+            UIImage *img = [self changeImageWithImage:[UIImage imageNamed:imageName] color:[UIColor redColor]];
+            
+            [images addObject:img];
+        }
+        
+        UIImageView *loadingView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20.0f, 20.0f)];
+        loadingView.animationImages     = images;
+        loadingView.animationDuration   = 0.75;
+        loadingView.hidden              = YES;
+        
+        _loadingView = loadingView;
+    }
+    return _loadingView;
+}
+
+- (UILabel *)loadLabel {
+    if (!_loadLabel) {
+        _loadLabel              = [UILabel new];
+        _loadLabel.font         = [UIFont systemFontOfSize:14.0f];
+        _loadLabel.textColor    = [UIColor grayColor];
+        _loadLabel.text         = @"正在加载...";
+        _loadLabel.hidden       = YES;
+    }
+    return _loadLabel;
+}
 #pragma mrak - UITableViewDataSource & UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    self.tableView.mj_footer.hidden = self.count == 0;
     return self.modelArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -155,7 +246,6 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     BOOL useDownAndPlay = NO;
     AVLayerVideoGravity videoGravity = AVLayerVideoGravityResizeAspect;
     
-    //关注,推荐
     SmallVideoModel *currentPlaySmallVideoModel = self.modelArray[currentIndex];
     
     artist = currentPlaySmallVideoModel.artist;
