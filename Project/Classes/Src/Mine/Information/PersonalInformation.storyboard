@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -172,8 +172,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fsddsvsdv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hy5-Yh-eUg">
-                                                    <rect key="frame" x="291.5" y="15" width="78.5" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hy5-Yh-eUg">
+                                                    <rect key="frame" x="370" y="15" width="0.0" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="b5k-9w-WfF"/>
                                                     </constraints>
@@ -208,8 +208,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEE-vB-C1g">
-                                                    <rect key="frame" x="328" y="15" width="42" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEE-vB-C1g">
+                                                    <rect key="frame" x="370" y="15" width="0.0" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="ZFx-fb-MOy"/>
                                                     </constraints>
@@ -244,8 +244,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xf-56-PtG">
-                                                    <rect key="frame" x="328" y="15" width="42" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xf-56-PtG">
+                                                    <rect key="frame" x="370" y="15" width="0.0" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="WJj-BY-2g5"/>
                                                     </constraints>
@@ -282,6 +282,12 @@
                             <outlet property="delegate" destination="FNe-tq-619" id="btN-kh-ZEA"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="arealabel" destination="3xf-56-PtG" id="CA7-1T-O3A"/>
+                        <outlet property="brithdayLabel" destination="DEE-vB-C1g" id="gEa-dS-tRK"/>
+                        <outlet property="genderLabel" destination="hy5-Yh-eUg" id="UKe-f5-87L"/>
+                        <outlet property="nameLabel" destination="NcM-SB-IIL" id="Ezi-HJ-bOp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GK5-P2-9Rb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

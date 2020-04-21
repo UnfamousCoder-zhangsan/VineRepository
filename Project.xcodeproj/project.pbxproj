@@ -92,6 +92,8 @@
 		313286B7244CA8A10022E8EC /* KB_PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313286B5244CA8A10022E8EC /* KB_PublishViewController.m */; };
 		313286BF244CAC700022E8EC /* KB_PublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313286BD244CAC700022E8EC /* KB_PublishCell.m */; };
 		313286C0244CAC700022E8EC /* KB_PublishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313286BE244CAC700022E8EC /* KB_PublishCell.xib */; };
+		31354261244F414300CFAC1E /* KB_ModifyNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31354260244F414300CFAC1E /* KB_ModifyNameVC.m */; };
+		31354264244F462200CFAC1E /* KB_ModifyIntroductionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31354263244F462200CFAC1E /* KB_ModifyIntroductionVC.m */; };
 		313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */; };
 		313662D324474BF000FB58F9 /* KB_HomeVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 313662D224474BF000FB58F9 /* KB_HomeVideoDetailModel.m */; };
 		313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */; };
@@ -411,6 +413,10 @@
 		313286BC244CAC700022E8EC /* KB_PublishCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PublishCell.h; sourceTree = "<group>"; };
 		313286BD244CAC700022E8EC /* KB_PublishCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PublishCell.m; sourceTree = "<group>"; };
 		313286BE244CAC700022E8EC /* KB_PublishCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_PublishCell.xib; sourceTree = "<group>"; };
+		3135425F244F414300CFAC1E /* KB_ModifyNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_ModifyNameVC.h; sourceTree = "<group>"; };
+		31354260244F414300CFAC1E /* KB_ModifyNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ModifyNameVC.m; sourceTree = "<group>"; };
+		31354262244F462200CFAC1E /* KB_ModifyIntroductionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_ModifyIntroductionVC.h; sourceTree = "<group>"; };
+		31354263244F462200CFAC1E /* KB_ModifyIntroductionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ModifyIntroductionVC.m; sourceTree = "<group>"; };
 		313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomePageViewController.h; sourceTree = "<group>"; };
 		313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_HomePageViewController.m; sourceTree = "<group>"; };
 		313662D124474BF000FB58F9 /* KB_HomeVideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomeVideoDetailModel.h; sourceTree = "<group>"; };
@@ -1246,6 +1252,10 @@
 			children = (
 				5153B83F2444542B0090B8A8 /* KB_SettingInformationVC.h */,
 				5153B8402444542B0090B8A8 /* KB_SettingInformationVC.m */,
+				3135425F244F414300CFAC1E /* KB_ModifyNameVC.h */,
+				31354260244F414300CFAC1E /* KB_ModifyNameVC.m */,
+				31354262244F462200CFAC1E /* KB_ModifyIntroductionVC.h */,
+				31354263244F462200CFAC1E /* KB_ModifyIntroductionVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -2283,6 +2293,7 @@
 				A48C36B5205E2FD5003EBDDA /* Timer+Extension.swift in Sources */,
 				CB86BC17231785430011207A /* PayInputItem.m in Sources */,
 				31F8FBA0244AC5D90072609C /* InformationModel.m in Sources */,
+				31354264244F462200CFAC1E /* KB_ModifyIntroductionVC.m in Sources */,
 				863986E42329EC8600BC6934 /* UIImage+Compression.m in Sources */,
 				313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */,
 				86B2BCF2230E6B5100273AA3 /* MWTapDetectingImageView.m in Sources */,
@@ -2344,6 +2355,7 @@
 				3130FB94243CAC2A00B9A0D6 /* SmallVideoCell.m in Sources */,
 				A48C36C7205E2FD5003EBDDA /* QDCommonTableViewController.m in Sources */,
 				3130FC5E243CADDC00B9A0D6 /* MultipartMessageHeader.m in Sources */,
+				31354261244F414300CFAC1E /* KB_ModifyNameVC.m in Sources */,
 				3130FC54243CADDB00B9A0D6 /* HTTPDynamicFileResponse.m in Sources */,
 				3130FC41243CADDB00B9A0D6 /* KTVHCDataStorage.m in Sources */,
 				31F8FB9A244A1FC30072609C /* KB_BaseCollectionViewController.m in Sources */,
