@@ -47,8 +47,12 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (!self.isAutoPlay) {
-        [self.videoPlayerManager pause];
+    if (self.isViewLoaded && self.view.window) {
+        //正在显示
+        [self.videoPlayerManager autoPlay];
+    } else {
+        //非正在显示
+        [self.videoPlayerManager autoPause];
     }
 }
 - (void)pullDownToRefresh{

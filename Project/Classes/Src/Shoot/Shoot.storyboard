@@ -21,22 +21,23 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-0c-5Kg" customClass="QMUIButton">
-                                <rect key="frame" x="359" y="134" width="40" height="40"/>
+                                <rect key="frame" x="359" y="214" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Yxl-uL-t2X"/>
                                     <constraint firstAttribute="width" constant="40" id="jbW-mZ-ufp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="闪光灯" image="shoot_flash">
+                                <state key="normal" image="shoot_off">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <state key="selected" title="闪光灯" image="flash_on"/>
                                 <connections>
                                     <action selector="flashModeEvent:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="1ow-7W-MIS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxS-cB-7FT" customClass="QMUIButton">
-                                <rect key="frame" x="359" y="74" width="40" height="40"/>
+                                <rect key="frame" x="359" y="144" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="62H-EU-H4g"/>
@@ -51,15 +52,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUN-N0-7hD">
-                                <rect key="frame" x="359" y="194" width="40" height="40"/>
+                                <rect key="frame" x="359" y="284" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="F0a-kY-A4J"/>
                                     <constraint firstAttribute="height" constant="40" id="eVZ-bd-CKh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="倒计时" image="shoot_countdown">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" title="倒计时" image="CountDown-normal"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzv-t0-fvF">
                                 <rect key="frame" x="177" y="692" width="60" height="60"/>
@@ -70,7 +69,7 @@
                                 </constraints>
                                 <state key="normal" image="shoot_normal"/>
                                 <connections>
-                                    <action selector="clickShootBtn:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="Awn-pG-sBz"/>
+                                    <action selector="clickShootBtn:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="4d8-eo-rXc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5Z-az-Qkx">
@@ -80,7 +79,7 @@
                                     <constraint firstAttribute="height" constant="40" id="KcC-lB-j53"/>
                                     <constraint firstAttribute="width" constant="40" id="mfY-zf-CI9"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="back_left"/>
+                                <state key="normal" backgroundImage="closePaster_normal"/>
                                 <connections>
                                     <action selector="closeEvent:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="uIj-gb-Zyg"/>
                                 </connections>
@@ -113,8 +112,8 @@
                         <constraints>
                             <constraint firstItem="QfE-PK-2ff" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="-10" id="24C-3v-e2Y"/>
                             <constraint firstItem="8nA-QN-h1c" firstAttribute="leading" secondItem="Nzv-t0-fvF" secondAttribute="trailing" constant="60" id="69m-tS-AEY"/>
-                            <constraint firstItem="pxS-cB-7FT" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="30" id="8il-dt-ZDF"/>
-                            <constraint firstItem="AUN-N0-7hD" firstAttribute="top" secondItem="Y2P-0c-5Kg" secondAttribute="bottom" constant="20" id="EHf-N8-XNh"/>
+                            <constraint firstItem="pxS-cB-7FT" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="100" id="8il-dt-ZDF"/>
+                            <constraint firstItem="AUN-N0-7hD" firstAttribute="top" secondItem="Y2P-0c-5Kg" secondAttribute="bottom" constant="30" id="EHf-N8-XNh"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="Y2P-0c-5Kg" secondAttribute="trailing" constant="15" id="IeX-QC-hCc"/>
                             <constraint firstItem="e6B-y7-4Ne" firstAttribute="leading" secondItem="7Vc-p1-kMH" secondAttribute="leading" id="KuL-u3-mj7"/>
                             <constraint firstItem="lDv-4s-kED" firstAttribute="bottom" secondItem="e6B-y7-4Ne" secondAttribute="bottom" id="Kwr-46-cqN"/>
@@ -125,7 +124,7 @@
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="bottom" secondItem="e6B-y7-4Ne" secondAttribute="bottom" id="aKm-qA-9uV"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="QfE-PK-2ff" secondAttribute="trailing" id="eD9-Bx-mC9"/>
                             <constraint firstItem="8nA-QN-h1c" firstAttribute="centerY" secondItem="Nzv-t0-fvF" secondAttribute="centerY" id="eVu-lP-oLT"/>
-                            <constraint firstItem="Y2P-0c-5Kg" firstAttribute="top" secondItem="pxS-cB-7FT" secondAttribute="bottom" constant="20" id="fQW-bT-3aP"/>
+                            <constraint firstItem="Y2P-0c-5Kg" firstAttribute="top" secondItem="pxS-cB-7FT" secondAttribute="bottom" constant="30" id="fQW-bT-3aP"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="AUN-N0-7hD" secondAttribute="trailing" constant="15" id="if5-6p-1Tq"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="pxS-cB-7FT" secondAttribute="trailing" constant="15" id="jRu-4o-hT1"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="e6B-y7-4Ne" secondAttribute="trailing" id="mNI-EL-wxs"/>
@@ -139,7 +138,7 @@
                     <connections>
                         <outlet property="contentView" destination="QfE-PK-2ff" id="ywe-tH-p7T"/>
                         <outlet property="exchangeCamera" destination="pxS-cB-7FT" id="4FR-bZ-07x"/>
-                        <outlet property="flashOnButton" destination="Y2P-0c-5Kg" id="lZS-k8-0Ow"/>
+                        <outlet property="flashOnButton" destination="Y2P-0c-5Kg" id="Qz1-e5-OvK"/>
                         <outlet property="pickerScrollView" destination="e6B-y7-4Ne" id="kfu-GI-fb8"/>
                         <outlet property="pointLabel" destination="lDv-4s-kED" id="m30-bB-QHD"/>
                         <outlet property="shootBtn" destination="Nzv-t0-fvF" id="gIw-Q6-wfI"/>
@@ -151,11 +150,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back_left" width="33" height="33"/>
+        <image name="CountDown-normal" width="44" height="44"/>
         <image name="cameraex" width="28.5" height="24"/>
+        <image name="closePaster_normal" width="60" height="60"/>
+        <image name="flash_on" width="70" height="70"/>
         <image name="shoot_album" width="44" height="44"/>
-        <image name="shoot_countdown" width="44" height="44"/>
-        <image name="shoot_flash" width="44" height="44"/>
-        <image name="shoot_normal" width="44.5" height="44"/>
+        <image name="shoot_normal" width="89" height="88"/>
+        <image name="shoot_off" width="70" height="70"/>
     </resources>
 </document>

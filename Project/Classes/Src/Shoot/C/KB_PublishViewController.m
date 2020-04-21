@@ -9,11 +9,17 @@
 #import "KB_PublishViewController.h"
 #import "KB_PublishCell.h"
 
-@interface KB_PublishViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface KB_PublishViewController ()<UITableViewDelegate,UITableViewDataSource,QMUIImagePreviewViewDelegate>{
     QMUIButton *_publishBtn;
     UITableView *_tableView;
 }
 @property(nonatomic, strong) NSString *titleText;
+
+@property (nonatomic, strong) QMUIImagePreviewViewController *imagePreviewViewController;
+/// 保存headerImage
+@property (nonatomic, strong) UIImageView *imageView;
+
+@property (nonatomic, assign) BOOL isShow;
 @end
 
 @implementation KB_PublishViewController
@@ -69,11 +75,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     KB_PublishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KB_PublishCell"];
-    cell.image.image = self.image;
+    cell.uploadImageView.image = self.image;
+    self.imageView = cell.uploadImageView;
     @weakify(self)
     cell.textViewBlock = ^(NSString * str) {
         @strongify(self)
         self.titleText = str;
+    };
+    cell.imageViewTapBlock = ^{
+        @strongify(self)
+        [self handleImageBrowseEventWith:self.imageView];
     };
     return cell;
 }
@@ -90,5 +101,53 @@
 #pragma mark - 上传 -
 - (void)updateVideoToService{
     
+    if (self.titleText.length == 0 && !self.isShow) {
+        self.isShow = YES;
+        @weakify(self)
+        [AlertHelper showAlertMessage:@"你还未填写标题哦" okBlock:^{
+             @strongify(self)
+            self.isShow = YES;
+        }];
+        return;
+    }
+    [SVProgressHUD showWithStatus:@"上传中"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+        [PageRout_Maneger.currentNaviVC dismissViewControllerAnimated:YES completion:^{
+            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+        }];
+    });
+}
+#pragma mark - 点击查看大图 -
+- (void)handleImageBrowseEventWith:(UIView *)view{
+    if (!self.imagePreviewViewController) {
+        self.imagePreviewViewController = [[QMUIImagePreviewViewController alloc] init];
+        self.imagePreviewViewController.presentingStyle = QMUIImagePreviewViewControllerTransitioningStyleZoom;
+        self.imagePreviewViewController.imagePreviewView.delegate = self;
+        self.imagePreviewViewController.sourceImageView = ^UIView * _Nullable{
+            return view;
+        };
+    }
+    [self.navigationController presentViewController:self.imagePreviewViewController animated:YES completion:nil];
+}
+
+#pragma mark - QMUIImagePreviewViewDelegate -
+- (NSUInteger)numberOfImagesInImagePreviewView:(QMUIImagePreviewView *)imagePreviewView{
+    return 1;
+}
+
+- (void)imagePreviewView:(QMUIImagePreviewView *)imagePreviewView renderZoomImageView:(QMUIZoomImageView *)zoomImageView atIndex:(NSUInteger)index{
+    // 模拟网络加载
+    zoomImageView.image = self.image;
+}
+
+- (QMUIImagePreviewMediaType)imagePreviewView:(QMUIImagePreviewView *)imagePreviewView assetTypeAtIndex:(NSUInteger)index{
+    return QMUIImagePreviewMediaTypeImage;
+}
+
+#pragma mark - QMUIZoomImageViewDelegate -
+- (void)singleTouchInZoomingImageView:(QMUIZoomImageView *)zoomImageView location:(CGPoint)location{
+    //退出图片预览
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
