@@ -8,7 +8,7 @@
 
 #import "PersonalInformationHeaderView.h"
 
-@interface PersonalInformationHeaderView()<UINavigationControllerDelegate,QMUIImagePickerViewControllerDelegate,QMUIAlbumViewControllerDelegate,QMUIImagePreviewViewDelegate>
+@interface PersonalInformationHeaderView()<UINavigationControllerDelegate,QMUIImagePickerViewControllerDelegate,QMUIAlbumViewControllerDelegate,QMUIImagePreviewViewDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
@@ -30,45 +30,86 @@
 
 - (void)tapEvent:(UITapGestureRecognizer *)gesture
 {
-    
+    PHAuthorizationStatus author = [PHPhotoLibrary authorizationStatus];
     //点击了更换头像
     [UtilsHelper showActionSheetWithMessage:@"选择方式" view:^{
         //浏览大图
         [self handleImageBrowseEvent];
     } camera:^{
         //拍照
-        
+        if (author == kCLAuthorizationStatusRestricted || author == kCLAuthorizationStatusDenied) {
+            //无权限
+            [AlertHelper showAlertMessage:@"请打开相机权限" okBlock:nil];
+        } else {
+            [self takePhotoUseCamera];
+        }
     } album:^{
         //相册
-        if ([QMUIAssetsManager authorizationStatus] != QMUIAssetAuthorizationStatusNotDetermined) {
-            [QMUIAssetsManager requestAuthorization:^(QMUIAssetAuthorizationStatus status) {
-                [self presentAlbumViewController];
-            }];
-        }else{
-            [self presentAlbumViewController];
+        if (author == kCLAuthorizationStatusRestricted || author == kCLAuthorizationStatusDenied) {
+            //无权限
+            [AlertHelper showAlertMessage:@"请打开相册权限" okBlock:nil];
+        } else {
+            [self authorizationPresentAlbumViewController];
         }
+        
     }];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
-//    if (info) {
-//        <#statements#>
-//    }
-    
+#pragma mark - 拍照
+- (void)takePhotoUseCamera
+{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+
+    BOOL isCameraAvailable = [UIImagePickerController isSourceTypeAvailable:sourceType];
+
+    if (isCameraAvailable) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = sourceType;
+
+        [PageRout_Maneger.currentNaviVC presentViewController:picker animated:YES completion:nil];
+    } else {
+        [AlertHelper showAlertMessage:@"无法访问您的照相机！请前往系统设置开启应用的相机访问权限！" okBlock:nil];
+    }
 }
 
+#pragma mark - 选择图片
+- (void)authorizationPresentAlbumViewController
+{
+    // 请求访问照片库的权限，在 iOS 8 或以上版本中可以利用这个方法弹出 Alert 询问用户是否授权
+    if ([QMUIAssetsManager authorizationStatus] == QMUIAssetAuthorizationStatusNotDetermined) {
+        __weak __typeof(self) weakSelf = self;
+        [QMUIAssetsManager requestAuthorization:^(QMUIAssetAuthorizationStatus status) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf presentAlbumViewController];
+            });
+        }];
+    } else {
+        [self presentAlbumViewController];
+    }
+}
+
+
 - (void)presentAlbumViewController{
+    // 创建一个 QMUIAlbumViewController 实例用于呈现相薄列表
     QMUIAlbumViewController *albumViewController = [[QMUIAlbumViewController alloc] init];
     albumViewController.albumViewControllerDelegate = self;
-    albumViewController.contentType = QMUIAlbumContentTypeOnlyPhoto;
-    albumViewController.title = @"选择头像";
-    albumViewController.view.tag = 1084;
-    QDNavigationController *navigationController = [[QDNavigationController alloc] initWithRootViewController:albumViewController];
-    
-    // 获取最近发送图片时使用过的相簿，如果有则直接进入该相簿
-    [albumViewController pickLastAlbumGroupDirectlyIfCan];
-    
-    [PageRout_Maneger.currentNaviVC presentViewController:navigationController animated:YES completion:NULL];
+    albumViewController.contentType = QMUIAlbumContentTypeOnlyPhoto; //只读取图片
+    albumViewController.title = @"选择图片";
+    QMUINavigationController *navigationController = [[QMUINavigationController alloc] initWithRootViewController:albumViewController];
+
+     // 获取最近发送图片时使用过的相簿，如果有则直接进入该相簿
+
+     QMUIAssetsGroup *assetsGroup = [QMUIImagePickerHelper assetsGroupOfLastPickerAlbumWithUserIdentify:nil];
+     if (assetsGroup) {
+         QMUIImagePickerViewController *imagePickerViewController = [self imagePickerViewControllerForAlbumViewController:albumViewController];
+
+         [imagePickerViewController refreshWithAssetsGroup:assetsGroup];
+         imagePickerViewController.title = [assetsGroup name];
+         [navigationController pushViewController:imagePickerViewController animated:NO];
+     }
+
+     [PageRout_Maneger.currentNaviVC presentViewController:navigationController animated:YES completion:NULL];
     
 }
 #pragma mark - <QMUIAlbumViewControllerDelegate>
@@ -76,48 +117,45 @@
     QMUIImagePickerViewController *imagePickerViewController = [[QMUIImagePickerViewController alloc] init];
     imagePickerViewController.imagePickerViewControllerDelegate = self;
     imagePickerViewController.maximumSelectImageCount = 1;
-    imagePickerViewController.view.tag = albumViewController.view.tag;
-    imagePickerViewController.allowsMultipleSelection = NO;
+    imagePickerViewController.allowsMultipleSelection = NO; //不允许多选图片
     
     return imagePickerViewController;
 }
 
-//- (QMUIImagePickerPreviewViewController *)imagePickerPreviewViewControllerForImagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController{
-//}
+#pragma mark - <QMUIImagePickerViewControllerDelegate>
 
-//- (void)imagePickerPreviewViewController:(QDSingleImagePickerPreviewViewController *)imagePickerPreviewViewController didSelectImageWithImagesAsset:(QMUIAsset *)imageAsset {
-//    // 储存最近选择了图片的相册，方便下次直接进入该相册
-//    [QMUIImagePickerHelper updateLastestAlbumWithAssetsGroup:imagePickerPreviewViewController.QMUIAlbumContentTypeOnlyPhoto ablumContentType:QMUIAlbumContentTypeOnlyPhoto userIdentify:nil];
-//    // 显示 loading
-//    //[self startLoading];
-//    [imageAsset requestImageData:^(NSData *imageData, NSDictionary<NSString *,id> *info, BOOL isGif, BOOL isHEIC) {
-//        UIImage *targetImage = nil;
-//        if (isGif) {
-//            targetImage = [UIImage qmui_animatedImageWithData:imageData];
-//        } else {
-//            targetImage = [UIImage imageWithData:imageData];
-//            if (isHEIC) {
-//                // iOS 11 中新增 HEIF/HEVC 格式的资源，直接发送新格式的照片到不支持新格式的设备，照片可能会无法识别，可以先转换为通用的 JPEG 格式再进行使用。
-//                // 详细请浏览：https://github.com/Tencent/QMUI_iOS/issues/224
-//                targetImage = [UIImage imageWithData:UIImageJPEGRepresentation(targetImage, 1)];
-//            }
-//        }
-//        [self performSelector:@selector(setAvatarWithAvatarImage:) withObject:targetImage afterDelay:1.8];
-//    }];
-//}
-- (void)sendImageWithImagesAssetArray:(NSMutableArray<QMUIAsset *> *)imagesAssetArray {
-    //__weak __typeof(self)weakSelf = self;
-    
-    for (QMUIAsset *asset in imagesAssetArray) {
-        [QMUIImagePickerHelper requestImageAssetIfNeeded:asset completion:^(QMUIAssetDownloadStatus downloadStatus, NSError *error) {
-            if (downloadStatus == QMUIAssetDownloadStatusDownloading) {
-                //[weakSelf startLoadingWithText:@"从 iCloud 加载中"];
-            } else if (downloadStatus == QMUIAssetDownloadStatusSucceed) {
-               // [weakSelf sendImageWithImagesAssetArrayIfDownloadStatusSucceed:imagesAssetArray];
-            } else {
-               // [weakSelf showTipLabelWithText:@"iCloud 下载错误，请重新选图"];
-            }
-        }];
+- (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController didFinishPickingImageWithImagesAssetArray:(NSMutableArray<QMUIAsset *> *)imagesAssetArray
+{
+    // 储存最近选择了图片的相册，方便下次直接进入该相册
+    [QMUIImagePickerHelper updateLastestAlbumWithAssetsGroup:imagePickerViewController.assetsGroup ablumContentType:QMUIAlbumContentTypeOnlyPhoto userIdentify:nil];
+    @weakify(self)
+    [imagesAssetArray enumerateObjectsUsingBlock:^(QMUIAsset *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        @strongify(self)
+        UIImage *image = obj.originImage;
+        if (!image) {
+            image = obj.previewImage;
+        }
+        if (image) {
+           // 设置头像
+            self.headerImage.image = image;
+        }
+    }];
+}
+
+#pragma mark -imagePicker delegate - 用于拍照 获取回调
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+
+    // 当选择的类型是图片
+    if ([type isEqualToString:@"public.image"]) {
+        // 关闭相册界面
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        // 先把图片转成NSData
+        UIImage *editImg = [info objectForKey:UIImagePickerControllerOriginalImage];
+
+        // 设置头像
+        self.headerImage.image = editImg;
     }
 }
 #pragma mark - 设置头像 - 

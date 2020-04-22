@@ -56,6 +56,7 @@
         switch (indexPath.row) {
             case 4:
                 //
+                [AlertHelper showAlertMessage:[NSString stringWithFormat:@"关于%@\n当前版本号为:%@",App_Name,App_Version] okBlock:nil];
                 break;
             case 5:
                 //联系客服

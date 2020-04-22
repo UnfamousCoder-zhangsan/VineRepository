@@ -37,7 +37,8 @@
 #define kiOS12 ([UIDevice systemVersion] >= 12 || [UIDevice systemVersion] < 13)
 #define kiOS13 ([UIDevice systemVersion] >= 13)
 
-
+/// app名称
+#define App_Name  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 /// 应用版本号
 #define App_Version [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 

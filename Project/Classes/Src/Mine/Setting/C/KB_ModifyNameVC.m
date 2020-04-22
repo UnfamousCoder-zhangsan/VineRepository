@@ -22,10 +22,10 @@
     self.nickNameField.text = self.nameString;
     
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self.nickNameField becomeFirstResponder];
-    self.saveBtn.alpha = 0.4;
+       self.saveBtn.alpha = 0.4;
 }
 - (void)setupNavigationItems{
     [super setupNavigationItems];

@@ -2526,7 +2526,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vendors/UMeng/share/share_ios_6.9.6/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vendors/UMeng/share/share_ios_6.9.6/SocialLibraries/QQ",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2681,7 +2681,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vendors/UMeng/share/share_ios_6.9.6/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vendors/UMeng/share/share_ios_6.9.6/SocialLibraries/QQ",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2755,7 +2755,7 @@
 					"$(PROJECT_DIR)/Project/Classes/Vendors/UMeng/share/share_ios_6.9.6/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/Project/Classes/Vendors/UMeng/share/share_ios_6.9.6/SocialLibraries/QQ",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
