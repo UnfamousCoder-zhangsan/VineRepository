@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KB_ShootVC : QDCommonViewController
-
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @end
 
 NS_ASSUME_NONNULL_END

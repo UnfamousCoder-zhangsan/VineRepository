@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "KB_ShootVC.h"
 
 typedef enum : NSUInteger {
     LLCameraPositionRear,
@@ -186,7 +187,7 @@ typedef enum : NSUInteger {
  * @param vc A view controller.
  * @param frame The frame of the camera.
  */
-- (void)attachToViewController:(UIViewController *)vc withFrame:(CGRect)frame;
+- (void)attachToViewController:(KB_ShootVC *)vc withFrame:(CGRect)frame;
 
 /**
  * Changes the posiition of the camera (either back or front) and returns the final position.

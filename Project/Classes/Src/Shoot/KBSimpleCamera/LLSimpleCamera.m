@@ -152,11 +152,11 @@ NSString *const LLSimpleCameraErrorDomain = @"LLSimpleCameraErrorDomain";
 
 #pragma mark - Camera
 
-- (void)attachToViewController:(UIViewController *)vc withFrame:(CGRect)frame
+- (void)attachToViewController:(KB_ShootVC *)vc withFrame:(CGRect)frame
 {
     [vc addChildViewController:self];
-    self.view.frame = frame;
-    [vc.view addSubview:self.view];
+    self.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    [vc.contentView addSubview:self.view];
     [self didMoveToParentViewController:vc];
 }
 
