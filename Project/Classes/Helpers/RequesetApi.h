@@ -34,6 +34,11 @@ typedef void(^ApiCompletedBlock)(ApiResponseModel *apiResponseModel, BOOL isSucc
 #pragma mark - 自动登录
 + (void)requestLoginAutomaticallyWithSuccess:(void(^)(void))success failure:(void(^)(void))failure;
 
-#pragma mark - 请求网络数据 -
+#pragma mark - 小视频网络数据请求 -
+/**
+ *@param  param参数
+ *@param  url网址
+ *@param  block网络请求回调
+ */
 + (void)requestAPIWithParams:(NSDictionary *)params andRequestUrl:(NSString *)url completedBlock:(ApiCompletedBlock)block;
 @end

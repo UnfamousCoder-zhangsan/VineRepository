@@ -34,7 +34,7 @@ static NSString *const WxAppSecret = @"46ed43a3c8647ffd4e181a088c9d5f29";
 /// 上架bundleID: com.zhangshangtong.ryy  对应百度map
 static NSString *const kBaiDuMapAK = @"h4QHlTkAS1HKDg2sxoHbabmfNlMC7Ysp";
 
-/// 测试bundleID: com.LQProject.zhangshangtong  对应百度map
-//static NSString *const kBaiDuMapAK = @"O1BBfzHkOZ1CdmWNIbHslISf8jTs22ZU";
+/// 服务器地址
+static NSString *const kAddressUrl = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/";
 
 #endif /* AppConst_h */

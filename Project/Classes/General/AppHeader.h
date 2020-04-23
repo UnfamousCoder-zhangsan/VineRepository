@@ -15,6 +15,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <YYKit/YYKit-umbrella.h>
 #import <MJExtension/MJExtension-umbrella.h>
+#import <TOCropViewController/TOCropViewController.h>
 
 #import <SDWebImage/SDWebImage.h>
 

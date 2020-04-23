@@ -8,7 +8,7 @@
 
 #import "PersonalInformationHeaderView.h"
 
-@interface PersonalInformationHeaderView()<UINavigationControllerDelegate,QMUIImagePickerViewControllerDelegate,QMUIAlbumViewControllerDelegate,QMUIImagePreviewViewDelegate,UIImagePickerControllerDelegate>
+@interface PersonalInformationHeaderView()<UINavigationControllerDelegate,QMUIImagePreviewViewDelegate,UIImagePickerControllerDelegate,TOCropViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
@@ -49,7 +49,7 @@
             //无权限
             [AlertHelper showAlertMessage:@"请打开相册权限" okBlock:nil];
         } else {
-            [self authorizationPresentAlbumViewController];
+            [self showImagePickerWith:UIImagePickerControllerSourceTypePhotoLibrary];
         }
         
     }];
@@ -73,91 +73,63 @@
     }
 }
 
-#pragma mark - 选择图片
-- (void)authorizationPresentAlbumViewController
-{
-    // 请求访问照片库的权限，在 iOS 8 或以上版本中可以利用这个方法弹出 Alert 询问用户是否授权
-    if ([QMUIAssetsManager authorizationStatus] == QMUIAssetAuthorizationStatusNotDetermined) {
-        __weak __typeof(self) weakSelf = self;
-        [QMUIAssetsManager requestAuthorization:^(QMUIAssetAuthorizationStatus status) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf presentAlbumViewController];
-            });
-        }];
+
+#pragma mark - 选择图片 -
+- (void)showImagePickerWith:(UIImagePickerControllerSourceType)sourceType {
+    BOOL isAlbumAvailable = [UIImagePickerController isSourceTypeAvailable:sourceType];
+    if (isAlbumAvailable) {
+            UIImagePickerController *profilePicker = [[UIImagePickerController alloc] init];
+        profilePicker.modalPresentationStyle = UIModalPresentationPopover;
+        profilePicker.sourceType = sourceType;
+        profilePicker.allowsEditing = NO;
+        profilePicker.delegate = self;
+        profilePicker.preferredContentSize = CGSizeMake(512, 512);
+        [PageRout_Maneger.currentNaviVC presentViewController:profilePicker animated:YES completion:nil];
     } else {
-        [self presentAlbumViewController];
+        [AlertHelper showAlertMessage:@"无法访问您的相册！请前往系统设置开启应用的相册访问权限！" okBlock:nil];
     }
-}
 
-
-- (void)presentAlbumViewController{
-    // 创建一个 QMUIAlbumViewController 实例用于呈现相薄列表
-    QMUIAlbumViewController *albumViewController = [[QMUIAlbumViewController alloc] init];
-    albumViewController.albumViewControllerDelegate = self;
-    albumViewController.contentType = QMUIAlbumContentTypeOnlyPhoto; //只读取图片
-    albumViewController.title = @"选择图片";
-    QMUINavigationController *navigationController = [[QMUINavigationController alloc] initWithRootViewController:albumViewController];
-
-     // 获取最近发送图片时使用过的相簿，如果有则直接进入该相簿
-
-     QMUIAssetsGroup *assetsGroup = [QMUIImagePickerHelper assetsGroupOfLastPickerAlbumWithUserIdentify:nil];
-     if (assetsGroup) {
-         QMUIImagePickerViewController *imagePickerViewController = [self imagePickerViewControllerForAlbumViewController:albumViewController];
-
-         [imagePickerViewController refreshWithAssetsGroup:assetsGroup];
-         imagePickerViewController.title = [assetsGroup name];
-         [navigationController pushViewController:imagePickerViewController animated:NO];
-     }
-
-     [PageRout_Maneger.currentNaviVC presentViewController:navigationController animated:YES completion:NULL];
-    
-}
-#pragma mark - <QMUIAlbumViewControllerDelegate>
-- (QMUIImagePickerViewController *)imagePickerViewControllerForAlbumViewController:(QMUIAlbumViewController *)albumViewController {
-    QMUIImagePickerViewController *imagePickerViewController = [[QMUIImagePickerViewController alloc] init];
-    imagePickerViewController.imagePickerViewControllerDelegate = self;
-    imagePickerViewController.maximumSelectImageCount = 1;
-    imagePickerViewController.allowsMultipleSelection = NO; //不允许多选图片
-    
-    return imagePickerViewController;
 }
 
 #pragma mark - <QMUIImagePickerViewControllerDelegate>
-
-- (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController didFinishPickingImageWithImagesAssetArray:(NSMutableArray<QMUIAsset *> *)imagesAssetArray
-{
-    // 储存最近选择了图片的相册，方便下次直接进入该相册
-    [QMUIImagePickerHelper updateLastestAlbumWithAssetsGroup:imagePickerViewController.assetsGroup ablumContentType:QMUIAlbumContentTypeOnlyPhoto userIdentify:nil];
-    @weakify(self)
-    [imagesAssetArray enumerateObjectsUsingBlock:^(QMUIAsset *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-        @strongify(self)
-        UIImage *image = obj.originImage;
-        if (!image) {
-            image = obj.previewImage;
-        }
-        if (image) {
-           // 设置头像
-            self.headerImage.image = image;
-        }
-    }];
+- (void)imagePickerViewControllerDidCancel:(QMUIImagePickerViewController *)imagePickerViewController{
+    [imagePickerViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark -imagePicker delegate - 用于拍照 获取回调
+#pragma mark -imagePicker delegate -
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-
+    UIImage *editImg = [info objectForKey:UIImagePickerControllerOriginalImage];
     // 当选择的类型是图片
     if ([type isEqualToString:@"public.image"]) {
+        
+        //图片裁剪
+        TOCropViewController *cropVC = [[TOCropViewController alloc] initWithCroppingStyle:TOCropViewCroppingStyleCircular image:editImg];
+        cropVC.delegate = self;
+        [cropVC.toolbar.cancelTextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [cropVC.toolbar.doneTextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         // 关闭相册界面
-        [picker dismissViewControllerAnimated:YES completion:nil];
-        // 先把图片转成NSData
-        UIImage *editImg = [info objectForKey:UIImagePickerControllerOriginalImage];
-
-        // 设置头像
-        self.headerImage.image = editImg;
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [PageRout_Maneger.currentNaviVC presentViewController:cropVC animated:YES completion:nil];
+        }];
+        
     }
 }
+- (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle{
+    
+    //上传图片到服务器，上传成功才dismiss
+    [SVProgressHUD showWithStatus:@"上传中"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 设置头像 网络请求上传头像
+        [cropViewController dismissViewControllerAnimated:YES completion:nil];
+        self.headerImage.image = image;
+        [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+    });
+
+    
+}
+
 #pragma mark - 设置头像 - 
 - (void)setAvatarWithAvatarImage:(UIImage *)avatarImage {
    

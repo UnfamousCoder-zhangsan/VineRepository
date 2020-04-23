@@ -139,6 +139,16 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     return self;
 }
 
+#pragma mark - 根据videoId加载评论
+- (void)getData {
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"%@/video/queryCommentsByVideoId?videoId=%@",kAddressUrl,self.videoModel.video_url] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            //请求成功
+        } else {
+            //请求失败
+        }
+    }];
+}
 
 - (void)loadData {
     CommentModel *model1 = [[CommentModel alloc] init];
@@ -441,7 +451,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     //提交评论
 //    [self requestWithAddComment];
     CommentModel *model = [[CommentModel alloc] init];
-    model.name = @"锤子评论";
+    model.name = User_Center.nickname;
     model.cid = @(self.hotCommentArray.count + 1).stringValue;
     model.comment = self.commentTextView.textView.text;
     model.createtime = @"2019-05-29 18:27:40";

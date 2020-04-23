@@ -86,7 +86,6 @@
 		3130FC7D243CBBAF00B9A0D6 /* KB_NewsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC7C243CBBAF00B9A0D6 /* KB_NewsTVC.m */; };
 		3130FC84243E1B8D00B9A0D6 /* KB_MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC83243E1B8D00B9A0D6 /* KB_MineHeaderView.m */; };
 		3130FC8C243E2D0900B9A0D6 /* Shoot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */; };
-		3130FC90243E33EB00B9A0D6 /* KB_CamerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */; };
 		3132596F2444CE02002ED40A /* KB_MineInformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3132596E2444CE02002ED40A /* KB_MineInformationView.xib */; };
 		313259722444CE21002ED40A /* KB_MineInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313259712444CE21002ED40A /* KB_MineInformationView.m */; };
 		313286B7244CA8A10022E8EC /* KB_PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313286B5244CA8A10022E8EC /* KB_PublishViewController.m */; };
@@ -121,6 +120,9 @@
 		51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBE244191D400F120CB /* CustomPickerItem.m */; };
 		51588CC2244197C700F120CB /* KBPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CC1244197C700F120CB /* KBPickerModel.m */; };
 		515E57FC244E8F4F0042D822 /* KB_BaseTableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515E57FB244E8F4F0042D822 /* KB_BaseTableListViewController.m */; };
+		51838C1824518D1000C54F93 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 51838C1324518D1000C54F93 /* UIImage+FixOrientation.m */; };
+		51838C1924518D1000C54F93 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 51838C1424518D1000C54F93 /* LLSimpleCamera.m */; };
+		51838C1A24518D1000C54F93 /* LLSimpleCamera+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 51838C1624518D1000C54F93 /* LLSimpleCamera+Helper.m */; };
 		5E36D3F4233F5688009E06AD /* UITabBar+badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E36D3F3233F5688009E06AD /* UITabBar+badge.m */; };
 		5E6D2E0923FE8FF9002BF332 /* LMRStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0023FE8FF9002BF332 /* LMRStyle.m */; };
 		5E6D2E0A23FE8FF9002BF332 /* LMReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0123FE8FF9002BF332 /* LMReportView.m */; };
@@ -403,8 +405,6 @@
 		3130FC82243E1B8D00B9A0D6 /* KB_MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineHeaderView.h; sourceTree = "<group>"; };
 		3130FC83243E1B8D00B9A0D6 /* KB_MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineHeaderView.m; sourceTree = "<group>"; };
 		3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shoot.storyboard; sourceTree = "<group>"; };
-		3130FC8E243E33EB00B9A0D6 /* KB_CamerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_CamerManager.h; sourceTree = "<group>"; };
-		3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_CamerManager.m; sourceTree = "<group>"; };
 		3132596E2444CE02002ED40A /* KB_MineInformationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MineInformationView.xib; sourceTree = "<group>"; };
 		313259702444CE21002ED40A /* KB_MineInformationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MineInformationView.h; sourceTree = "<group>"; };
 		313259712444CE21002ED40A /* KB_MineInformationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MineInformationView.m; sourceTree = "<group>"; };
@@ -467,6 +467,12 @@
 		51588CC1244197C700F120CB /* KBPickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerModel.m; sourceTree = "<group>"; };
 		515E57FA244E8F4F0042D822 /* KB_BaseTableListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_BaseTableListViewController.h; sourceTree = "<group>"; };
 		515E57FB244E8F4F0042D822 /* KB_BaseTableListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseTableListViewController.m; sourceTree = "<group>"; };
+		51838C1224518D1000C54F93 /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		51838C1324518D1000C54F93 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
+		51838C1424518D1000C54F93 /* LLSimpleCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSimpleCamera.m; sourceTree = "<group>"; };
+		51838C1524518D1000C54F93 /* LLSimpleCamera+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLSimpleCamera+Helper.h"; sourceTree = "<group>"; };
+		51838C1624518D1000C54F93 /* LLSimpleCamera+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LLSimpleCamera+Helper.m"; sourceTree = "<group>"; };
+		51838C1724518D1000C54F93 /* LLSimpleCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSimpleCamera.h; sourceTree = "<group>"; };
 		5E36D3F2233F5688009E06AD /* UITabBar+badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+badge.h"; sourceTree = "<group>"; };
 		5E36D3F3233F5688009E06AD /* UITabBar+badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+badge.m"; sourceTree = "<group>"; };
 		5E6D2DFE23FE8FF9002BF332 /* NSIndexPath+LMReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+LMReport.h"; sourceTree = "<group>"; };
@@ -1134,15 +1140,6 @@
 			path = C;
 			sourceTree = "<group>";
 		};
-		3130FC8D243E33B000B9A0D6 /* customShoot */ = {
-			isa = PBXGroup;
-			children = (
-				3130FC8E243E33EB00B9A0D6 /* KB_CamerManager.h */,
-				3130FC8F243E33EB00B9A0D6 /* KB_CamerManager.m */,
-			);
-			path = customShoot;
-			sourceTree = "<group>";
-		};
 		313286B9244CAC110022E8EC /* M */ = {
 			isa = PBXGroup;
 			children = (
@@ -1191,10 +1188,10 @@
 		313A34A9243B3B9100A4F1F9 /* Shoot */ = {
 			isa = PBXGroup;
 			children = (
+				51838C1124518CC800C54F93 /* KBSimpleCamera */,
 				313286BB244CAC300022E8EC /* C */,
 				313286BA244CAC180022E8EC /* V */,
 				313286B9244CAC110022E8EC /* M */,
-				3130FC8D243E33B000B9A0D6 /* customShoot */,
 				313A34AA243B3BBA00A4F1F9 /* KB_ShootVC.h */,
 				313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */,
 				3130FC8B243E2D0900B9A0D6 /* Shoot.storyboard */,
@@ -1306,6 +1303,19 @@
 				515E57FB244E8F4F0042D822 /* KB_BaseTableListViewController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		51838C1124518CC800C54F93 /* KBSimpleCamera */ = {
+			isa = PBXGroup;
+			children = (
+				51838C1724518D1000C54F93 /* LLSimpleCamera.h */,
+				51838C1424518D1000C54F93 /* LLSimpleCamera.m */,
+				51838C1524518D1000C54F93 /* LLSimpleCamera+Helper.h */,
+				51838C1624518D1000C54F93 /* LLSimpleCamera+Helper.m */,
+				51838C1224518D1000C54F93 /* UIImage+FixOrientation.h */,
+				51838C1324518D1000C54F93 /* UIImage+FixOrientation.m */,
+			);
+			path = KBSimpleCamera;
 			sourceTree = "<group>";
 		};
 		5E6D2DFD23FE8FF9002BF332 /* LMReport */ = {
@@ -2350,6 +2360,8 @@
 				3130FC44243CADDB00B9A0D6 /* KTVHCDataUnit.m in Sources */,
 				A48C36B6205E2FD5003EBDDA /* UIView+LSCore.m in Sources */,
 				515E57FC244E8F4F0042D822 /* KB_BaseTableListViewController.m in Sources */,
+				51838C1A24518D1000C54F93 /* LLSimpleCamera+Helper.m in Sources */,
+				51838C1824518D1000C54F93 /* UIImage+FixOrientation.m in Sources */,
 				CBA1060D230E71E900CD84E9 /* InputItem.m in Sources */,
 				86B2BD07230E6B5100273AA3 /* BRStringPickerView.m in Sources */,
 				3130FB94243CAC2A00B9A0D6 /* SmallVideoCell.m in Sources */,
@@ -2391,6 +2403,7 @@
 				3130FC79243CADDC00B9A0D6 /* DDVideoPlayerManager.m in Sources */,
 				3130FC47243CADDB00B9A0D6 /* KTVHCDataUnitItem.m in Sources */,
 				86B2BCF1230E6B5100273AA3 /* UIImage+MWPhotoBrowser.m in Sources */,
+				51838C1924518D1000C54F93 /* LLSimpleCamera.m in Sources */,
 				86B2BCEA230E6B5100273AA3 /* UIScrollView+HeaderScaleImage.m in Sources */,
 				A48C36D3205E2FD5003EBDDA /* AppDelegate.m in Sources */,
 				A48C36BA205E2FD5003EBDDA /* QDUIHelper.m in Sources */,
@@ -2423,7 +2436,6 @@
 				86B2BD09230E6B5100273AA3 /* BRDatePickerView.m in Sources */,
 				5EBF20B9237E398E003DD0A7 /* AlertHelper.m in Sources */,
 				A48C36BB205E2FD5003EBDDA /* QDCommonUI.m in Sources */,
-				3130FC90243E33EB00B9A0D6 /* KB_CamerManager.m in Sources */,
 				31F8FB9D244A23F70072609C /* KB_BaseCollectionListViewController.m in Sources */,
 				3130FC6E243CADDC00B9A0D6 /* UINavigationController+ZFPlayerRotation.m in Sources */,
 				92CBDFE923FD792C0022866B /* DHGifImageOperation.m in Sources */,

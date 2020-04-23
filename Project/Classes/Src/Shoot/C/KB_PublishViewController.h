@@ -11,8 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KB_PublishViewController : QDCommonViewController
-
+/// 照片
 @property (nonatomic, strong) UIImage *image;
+/// 视频
+@property (nonatomic, strong) NSURL   *videoUrl;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -3,11 +3,11 @@
 #import <AFNetworking/AFNetworking.h>
 #ifdef DEBUG
 static NSString* kAPiHost = @"http://imwork.tpddns.cn:38765";
-static NSString* kAPIHost = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT";
+static NSString* kAPIHost = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/";
 
 #else
 static NSString* kAPiHost = @"http://imwork.tpddns.cn:38765";
-static NSString* kAPIHost = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT";
+static NSString* kAPIHost = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/";
 #endif
 
 static NSString* kAPiPath = @"api";
@@ -81,7 +81,7 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 //    parameters[@"version"] = App_Version;
     [parameters addEntriesFromDictionary:params];
-    NSString *URL = [NSString stringWithFormat:@"%@/%@",kAPIHost, url];
+    NSString *URL = [NSString stringWithFormat:@"%@%@",kAPIHost, url];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     requestSerializer = [AFJSONRequestSerializer serializer];

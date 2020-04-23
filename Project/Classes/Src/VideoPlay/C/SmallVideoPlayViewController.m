@@ -171,10 +171,10 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     artist = currentPlaySmallVideoModel.nickName;
     title = currentPlaySmallVideoModel.videoDesc;
     // 首帧图
-    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",currentPlaySmallVideoModel.coverPath];
+    cover_url = [NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.coverPath];
     // 视频地址
-    videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
-    originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
+    videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
+    originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
     useDownAndPlay = YES;
     if((currentPlaySmallVideoModel.videoHeight / currentPlaySmallVideoModel.videoWidth) >= 1.4) {
         videoGravity = AVLayerVideoGravityResizeAspectFill;
@@ -239,10 +239,10 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     artist = currentPlaySmallVideoModel.nickName;
     title = currentPlaySmallVideoModel.videoDesc;
     // 首帧图
-    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",currentPlaySmallVideoModel.coverPath];
+    cover_url = [NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.coverPath];
     // 视频地址
-    videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
-    originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/%@",currentPlaySmallVideoModel.videoPath]];
+    videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
+    originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
     useDownAndPlay = YES;
     
     self.preloadVideoPlayerManager.playerModel.title            = title;
