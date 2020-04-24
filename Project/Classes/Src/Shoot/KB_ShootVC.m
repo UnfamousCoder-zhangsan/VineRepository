@@ -13,20 +13,31 @@
 #import "CustomPickerItem.h"
 #import "KBPickerModel.h"
 #import "KB_PublishViewController.h"
+#import "KB_CountDownLabel.h"
 
 #define ScreenWith     [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight   [UIScreen mainScreen].bounds.size.height
 
 
-@interface KB_ShootVC () <KBPickerScrollViewDelegate, KBPickerScrollViewDataSource>
+@interface KB_ShootVC () <KBPickerScrollViewDelegate, KBPickerScrollViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) LLSimpleCamera *camera;
 ///打开闪光灯按钮
-@property (nonatomic, weak)  IBOutlet QMUIButton * flashOnButton;
+@property (nonatomic, strong) QMUIButton *flashOnButton;
 ///切换前后摄像头
-@property (nonatomic, weak) IBOutlet QMUIButton * exchangeCamera;
+@property (nonatomic, strong) QMUIButton *exchangeCamera;
+/// 倒计时
+@property (nonatomic, strong) QMUIButton *countDown;
+/// 倒计时展示
+@property (nonatomic, strong) UILabel    *countDownLabel;
+/// 录制进度条
+@property (nonatomic, strong) UIProgressView *timeProgressView;
 
 @property (weak, nonatomic) IBOutlet UILabel *pointLabel;
+/// 拍摄
 @property (strong, nonatomic) UIButton *snapButton;
+///  相册选择
+@property (strong, nonatomic) UIButton *albumButton;
+/// 退出按钮
 @property (nonatomic, strong) UIButton *closeButton;
 /// 横向选择器
 @property (weak, nonatomic) IBOutlet KBPickerScrollerView *pickerScrollView;
@@ -49,6 +60,7 @@
                                              videoEnabled:YES];
     [self.camera attachToViewController:self withFrame:self.contentView.frame];
     self.camera.fixOrientationAfterCapture = NO;
+    self.camera.position = LLCameraPositionFront; //默认前置
     [self setupUI];
     @weakify(self)
     [self.camera setOnDeviceChange:^(LLSimpleCamera *camera, AVCaptureDevice *device) {
@@ -65,7 +77,7 @@
         }
     }];
     [self.camera setOnError:^(LLSimpleCamera *camera, NSError *error) {
-        @strongify(self)
+       // @strongify(self) 访问出错
         if([error.domain isEqualToString:LLSimpleCameraErrorDomain]) {
             if(error.code == LLSimpleCameraErrorCodeCameraPermission ||
                error.code == LLSimpleCameraErrorCodeMicrophonePermission) {
@@ -90,13 +102,7 @@
         }
     }];
 }
-//- (LLSimpleCamera *)camera{
-//    if (!_camera) {
-//        _camera = [[LLSimpleCamera alloc] initWithQuality:AVCaptureSessionPresetHigh position:LLCameraPositionRear videoEnabled:YES];
-//        _camera.fixOrientationAfterCapture = NO;
-//    }
-//    return _camera;
-//}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.camera start];
@@ -122,57 +128,93 @@
     }];
 }
 
+- (void)albumCilckEvent{
+    //从相册选择东西
+    PHAuthorizationStatus author = [PHPhotoLibrary authorizationStatus];
+    if (author == kCLAuthorizationStatusRestricted || author == kCLAuthorizationStatusDenied) {
+        //无权限
+        [AlertHelper showAlertMessage:@"无法访问您的相册！请前往系统设置开启应用的相册访问权限！" okBlock:nil];
+    } else {
+        [self showImagePickerWith:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+}
 
-- (IBAction)flashModeEvent:(UIButton *)sender {
+#pragma mark - 选择图片 -
+- (void)showImagePickerWith:(UIImagePickerControllerSourceType)sourceType {
+    BOOL isAlbumAvailable = [UIImagePickerController isSourceTypeAvailable:sourceType];
+    if (isAlbumAvailable) {
+            UIImagePickerController *profilePicker = [[UIImagePickerController alloc] init];
+        profilePicker.modalPresentationStyle = UIModalPresentationPopover;
+        profilePicker.sourceType = sourceType;
+        // 设置视频格式
+        profilePicker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *) kUTTypeMovie, (NSString *) kUTTypeImage,nil];
+        profilePicker.allowsEditing = NO;
+        profilePicker.delegate = self;
+        profilePicker.preferredContentSize = CGSizeMake(512, 512);
+        [self.navigationController presentViewController:profilePicker animated:YES completion:nil];
+    } else {
+        [AlertHelper showAlertMessage:@"无法访问您的相册！请前往系统设置开启应用的相册访问权限！" okBlock:nil];
+    }
+
+}
+#pragma mark - <QMUIImagePickerViewControllerDelegate>
+- (void)imagePickerViewControllerDidCancel:(QMUIImagePickerViewController *)imagePickerViewController{
+    [imagePickerViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark -imagePicker delegate -
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    UIImage *editImg = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSURL   *editUrl = [info objectForKey:UIImagePickerControllerMediaURL];
+    // 当选择的类型是图片
+    if ([type isEqualToString:@"public.image"]) {
+        KB_PublishViewController *vc = [[KB_PublishViewController alloc] init];
+        vc.image = editImg;
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+    }else if ([type isEqualToString:@"public.movie"]){
+        KB_PublishViewController *vc = [[KB_PublishViewController alloc] init];
+        vc.videoUrl = editUrl;
+        vc.image = [self getVideoFirstViewImage:editUrl];
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+    }
+}
+
+- (void)flashModeEvent:(UIButton *)sender {
     if(self.camera.flash == LLCameraFlashOff) {
          BOOL done = [self.camera updateFlashMode:LLCameraFlashOn];
          if(done) {
-             self.flashOnButton.selected = YES;
-             self.flashOnButton.tintColor = [UIColor yellowColor];
+             //打开
+             [self.flashOnButton setImage:UIImageMake(@"flash_on") forState:UIControlStateNormal];
          }
      }
      else {
          BOOL done = [self.camera updateFlashMode:LLCameraFlashOff];
          if(done) {
-             self.flashOnButton.selected = NO;
-             self.flashOnButton.tintColor = [UIColor whiteColor];
+             //关闭
+             [self.flashOnButton setImage:UIImageMake(@"flash_off") forState:UIControlStateNormal];
          }
      }
 }
 
-- (IBAction)exchangeCameraEvent:(QMUIButton *)sender {
-//    //获取当前相机的方向
-//    AVCaptureDevicePosition position = [[self.captureDeviceInput device] position];
-//    AVCaptureDevice *newCamera = nil;
-//    AVCaptureDeviceInput *newInput = nil;
-//
-//    //为摄像头转换添加转换动画
-//    CATransition *animation = [CATransition animation];
-//    //切换速度效果
-//    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    animation.duration = 0.5;
-//    animation.subtype = kCATransitionFromLeft;
-//    animation.type = kCATransitionFade;
-//    if (position == AVCaptureDevicePositionFront) {
-//        //前置
-//        newCamera = [self getCameraDeviceWithPosition:AVCaptureDevicePositionBack];
-//    } else if (position == AVCaptureDevicePositionBack) {
-//        newCamera = [self getCameraDeviceWithPosition:AVCaptureDevicePositionFront];
-//    }
-//    [self.contentView.layer addAnimation:animation forKey:nil];
-//    newInput = [AVCaptureDeviceInput deviceInputWithDevice:newCamera error:nil];
-//    if (newInput != nil) {
-//        [self.captureSession beginConfiguration];
-//        //先移除原来的input
-//        [self.captureSession removeInput:self.captureDeviceInput];
-//        if ([self.captureSession canAddInput:newInput]) {
-//            [self.captureSession addInput:newInput];
-//            self.captureDeviceInput = newInput;
-//        } else {
-//            [self.captureSession addInput:self.captureDeviceInput];
-//        }
-//        [self.captureSession commitConfiguration];
-//    }
+- (void)exchangeCameraEvent:(QMUIButton *)sender {
+    [UIView transitionWithView:self.exchangeCamera duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+        [self.camera togglePosition];
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void)countDownEvent:(QMUIButton *)sender{
+    [KB_CountDownLabel playWithNumber:5 endTitle:@"开始" success:^(KB_CountDownLabel *label) {
+        //倒计时结束了
+        [self clickShootBtn];
+    }];
+    
 }
 
 - (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation
@@ -191,13 +233,25 @@
     self.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
     self.snapButton.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.snapButton.layer.shouldRasterize = YES;
-    [self.snapButton addTarget:self action:@selector(clickShootBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.snapButton addTarget:self action:@selector(clickShootBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.snapButton];
     [self.snapButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.offset(70);
         make.centerX.mas_equalTo(self.view.centerX).offset(0);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-10);
     }];
+    
+    self.albumButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.albumButton setBackgroundImage:UIImageMake(@"shoot_album") forState:UIControlStateNormal];
+    [self.albumButton addTarget:self action:@selector(albumCilckEvent) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.albumButton];
+    [self.albumButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.with.offset(30);
+        make.height.with.offset(30);
+        make.centerY.mas_equalTo(self.snapButton.mas_centerY).offset(0);
+        make.right.mas_equalTo(self.view.mas_right).offset(-40);
+    }];
+    
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.closeButton setBackgroundImage:UIImageMake(@"closePaster_normal") forState:UIControlStateNormal];
     [self.closeButton addTarget:self action:@selector(closeEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -208,9 +262,44 @@
         make.top.mas_equalTo(self.view.mas_top).offset(NavigationContentTopConstant - 20);
     }];
     
+    
+    self.exchangeCamera = [QMUIButton buttonWithType:UIButtonTypeCustom];
+    [self.exchangeCamera setTitleColor:UIColorMakeWithHex(@"#FFFFFF") forState:UIControlStateNormal];
     [self.exchangeCamera setImagePosition:QMUIButtonImagePositionTop];
+    [self.exchangeCamera setImage:UIImageMake(@"cameraex") forState:UIControlStateNormal];
+    [self.exchangeCamera setTitle:@"翻转" forState:UIControlStateNormal];
+    self.exchangeCamera.titleLabel.font = UIFontMake(12);
+    [self.exchangeCamera addTarget:self action:@selector(exchangeCameraEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.exchangeCamera];
+    [self.exchangeCamera mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.offset(50);
+        make.height.offset(60);
+        make.right.mas_equalTo(self.view.mas_right).offset(-15);
+        make.top.mas_equalTo(self.view.mas_top).offset(NavigationContentTopConstant);
+    }];
+    
+    self.flashOnButton = [QMUIButton buttonWithType:UIButtonTypeCustom];
+    [self.flashOnButton setImage:UIImageMake(@"flash_off") forState:UIControlStateNormal];
     [self.flashOnButton setImagePosition:QMUIButtonImagePositionTop];
-
+    [self.flashOnButton addTarget:self action:@selector(flashModeEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.flashOnButton];
+    [self.flashOnButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.offset(40);
+        make.centerX.mas_equalTo(self.exchangeCamera.mas_centerX).offset(0);
+        make.top.mas_equalTo(self.exchangeCamera.mas_bottom).offset(20);
+    }];
+    
+    self.countDown = [QMUIButton buttonWithType:UIButtonTypeCustom];
+    [self.countDown setImage:UIImageMake(@"CountDown-normal") forState:UIControlStateNormal];
+    [self.countDown setImagePosition:QMUIButtonImagePositionTop];
+    [self.countDown addTarget:self action:@selector(countDownEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.countDown];
+    [self.countDown mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.offset(50);
+        make.height.offset(50);
+        make.centerX.mas_equalTo(self.exchangeCamera.mas_centerX).offset(0);
+        make.top.mas_equalTo(self.flashOnButton.mas_bottom).offset(20);
+    }];
     
     self.pointLabel.layer.cornerRadius = 5;
     self.pointLabel.layer.masksToBounds = YES;
@@ -267,8 +356,12 @@
 }
 - (void)pickerScrollView:(KBPickerScrollerView *)menuScrollView didSelectedItemAtindex:(NSInteger)index{
     if (index == 0) {
+        self.flashOnButton.hidden = NO;
+        [self updateUI];
         [self.snapButton setImage:UIImageMake(@"take_picture") forState:UIControlStateNormal];
     } else {
+        self.flashOnButton.hidden = YES;
+        [self updateUI];
         [self.snapButton setImage:UIImageMake(@"shoot_normal") forState:UIControlStateNormal];
     }
     self.selectedIndex = index;
@@ -277,7 +370,26 @@
     [impactLight impactOccurred];
     
 }
-- (IBAction)clickShootBtn:(UIButton *)sender {
+- (void)updateUI{
+    if (!self.flashOnButton.isHidden) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.flashOnButton.alpha = 1.0;
+            self.countDown.center = CGPointMake(SCREEN_WIDTH - 15 - 25, NavigationContentTopConstant + 120 + 25);
+            [self.countDown mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.exchangeCamera.mas_bottom).offset(80);
+            }];
+        }];
+    }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.flashOnButton.alpha = 0.0;
+            self.countDown.center = CGPointMake(SCREEN_WIDTH - 15 - 25, NavigationContentTopConstant + 25 + 80);
+            [self.countDown mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.exchangeCamera.mas_bottom).offset(20);
+            }];
+        }];
+    }
+}
+- (void)clickShootBtn {
     // 拍照
     if (self.selectedIndex != 0) {
         if (!self.camera.isRecording) {
@@ -290,6 +402,7 @@
             [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
                 KB_PublishViewController *vc = [[KB_PublishViewController alloc] init];
                 vc.videoUrl = outputURL;
+                vc.image = [self getVideoFirstViewImage:outputURL];
                 [self.navigationController pushViewController:vc animated:YES];
             }];
         } else {
@@ -311,6 +424,22 @@
         } exactSeenImage:NO];
         
     }
+}
+//获取视频第一帧（用于制作封面）
+- (UIImage *)getVideoFirstViewImage:(NSURL *)path {
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:path options:nil];
+    AVAssetImageGenerator *assetGen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    
+    assetGen.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [assetGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    return videoImage;
+
 }
 
 @end

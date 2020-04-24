@@ -16,46 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-0c-5Kg" customClass="QMUIButton">
-                                <rect key="frame" x="359" y="214" width="40" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Yxl-uL-t2X"/>
-                                    <constraint firstAttribute="width" constant="40" id="jbW-mZ-ufp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" image="shoot_off">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="selected" title="闪光灯" image="flash_on"/>
-                                <connections>
-                                    <action selector="flashModeEvent:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="1ow-7W-MIS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxS-cB-7FT" customClass="QMUIButton">
-                                <rect key="frame" x="359" y="144" width="40" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="62H-EU-H4g"/>
-                                    <constraint firstAttribute="height" constant="40" id="gBo-8N-Xzg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="翻转" image="cameraex">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="exchangeCameraEvent:" destination="BIn-RY-Hm5" eventType="touchUpInside" id="FuQ-Et-STB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUN-N0-7hD">
-                                <rect key="frame" x="359" y="284" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="F0a-kY-A4J"/>
-                                    <constraint firstAttribute="height" constant="40" id="eVZ-bd-CKh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="倒计时" image="CountDown-normal"/>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6B-y7-4Ne" customClass="KBPickerScrollerView">
                                 <rect key="frame" x="0.0" y="810" width="414" height="52"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,9 +39,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="QfE-PK-2ff" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="-10" id="24C-3v-e2Y"/>
-                            <constraint firstItem="pxS-cB-7FT" firstAttribute="top" secondItem="7Vc-p1-kMH" secondAttribute="top" constant="100" id="8il-dt-ZDF"/>
-                            <constraint firstItem="AUN-N0-7hD" firstAttribute="top" secondItem="Y2P-0c-5Kg" secondAttribute="bottom" constant="30" id="EHf-N8-XNh"/>
-                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="Y2P-0c-5Kg" secondAttribute="trailing" constant="15" id="IeX-QC-hCc"/>
                             <constraint firstItem="e6B-y7-4Ne" firstAttribute="leading" secondItem="7Vc-p1-kMH" secondAttribute="leading" id="KuL-u3-mj7"/>
                             <constraint firstItem="lDv-4s-kED" firstAttribute="bottom" secondItem="e6B-y7-4Ne" secondAttribute="bottom" id="Kwr-46-cqN"/>
                             <constraint firstItem="e6B-y7-4Ne" firstAttribute="top" secondItem="QfE-PK-2ff" secondAttribute="bottom" constant="8" symbolic="YES" id="N7r-J8-Q6Z"/>
@@ -89,9 +46,6 @@
                             <constraint firstItem="lDv-4s-kED" firstAttribute="centerX" secondItem="e6B-y7-4Ne" secondAttribute="centerX" id="ZuO-FI-GEb"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="bottom" secondItem="e6B-y7-4Ne" secondAttribute="bottom" id="aKm-qA-9uV"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="QfE-PK-2ff" secondAttribute="trailing" id="eD9-Bx-mC9"/>
-                            <constraint firstItem="Y2P-0c-5Kg" firstAttribute="top" secondItem="pxS-cB-7FT" secondAttribute="bottom" constant="30" id="fQW-bT-3aP"/>
-                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="AUN-N0-7hD" secondAttribute="trailing" constant="15" id="if5-6p-1Tq"/>
-                            <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="pxS-cB-7FT" secondAttribute="trailing" constant="15" id="jRu-4o-hT1"/>
                             <constraint firstItem="7Vc-p1-kMH" firstAttribute="trailing" secondItem="e6B-y7-4Ne" secondAttribute="trailing" id="mNI-EL-wxs"/>
                             <constraint firstItem="QfE-PK-2ff" firstAttribute="leading" secondItem="7Vc-p1-kMH" secondAttribute="leading" id="tQP-Xo-df6"/>
                         </constraints>
@@ -99,8 +53,6 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="QfE-PK-2ff" id="ywe-tH-p7T"/>
-                        <outlet property="exchangeCamera" destination="pxS-cB-7FT" id="4FR-bZ-07x"/>
-                        <outlet property="flashOnButton" destination="Y2P-0c-5Kg" id="Qz1-e5-OvK"/>
                         <outlet property="pickerScrollView" destination="e6B-y7-4Ne" id="kfu-GI-fb8"/>
                         <outlet property="pointLabel" destination="lDv-4s-kED" id="m30-bB-QHD"/>
                     </connections>
@@ -110,10 +62,4 @@
             <point key="canvasLocation" x="140.57971014492756" y="99.776785714285708"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="CountDown-normal" width="44" height="44"/>
-        <image name="cameraex" width="28.5" height="24"/>
-        <image name="flash_on" width="70" height="70"/>
-        <image name="shoot_off" width="70" height="70"/>
-    </resources>
 </document>
