@@ -8,6 +8,7 @@
 
 #import "ZJVc6Controller.h"
 #import "ZJScrollPageView.h"
+#import "KB_ScrollPageViewController.h"
 //#import "ZJTestViewController.h"
 @interface ZJVc6Controller ()<ZJScrollPageViewDelegate>
 @property(strong, nonatomic)NSArray<NSString *> *titles;
@@ -24,11 +25,14 @@
 
     //必要的设置, 如果没有设置可能导致内容显示不正常
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //self.childVcs = [self setupChildVc];
+    self.childVcs = [self setupChildVc];
     // 初始化
     [self setupSegmentView];
     [self setupContentView];
     
+}
+- (UIImage *)navigationBarBackgroundImage{
+    return [UIImage new];
 }
 
 - (void)setupSegmentView {
@@ -54,7 +58,7 @@
     
     // 注意: 一定要避免循环引用!!
     __weak typeof(self) weakSelf = self;
-    ZJScrollSegmentView *segment = [[ZJScrollSegmentView alloc] initWithFrame:CGRectMake(0, 64.0, 160.0, 44.0) segmentStyle:style delegate:self titles:self.titles titleDidClick:^(ZJTitleView *titleView, NSInteger index) {
+    ZJScrollSegmentView *segment = [[ZJScrollSegmentView alloc] initWithFrame:CGRectMake(0, 64.0, 160.0, NavigationBarHeight) segmentStyle:style delegate:self titles:self.titles titleDidClick:^(ZJTitleView *titleView, NSInteger index) {
         
         [weakSelf.contentView setContentOffSet:CGPointMake(weakSelf.contentView.bounds.size.width * index, 0.0) animated:YES];
         
@@ -72,23 +76,26 @@
 
 - (void)setupContentView {
     
-    ZJContentView *content = [[ZJContentView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height) segmentView:self.segmentView parentViewController:self delegate:self];
+    ZJContentView *content = [[ZJContentView alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT) segmentView:self.segmentView parentViewController:self delegate:self];
     self.contentView = content;
     [self.view addSubview:self.contentView];
     
 }
 
-//- (NSArray *)setupChildVc {
-    
-   // ZJTestViewController *vc1 = [ZJTestViewController new];
-   // vc1.view.backgroundColor = [UIColor redColor];
-    
-  //  ZJTestViewController *vc2 = [ZJTestViewController new];
-   // vc2.view.backgroundColor = [UIColor greenColor];
-    
-   // NSArray *childVcs = [NSArray arrayWithObjects:vc2, vc1, nil];
-  //  return childVcs;
-//}
+- (NSArray *)setupChildVc {
+    //关注
+    KB_ScrollPageViewController *vc1 = [KB_ScrollPageViewController new];
+    vc1.index = 0;
+    vc1.view.backgroundColor = [UIColor redColor];
+
+    //推荐
+    KB_ScrollPageViewController  *vc2 = [KB_ScrollPageViewController new];
+    vc2.index = 2;
+    vc2.view.backgroundColor = [UIColor greenColor];
+
+    NSArray *childVcs = [NSArray arrayWithObjects:vc2, vc1, nil];
+    return childVcs;
+}
 
 - (NSInteger)numberOfChildViewControllers {
     return self.titles.count;

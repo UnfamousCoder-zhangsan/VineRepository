@@ -99,7 +99,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.with.offset(15);
-        if(kDevice_Is_iPhoneX) {
+        if(IS_NOTCHED_SCREEN) {
             make.bottom.with.offset(-40);
         } else {
             make.bottom.with.offset(-25);

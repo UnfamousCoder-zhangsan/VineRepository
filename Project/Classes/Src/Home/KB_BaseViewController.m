@@ -13,6 +13,7 @@
 #import "SDImageCache.h"
 #import "CommentsPopView.h"
 #import "KB_HomeVideoDetailModel.h"
+#import "UIViewController+ZJScrollPageController.h"
 
 static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 #define cellHeight SCREEN_HEIGHT - TabBarHeight
@@ -23,7 +24,6 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 @property (nonatomic, strong) DDVideoPlayerManager *videoPlayerManager;
 //这个是预加载视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *preloadVideoPlayerManager;
-@property (nonatomic, copy) void(^listScrollViewScrollCallback)(UIScrollView *scrollView);
 @property (nonatomic, strong) UISwipeGestureRecognizer *recognize;
 
 @end
@@ -34,10 +34,11 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self createUI];
+    self.page = 1;
     // 添加下拉刷新手势
     self.recognize = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pullDownToRefresh)];
     self.recognize.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.tableView addGestureRecognizer:self.recognize];
+    [self.view addGestureRecognizer:self.recognize];
     //[self getDataList];
 }
 
@@ -48,29 +49,14 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (self.isViewLoaded && self.view.window) {
-        //正在显示
-        [self.videoPlayerManager autoPlay];
-    } else {
-        //非正在显示
-        [self.videoPlayerManager autoPause];
-    }
+    //[self.videoPlayerManager autoPlay];
 }
 - (void)pullDownToRefresh{
     LQLog(@"tableview 下拉刷新");
 }
 
-#pragma mark - GKPageListViewDelegate
-- (UIView *)listView {
-    return self.view;
-}
+- (void)zj_viewDidLoadForIndex:(NSInteger)index{
 
-- (UIScrollView *)listScrollView {
-    return self.tableView;
-}
-
-- (void)listViewDidScrollCallback:(void (^)(UIScrollView *))callback {
-    self.listScrollViewScrollCallback = callback;
 }
 
 - (void)createUI {
@@ -89,7 +75,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
 
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.with.offset(0);
+        make.top.left.right.mas_equalTo(self.view).offset(0);
         make.height.offset(SCREEN_HEIGHT - TabBarHeight);
     }];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -112,6 +98,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SmallVideoPlayCell *cell = [tableView dequeueReusableCellWithIdentifier:SmallVideoCellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
+    cell.backgroundColor = UIColorMakeWithHex(@"#222222");
     cell.model = self.modelArray[indexPath.row];
     return cell;
 }
@@ -247,6 +234,9 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 //评论
 - (void)handleCommentVidieoModel:(SmallVideoModel *)smallVideoModel {
+    
+//    ZJVc6Controller *vc = [[ZJVc6Controller alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     CommentsPopView *popView = [[CommentsPopView alloc] initWithSmallVideoModel:smallVideoModel];
     [popView showToView:window];
@@ -288,10 +278,53 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     return _preloadVideoPlayerManager;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    LQLog(@"触摸了屏幕");
+}
+
 #pragma mark - dealloc
 - (void)dealloc {
     [self.videoPlayerManager resetPlayer];
     [self.preloadVideoPlayerManager resetPlayer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)getDataList{
+    if (self.page == 1) {
+        [self showEmptyViewWithLoading];
+    }
+    NSString *url = [NSString stringWithFormat:@"/video/showAll?page=%@&isSaveRecord=0&category=define",@(self.page)];
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:url completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            [self hideEmptyView];
+            //[self.collectionView.mj_header endRefreshing];
+            NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
+            if (self.page == 1) {
+                [self.modelArray removeAllObjects];
+                self.modelArray = datas;
+            }else{
+                [self.modelArray addObjectsFromArray:datas];
+            }
+            if (datas.count == 5) {
+                //有下一页
+                self.tableView.mj_footer.hidden = NO;
+                [self.tableView.mj_footer endRefreshing];
+                self.page++;
+            }else{
+                self.tableView.mj_footer.hidden = YES;
+            }
+            if (self.modelArray.count == 0) {
+                [self showNoDataEmptyViewWithText:@"暂无附近数据" detailText:@"请前往首页观看更多视频"];
+            }else{
+                [self.tableView reloadData];
+            }
+            
+        } else {
+            [self hideEmptyView];
+            self.tableView.mj_footer.hidden = YES;
+            [self.tableView.mj_header endRefreshing];
+            [self showEmptyViewWithImage:UIImageMake(@"404") text:@"" detailText:@"加载失败" buttonTitle:@"点击重试" buttonAction:@selector(getDataList)];
+        }
+    }];
 }
 @end

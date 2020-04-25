@@ -12,13 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KB_HomePageViewController : QDCommonViewController
 
-// pageScrollView
-@property (nonatomic, strong) GKPageScrollView *pageScrollView;
- 
-@property (nonatomic, strong) UIScrollView     *contentScrollView;
-
-@property (nonatomic, strong) NSArray          *childVCs;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet QMUIButton *ageBtn;
 @property (weak, nonatomic) IBOutlet QMUIButton *eareBtn;
 @property (weak, nonatomic) IBOutlet QMUIButton *SchoolBtn;
+@property (weak, nonatomic) IBOutlet UILabel *likeCount;
+@property (weak, nonatomic) IBOutlet UILabel *focusCount;
+@property (weak, nonatomic) IBOutlet UILabel *fanCount;
 
 
 @end
@@ -37,9 +40,28 @@
     self.SchoolBtn.contentEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
 }
 - (IBAction)modifyInforMationEvent:(UIButton *)sender {
-    KB_PersonalInformationVC *vc = [[UIStoryboard storyboardWithName:@"PersonalInformation" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PersonalInformationVC"];
-    [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+    if ([sender.titleLabel.text isEqualToString:@"编辑资料"]) {
+            KB_PersonalInformationVC *vc = [[UIStoryboard storyboardWithName:@"PersonalInformation" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PersonalInformationVC"];
+        [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+    } else {
+        //关注 取消关注
+    }
 }
 
-
+- (void)setModel:(InformationModel *)model{
+    _model = model;
+    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@%@",kAddressUrl,model.faceImage]] placeholderImage:nil];
+    self.nameLabel.text = model.nickname;
+    self.countLabel.text = model.id;
+    if ([model.id isEqualToString:User_Center.id]) {
+        [self.modifyBtn setTitle:@"编辑资料" forState:UIControlStateNormal];
+        self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#777777");
+    } else {
+        [self.modifyBtn setTitle:@"关注" forState:UIControlStateNormal];
+        self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#DC143C");
+    }
+    self.likeCount.text = [NSString stringWithFormat:@"%@获赞",@(model.receiveLikeCounts)];
+    self.focusCount.text = [NSString stringWithFormat:@"%@关注",@(model.followCounts)];
+    self.fanCount.text = [NSString stringWithFormat:@"%@粉丝",@(model.fansCounts)];
+}
 @end

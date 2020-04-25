@@ -10,8 +10,8 @@
 #import "KB_MineHeaderView.h"
 #import "KB_PersonalInformationVC.h"
 #import "KB_SettingInformationVC.h"
-
 #import "KB_BaseCollectionListViewController.h"
+#import "InformationModel.h"
 
 @interface KB_MineTVC ()<GKPageScrollViewDelegate, JXCategoryViewDelegate, UIScrollViewDelegate>
 
@@ -44,6 +44,10 @@
     }];
     
     [self.pageScrollView reloadData];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getInformationData];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -201,12 +205,13 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark -获取网络数据 -
+#pragma mark -获取网络数据-
 - (void)getInformationData{
-    [RequesetApi requestAPIWithParams:nil andRequestUrl:@"" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/user/query?userId=%@",self.userId? self.userId:User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             // 请求成功
-            
+            InformationModel *model = [InformationModel modelWithDictionary:apiResponseModel.data];
+            self.headerView.model = model;
         } else {
             //加载失败
         }

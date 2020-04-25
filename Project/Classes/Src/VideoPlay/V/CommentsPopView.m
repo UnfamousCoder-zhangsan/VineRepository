@@ -144,8 +144,10 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"%@/video/queryCommentsByVideoId?videoId=%@",kAddressUrl,self.videoModel.video_url] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             //请求成功
+            
         } else {
             //请求失败
+            
         }
     }];
 }

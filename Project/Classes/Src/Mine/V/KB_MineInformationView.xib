@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -107,8 +107,8 @@
                         <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0获赞" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWM-SS-Fdb">
-                    <rect key="frame" x="15" y="297" width="45" height="25"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-获赞" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWM-SS-Fdb">
+                    <rect key="frame" x="15" y="297" width="42.5" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="c0m-ik-f7B"/>
                     </constraints>
@@ -116,8 +116,8 @@
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="74关注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxM-eI-bw8">
-                    <rect key="frame" x="80" y="297" width="53.5" height="25"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-关注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxM-eI-bw8">
+                    <rect key="frame" x="77.5" y="297" width="42.5" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="1jZ-sW-tAI"/>
                     </constraints>
@@ -125,8 +125,8 @@
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4粉丝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEo-cZ-ies">
-                    <rect key="frame" x="153.5" y="297" width="45.5" height="25"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-粉丝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEo-cZ-ies">
+                    <rect key="frame" x="140" y="297" width="42.5" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="OVb-Xt-s1g"/>
                     </constraints>
@@ -174,7 +174,10 @@
                 <outlet property="ageBtn" destination="Wwe-Bp-DKc" id="yhO-je-Yj4"/>
                 <outlet property="countLabel" destination="Wd7-qn-VEm" id="PT1-Ss-EMT"/>
                 <outlet property="eareBtn" destination="oI8-ej-KgR" id="801-4V-Q7P"/>
+                <outlet property="fanCount" destination="jEo-cZ-ies" id="KL8-RE-sbF"/>
+                <outlet property="focusCount" destination="AxM-eI-bw8" id="Vue-Qc-ev1"/>
                 <outlet property="headerImage" destination="VSf-38-IEo" id="4Ym-11-sXu"/>
+                <outlet property="likeCount" destination="nWM-SS-Fdb" id="tHE-OR-ABO"/>
                 <outlet property="modifyBtn" destination="2Kh-T8-lL0" id="sHV-wt-oa2"/>
                 <outlet property="nameLabel" destination="zUu-O8-rEw" id="49R-GD-Vil"/>
             </connections>

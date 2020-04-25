@@ -23,8 +23,7 @@
         return [super gestureRecognizerShouldBegin:gestureRecognizer];
     }
 }
-
-- (void)setupScrollViewShouldBeginPanGestureHandler:(ZJScrollViewShouldBeginPanGestureHandler)gestureBeginHandler {
+-(void)setupScrollViewShouldBeginPanGestureHandler:(ZJScrollViewShouldBeginPanGestureHandler)gestureBeginHandler {
     _gestureBeginHandler = [gestureBeginHandler copy];
 }
 

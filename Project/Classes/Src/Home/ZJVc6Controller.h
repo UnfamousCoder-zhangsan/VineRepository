@@ -6,8 +6,8 @@
 //  Copyright © 2016年 ZeroJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "QDCommonViewController.h"
 
-@interface ZJVc6Controller : UIViewController
+@interface ZJVc6Controller : QDCommonViewController
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import "QDCommonViewController.h"
+#import "ZJScrollPageViewDelegate.h"
 @class SmallVideoPlayViewController;
 @class SmallVideoModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KB_BaseViewController : QDCommonViewController
+@interface KB_BaseViewController : QDCommonViewController<ZJScrollPageViewChildVcDelegate>
 
 @property (nonatomic, strong) UITableView   *tableView;
 @property (nonatomic, assign) NSUInteger page;

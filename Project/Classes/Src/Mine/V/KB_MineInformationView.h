@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InformationModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KB_MineInformationView : UIView
-
+@property (nonatomic, strong) InformationModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

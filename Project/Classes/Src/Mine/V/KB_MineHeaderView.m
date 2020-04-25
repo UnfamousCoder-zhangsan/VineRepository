@@ -36,6 +36,9 @@
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(kMineBgImgHeight, 0, 0, 0));
         }];
+        [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.with.offset(250);
+        }];
         
     }
     return self;
@@ -94,5 +97,10 @@
         _InformationView.backgroundColor = UIColorMakeWithHex(@"#111111");
     }
     return _InformationView;
+}
+
+- (void)setModel:(InformationModel *)model{
+    _model = model;
+    self.contentView.model = model;
 }
 @end

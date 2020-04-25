@@ -7,8 +7,9 @@
 //
 
 #import "QDCommonViewController.h"
+#import "KB_HomeVideoDetailModel.h"
+
 @class SmallVideoPlayViewController;
-@class SmallVideoModel;
 @class KB_HomeVideoDetailModel;
 
 

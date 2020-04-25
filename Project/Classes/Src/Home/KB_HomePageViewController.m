@@ -7,16 +7,17 @@
 //
 
 #import "KB_HomePageViewController.h"
+#import "ZJScrollPageView.h"
 #import "KB_BaseViewController.h"
 #import "SmallVideoModel.h"
 
-@interface KB_HomePageViewController ()<UIScrollViewDelegate, GKPageScrollViewDelegate>
-@property(nonatomic, strong) JXCategoryTitleView *categoryView;
+@interface KB_HomePageViewController ()<ZJScrollPageViewDelegate>
+@property(strong, nonatomic)NSArray<NSString *> *titles;
+@property(strong, nonatomic)NSArray<UIViewController<ZJScrollPageViewChildVcDelegate> *> *childVcs;
+@property (weak, nonatomic) ZJScrollSegmentView *segmentView;
+@property (weak, nonatomic) ZJContentView *contentView;
 
-@property (nonatomic, strong) UIImageView        *headerView;
-@property (nonatomic,strong) UIView              *pageView;
-
-@property (nonatomic, strong) NSMutableArray<SmallVideoModel *> *modelArray;
+@property (nonatomic, strong) NSMutableArray *modelArray;
 
 @end
 
@@ -24,35 +25,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-    self.categoryView  =[[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, NavigationBarHeight)];
-    self.categoryView.backgroundColor = [UIColor clearColor];    
-    //配置JXCategoryTitleView的属性
-    self.categoryView.titles = @[@"关注",@"推荐"];
-    self.categoryView.titleFont = [UIFont systemFontOfSize:16];
-    self.categoryView.titleSelectedFont = [UIFont systemFontOfSize:18];
-    self.categoryView.titleColor = UIColorMakeWithHex(@"#999999"); //默认颜色
-    self.categoryView.titleSelectedColor = [UIColor whiteColor]; //选中颜色
-    self.categoryView.defaultSelectedIndex = 1;
-    self.categoryView.titleColorGradientEnabled = YES;
-    //添加指示器
-    JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-    lineView.indicatorColor = [UIColor whiteColor];
-    lineView.indicatorWidth = JXCategoryViewAutomaticDimension;
-    self.categoryView.indicators = @[lineView];
+    //必要的设置, 如果没有设置可能导致内容显示不正常
+    if(@available(iOS 11.0, *)){
+        //self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    self.childVcs = [self setupChildVc];
+    // 初始化
+    [self setupSegmentView];
+    [self setupContentView];
     
-    self.categoryView.contentScrollView = self.contentScrollView;
-    self.navigationItem.titleView = self.categoryView;
-    [self.view addSubview:self.pageScrollView];
-    [self.pageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
-    [self.pageScrollView reloadData];
     
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+}
+
+- (NSMutableArray *)modelArray{
+    if (!_modelArray) {
+        _modelArray = [NSMutableArray array];
+    }
+    return _modelArray;
 }
 
 - (UIImage *)navigationBarBackgroundImage{
@@ -62,110 +57,90 @@
     [super viewDidAppear:animated];
     PageRout_Maneger.currentNaviVC = self.navigationController;
 }
-#pragma mark - GKPageScrollViewDelegate
-- (UIView *)headerViewInPageScrollView:(GKPageScrollView *)pageScrollView {
-    return self.headerView;
-}
-
-- (UIView *)pageViewInPageScrollView:(GKPageScrollView *)pageScrollView {
-    return self.pageView;
-}
-
-- (NSArray<id<GKPageListViewDelegate>> *)listViewsInPageScrollView:(GKPageScrollView *)pageScrollView {
-    return self.childVCs;
-}
-- (void)mainTableViewDidScroll:(UIScrollView *)scrollView isMainCanScroll:(BOOL)isMainCanScroll{
+- (void)setupSegmentView {
+    ZJSegmentStyle *style = [[ZJSegmentStyle alloc] init];
+    style.showCover = NO;
+    // 不要滚动标题, 每个标题将平分宽度
+    style.scrollTitle = NO;
+    style.showLine = YES;
+    style.scrollLineColor = [UIColor whiteColor];
+    style.titleFont = [UIFont systemFontOfSize:18 weight:bold];
+    // 渐变
+    style.gradualChangeTitleColor = YES;
+    style.titleBigScale = 1.5;
+    style.adjustCoverOrLineWidth = YES;
+    // 遮盖背景颜色
+    style.coverBackgroundColor = [UIColor whiteColor];
+    //标题一般状态颜色 --- 注意一定要使用RGB空间的颜色值
+    style.normalTitleColor = [UIColor colorWithRed:105/255.0 green:105/255.0 blue:105/255.0 alpha:1.0];
+    //标题选中状态颜色 --- 注意一定要使用RGB空间的颜色值
+    style.selectedTitleColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     
-    if (scrollView.contentOffset.y < NavigationContentTopConstant) {
-        LQLog(@"%@",@(scrollView.contentOffset.y));
-        ///禁止下拉
-        self.pageScrollView.mainTableView.bounces = NO;
-    }
-}
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self.pageScrollView horizonScrollViewWillBeginScroll];
+    self.titles = @[@"关注", @"推荐"];
+    
+    // 注意: 一定要避免循环引用!!
+    @weakify(self);
+    ZJScrollSegmentView *segment = [[ZJScrollSegmentView alloc] initWithFrame:CGRectMake(0, 0, 160, NavigationBarHeight) segmentStyle:style delegate:self titles:self.titles titleDidClick:^(ZJTitleView *titleView, NSInteger index) {
+        @strongify(self)
+        [self.contentView setContentOffSet:CGPointMake(self.contentView.bounds.size.width * index, -TabBarHeight) animated:YES];
+        
+    }];
+    // 自定义标题的样式
+    segment.layer.cornerRadius = 14.0;
+    segment.backgroundColor = [UIColor clearColor];
+    self.segmentView = segment;
+    self.navigationItem.titleView = self.segmentView;
+    
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [self.pageScrollView horizonScrollViewDidEndedScroll];
+- (void)setupContentView {
+    
+    ZJContentView *content = [[ZJContentView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) segmentView:self.segmentView parentViewController:self delegate:self];
+    self.contentView = content;
+    [self.view addSubview:self.contentView];
+    
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self.pageScrollView horizonScrollViewDidEndedScroll];
-}
-#pragma mark - 懒加载
-- (GKPageScrollView *)pageScrollView {
-    if (!_pageScrollView) {
-        _pageScrollView = [[GKPageScrollView alloc] initWithDelegate:self];
-    }
-    return _pageScrollView;
-}
-- (UIImageView *)headerView {
-    if (!_headerView) {
-        _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        _headerView.contentMode = UIViewContentModeScaleAspectFill;
-        _headerView.clipsToBounds = YES;
-        _headerView.image = [UIImage imageNamed:@"test"];
-    }
-    return _headerView;
+- (NSArray *)setupChildVc {
+    //关注
+    [self getResource];
+    KB_BaseViewController *vc1 = [KB_BaseViewController new];
+    vc1.currentPlayIndex = 0;
+    vc1.modelArray = self.modelArray;
+
+    //推荐
+    KB_BaseViewController  *vc2 = [KB_BaseViewController new];
+    vc1.currentPlayIndex = 0;
+    vc2.modelArray = self.modelArray;
+
+    NSArray *childVcs = [NSArray arrayWithObjects:vc2, vc1, nil];
+    return childVcs;
 }
 
-- (UIView *)pageView {
-    if (!_pageView) {
-        _pageView = [UIView new];
-        
-        [_pageView addSubview:self.contentScrollView];
-    }
-    return _pageView;
-}
-- (UIScrollView *)contentScrollView {
-    if (!_contentScrollView) {
-        CGFloat scrollW = SCREEN_WIDTH;
-        CGFloat scrollH = SCREEN_HEIGHT  - TabBarHeight + NavigationContentTopConstant;
-        
-        _contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -NavigationContentTopConstant, scrollW, scrollH)];
-        _contentScrollView.pagingEnabled = YES;
-        _contentScrollView.bounces = NO;
-        _contentScrollView.showsVerticalScrollIndicator = NO;
-        _contentScrollView.delegate = self;
-        
-        [self.childVCs enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self addChildViewController:vc];
-            [self->_contentScrollView addSubview:vc.view];
-            
-            vc.view.frame = CGRectMake(idx * scrollW, 0, scrollW, scrollH);
-        }];
-        _contentScrollView.contentSize = CGSizeMake(scrollW * self.childVCs.count, 0);
-    }
-    return _contentScrollView;
+- (NSInteger)numberOfChildViewControllers {
+    return self.titles.count;
 }
 
-- (NSArray *)childVCs {
-    if (!_childVCs) {
-        [self getResource];
-        KB_BaseViewController *recommendVC = [KB_BaseViewController new];
-        recommendVC.modelArray = self.modelArray;
-        recommendVC.isAutoPlay = NO;
-        recommendVC.currentPlayIndex = 0;
-        
-        KB_BaseViewController *focusVC = [KB_BaseViewController new];
-        focusVC.modelArray = self.modelArray;
-        focusVC.isAutoPlay = NO;
-        focusVC.currentPlayIndex = 0;
-        
-        _childVCs = @[focusVC, recommendVC];
+
+
+
+- (UIViewController<ZJScrollPageViewChildVcDelegate> *)childViewController:(UIViewController<ZJScrollPageViewChildVcDelegate> *)reuseViewController forIndex:(NSInteger)index {
+    UIViewController<ZJScrollPageViewChildVcDelegate> *childVc = reuseViewController;
+    
+    if (!childVc) {
+        childVc = self.childVcs[index];
     }
-    return _childVCs;
+    
+    return childVc;
 }
-#pragma mark - 添加参数-
-- (NSMutableArray *)modelArray {
-    if(!_modelArray) {
-        _modelArray = [NSMutableArray array];
-        
-    }
-    return _modelArray;
+
+
+-(CGRect)frameOfChildControllerForContainer:(UIView *)containerView {
+    return  CGRectInset(containerView.bounds, 20, 20);
 }
+
+
+
 - (void)getResource {
     SmallVideoModel *model1 = [[SmallVideoModel alloc] init];
     model1.rid = 1;

@@ -1,17 +1,16 @@
 //
-//  SmallVideoPlayCell.m
-//  RingtoneDuoduo
+//  KB_NearVideoPlayCell.m
+//  Project
 //
-//  Created by 唐天成 on 2019/1/5.
-//  Copyright © 2019年 duoduo. All rights reserved.
+//  Created by hi  kobe on 2020/4/25.
+//  Copyright © 2020 hiKobe@lsirCode. All rights reserved.
 //
 
-#import "SmallVideoPlayCell.h"
+#import "KB_NearVideoPlayCell.h"
 #import "FavoriteView.h"
 #import "KB_MineTVC.h"
 
-
-@interface SmallVideoPlayCell ()
+@interface KB_NearVideoPlayCell()
 
 @property (nonatomic, strong) UIImageView *coverImageView;
 
@@ -34,10 +33,10 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *artistLabel;
 
-
 @end
 
-@implementation SmallVideoPlayCell
+
+@implementation KB_NearVideoPlayCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -269,9 +268,12 @@
     }
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,videoModel.coverPath]] placeholderImage:[UIImage imageNamed:@""]];
     [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,videoModel.face_image]] placeholderImage:[UIImage imageNamed:@""]];
-    
-      self.focus.hidden = NO;
-      self.favorite.isChoose = NO;
+    if ([videoModel.userId isEqualToString: User_Center.id] || videoModel.isFoucs) {
+        self.focus.hidden = YES;
+    }else{
+        self.focus.hidden = NO;
+    }
+    self.favorite.isChoose = NO;
 }
 
 #pragma mark - Action
@@ -279,9 +281,19 @@
 //关注
 - (void)addConcern {
     
-    if([self.delegate respondsToSelector:@selector(handleAddConcerWithVideoModel:)]) {
-        [self.delegate handleAddConcerWithVideoModel:self.videoModel];
-    }
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"user/userFollow?userId=%@&fanId=%@",self.videoModel.userId,User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            //关注成功
+            self.focus.hidden = YES;
+            if([self.delegate respondsToSelector:@selector(handleAddConcerWithVideoModel:)]) {
+                [self.delegate handleAddConcerWithVideoModel:self.videoModel];
+            }
+        } else {
+            //关注失败
+            self.focus.hidden = YES;
+        }
+    }];
+    
 }
 
 //进入个人主页

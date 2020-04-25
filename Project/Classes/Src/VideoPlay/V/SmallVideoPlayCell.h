@@ -12,21 +12,17 @@
 
 @protocol SmallVideoPlayCellDlegate <NSObject>
 //关注
-- (void)handleAddConcerWithVideoModel:(SmallVideoModel *)smallVideoModel;
+- (void)handleAddConcerWithVideoModel:(KB_HomeVideoDetailModel *)smallVideoModel;
 //点击头像
-- (void)handleClickPersonIcon:(SmallVideoModel *)smallVideoModel;
+- (void)handleClickPersonIcon:(KB_HomeVideoDetailModel *)smallVideoModel;
 //收藏视频
-- (void)handleFavoriteVdieoModel:(SmallVideoModel *)smallVdeoModel;
+- (void)handleFavoriteVdieoModel:(KB_HomeVideoDetailModel *)smallVdeoModel;
 //取消收藏视频
-- (void)handleDeleteFavoriteVdieoModel:(SmallVideoModel *)smallVdeoModel;
+- (void)handleDeleteFavoriteVdieoModel:(KB_HomeVideoDetailModel *)smallVdeoModel;
 //评论
-- (void)handleCommentVidieoModel:(SmallVideoModel *)smallVideoModel;
+- (void)handleCommentVidieoModel:(KB_HomeVideoDetailModel *)smallVideoModel;
 //分享
-- (void)handleShareVideoModel:(SmallVideoModel *)smallVideoModel;
-//设置铃声
-- (void)handleSetRingVideoModel:(SmallVideoModel *)smallVideoMoodel;
-//设置动态壁纸
-- (void)handleSetLivePhoto:(SmallVideoModel *)smallVideoModel;
+- (void)handleShareVideoModel:(KB_HomeVideoDetailModel *)smallVideoModel;
 
 @end
 

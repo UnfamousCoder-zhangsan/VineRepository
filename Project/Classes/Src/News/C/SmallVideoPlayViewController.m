@@ -7,21 +7,19 @@
 //
 
 #import "SmallVideoPlayViewController.h"
-#import "SmallVideoPlayCell.h"
-#import "SmallVideoModel.h"
+#import "KB_NearVideoPlayCell.h"
 #import "DDVideoPlayerManager.h"
 #import "SDImageCache.h"
-#import "CommentTextView.h"
 #import "CommentsPopView.h"
 
-static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
+static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 
-@interface SmallVideoPlayViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, SmallVideoPlayCellDlegate, CommentTextViewDelegate>
+@interface SmallVideoPlayViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, NearVideoPlayCellDlegate, QMUITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView      *bottomView;
-@property (nonatomic, strong) CommentTextView *commentTextView;
+@property (nonatomic, strong) QMUITextField *commentTextField;
 @property (nonatomic, strong) QMUIButton   *commentBtn;
 @property (nonatomic, strong) UIView *fatherView;
 //这个是播放视频的管理器
@@ -70,7 +68,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.backgroundColor = [UIColor blackColor];
-    [self.tableView registerClass:[SmallVideoPlayCell class] forCellReuseIdentifier:SmallVideoCellIdentifier];
+    [self.tableView registerClass:[KB_NearVideoPlayCell class] forCellReuseIdentifier:NearVideoCellIdentifier];
 
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.with.offset(0);
@@ -96,13 +94,21 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
         make.height.offset(TabBarHeight);
     }];
     
-    self.commentTextView = [CommentTextView new];
-    self.commentTextView.delegate = self;
-    [self.view addSubview:self.commentTextView];
-    [self.commentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(SCREEN_WIDTH);
-        make.height.offset(TabBarHeight);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
+    self.commentTextField = [QMUITextField new];
+    self.commentTextField.delegate = self;
+    self.commentTextField.placeholder = @"说点什么吧～";
+    self.commentTextField.maximumTextLength = 55;
+    self.commentTextField.returnKeyType = UIReturnKeyDone;
+    self.commentTextField.placeholderColor = UIColorMakeWithHex(@"#666666");
+    self.commentTextField.textColor = UIColorMakeWithHex(@"#FFFFFF");
+    self.commentTextField.font = UIFontMake(14);
+    self.commentTextField.backgroundColor = UIColorMakeWithHex(@"#222222");
+    [self.view addSubview:self.commentTextField];
+    [self.commentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.offset(SCREEN_WIDTH - 20);
+        make.left.offset(10);
+        make.top.mas_equalTo(self.tableView.mas_bottom).offset(10);
+        make.height.offset(40);
     }];
     
     
@@ -116,9 +122,9 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     return self.modelArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SmallVideoPlayCell *cell = [tableView dequeueReusableCellWithIdentifier:SmallVideoCellIdentifier forIndexPath:indexPath];
+    KB_NearVideoPlayCell *cell = [tableView dequeueReusableCellWithIdentifier:NearVideoCellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
-    cell.model = self.modelArray[indexPath.row];
+    cell.videoModel = self.modelArray[indexPath.row];
     return cell;
 }
 
@@ -155,7 +161,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)playIndex:(NSInteger)currentIndex {
     DLog(@"播放下一个");
-    SmallVideoPlayCell *currentCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentIndex inSection:0]];
+    KB_NearVideoPlayCell *currentCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentIndex inSection:0]];
     
     NSString *artist = nil;
     NSString *title = nil;
@@ -171,7 +177,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     artist = currentPlaySmallVideoModel.nickName;
     title = currentPlaySmallVideoModel.videoDesc;
     // 首帧图
-    cover_url = [NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.coverPath];
+    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",currentPlaySmallVideoModel.coverPath];
     // 视频地址
     videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
     originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
@@ -257,14 +263,50 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 
 
-#pragma mark - SmallVideoPlayCellDlegate
+#pragma mark - NearVideoPlayCellDlegate
 
 //评论
-- (void)handleCommentVidieoModel:(SmallVideoModel *)smallVideoModel {
-    CommentsPopView *popView = [[CommentsPopView alloc] initWithSmallVideoModel:smallVideoModel];
+- (void)handleCommentVidieoModel:(KB_HomeVideoDetailModel *)model{
+    CommentsPopView *popView = [[CommentsPopView alloc] initWithVideoModel:model];
     [popView showToView:self.view];
 }
 
+//关注
+- (void)handleAddConcerWithVideoModel:(KB_HomeVideoDetailModel *)model{
+    KB_HomeVideoDetailModel *videoModel = model;
+    videoModel.isFoucs = YES;
+    self.modelArray[self.currentPlayIndex] = videoModel;
+}
+
+
+//点赞
+- (void)handleFavoriteVdieoModel:(KB_HomeVideoDetailModel *)model{
+    
+    
+}
+//取消点赞
+- (void)handleDeleteFavoriteVdieoModel:(KB_HomeVideoDetailModel *)model{
+    
+    
+}
+- (void)handleShareVideoModel:(SmallVideoModel *)smallVideoModel{
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    moreOperationController.cancelButtonTitleColor = UIColorMakeWithHex(@"#999999");
+    moreOperationController.items = @[
+                                     // 第一行
+                                     @[
+                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享到微信" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
+                                             
+                                             [moreOperationController hideToBottom];
+                                         }],
+                                         [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
+                                             [moreOperationController hideToBottom];
+                                         }
+                                         ]
+                                     ],
+    ];
+    [moreOperationController showFromBottom];
+}
 
 #pragma mark - Action
 - (void) backToPreviousView:(id)sender;
@@ -300,56 +342,11 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
-
-#pragma mark - CommentTextViewDelegate
--(void)onSendText:(NSString *)text {
-   
-    //提交评论
-//    [self requestWithAddComment];
-//    CommentModel *model = [[CommentModel alloc] init];
-//    model.name = @"锤子评论";
-//    model.cid = @(self.hotCommentArray.count + 1).stringValue;
-//    model.comment = self.commentTextView.textView.text;
-//    model.createtime = @"2019-05-29 18:27:40";
-//    model.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-//    [self.hotCommentArray insertObject:model atIndex:0];
-    
-    self.commentTextView.textView.text = @"";
-    self.commentTextView.placeholderLabel.text = @"说点什么...";
-    
-    [self.tableView reloadData];
+#pragma mark - QMUItextFieldDelegate-
+- (void)textField:(QMUITextField *)textField didPreventTextChangeInRange:(NSRange)range replacementString:(NSString *)replacementString{
+    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"最大不超过%@个字符",@(self.commentTextField.maximumTextLength)]];
+}
+- (void)textFieldDidChangeSelection:(UITextField *)textField{
     
 }
-- (void)showToView:(UIView *)view {
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    [view addSubview:self.commentTextView];
-    [UIView animateWithDuration:0.15f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         CGRect frame = self.view.frame;
-                         frame.origin.y = frame.origin.y - frame.size.height;
-                         self.view.frame = frame;
-                     }
-                     completion:^(BOOL finished) {
-                     }];
-    [self.commentTextView showToView:window];
-}
-
-- (void)dismiss {
-    [UIView animateWithDuration:0.15f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         CGRect frame = self.view.frame;
-                         frame.origin.y = frame.origin.y + frame.size.height;
-                         self.view.frame = frame;
-                     }
-                     completion:^(BOOL finished) {
-                        // [self removeFromSuperview];
-                         [self.commentTextView dismiss];
-                     }];
-}
-
 @end
