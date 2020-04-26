@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SmallVideoModel.h"
 #import "KB_HomeVideoDetailModel.h"
 
 @interface CommentsPopView:UIView
 
 
 
-- (instancetype)initWithSmallVideoModel:(SmallVideoModel *)smallVideoModel;
-- (instancetype)initWithVideoModel:(KB_HomeVideoDetailModel *)videoDetailModel;
+- (instancetype)initWithSmallVideoModel:(KB_HomeVideoDetailModel *)smallVideoModel;
+//- (instancetype)initWithVideoModel:(KB_HomeVideoDetailModel *)videoDetailModel;
 - (void)showToView:(UIView *)view;
 - (void)dismiss;
 

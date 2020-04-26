@@ -50,6 +50,7 @@
     
     //用户名
     self.nameLabel = [[UILabel alloc]init];
+    self.nameLabel.textColor = UIColorMakeWithHex(@"#FFFFFF");
 //    self.nameLabel.displaysAsynchronously = YES;
     self.nameLabel.text = @"用户名";
     [self.contentView addSubview:self.nameLabel];

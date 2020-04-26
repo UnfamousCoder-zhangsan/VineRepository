@@ -267,7 +267,7 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 //评论
 - (void)handleCommentVidieoModel:(KB_HomeVideoDetailModel *)model{
-    CommentsPopView *popView = [[CommentsPopView alloc] initWithVideoModel:model];
+    CommentsPopView *popView = [[CommentsPopView alloc] initWithSmallVideoModel:model];
     [popView showToView:self.view];
 }
 
@@ -289,7 +289,7 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     
     
 }
-- (void)handleShareVideoModel:(SmallVideoModel *)smallVideoModel{
+- (void)handleShareVideoModel:(KB_HomeVideoDetailModel *)smallVideoModel{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
     moreOperationController.cancelButtonTitleColor = UIColorMakeWithHex(@"#999999");
     moreOperationController.items = @[

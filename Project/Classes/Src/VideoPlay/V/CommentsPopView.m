@@ -22,7 +22,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
 
 @interface CommentsPopView () <UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate,UIScrollViewDelegate, CommentMessageCellDelegate, CommentTextViewDelegate>
 
-@property (nonatomic, strong) SmallVideoModel *videoModel;
+@property (nonatomic, strong) KB_HomeVideoDetailModel *videoModel;
 
 @property (nonatomic, strong) UIView                           *container;
 @property (nonatomic, strong) UITableView                      *tableView;
@@ -52,7 +52,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
 
 @implementation CommentsPopView
 
-- (instancetype)initWithSmallVideoModel:(SmallVideoModel *)smallVideoModel {
+- (instancetype)initWithSmallVideoModel:(KB_HomeVideoDetailModel *)smallVideoModel {
     self = [super init];
     if (self) {
         self.isDragTableView = NO;
@@ -85,8 +85,8 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         
         self.numCommentLabel = [[UILabel alloc] init];
         self.numCommentLabel.textColor = [UIColor blackColor];//ColorGray;
-        self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",(long)self.videoModel.comment_num];
-        self.numCommentLabel.font = [UIFont systemFontOfSize:14  ];//SmallFont;
+        self.numCommentLabel.text = [NSString stringWithFormat:@"%@条评论",@(self.videoModel.status)];
+        self.numCommentLabel.font = [UIFont systemFontOfSize:14];//SmallFont;
         self.numCommentLabel.textAlignment = NSTextAlignmentCenter;
         [_container addSubview:self.numCommentLabel];
         [self.numCommentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,7 +94,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
             make.height.mas_equalTo(35  );
         }];
         @weakify(self);
-        [RACObserve(self, videoModel.comment_num) subscribeNext:^(NSNumber *x) {
+        [RACObserve(self, videoModel.status) subscribeNext:^(NSNumber *x) {
             @strongify(self);
             self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",(long)x.integerValue];
         }];
@@ -134,17 +134,22 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
         [self.container addGestureRecognizer:self.panGestureRecognizer];
         self.panGestureRecognizer.delegate = self;
-        [self loadData];
+        [self getData];
     }
     return self;
 }
 
 #pragma mark - 根据videoId加载评论
 - (void)getData {
-    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"%@/video/queryCommentsByVideoId?videoId=%@",kAddressUrl,self.videoModel.video_url] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/queryCommentsByVideoId?videoId=%@",self.videoModel.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             //请求成功
-            
+//            NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
+//            if (<#condition#>) {
+//                <#statements#>
+//            } else {
+//                <#statements#>
+//            }
         } else {
             //请求失败
             
@@ -456,8 +461,9 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     model.name = User_Center.nickname;
     model.cid = @(self.hotCommentArray.count + 1).stringValue;
     model.comment = self.commentTextView.textView.text;
-    model.createtime = @"2019-05-29 18:27:40";
-    model.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
+    long long timeStr = [NSDate getNowTimestampStringLevelMilliSecond].longLongValue;
+    model.createtime = [@(timeStr).stringValue dateStringUseWeChatFormatSinceNow];
+    model.head_url = User_Center.faceImage;
     [self.hotCommentArray insertObject:model atIndex:0];
     
     self.commentTextView.textView.text = @"";
