@@ -15,7 +15,6 @@
 
 
 - (instancetype)initWithSmallVideoModel:(KB_HomeVideoDetailModel *)smallVideoModel;
-//- (instancetype)initWithVideoModel:(KB_HomeVideoDetailModel *)videoDetailModel;
 - (void)showToView:(UIView *)view;
 - (void)dismiss;
 

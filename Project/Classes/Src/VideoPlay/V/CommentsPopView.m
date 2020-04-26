@@ -58,7 +58,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         self.isDragTableView = NO;
         self.lastDrapDistance = 0.0;
         self.frame = [UIScreen mainScreen].bounds;
-        self.backgroundColor =   [UIColor clearColor];//[[UIColor alloc] qmui_colorWithAlpha:0.1 backgroundColor:UIColorMakeWithHex(@"#222222")];
+        self.backgroundColor =  [UIColor clearColor];
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGuesture:)];
         self.tapGestureRecognizer = tapGestureRecognizer;
         tapGestureRecognizer.delegate = self;
@@ -144,96 +144,18 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/queryCommentsByVideoId?videoId=%@",self.videoModel.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             //请求成功
-//            NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
-//            if (<#condition#>) {
-//                <#statements#>
-//            } else {
-//                <#statements#>
-//            }
+            NSMutableArray *datas = [NSArray modelArrayWithClass:[CommentModel class] json:apiResponseModel.data].mutableCopy;
+            if (datas.count) {
+                self.hotCommentArray = datas;
+                [self.tableView reloadData];
+            }else {
+                [SVProgressHUD showErrorWithStatus:@"加载失败"];
+            }
         } else {
             //请求失败
             
         }
     }];
-}
-
-- (void)loadData {
-    CommentModel *model1 = [[CommentModel alloc] init];
-    model1.name = @"小明";
-    model1.cid = @"1";
-    model1.comment = @"评论1";
-    model1.createtime = @"2019-12-29 18:27:40";
-    model1.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model2 = [[CommentModel alloc] init];
-    model2.name = @"小明";
-    model2.cid = @"2";
-    model2.comment = @"评论2";
-    model2.createtime = @"2019-12-29 18:27:40";
-    model2.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model3 = [[CommentModel alloc] init];
-    model3.name = @"小明";
-    model3.cid = @"3";
-    model3.comment = @"评论3";
-    model3.createtime = @"2019-12-29 18:27:40";
-    model3.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model4 = [[CommentModel alloc] init];
-    model4.name = @"小明";
-    model4.cid = @"4";
-    model4.comment = @"评论4";
-    model4.createtime = @"2019-12-29 18:27:40";
-    model4.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model5 = [[CommentModel alloc] init];
-    model5.name = @"小明";
-    model5.cid = @"5";
-    model5.comment = @"评论5";
-    model5.createtime = @"2019-12-29 18:27:40";
-    model5.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model6 = [[CommentModel alloc] init];
-    model6.name = @"小明";
-    model6.cid = @"6";
-    model6.comment = @"评论6";
-    model6.createtime = @"2019-12-29 18:27:40";
-    model6.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model7 = [[CommentModel alloc] init];
-    model7.name = @"小明";
-    model7.cid = @"7";
-    model7.comment = @"评论7";
-    model7.createtime = @"2019-12-29 18:27:40";
-    model7.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model8 = [[CommentModel alloc] init];
-    model8.name = @"小明";
-    model8.cid = @"8";
-    model8.comment = @"评论8";
-    model8.createtime = @"2019-12-29 18:27:40";
-    model8.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model9 = [[CommentModel alloc] init];
-    model9.name = @"小明";
-    model9.cid = @"9";
-    model9.comment = @"评论9";
-    model9.createtime = @"2019-12-29 18:27:40";
-    model9.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model10 = [[CommentModel alloc] init];
-    model10.name = @"小明";
-    model10.cid = @"10";
-    model10.comment = @"评论10";
-    model10.createtime = @"2019-12-29 18:27:40";
-    model10.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model11 = [[CommentModel alloc] init];
-    model11.name = @"小明";
-    model11.cid = @"11";
-    model11.comment = @"评论11";
-    model11.createtime = @"2019-12-29 18:27:40";
-    model11.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    CommentModel *model12 = [[CommentModel alloc] init];
-    model12.name = @"小明";
-    model12.cid = @"12";
-    model12.comment = @"评论12";
-    model12.createtime = @"2019-12-29 18:27:40";
-    model12.head_url = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/25/user_head_126303_20181113055125.png";
-    
-    [self.hotCommentArray addObjectsFromArray:@[model1,model2,model3,model4,model5,model6,model7,model8,model9,model10,model11,model12]];
-    [self.tableView reloadData];
-    
 }
 
 
@@ -458,11 +380,11 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     //提交评论
 //    [self requestWithAddComment];
     CommentModel *model = [[CommentModel alloc] init];
-    model.name = User_Center.nickname;
-    model.cid = @(self.hotCommentArray.count + 1).stringValue;
+    model.nickName = User_Center.nickname;
+    model.id = @(self.hotCommentArray.count + 1).stringValue;
     model.comment = self.commentTextView.textView.text;
     long long timeStr = [NSDate getNowTimestampStringLevelMilliSecond].longLongValue;
-    model.createtime = [@(timeStr).stringValue dateStringUseWeChatFormatSinceNow];
+    model.createTime = [@(timeStr).stringValue dateStringUseWeChatFormatSinceNow];
     model.head_url = User_Center.faceImage;
     [self.hotCommentArray insertObject:model atIndex:0];
     

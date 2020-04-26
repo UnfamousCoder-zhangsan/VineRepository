@@ -13,16 +13,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CommentModel : NSObject
 
 //当前的评论ID
-@property(nonatomic, copy) NSString *cid;
+@property(nonatomic, strong) NSString *id;
+@property(nonatomic, strong) NSString *videoId;
 //当前评论内容
 @property(nonatomic, copy) NSString *comment;
+@property(nonatomic, copy) NSString *fromUserId;
 //当前评论日期
-@property(nonatomic, copy) NSString *createtime;
+@property(nonatomic, strong) NSString *createTime;
 
 //当前评论人名字
-@property(nonatomic, copy) NSString *name;
+@property(nonatomic, strong) NSString *nickName;
 //当前评论人头像地址
-@property(nonatomic, copy) NSString *head_url;
+@property(nonatomic, strong) NSString *head_url;
 @property(nonatomic, assign) CGFloat height;
 
 @end

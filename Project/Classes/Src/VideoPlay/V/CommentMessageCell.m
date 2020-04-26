@@ -50,12 +50,11 @@
     
     //用户名
     self.nameLabel = [[UILabel alloc]init];
-    self.nameLabel.textColor = UIColorMakeWithHex(@"#FFFFFF");
 //    self.nameLabel.displaysAsynchronously = YES;
     self.nameLabel.text = @"用户名";
     [self.contentView addSubview:self.nameLabel];
     self.nameLabel.font = [UIFont systemFontOfSize:14   ];
-    self.nameLabel.textColor = RGBA(74, 74, 74, 1);
+    self.nameLabel.textColor = UIColorMakeWithHex(@"#FFFFFF");
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.with.offset(15);
         make.left.equalTo(self.iconButton.mas_right).with.offset(14   );
@@ -65,7 +64,6 @@
     
     //回复日期
     self.commentDateLabel = [[UILabel alloc]init];
-    self.commentDateLabel.text = @"1小时前";
     [self.contentView addSubview:self.commentDateLabel];
     self.commentDateLabel.font = [UIFont systemFontOfSize:12.5   ];
     self.commentDateLabel.textColor = UIColorMakeWithHex(@"#F2F2F2");
@@ -96,7 +94,7 @@
     
     UIView *lineView = [[UIView alloc]init];
     [self.contentView addSubview:lineView];
-    lineView.backgroundColor = RGBA(238, 238, 238, 1);
+    lineView.backgroundColor = UIColorMakeWithHex(@"#444444");
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.commentMessageLabel);
         make.height.mas_equalTo(1);
@@ -117,8 +115,8 @@
     } else {
         [self.iconButton sd_setImageWithURL:[NSURL URLWithString:commentModel.head_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
     }
-    self.nameLabel.text = commentModel.name;
-    self.commentDateLabel.text = [NSDate intervalFromNoewDateWithString:commentModel.createtime];
+    self.nameLabel.text = commentModel.nickName;
+    //self.commentDateLabel.text = [commentModel.createTime dateStringUseWeChatFormatSinceNow];
     self.commentMessageLabel.text = commentModel.comment;
 }
 
