@@ -11,6 +11,7 @@
 #import "DDVideoPlayerManager.h"
 #import "SDImageCache.h"
 #import "CommentsPopView.h"
+#import "UMSocialWechatHandler.h"
 
 static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
@@ -296,10 +297,11 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
                                      // 第一行
                                      @[
                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareFriend") title:@"分享到微信" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
-                                             
+                                             [self shareVedioToPlatformType:UMSocialPlatformType_WechatSession];
                                              [moreOperationController hideToBottom];
                                          }],
                                          [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController * _Nonnull moreOperationController, QMUIMoreOperationItemView * _Nonnull itemView) {
+                                             [self shareVedioToPlatformType:UMSocialPlatformType_WechatTimeLine];
                                              [moreOperationController hideToBottom];
                                          }
                                          ]
@@ -308,6 +310,30 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     [moreOperationController showFromBottom];
 }
 
+- (void)shareVedioToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+
+    //创建视频内容对象
+    UMShareVideoObject *shareObject = [UMShareVideoObject shareObjectWithTitle:@"OTunes" descr:@"测试分享内容" thumImage:[UIImage imageNamed:@"icon"]];
+    //设置视频网页播放地址
+    shareObject.videoUrl = @"http://video.sina.com.cn/p/sports/cba/v/2013-10-22/144463050817.html";
+    //            shareObject.videoStreamUrl = @"这里设置视频数据流地址（如果有的话，而且也要看所分享的平台支不支持）";
+
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+            [SVProgressHUD showErrorWithStatus:@"分享失败"];
+        }else{
+            [SVProgressHUD showSuccessWithStatus:@"分享成功"];
+        }
+    }];
+}
 #pragma mark - Action
 - (void) backToPreviousView:(id)sender;
 {

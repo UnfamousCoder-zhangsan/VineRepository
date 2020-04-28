@@ -14,7 +14,7 @@
 #import <MJExtension/MJExtension-umbrella.h>
 #import <LBXPermission/LBXPermission-umbrella.h>
 #import <TOCropViewController/TOCropViewController.h>
-
+#import <UMShare/UMShare.h>
 #import <CRBoxInputView/CRBoxInputView.h>
 #import "ZFFlowLayout.h"
 #import "BRPickerView.h"
