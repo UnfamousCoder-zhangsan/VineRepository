@@ -80,7 +80,8 @@
         }
     }else if (indexPath.section == 1) {
         //退出登录
-        
+        [UserCenter clearUserCenter];
+        [PageRoutManeger gotoLoginVC];
     }
 }
 #pragma mark - 获取本地所有本地文件大小

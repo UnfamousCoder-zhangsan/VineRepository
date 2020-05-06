@@ -39,6 +39,7 @@ PODS:
   - EFQRCode (5.1.6):
     - EFQRCode/Core (= 5.1.6)
   - EFQRCode/Core (5.1.6)
+  - FLAnimatedImage (1.0.12)
   - GKPageScrollView (1.3.3)
   - HandyJSON (5.0.1)
   - JXCategoryView (1.5.2)
@@ -365,6 +366,8 @@ PODS:
   - SnapKit (4.2.0)
   - SVProgressHUD (2.2.5)
   - TOCropViewController (2.5.2)
+  - XHLaunchAd (3.9.12):
+    - FLAnimatedImage (~> 1.0.12)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -403,6 +406,7 @@ DEPENDENCIES:
   - SnapKit
   - SVProgressHUD
   - TOCropViewController
+  - XHLaunchAd
   - YYKit
 
 SPEC REPOS:
@@ -421,6 +425,7 @@ SPEC REPOS:
     - Charts
     - CRBoxInputView
     - EFQRCode
+    - FLAnimatedImage
     - GKPageScrollView
     - HandyJSON
     - JXCategoryView
@@ -445,6 +450,7 @@ SPEC REPOS:
     - SnapKit
     - SVProgressHUD
     - TOCropViewController
+    - XHLaunchAd
     - YYKit
 
 SPEC CHECKSUMS:
@@ -462,6 +468,7 @@ SPEC CHECKSUMS:
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
   CRBoxInputView: 40aeedca17d33f7464cc3c3b7d75019ae5a9533b
   EFQRCode: a7ea2e517912f5bf6ba258b631327a83cd8084a5
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GKPageScrollView: fef66b0200cbf7cf6b6819aaa62843ae1602bc19
   HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
   JXCategoryView: b284d35a7a8772eada05dd78642233e1eb763ea8
@@ -486,8 +493,9 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
+  XHLaunchAd: 6320f9c68732667323072fc3a5f104e40fbe9cfe
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: fe3bc79cfbb0229b188ada4e83df2cf3a8370e1e
+PODFILE CHECKSUM: 34d3f5760fdf5af47b2943555d9b52c60e78a91c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

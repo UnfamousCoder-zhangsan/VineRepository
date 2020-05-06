@@ -38,11 +38,11 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.iconButton = [[UIButton alloc]init];
     [self.contentView addSubview:self.iconButton];
-    [self.iconButton setBackgroundImage:[UIImage imageNamed:@"comment_icon_placeholder"] forState:UIControlStateNormal];
+    [self.iconButton setBackgroundImage:[UIImage imageNamed:@"AppIcon"] forState:UIControlStateNormal];
     [self.iconButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.with.offset(14   );
-        make.left.with.offset(14   );
-        make.width.height.mas_equalTo(34   );
+        make.top.with.offset(14);
+        make.left.with.offset(14);
+        make.width.height.mas_equalTo(34);
     }];
     [self.iconButton createBordersWithColor:[UIColor clearColor] withCornerRadius:17    andWidth:0];
     self.iconButton.clipsToBounds = YES;
@@ -66,10 +66,10 @@
     self.commentDateLabel = [[UILabel alloc]init];
     [self.contentView addSubview:self.commentDateLabel];
     self.commentDateLabel.font = [UIFont systemFontOfSize:12.5   ];
-    self.commentDateLabel.textColor = UIColorMakeWithHex(@"#F2F2F2");
+    self.commentDateLabel.textColor = UIColorMakeWithHex(@"#778899");
     [self.commentDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nameLabel.mas_bottom).with.offset(7   );
-        make.left.equalTo(self.iconButton.mas_right).with.offset(14   );
+        make.top.equalTo(self.nameLabel.mas_bottom).with.offset(7);
+        make.left.equalTo(self.iconButton.mas_right).with.offset(14);
         make.right.lessThanOrEqualTo(self).with.offset(-5);
         make.height.mas_equalTo(12.5);
     }];
@@ -116,7 +116,7 @@
         [self.iconButton sd_setImageWithURL:[NSURL URLWithString:commentModel.head_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"comment_icon_placeholder"]];
     }
     self.nameLabel.text = commentModel.nickName;
-    //self.commentDateLabel.text = [commentModel.createTime dateStringUseWeChatFormatSinceNow];
+    self.commentDateLabel.text = [commentModel.createTime dateStringUseWeChatFormatSinceNow];
     self.commentMessageLabel.text = commentModel.comment;
 }
 

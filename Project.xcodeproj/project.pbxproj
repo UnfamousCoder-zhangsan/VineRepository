@@ -206,9 +206,6 @@
 		86E4240822F19FF600592D09 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E4240722F19FF600592D09 /* CFNetwork.framework */; };
 		86E4240922F1A00300592D09 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEE9CE01F57F58A0085C529 /* CoreMotion.framework */; };
 		926ADECB23F127E200844868 /* custom_map_config in Resources */ = {isa = PBXBuildFile; fileRef = 926ADECA23F127E100844868 /* custom_map_config */; };
-		92CBDFE923FD792C0022866B /* DHGifImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CBDFE323FD792C0022866B /* DHGifImageOperation.m */; };
-		92CBDFEA23FD792C0022866B /* DHRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CBDFE723FD792C0022866B /* DHRegularExpression.m */; };
-		92CBDFEB23FD792C0022866B /* DHLaunchAdPageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CBDFE823FD792C0022866B /* DHLaunchAdPageHUD.m */; };
 		92D5888023EC6C3000A25538 /* NSDictionary+SetNilStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D5887F23EC6C3000A25538 /* NSDictionary+SetNilStr.m */; };
 		A48C36AF205E2FD5003EBDDA /* QDThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A48C3618205E2FD4003EBDDA /* QDThemeManager.m */; };
 		A48C36B0205E2FD5003EBDDA /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = A48C361C205E2FD4003EBDDA /* QMUIConfigurationTemplate.m */; };
@@ -633,12 +630,6 @@
 		86E4240522F19FEE00592D09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86E4240722F19FF600592D09 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		926ADECA23F127E100844868 /* custom_map_config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom_map_config; sourceTree = "<group>"; };
-		92CBDFE323FD792C0022866B /* DHGifImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGifImageOperation.m; sourceTree = "<group>"; };
-		92CBDFE423FD792C0022866B /* DHRegularExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHRegularExpression.h; sourceTree = "<group>"; };
-		92CBDFE523FD792C0022866B /* DHLaunchAdPageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHLaunchAdPageHUD.h; sourceTree = "<group>"; };
-		92CBDFE623FD792C0022866B /* DHGifImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
-		92CBDFE723FD792C0022866B /* DHRegularExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHRegularExpression.m; sourceTree = "<group>"; };
-		92CBDFE823FD792C0022866B /* DHLaunchAdPageHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLaunchAdPageHUD.m; sourceTree = "<group>"; };
 		92D5887E23EC6C3000A25538 /* NSDictionary+SetNilStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SetNilStr.h"; sourceTree = "<group>"; };
 		92D5887F23EC6C3000A25538 /* NSDictionary+SetNilStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SetNilStr.m"; sourceTree = "<group>"; };
 		A48C3616205E2FD4003EBDDA /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1879,19 +1870,6 @@
 			path = GSCountdownButton;
 			sourceTree = "<group>";
 		};
-		92CBDFE223FD792C0022866B /* DHLaunchAdPageHUD */ = {
-			isa = PBXGroup;
-			children = (
-				92CBDFE323FD792C0022866B /* DHGifImageOperation.m */,
-				92CBDFE423FD792C0022866B /* DHRegularExpression.h */,
-				92CBDFE523FD792C0022866B /* DHLaunchAdPageHUD.h */,
-				92CBDFE623FD792C0022866B /* DHGifImageOperation.h */,
-				92CBDFE723FD792C0022866B /* DHRegularExpression.m */,
-				92CBDFE823FD792C0022866B /* DHLaunchAdPageHUD.m */,
-			);
-			path = DHLaunchAdPageHUD;
-			sourceTree = "<group>";
-		};
 		92D5887D23EC6C0400A25538 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -1921,7 +1899,6 @@
 				515B38092452F20E00AFEFFA /* ZJScrollPageView */,
 				51588CB6244172DC00F120CB /* PickerScrollView */,
 				5E6D2DFD23FE8FF9002BF332 /* LMReport */,
-				92CBDFE223FD792C0022866B /* DHLaunchAdPageHUD */,
 				5E8E041923B068120023A484 /* UMeng */,
 				514C50252387EEEA0070E875 /* HWTFCodeView */,
 				5EDADEB2234DD04200F9249F /* HCSStarRatingView */,
@@ -2342,12 +2319,10 @@
 				3130FC69243CADDC00B9A0D6 /* UITabBarController+ZFPlayerRotation.m in Sources */,
 				86B2BCF0230E6B5100273AA3 /* MWZoomingScrollView.m in Sources */,
 				31F8FB93244A0DDD0072609C /* KB_MineCollectionViewCell.m in Sources */,
-				92CBDFEB23FD792C0022866B /* DHLaunchAdPageHUD.m in Sources */,
 				3130FB96243CAC2A00B9A0D6 /* CommentInputView.m in Sources */,
 				515B380C2452F2FA00AFEFFA /* ZJVc6Controller.m in Sources */,
 				3130FC4D243CADDB00B9A0D6 /* KTVHCDataCallback.m in Sources */,
 				865E92F923164DA200F760C6 /* ZFFlowLayout.m in Sources */,
-				92CBDFEA23FD792C0022866B /* DHRegularExpression.m in Sources */,
 				3130FC49243CADDB00B9A0D6 /* KTVHCDataSourceManager.m in Sources */,
 				313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */,
 				CBA1060F230E71E900CD84E9 /* LQCollectionViewHorizontalLayout.m in Sources */,
@@ -2522,7 +2497,6 @@
 				A48C36BB205E2FD5003EBDDA /* QDCommonUI.m in Sources */,
 				31F8FB9D244A23F70072609C /* KB_BaseCollectionListViewController.m in Sources */,
 				3130FC6E243CADDC00B9A0D6 /* UINavigationController+ZFPlayerRotation.m in Sources */,
-				92CBDFE923FD792C0022866B /* DHGifImageOperation.m in Sources */,
 				5EBF20BC237E3D79003DD0A7 /* NSString+Date.m in Sources */,
 				3130FC66243CADDC00B9A0D6 /* ZFPlayerModel.m in Sources */,
 				86B2BCF4230E6B5100273AA3 /* MWTapDetectingView.m in Sources */,

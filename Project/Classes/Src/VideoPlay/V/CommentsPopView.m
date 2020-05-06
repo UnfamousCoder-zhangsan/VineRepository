@@ -84,7 +84,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         [_container addSubview:visualEffectView];
         
         self.numCommentLabel = [[UILabel alloc] init];
-        self.numCommentLabel.textColor = [UIColor blackColor];//ColorGray;
+        self.numCommentLabel.textColor = [UIColor whiteColor];//ColorGray;
         self.numCommentLabel.text = [NSString stringWithFormat:@"%@条评论",@(self.videoModel.status)];
         self.numCommentLabel.font = [UIFont systemFontOfSize:14];//SmallFont;
         self.numCommentLabel.textAlignment = NSTextAlignmentCenter;
@@ -147,9 +147,10 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
             NSMutableArray *datas = [NSArray modelArrayWithClass:[CommentModel class] json:apiResponseModel.data].mutableCopy;
             if (datas.count) {
                 self.hotCommentArray = datas;
+                self.numCommentLabel.text = [NSString stringWithFormat:@"%@条评论",@(self.hotCommentArray.count)];
                 [self.tableView reloadData];
             }else {
-                [SVProgressHUD showErrorWithStatus:@"加载失败"];
+                [SVProgressHUD showErrorWithStatus:@"暂无评论"];
             }
         } else {
             //请求失败
@@ -383,8 +384,10 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     model.nickName = User_Center.nickname;
     model.id = @(self.hotCommentArray.count + 1).stringValue;
     model.comment = self.commentTextView.textView.text;
-    long long timeStr = [NSDate getNowTimestampStringLevelMilliSecond].longLongValue;
-    model.createTime = [@(timeStr).stringValue dateStringUseWeChatFormatSinceNow];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    NSInteger time = interval;
+    NSString *timestamp = [NSString stringWithFormat:@"%@",@(time)];
+    model.createTime = [timestamp dateStringUseWeChatFormatSinceNow];
     model.head_url = User_Center.faceImage;
     [self.hotCommentArray insertObject:model atIndex:0];
     

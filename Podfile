@@ -67,5 +67,6 @@ target ‘Project’ do
   
   pod 'JXCategoryView'
   pod 'GKPageScrollView'
+  pod 'XHLaunchAd'
   
 end

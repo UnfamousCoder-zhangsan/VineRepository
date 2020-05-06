@@ -22,8 +22,6 @@
 
 #import <BMKLocationkit/BMKLocationComponent.h>
 
-#import "DHLaunchAdPageHUD.h"
-
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
 
 @end
@@ -40,7 +38,6 @@
     // 初始化应用配置
     [self initAPPWithOptions:launchOptions];
 
-    //[self showAdImage];
     return YES;
 }
 
@@ -345,34 +342,5 @@
                                          }];
     }
     return YES;
-}
-
-#pragma mark - 显示广告图
-- (void)showAdImage {
-    if ([kUserDefaults objectForKey:@"statistic/report/recent"]) {
-        [[DHLaunchAdPageHUD alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) aDduration:4.0 aDImageUrl:[kUserDefaults objectForKey:@"statistic/report/recent"] hideSkipButton:NO launchAdClickBlock:^{
-            //广告图点击跳转
-        }];
-    }
-    
-    [RequesetApi requestGetApkWithParams:nil andRequestUrl:@"statistic/report/recent" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
-        if (isSuccess) {
-            NSArray *datas = apiResponseModel.data;
-            if (datas.count > 0) {
-                NSDictionary *dic = datas.firstObject;
-                if (dic[@"path"]) {
-                    NSString *path = dic[@"path"];
-                    if(![path hasPrefix:@"http"] && path != nil){
-                        path = [kImageSrcUrl stringByAppendingString:path];
-                    }
-                    
-                    [kUserDefaults setObject:path forKey:@"statistic/report/recent"];
-                    [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-                        
-                    }];
-                }
-            }
-        }
-    }];
 }
 @end

@@ -178,7 +178,7 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     artist = currentPlaySmallVideoModel.nickName;
     title = currentPlaySmallVideoModel.videoDesc;
     // 首帧图
-    cover_url = [NSString stringWithFormat:@"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT%@",currentPlaySmallVideoModel.coverPath];
+    cover_url = [NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.coverPath];
     // 视频地址
     videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
     originVideoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath]];
@@ -283,7 +283,6 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 //点赞
 - (void)handleFavoriteVdieoModel:(KB_HomeVideoDetailModel *)model{
     
-    
 }
 //取消点赞
 - (void)handleDeleteFavoriteVdieoModel:(KB_HomeVideoDetailModel *)model{
@@ -312,14 +311,15 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 - (void)shareVedioToPlatformType:(UMSocialPlatformType)platformType
 {
+    //获取要分享的视频内容
+    KB_HomeVideoDetailModel *currentPlaySmallVideoModel = self.modelArray[self.currentPlayIndex];
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
 
     //创建视频内容对象
-    UMShareVideoObject *shareObject = [UMShareVideoObject shareObjectWithTitle:@"OTunes" descr:@"测试分享内容" thumImage:[UIImage imageNamed:@"icon"]];
+    UMShareVideoObject *shareObject = [UMShareVideoObject shareObjectWithTitle:@"OTunes" descr:currentPlaySmallVideoModel.videoDesc thumImage:[UIImage imageNamed:@"AppIcon"]];
     //设置视频网页播放地址
-    shareObject.videoUrl = @"http://video.sina.com.cn/p/sports/cba/v/2013-10-22/144463050817.html";
-    //            shareObject.videoStreamUrl = @"这里设置视频数据流地址（如果有的话，而且也要看所分享的平台支不支持）";
+    shareObject.videoUrl = [NSString stringWithFormat:@"%@%@",kAddressUrl,currentPlaySmallVideoModel.videoPath];
 
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -327,7 +327,6 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
             [SVProgressHUD showErrorWithStatus:@"分享失败"];
         }else{
             [SVProgressHUD showSuccessWithStatus:@"分享成功"];
