@@ -101,6 +101,7 @@
 		313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */; };
 		313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */; };
 		313A34AF243B784400A4F1F9 /* KB_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */; };
+		313A7B3624630368003963A4 /* KB_XHLaunchAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A7B3524630368003963A4 /* KB_XHLaunchAd.m */; };
 		31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */; };
 		31C0AA6F24422DB100110B18 /* PersonalInformationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */; };
 		31C0AA7224422DE400110B18 /* PersonalInformationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */; };
@@ -441,6 +442,8 @@
 		313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ShootVC.m; sourceTree = "<group>"; };
 		313A34AD243B784400A4F1F9 /* KB_BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_BaseViewController.h; sourceTree = "<group>"; };
 		313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseViewController.m; sourceTree = "<group>"; };
+		313A7B3424630368003963A4 /* KB_XHLaunchAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_XHLaunchAd.h; sourceTree = "<group>"; };
+		313A7B3524630368003963A4 /* KB_XHLaunchAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_XHLaunchAd.m; sourceTree = "<group>"; };
 		31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalInformation.storyboard; sourceTree = "<group>"; };
 		31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInformationHeaderView.xib; sourceTree = "<group>"; };
 		31C0AA7024422DE400110B18 /* PersonalInformationHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalInformationHeaderView.h; sourceTree = "<group>"; };
@@ -1244,6 +1247,15 @@
 			path = Shoot;
 			sourceTree = "<group>";
 		};
+		313A7B3324630344003963A4 /* AD */ = {
+			isa = PBXGroup;
+			children = (
+				313A7B3424630368003963A4 /* KB_XHLaunchAd.h */,
+				313A7B3524630368003963A4 /* KB_XHLaunchAd.m */,
+			);
+			path = AD;
+			sourceTree = "<group>";
+		};
 		31C0AA6B2442273700110B18 /* Information */ = {
 			isa = PBXGroup;
 			children = (
@@ -2033,6 +2045,7 @@
 		A48C3681205E2FD4003EBDDA /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				313A7B3324630344003963A4 /* AD */,
 				3130FB7A243CA67700B9A0D6 /* VideoPlay */,
 				A48C3682205E2FD4003EBDDA /* Guide */,
 				5E8E040A23B061750023A484 /* Login */,
@@ -2374,6 +2387,7 @@
 				A48C36DF205E2FD5003EBDDA /* UserCenter.m in Sources */,
 				313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */,
 				3131895D245412020031AED9 /* KB_NearVideoPlayCell.m in Sources */,
+				313A7B3624630368003963A4 /* KB_XHLaunchAd.m in Sources */,
 				3130FC3A243CADDB00B9A0D6 /* KTVHCPathTool.m in Sources */,
 				A48C36B0205E2FD5003EBDDA /* QMUIConfigurationTemplate.m in Sources */,
 				3130FC52243CADDB00B9A0D6 /* HTTPErrorResponse.m in Sources */,

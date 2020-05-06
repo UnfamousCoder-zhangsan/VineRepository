@@ -102,6 +102,8 @@
     [self initSVProgressHUD];
 
     [self initWindow];
+    
+    
 
 }
 
@@ -153,7 +155,6 @@
 //        self.window.rootViewController = vc;
 //        [kUserDefaults setObject:App_Version forKey:@"ifFirstOpen"];
 //    } else {
-    // PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
         if ([UserCenter checkIsLogin]) {
             PageRout_Maneger.window.rootViewController = [PageRoutManeger APPMainVC];
         } else {
@@ -161,6 +162,8 @@
             [PageRoutManeger gotoLoginVC];
         }
    // }
+    // 开屏广告初始化
+    
     [PageRout_Maneger.window makeKeyAndVisible];
 }
 

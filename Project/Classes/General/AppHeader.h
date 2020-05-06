@@ -41,6 +41,7 @@
 #import "UserCenter.h"
 // 页面路由
 #import "PageRoutManeger.h"
+#import <XHLaunchAd/XHLaunchAd.h>
 
 
 #endif /* AppHeader_h */
