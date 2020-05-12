@@ -34,21 +34,17 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 使用这个内容会上上移
-    //[self.view openKeyboardOffsetView];
     [self createUI];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.videoPlayerManager autoPause];
-    //[self dismiss];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //[self.videoPlayerManager autoPlay];
-    //[self showToView:self.view];
+    [self.videoPlayerManager autoPlay];
 }
 
 //设置导航栏背景色

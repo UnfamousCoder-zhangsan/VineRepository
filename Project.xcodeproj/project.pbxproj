@@ -101,7 +101,7 @@
 		313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */; };
 		313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */; };
 		313A34AF243B784400A4F1F9 /* KB_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */; };
-		313A7B3624630368003963A4 /* KB_XHLaunchAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A7B3524630368003963A4 /* KB_XHLaunchAd.m */; };
+		313A7B3624630368003963A4 /* KB_XHLaunchAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */; };
 		31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */; };
 		31C0AA6F24422DB100110B18 /* PersonalInformationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */; };
 		31C0AA7224422DE400110B18 /* PersonalInformationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */; };
@@ -118,6 +118,7 @@
 		5153B8412444542B0090B8A8 /* KB_SettingInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153B8402444542B0090B8A8 /* KB_SettingInformationVC.m */; };
 		5153B845244458870090B8A8 /* KB_MessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153B844244458870090B8A8 /* KB_MessageHeaderView.m */; };
 		5153B847244458A40090B8A8 /* KB_MessageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */; };
+		5157280B24639C9D008C4FF0 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5157280A24639C9D008C4FF0 /* image2.jpg */; };
 		51588CB924418E7100F120CB /* KBPickerScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CB824418E7100F120CB /* KBPickerScrollerView.m */; };
 		51588CBC24418FBC00F120CB /* KBPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBB24418FBC00F120CB /* KBPickerItem.m */; };
 		51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBE244191D400F120CB /* CustomPickerItem.m */; };
@@ -442,8 +443,8 @@
 		313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ShootVC.m; sourceTree = "<group>"; };
 		313A34AD243B784400A4F1F9 /* KB_BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_BaseViewController.h; sourceTree = "<group>"; };
 		313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseViewController.m; sourceTree = "<group>"; };
-		313A7B3424630368003963A4 /* KB_XHLaunchAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_XHLaunchAd.h; sourceTree = "<group>"; };
-		313A7B3524630368003963A4 /* KB_XHLaunchAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_XHLaunchAd.m; sourceTree = "<group>"; };
+		313A7B3424630368003963A4 /* KB_XHLaunchAdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_XHLaunchAdManager.h; sourceTree = "<group>"; };
+		313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_XHLaunchAdManager.m; sourceTree = "<group>"; };
 		31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalInformation.storyboard; sourceTree = "<group>"; };
 		31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInformationHeaderView.xib; sourceTree = "<group>"; };
 		31C0AA7024422DE400110B18 /* PersonalInformationHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalInformationHeaderView.h; sourceTree = "<group>"; };
@@ -472,6 +473,7 @@
 		5153B843244458870090B8A8 /* KB_MessageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MessageHeaderView.h; sourceTree = "<group>"; };
 		5153B844244458870090B8A8 /* KB_MessageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MessageHeaderView.m; sourceTree = "<group>"; };
 		5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MessageHeaderView.xib; sourceTree = "<group>"; };
+		5157280A24639C9D008C4FF0 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		51588CB724418E7100F120CB /* KBPickerScrollerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerScrollerView.h; sourceTree = "<group>"; };
 		51588CB824418E7100F120CB /* KBPickerScrollerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerScrollerView.m; sourceTree = "<group>"; };
 		51588CBA24418FBC00F120CB /* KBPickerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerItem.h; sourceTree = "<group>"; };
@@ -1250,8 +1252,8 @@
 		313A7B3324630344003963A4 /* AD */ = {
 			isa = PBXGroup;
 			children = (
-				313A7B3424630368003963A4 /* KB_XHLaunchAd.h */,
-				313A7B3524630368003963A4 /* KB_XHLaunchAd.m */,
+				313A7B3424630368003963A4 /* KB_XHLaunchAdManager.h */,
+				313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */,
 			);
 			path = AD;
 			sourceTree = "<group>";
@@ -2138,6 +2140,7 @@
 		EA9AA0822062571400052201 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5157280A24639C9D008C4FF0 /* image2.jpg */,
 				926ADECA23F127E100844868 /* custom_map_config */,
 				E6C8A4531D405B880075353A /* Assets.xcassets */,
 				EA9AA0832062571400052201 /* PlistFile */,
@@ -2228,6 +2231,7 @@
 				31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */,
 				313286C0244CAC700022E8EC /* KB_PublishCell.xib in Resources */,
 				3130FC71243CADDC00B9A0D6 /* ZFPlayer.bundle in Resources */,
+				5157280B24639C9D008C4FF0 /* image2.jpg in Resources */,
 				EA9A3E8F2060D95E004A6694 /* Launch Screen.storyboard in Resources */,
 				863C5861232750C40060A954 /* AliyunEmasServices-Info.plist in Resources */,
 				86B2BD0C230E6B5100273AA3 /* BRPickerView.bundle in Resources */,
@@ -2387,7 +2391,7 @@
 				A48C36DF205E2FD5003EBDDA /* UserCenter.m in Sources */,
 				313A34A8243B3B2E00A4F1F9 /* KB_MessageTVC.m in Sources */,
 				3131895D245412020031AED9 /* KB_NearVideoPlayCell.m in Sources */,
-				313A7B3624630368003963A4 /* KB_XHLaunchAd.m in Sources */,
+				313A7B3624630368003963A4 /* KB_XHLaunchAdManager.m in Sources */,
 				3130FC3A243CADDB00B9A0D6 /* KTVHCPathTool.m in Sources */,
 				A48C36B0205E2FD5003EBDDA /* QMUIConfigurationTemplate.m in Sources */,
 				3130FC52243CADDB00B9A0D6 /* HTTPErrorResponse.m in Sources */,

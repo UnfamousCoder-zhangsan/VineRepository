@@ -40,7 +40,6 @@
     
 }
 
-
 - (void)saveEvent{
     [SVProgressHUD showSuccessWithStatus:self.textView.text];
 }
