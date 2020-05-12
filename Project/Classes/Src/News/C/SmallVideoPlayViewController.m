@@ -16,11 +16,11 @@
 static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 
-@interface SmallVideoPlayViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, NearVideoPlayCellDlegate, QMUITextFieldDelegate>
+@interface SmallVideoPlayViewController ()<UITableViewDataSource, UITableViewDelegate, ZFManagerPlayerDelegate, NearVideoPlayCellDlegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView      *bottomView;
-@property (nonatomic, strong) QMUITextField *commentTextField;
+@property (nonatomic, strong) QMUIButton  *commentButton;
 @property (nonatomic, strong) QMUIButton   *commentBtn;
 @property (nonatomic, strong) UIView *fatherView;
 //这个是播放视频的管理器
@@ -91,17 +91,13 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
         make.height.offset(TabBarHeight);
     }];
     
-    self.commentTextField = [QMUITextField new];
-    self.commentTextField.delegate = self;
-    self.commentTextField.placeholder = @"说点什么吧～";
-    self.commentTextField.maximumTextLength = 55;
-    self.commentTextField.returnKeyType = UIReturnKeyDone;
-    self.commentTextField.placeholderColor = UIColorMakeWithHex(@"#666666");
-    self.commentTextField.textColor = UIColorMakeWithHex(@"#FFFFFF");
-    self.commentTextField.font = UIFontMake(14);
-    self.commentTextField.backgroundColor = UIColorMakeWithHex(@"#222222");
-    [self.view addSubview:self.commentTextField];
-    [self.commentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.commentButton = [QMUIButton buttonWithType:UIButtonTypeCustom];
+    [self.commentButton setTitle:@"说点什么吧" forState:UIControlStateNormal];
+    self.commentButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.commentButton addTarget:self action:@selector(commentAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.commentButton setTitleColor:UIColorMakeWithHex(@"666666") forState:UIControlStateNormal];
+    [self.view addSubview:self.commentButton];
+    [self.commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(SCREEN_WIDTH - 20);
         make.left.offset(10);
         make.top.mas_equalTo(self.tableView.mas_bottom).offset(10);
@@ -337,6 +333,9 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)commentAction{
+    [SVProgressHUD showSuccessWithStatus:@"开发中 评论功能"];
+}
 
 #pragma mark - LazyLoad
 
@@ -361,13 +360,5 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     [self.videoPlayerManager resetPlayer];
     [self.preloadVideoPlayerManager resetPlayer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - QMUItextFieldDelegate-
-- (void)textField:(QMUITextField *)textField didPreventTextChangeInRange:(NSRange)range replacementString:(NSString *)replacementString{
-    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"最大不超过%@个字符",@(self.commentTextField.maximumTextLength)]];
-}
-- (void)textFieldDidChangeSelection:(UITextField *)textField{
-    
 }
 @end

@@ -8,11 +8,14 @@
 
 #import "KB_BaseCollectionListViewController.h"
 #import "KB_MineCollectionViewCell.h"
+#import "SmallVideoPlayViewController.h"
+
 
 @interface KB_BaseCollectionListViewController ()
 
 @property (nonatomic, strong) UIImageView   *loadingView;
 @property (nonatomic, strong) UILabel       *loadLabel;
+@property (nonatomic, strong) NSArray       *videoArray;
 
 @property (nonatomic, copy) void(^listScrollViewScrollCallback)(UIScrollView *scrollView);
 
@@ -23,20 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.count = 0;
     [self.collectionView registerNib:[UINib nibWithNibName:@"KB_MineCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KB_MineCollectionViewCell"];
-    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.count += 20;
-            
-            if (self.count >= 50) {
-                [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-            }else {
-                [self.collectionView.mj_footer endRefreshing];
-            }
-            [self.collectionView reloadData];
-        });
-    }];
     
     if (self.shouldLoadData) {
         [self.collectionView addSubview:self.loadingView];
@@ -56,17 +46,21 @@
 }
 
 - (void)loadData {
-    self.count = 0;
-    
     [self showLoading];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.count = 30;
-        
-        [self hideLoading];
-        
-        [self.collectionView reloadData];
-    });
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/queryVideosByUser?userId=%@",User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            [self hideLoading];
+            NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data].mutableCopy;
+            self.videoArray = datas;
+            if (self.videoArray.count == 0) {
+                [self showNoDataEmptyViewWithText:@"暂无作品" detailText:nil];
+            } else {
+                [self.collectionView reloadData];
+            }
+        } else {
+            [self showEmptyViewWithImage:UIImageMake(@"404") text:nil detailText:@"网络错误" buttonTitle:@"点击重试" buttonAction:@selector(loadData)];
+        }
+    }];
 }
 
 - (void)showLoading {
@@ -85,8 +79,6 @@
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView.mj_header endRefreshing];
-            
-            self.count = 30;
             [self.collectionView reloadData];
         });
     }];
@@ -97,12 +89,18 @@
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    self.collectionView.mj_footer.hidden = self.count == 0;
-    return self.count;
+    return self.videoArray.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     KB_MineCollectionViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:@"KB_MineCollectionViewCell" forIndexPath:indexPath];
+    item.model = self.videoArray[indexPath.item];
     return item;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    SmallVideoPlayViewController *smallVideoPlayViewController = [[SmallVideoPlayViewController alloc] init];
+    smallVideoPlayViewController.modelArray = self.videoArray;
+    smallVideoPlayViewController.currentPlayIndex = indexPath.row;
+    [PageRout_Maneger.currentNaviVC pushViewController:smallVideoPlayViewController animated:YES];
 }
 
 #pragma mark - <DDAnimationLayoutDelegate>

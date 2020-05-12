@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -426,6 +426,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KAx-h1-b3S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138" y="-586"/>
+        </scene>
+        <!--Privacy PolicyVC-->
+        <scene sceneID="X98-hp-4Ji">
+            <objects>
+                <viewController storyboardIdentifier="KB_PrivacyPolicyVC" id="q0l-mO-h8S" customClass="KB_PrivacyPolicyVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kam-Q7-RJn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0c-zL-lpT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.SmallVideoPlayViewController *smallVideoPlayViewController = [[SmallVideoPlayViewController alloc] init];
+    smallVideoPlayViewController.page = self.page; //用于请求了第几页数据展示下次请求数据直接展示
+    smallVideoPlayViewController.modelArray = self.dataArray;
+    smallVideoPlayViewController.currentPlayIndex = indexPath.row;
+    [PageRout_Maneger.currentNaviVC pushViewController:smallVideoPlayViewController animated:YES];</mutableString>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="A0c-zL-lpT" firstAttribute="leading" secondItem="tt9-yH-NPV" secondAttribute="leading" id="JSe-Tx-Epo"/>
+                            <constraint firstItem="tt9-yH-NPV" firstAttribute="trailing" secondItem="A0c-zL-lpT" secondAttribute="trailing" id="oje-7S-1ak"/>
+                            <constraint firstItem="A0c-zL-lpT" firstAttribute="top" secondItem="tt9-yH-NPV" secondAttribute="top" id="xfw-jT-FL9"/>
+                            <constraint firstAttribute="bottom" secondItem="A0c-zL-lpT" secondAttribute="bottom" id="yqY-kN-cFk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tt9-yH-NPV"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="A0c-zL-lpT" id="efu-UN-sL3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSZ-No-zU7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="108.69565217391305" y="-1261.6071428571429"/>
         </scene>
     </scenes>
     <resources>

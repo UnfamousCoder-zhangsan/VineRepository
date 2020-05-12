@@ -2,11 +2,21 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_moreOperation_shareFriend.pdf"
+      "scale" : "1x"
+    },
+    {
+      "filename" : "business card_icon_circle of friends@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "business card_icon_circle of friends@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

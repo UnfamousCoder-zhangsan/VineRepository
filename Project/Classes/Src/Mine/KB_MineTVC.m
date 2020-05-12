@@ -214,6 +214,7 @@
             self.headerView.model = model;
         } else {
             //加载失败
+            [SVProgressHUD showErrorWithStatus:apiResponseModel.msg];
         }
     }];
 }

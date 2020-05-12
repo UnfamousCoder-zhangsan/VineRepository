@@ -102,6 +102,7 @@
 		313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */; };
 		313A34AF243B784400A4F1F9 /* KB_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */; };
 		313A7B3624630368003963A4 /* KB_XHLaunchAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */; };
+		315CDE57246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 315CDE56246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m */; };
 		31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */; };
 		31C0AA6F24422DB100110B18 /* PersonalInformationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */; };
 		31C0AA7224422DE400110B18 /* PersonalInformationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C0AA7124422DE400110B18 /* PersonalInformationHeaderView.m */; };
@@ -445,6 +446,8 @@
 		313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseViewController.m; sourceTree = "<group>"; };
 		313A7B3424630368003963A4 /* KB_XHLaunchAdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_XHLaunchAdManager.h; sourceTree = "<group>"; };
 		313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_XHLaunchAdManager.m; sourceTree = "<group>"; };
+		315CDE55246ADD7900BE6D75 /* KB_PrivacyPolicyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PrivacyPolicyVC.h; sourceTree = "<group>"; };
+		315CDE56246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PrivacyPolicyVC.m; sourceTree = "<group>"; };
 		31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalInformation.storyboard; sourceTree = "<group>"; };
 		31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInformationHeaderView.xib; sourceTree = "<group>"; };
 		31C0AA7024422DE400110B18 /* PersonalInformationHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalInformationHeaderView.h; sourceTree = "<group>"; };
@@ -1312,6 +1315,8 @@
 				31354260244F414300CFAC1E /* KB_ModifyNameVC.m */,
 				31354262244F462200CFAC1E /* KB_ModifyIntroductionVC.h */,
 				31354263244F462200CFAC1E /* KB_ModifyIntroductionVC.m */,
+				315CDE55246ADD7900BE6D75 /* KB_PrivacyPolicyVC.h */,
+				315CDE56246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -2497,6 +2502,7 @@
 				3130FC76243CADDC00B9A0D6 /* global.m in Sources */,
 				A48C36DC205E2FD5003EBDDA /* GuideViewController.m in Sources */,
 				3130FC6D243CADDC00B9A0D6 /* UIView+CustomControlView.m in Sources */,
+				315CDE57246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m in Sources */,
 				3130FC4A243CADDB00B9A0D6 /* KTVHCDataCacheItem.m in Sources */,
 				3130FC4E243CADDB00B9A0D6 /* KTVHCLog.m in Sources */,
 				3130FC64243CADDC00B9A0D6 /* GCDAsyncSocket.m in Sources */,

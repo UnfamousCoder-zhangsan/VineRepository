@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -51,7 +51,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入登录密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="l4j-dP-ohW">
-                                <rect key="frame" x="70" y="360" width="100" height="33"/>
+                                <rect key="frame" x="70" y="360" width="245" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="9Vq-I9-WBe"/>
                                 </constraints>
@@ -114,6 +114,7 @@
                         <constraints>
                             <constraint firstItem="agf-Ed-Hr7" firstAttribute="trailing" secondItem="NhQ-rh-moU" secondAttribute="trailing" id="0JB-Xc-GWm"/>
                             <constraint firstItem="YgT-g8-FqP" firstAttribute="top" secondItem="n3h-1n-I4z" secondAttribute="bottom" constant="20" id="18v-og-7XQ"/>
+                            <constraint firstItem="l4j-dP-ohW" firstAttribute="trailing" secondItem="n3h-1n-I4z" secondAttribute="trailing" id="3GH-dm-wPv"/>
                             <constraint firstItem="agf-Ed-Hr7" firstAttribute="top" secondItem="NhQ-rh-moU" secondAttribute="bottom" id="3RA-4d-Su3"/>
                             <constraint firstItem="NhQ-rh-moU" firstAttribute="centerY" secondItem="UqZ-50-h5e" secondAttribute="centerY" id="3v9-LF-EC2"/>
                             <constraint firstItem="n3h-1n-I4z" firstAttribute="leading" secondItem="FST-cG-FMo" secondAttribute="leading" constant="70" id="5f1-8W-c1j"/>
@@ -129,6 +130,7 @@
                             <constraint firstItem="l4j-dP-ohW" firstAttribute="leading" secondItem="n3h-1n-I4z" secondAttribute="leading" id="cnb-10-C75"/>
                             <constraint firstItem="n3h-1n-I4z" firstAttribute="top" secondItem="l4j-dP-ohW" secondAttribute="bottom" constant="8" symbolic="YES" id="dfJ-IC-6ay"/>
                             <constraint firstItem="dL8-ZW-YhF" firstAttribute="centerX" secondItem="FST-cG-FMo" secondAttribute="centerX" id="ekf-Pl-pDh"/>
+                            <constraint firstItem="n3h-1n-I4z" firstAttribute="top" secondItem="l4j-dP-ohW" secondAttribute="bottom" constant="8" id="fYt-Ze-R4C"/>
                             <constraint firstItem="agf-Ed-Hr7" firstAttribute="leading" secondItem="FST-cG-FMo" secondAttribute="leading" constant="70" id="gfu-od-36t"/>
                             <constraint firstItem="l4j-dP-ohW" firstAttribute="centerY" secondItem="eqp-Yy-FsI" secondAttribute="centerY" id="iCg-Zg-Pdb"/>
                             <constraint firstItem="NhQ-rh-moU" firstAttribute="leading" secondItem="UqZ-50-h5e" secondAttribute="trailing" id="lvf-vT-GYu"/>

@@ -7,6 +7,7 @@
 //
 
 #import "KB_SettingInformationVC.h"
+#import "KB_PrivacyPolicyVC.h"
 
 @interface KB_SettingInformationVC ()
 @property (weak, nonatomic) IBOutlet UILabel *cacheSizeLabel;
@@ -54,6 +55,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         switch (indexPath.row) {
+            case 0:
+                //反馈与帮助
+                [SVProgressHUD showErrorWithStatus:@"开发小哥 还在掉头发中"];
+                break;
+            case 1:
+            {
+                // 社区自律公约
+                KB_PrivacyPolicyVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PrivacyPolicyVC"];
+                [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+                break;
+            }
+            case 2:
+            {
+                // 用户协议
+                KB_PrivacyPolicyVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PrivacyPolicyVC"];
+                [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+                break;
+            }
+            case 3:
+            {
+                // 隐私政策
+                KB_PrivacyPolicyVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PrivacyPolicyVC"];
+                [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+                break;
+            }
             case 4:
                 //
                 [AlertHelper showAlertMessage:[NSString stringWithFormat:@"关于%@\n当前版本号为:%@",App_Name,App_Version] okBlock:nil];

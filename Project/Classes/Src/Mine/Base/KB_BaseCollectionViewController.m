@@ -26,8 +26,8 @@
     if (!_collectionView) {
         DDAnimationLayout *layout = [[DDAnimationLayout alloc]init];
         layout.rowsOrColumnsCount = 3;
-        layout.rowMargin = 0;
-        layout.columnMargin = 0;
+        layout.rowMargin = 2;
+        layout.columnMargin = 2;
         layout.delegate = self;
         layout.sectionInset = UIEdgeInsetsMake(0, 4, 0, 4);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;

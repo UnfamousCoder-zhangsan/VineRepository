@@ -37,6 +37,8 @@
 #import "NSDate+Helper.h"
 #import "UIView+CommonFunction.h"
 
+//视频数据模型
+#import "KB_HomeVideoDetailModel.h"
 // 用户中心
 #import "UserCenter.h"
 // 页面路由

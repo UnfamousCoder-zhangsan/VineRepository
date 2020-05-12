@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="122" height="97"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="喜欢" translatesAutoresizingMaskIntoConstraints="NO" id="uSQ-ay-Nx2">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoot_album" translatesAutoresizingMaskIntoConstraints="NO" id="uSQ-ay-Nx2">
                         <rect key="frame" x="0.0" y="0.0" width="122" height="97"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallVideo_home_like_before" translatesAutoresizingMaskIntoConstraints="NO" id="z3e-bV-cG3">
@@ -27,8 +27,8 @@
                             <constraint firstAttribute="height" constant="20" id="jZU-gP-6TB"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="727.2w" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2R-Pt-Jr2">
-                        <rect key="frame" x="31" y="69" width="39.5" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2R-Pt-Jr2">
+                        <rect key="frame" x="31" y="69" width="0.0" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="KAM-IM-RjR"/>
                         </constraints>
@@ -51,11 +51,15 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="122" height="97"/>
+            <connections>
+                <outlet property="faceImageView" destination="uSQ-ay-Nx2" id="cWw-dL-Qad"/>
+                <outlet property="likeCountLabel" destination="w2R-Pt-Jr2" id="rwU-2a-seP"/>
+            </connections>
             <point key="canvasLocation" x="189.85507246376812" y="122.20982142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="shoot_album" width="44" height="44"/>
         <image name="smallVideo_home_like_before" width="40" height="38"/>
-        <image name="喜欢" width="44" height="44"/>
     </resources>
 </document>

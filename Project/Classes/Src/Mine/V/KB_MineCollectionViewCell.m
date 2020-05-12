@@ -7,12 +7,20 @@
 //
 
 #import "KB_MineCollectionViewCell.h"
+@interface KB_MineCollectionViewCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
+@property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
+
+@end
 
 @implementation KB_MineCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+
+- (void)setModel:(KB_HomeVideoDetailModel *)model{
+    _model = model;
+    [self.faceImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAddressUrl,model.coverPath]] placeholderImage:UIImageMake(@"shoot_album")];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%@",@(model.likeCounts)];
 }
 
 @end
