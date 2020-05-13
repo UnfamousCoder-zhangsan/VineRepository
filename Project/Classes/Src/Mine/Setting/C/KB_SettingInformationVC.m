@@ -106,8 +106,16 @@
         }
     }else if (indexPath.section == 1) {
         //退出登录
-        [UserCenter clearUserCenter];
-        [PageRoutManeger gotoLoginVC];
+        //https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT//logout?userId=undefined
+        [SVProgressHUD showWithStatus:@"注销中..."];
+        [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/logout?userId=%@",User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+            [SVProgressHUD dismiss];
+            if (isSuccess) {
+                [PageRoutManeger exitToLoginVC];
+            } else {
+                [SVProgressHUD showErrorWithStatus:apiResponseModel.msg];
+            }
+        }];
     }
 }
 #pragma mark - 获取本地所有本地文件大小

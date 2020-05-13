@@ -104,7 +104,7 @@
     }else {
         alpha = (offsetY - 200) / ((SCREEN_WIDTH * 375.0f / 345.0f) - NavigationBarHeight - 200);
     }
-    self.titleView.alpha = alpha;
+    //self.titleview.alpha = alpha;
 
     [self.headerView scrollViewDidScroll:offsetY];
 }

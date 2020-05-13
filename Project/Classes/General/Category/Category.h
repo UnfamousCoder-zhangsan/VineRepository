@@ -30,4 +30,5 @@
 #import "NSDate+Extension.h"
 
 #import "NSDictionary+SetNilStr.h"
+#import "QDCommonViewController+KB_Category.h"
 #endif /* Category_h */

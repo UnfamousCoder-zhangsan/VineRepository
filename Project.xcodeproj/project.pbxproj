@@ -94,7 +94,6 @@
 		313286C0244CAC700022E8EC /* KB_PublishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313286BE244CAC700022E8EC /* KB_PublishCell.xib */; };
 		31354261244F414300CFAC1E /* KB_ModifyNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31354260244F414300CFAC1E /* KB_ModifyNameVC.m */; };
 		31354264244F462200CFAC1E /* KB_ModifyIntroductionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31354263244F462200CFAC1E /* KB_ModifyIntroductionVC.m */; };
-		31355AEC24534211009F6084 /* KB_ScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31355AEB24534211009F6084 /* KB_ScrollPageViewController.m */; };
 		313641AF2432416C00F3DDA0 /* KB_HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */; };
 		313662D324474BF000FB58F9 /* KB_HomeVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 313662D224474BF000FB58F9 /* KB_HomeVideoDetailModel.m */; };
 		313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34A3243B3A2700A4F1F9 /* KB_MineTVC.m */; };
@@ -120,12 +119,12 @@
 		5153B845244458870090B8A8 /* KB_MessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153B844244458870090B8A8 /* KB_MessageHeaderView.m */; };
 		5153B847244458A40090B8A8 /* KB_MessageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */; };
 		5157280B24639C9D008C4FF0 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5157280A24639C9D008C4FF0 /* image2.jpg */; };
+		51587BCB246BD2DE000C495F /* QDCommonViewController+KB_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 51587BCA246BD2DE000C495F /* QDCommonViewController+KB_Category.m */; };
 		51588CB924418E7100F120CB /* KBPickerScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CB824418E7100F120CB /* KBPickerScrollerView.m */; };
 		51588CBC24418FBC00F120CB /* KBPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBB24418FBC00F120CB /* KBPickerItem.m */; };
 		51588CBF244191D400F120CB /* CustomPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CBE244191D400F120CB /* CustomPickerItem.m */; };
 		51588CC2244197C700F120CB /* KBPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51588CC1244197C700F120CB /* KBPickerModel.m */; };
 		515B380824528A2C00AFEFFA /* KB_CountDownLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 515B380724528A2C00AFEFFA /* KB_CountDownLabel.m */; };
-		515B380C2452F2FA00AFEFFA /* ZJVc6Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 515B380B2452F2FA00AFEFFA /* ZJVc6Controller.m */; };
 		515B381E2452F3BE00AFEFFA /* ZJCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 515B38102452F3BD00AFEFFA /* ZJCollectionView.m */; };
 		515B381F2452F3BE00AFEFFA /* UIView+ZJFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 515B38122452F3BD00AFEFFA /* UIView+ZJFrame.m */; };
 		515B38202452F3BE00AFEFFA /* ZJTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 515B38132452F3BD00AFEFFA /* ZJTitleView.m */; };
@@ -430,8 +429,6 @@
 		31354260244F414300CFAC1E /* KB_ModifyNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ModifyNameVC.m; sourceTree = "<group>"; };
 		31354262244F462200CFAC1E /* KB_ModifyIntroductionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_ModifyIntroductionVC.h; sourceTree = "<group>"; };
 		31354263244F462200CFAC1E /* KB_ModifyIntroductionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ModifyIntroductionVC.m; sourceTree = "<group>"; };
-		31355AEA24534211009F6084 /* KB_ScrollPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_ScrollPageViewController.h; sourceTree = "<group>"; };
-		31355AEB24534211009F6084 /* KB_ScrollPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_ScrollPageViewController.m; sourceTree = "<group>"; };
 		313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomePageViewController.h; sourceTree = "<group>"; };
 		313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_HomePageViewController.m; sourceTree = "<group>"; };
 		313662D124474BF000FB58F9 /* KB_HomeVideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_HomeVideoDetailModel.h; sourceTree = "<group>"; };
@@ -477,6 +474,8 @@
 		5153B844244458870090B8A8 /* KB_MessageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MessageHeaderView.m; sourceTree = "<group>"; };
 		5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MessageHeaderView.xib; sourceTree = "<group>"; };
 		5157280A24639C9D008C4FF0 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
+		51587BC9246BD2DE000C495F /* QDCommonViewController+KB_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QDCommonViewController+KB_Category.h"; sourceTree = "<group>"; };
+		51587BCA246BD2DE000C495F /* QDCommonViewController+KB_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "QDCommonViewController+KB_Category.m"; sourceTree = "<group>"; };
 		51588CB724418E7100F120CB /* KBPickerScrollerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerScrollerView.h; sourceTree = "<group>"; };
 		51588CB824418E7100F120CB /* KBPickerScrollerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerScrollerView.m; sourceTree = "<group>"; };
 		51588CBA24418FBC00F120CB /* KBPickerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBPickerItem.h; sourceTree = "<group>"; };
@@ -487,8 +486,6 @@
 		51588CC1244197C700F120CB /* KBPickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KBPickerModel.m; sourceTree = "<group>"; };
 		515B380624528A2C00AFEFFA /* KB_CountDownLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_CountDownLabel.h; sourceTree = "<group>"; };
 		515B380724528A2C00AFEFFA /* KB_CountDownLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_CountDownLabel.m; sourceTree = "<group>"; };
-		515B380A2452F2F900AFEFFA /* ZJVc6Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVc6Controller.h; sourceTree = "<group>"; };
-		515B380B2452F2FA00AFEFFA /* ZJVc6Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJVc6Controller.m; sourceTree = "<group>"; };
 		515B380D2452F3BC00AFEFFA /* ZJScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJScrollPageView.h; sourceTree = "<group>"; };
 		515B380E2452F3BC00AFEFFA /* ZJCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCollectionView.h; sourceTree = "<group>"; };
 		515B380F2452F3BC00AFEFFA /* ZJScrollSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJScrollSegmentView.h; sourceTree = "<group>"; };
@@ -1418,10 +1415,6 @@
 		5E8E040023B060930023A484 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				515B380A2452F2F900AFEFFA /* ZJVc6Controller.h */,
-				515B380B2452F2FA00AFEFFA /* ZJVc6Controller.m */,
-				31355AEA24534211009F6084 /* KB_ScrollPageViewController.h */,
-				31355AEB24534211009F6084 /* KB_ScrollPageViewController.m */,
 				313662D024474B6800FB58F9 /* M */,
 				313641AD2432416C00F3DDA0 /* KB_HomePageViewController.h */,
 				313641AE2432416C00F3DDA0 /* KB_HomePageViewController.m */,
@@ -1977,6 +1970,8 @@
 				5EBF20B1237E3405003DD0A7 /* String */,
 				5EBF20B0237E33F3003DD0A7 /* Image */,
 				5EBF20BD237E3E98003DD0A7 /* Category.h */,
+				51587BC9246BD2DE000C495F /* QDCommonViewController+KB_Category.h */,
+				51587BCA246BD2DE000C495F /* QDCommonViewController+KB_Category.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2342,7 +2337,6 @@
 				86B2BCF0230E6B5100273AA3 /* MWZoomingScrollView.m in Sources */,
 				31F8FB93244A0DDD0072609C /* KB_MineCollectionViewCell.m in Sources */,
 				3130FB96243CAC2A00B9A0D6 /* CommentInputView.m in Sources */,
-				515B380C2452F2FA00AFEFFA /* ZJVc6Controller.m in Sources */,
 				3130FC4D243CADDB00B9A0D6 /* KTVHCDataCallback.m in Sources */,
 				865E92F923164DA200F760C6 /* ZFFlowLayout.m in Sources */,
 				3130FC49243CADDB00B9A0D6 /* KTVHCDataSourceManager.m in Sources */,
@@ -2389,7 +2383,6 @@
 				3130FC77243CADDC00B9A0D6 /* ZFSuspendPlayerControlView.m in Sources */,
 				CBA10512230E717300CD84E9 /* UtilsHelper.m in Sources */,
 				3130FC4B243CADDB00B9A0D6 /* KTVHCDataUnitQueue.m in Sources */,
-				31355AEC24534211009F6084 /* KB_ScrollPageViewController.m in Sources */,
 				86B2BCED230E6B5100273AA3 /* DACircularProgressView.m in Sources */,
 				515B38222452F3BE00AFEFFA /* ZJSegmentStyle.m in Sources */,
 				3130FC57243CADDC00B9A0D6 /* HTTPRedirectResponse.m in Sources */,
@@ -2413,6 +2406,7 @@
 				3130FC56243CADDC00B9A0D6 /* HTTPAsyncFileResponse.m in Sources */,
 				3130FC70243CADDC00B9A0D6 /* ZFBrightnessView.m in Sources */,
 				5153B845244458870090B8A8 /* KB_MessageHeaderView.m in Sources */,
+				51587BCB246BD2DE000C495F /* QDCommonViewController+KB_Category.m in Sources */,
 				3130FB9A243CAC2A00B9A0D6 /* CommentsPopView.m in Sources */,
 				515B38252452F3BE00AFEFFA /* ZJScrollSegmentView.m in Sources */,
 				86B2BCF3230E6B5100273AA3 /* MWPhoto.m in Sources */,

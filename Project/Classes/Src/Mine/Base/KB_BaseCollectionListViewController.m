@@ -27,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.collectionView registerNib:[UINib nibWithNibName:@"KB_MineCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KB_MineCollectionViewCell"];
-    
+    self.collectionView.backgroundColor = UIColorMakeWithHex(@"#00000F");
     if (self.shouldLoadData) {
         [self.collectionView addSubview:self.loadingView];
         [self.collectionView addSubview:self.loadLabel];
