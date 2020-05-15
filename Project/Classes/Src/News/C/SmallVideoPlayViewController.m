@@ -28,6 +28,8 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 //这个是预加载视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *preloadVideoPlayerManager;
 
+// 是否正在加载中
+@property (nonatomic, assign) BOOL isLoad;
 @end
 
 @implementation SmallVideoPlayViewController
@@ -141,7 +143,16 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
         self.currentPlayIndex = currentIndex;
         DLog(@"播放下一个");
         [self playIndex:self.currentPlayIndex];
+    }else {
+        if (self.currentPlayIndex + 1 == self.modelArray.count) {
+            LQLog(@"没有了");
+            if (!self.isLoad) {
+                //self.page++;
+                [self getDataList];
+            }
+        }
     }
+    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -254,6 +265,38 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     [self.preloadVideoPlayerManager resetToPlayNewVideo];
 }
 
+- (void)getDataList{
+    if (self.isLoad) {
+        return;
+    }
+    self.isLoad = YES;
+    NSString *url = [NSString stringWithFormat:@"/video/showAll?page=%@&isSaveRecord=0&category=food",@(self.page)];
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:url completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        self.isLoad = NO;
+        if (isSuccess) {
+            NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
+            if (datas.count == 0) {
+                [SVProgressHUD showErrorWithStatus:@"暂无更多"];
+            }
+            if (self.page == 1) {
+                [self.modelArray removeAllObjects];
+                self.modelArray = datas;
+            }else{
+                [self.modelArray addObjectsFromArray:datas];
+            }
+            if (datas.count == 5) {
+                //有下一页
+                self.page++;
+            }else{
+                self.isLoad = YES;
+            }
+            [self.tableView reloadData];
+            
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        }
+    }];
+}
 
 
 #pragma mark - NearVideoPlayCellDlegate

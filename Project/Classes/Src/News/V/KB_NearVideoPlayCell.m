@@ -114,9 +114,9 @@
         [self.contentView addSubview:_comment];
         
         _commentNum = [[UILabel alloc]init];
-        _commentNum.text = @"0";
-        _commentNum.textColor = [UIColor whiteColor];//ColorWhite;
-        _commentNum.font = [UIFont systemFontOfSize:12 ];//SmallFont;
+        _commentNum.text = @"评论";
+        _commentNum.textColor = [UIColor whiteColor];
+        _commentNum.font = [UIFont systemFontOfSize:12 ];
         [self.contentView addSubview:_commentNum];
         _commentNum.layer.shadowColor = [[UIColor blackColor] CGColor];
         _commentNum.layer.shadowOpacity = 0.3;
@@ -244,10 +244,10 @@
             make.bottom.mas_equalTo(_artistLabel.mas_top).offset(-10);
         }];
         
-        [[RACObserve(self, videoModel.status) ignore:nil] subscribeNext:^(NSNumber *x) {
-            @strongify(self);
-            self.commentNum.text = x.stringValue;
-        }];
+//        [[RACObserve(self, videoModel.status) ignore:nil] subscribeNext:^(NSNumber *x) {
+//            @strongify(self);
+//            self.commentNum.text = x.stringValue;
+//        }];
         [[RACObserve(self, videoModel.likeCounts) ignore:nil] subscribeNext:^(NSNumber *x) {
             @strongify(self);
             self.favoriteNum.text = x.stringValue;
