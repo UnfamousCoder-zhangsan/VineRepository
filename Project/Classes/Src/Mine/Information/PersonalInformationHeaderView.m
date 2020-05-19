@@ -120,12 +120,15 @@
     
     //上传图片到服务器，上传成功才dismiss
     [SVProgressHUD showWithStatus:@"上传中"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 设置头像 网络请求上传头像
-        [cropViewController dismissViewControllerAnimated:YES completion:nil];
-        self.headerImage.image = image;
-        [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-    });
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/user/upload?userId=%@",User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            [cropViewController dismissViewControllerAnimated:YES completion:nil];
+            self.headerImage.image = image;
+            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"上传失败"];
+        }
+    }];
 
     
 }

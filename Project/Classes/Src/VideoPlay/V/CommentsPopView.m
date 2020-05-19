@@ -384,17 +384,22 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     model.nickName = User_Center.nickname;
     model.id = @(self.hotCommentArray.count + 1).stringValue;
     model.comment = self.commentTextView.textView.text;
-    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
-    NSInteger time = interval;
-    NSString *timestamp = [NSString stringWithFormat:@"%@",@(time)];
-    model.createTime = [timestamp dateStringUseWeChatFormatSinceNow];
+    model.createTime = [NSString currentDateInterval];
     model.head_url = User_Center.faceImage;
-    [self.hotCommentArray insertObject:model atIndex:0];
-    
-    self.commentTextView.textView.text = @"";
-    self.commentTextView.placeholderLabel.text = @"说点什么...";
-    
-    [self.tableView reloadData];
+    // 网络请求
+    NSString *requestUrl = [model.comment stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/saveComments?comment=%@&videoId=%@&userId=%@",requestUrl,self.videoModel.id,User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            [self.hotCommentArray insertObject:model atIndex:0];
+            
+            self.commentTextView.textView.text = @"";
+            self.commentTextView.placeholderLabel.text = @"说点什么...";
+            
+            [self.tableView reloadData];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"评论失败"];
+        }
+    }];
     
 }
 

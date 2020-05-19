@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 时间戳字符串格式化时间显示规则(仿微信)
 - (NSString *)dateStringUseWeChatFormatSinceNow;
 
+/// 获取当前时间戳
++ (NSString *)currentDateInterval;
 @end
 
 NS_ASSUME_NONNULL_END

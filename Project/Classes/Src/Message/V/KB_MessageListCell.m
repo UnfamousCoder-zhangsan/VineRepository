@@ -29,7 +29,8 @@
     self.nameLabel.text = model.userName;
     self.commentLabel.text = model.comment;
     self.typeLabel.text = model.type;
-    //self.timeLabel.text = 
+    NSString *timeStr = [NSString stringWithFormat:@"%@",@(model.time)];
+    self.timeLabel.text = [timeStr dateStringUseWeChatFormatSinceNow];
 }
 
 @end
