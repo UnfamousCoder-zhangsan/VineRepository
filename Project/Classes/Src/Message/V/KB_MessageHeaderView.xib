@@ -26,6 +26,9 @@
                             <state key="normal" title="喜欢" image="喜欢">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="likeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="MTL-mt-siw"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,6 +50,9 @@
                             <state key="normal" title="评论" image="评论">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="commentAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ABH-Wi-o9n"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,6 +74,9 @@
                             <state key="normal" title="粉丝" image="粉丝">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="fanAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Ez-3r-zpP"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

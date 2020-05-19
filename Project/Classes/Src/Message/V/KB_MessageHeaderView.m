@@ -7,6 +7,7 @@
 //
 
 #import "KB_MessageHeaderView.h"
+#import "KB_MessageListVC.h"
 
 @interface KB_MessageHeaderView()
 @property (weak, nonatomic) IBOutlet QMUIButton *likeBtn;
@@ -26,5 +27,20 @@
     [self.commentBtn setSpacingBetweenImageAndTitle:5];
     [self.fanBtn setImagePosition:QMUIButtonImagePositionTop];
     [self.fanBtn setSpacingBetweenImageAndTitle:5];
+}
+- (IBAction)likeAction:(id)sender {
+    KB_MessageListVC *vc = [[KB_MessageListVC alloc] init];
+    vc.title = @"喜欢";
+    [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+}
+- (IBAction)commentAction:(id)sender {
+    KB_MessageListVC *vc = [[KB_MessageListVC alloc] init];
+    vc.title = @"评论";
+    [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+}
+- (IBAction)fanAction:(id)sender {
+    KB_MessageListVC *vc = [[KB_MessageListVC alloc] init];
+    vc.title = @"粉丝";
+    [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
 }
 @end

@@ -136,6 +136,10 @@
 		51838C1824518D1000C54F93 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 51838C1324518D1000C54F93 /* UIImage+FixOrientation.m */; };
 		51838C1924518D1000C54F93 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 51838C1424518D1000C54F93 /* LLSimpleCamera.m */; };
 		51838C1A24518D1000C54F93 /* LLSimpleCamera+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 51838C1624518D1000C54F93 /* LLSimpleCamera+Helper.m */; };
+		51C7281A2473769F00723475 /* KB_MessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C728192473769F00723475 /* KB_MessageListVC.m */; };
+		51C7281E2473771B00723475 /* KB_MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C7281C2473771B00723475 /* KB_MessageListCell.m */; };
+		51C7281F2473771B00723475 /* KB_MessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51C7281D2473771B00723475 /* KB_MessageListCell.xib */; };
+		51C728232473825400723475 /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C728222473825400723475 /* MessageListModel.m */; };
 		5E36D3F4233F5688009E06AD /* UITabBar+badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E36D3F3233F5688009E06AD /* UITabBar+badge.m */; };
 		5E6D2E0923FE8FF9002BF332 /* LMRStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0023FE8FF9002BF332 /* LMRStyle.m */; };
 		5E6D2E0A23FE8FF9002BF332 /* LMReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D2E0123FE8FF9002BF332 /* LMReportView.m */; };
@@ -509,6 +513,13 @@
 		51838C1524518D1000C54F93 /* LLSimpleCamera+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLSimpleCamera+Helper.h"; sourceTree = "<group>"; };
 		51838C1624518D1000C54F93 /* LLSimpleCamera+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LLSimpleCamera+Helper.m"; sourceTree = "<group>"; };
 		51838C1724518D1000C54F93 /* LLSimpleCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSimpleCamera.h; sourceTree = "<group>"; };
+		51C728182473769F00723475 /* KB_MessageListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MessageListVC.h; sourceTree = "<group>"; };
+		51C728192473769F00723475 /* KB_MessageListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MessageListVC.m; sourceTree = "<group>"; };
+		51C7281B2473771B00723475 /* KB_MessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_MessageListCell.h; sourceTree = "<group>"; };
+		51C7281C2473771B00723475 /* KB_MessageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_MessageListCell.m; sourceTree = "<group>"; };
+		51C7281D2473771B00723475 /* KB_MessageListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_MessageListCell.xib; sourceTree = "<group>"; };
+		51C728212473825400723475 /* MessageListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListModel.h; sourceTree = "<group>"; };
+		51C728222473825400723475 /* MessageListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListModel.m; sourceTree = "<group>"; };
 		5E36D3F2233F5688009E06AD /* UITabBar+badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+badge.h"; sourceTree = "<group>"; };
 		5E36D3F3233F5688009E06AD /* UITabBar+badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+badge.m"; sourceTree = "<group>"; };
 		5E6D2DFE23FE8FF9002BF332 /* NSIndexPath+LMReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+LMReport.h"; sourceTree = "<group>"; };
@@ -1228,9 +1239,12 @@
 		313A34A5243B3AF000A4F1F9 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				51C728202473823500723475 /* M */,
 				5153B842244458590090B8A8 /* V */,
 				313A34A6243B3B2E00A4F1F9 /* KB_MessageTVC.h */,
 				313A34A7243B3B2E00A4F1F9 /* KB_MessageTVC.m */,
+				51C728182473769F00723475 /* KB_MessageListVC.h */,
+				51C728192473769F00723475 /* KB_MessageListVC.m */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -1338,6 +1352,9 @@
 				5153B843244458870090B8A8 /* KB_MessageHeaderView.h */,
 				5153B844244458870090B8A8 /* KB_MessageHeaderView.m */,
 				5153B846244458A40090B8A8 /* KB_MessageHeaderView.xib */,
+				51C7281B2473771B00723475 /* KB_MessageListCell.h */,
+				51C7281C2473771B00723475 /* KB_MessageListCell.m */,
+				51C7281D2473771B00723475 /* KB_MessageListCell.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -1392,6 +1409,15 @@
 				51838C1324518D1000C54F93 /* UIImage+FixOrientation.m */,
 			);
 			path = KBSimpleCamera;
+			sourceTree = "<group>";
+		};
+		51C728202473823500723475 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				51C728212473825400723475 /* MessageListModel.h */,
+				51C728222473825400723475 /* MessageListModel.m */,
+			);
+			path = M;
 			sourceTree = "<group>";
 		};
 		5E6D2DFD23FE8FF9002BF332 /* LMReport */ = {
@@ -2230,6 +2256,7 @@
 				31C0AA7D2443637800110B18 /* Setting.storyboard in Resources */,
 				31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */,
 				313286C0244CAC700022E8EC /* KB_PublishCell.xib in Resources */,
+				51C7281F2473771B00723475 /* KB_MessageListCell.xib in Resources */,
 				3130FC71243CADDC00B9A0D6 /* ZFPlayer.bundle in Resources */,
 				5157280B24639C9D008C4FF0 /* image2.jpg in Resources */,
 				EA9A3E8F2060D95E004A6694 /* Launch Screen.storyboard in Resources */,
@@ -2374,6 +2401,7 @@
 				863986E42329EC8600BC6934 /* UIImage+Compression.m in Sources */,
 				313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */,
 				86B2BCF2230E6B5100273AA3 /* MWTapDetectingImageView.m in Sources */,
+				51C7281E2473771B00723475 /* KB_MessageListCell.m in Sources */,
 				3130FB85243CABC700B9A0D6 /* SmallVideoModel.m in Sources */,
 				3130FC6A243CADDC00B9A0D6 /* UIView+CommonFunction.m in Sources */,
 				A48C36BF205E2FD5003EBDDA /* QDMultipleImagePickerPreviewViewController.m in Sources */,
@@ -2461,6 +2489,7 @@
 				3130FC6C243CADDC00B9A0D6 /* AVPlayer+MyAvPlayerCate.m in Sources */,
 				51588CB924418E7100F120CB /* KBPickerScrollerView.m in Sources */,
 				92D5888023EC6C3000A25538 /* NSDictionary+SetNilStr.m in Sources */,
+				51C728232473825400723475 /* MessageListModel.m in Sources */,
 				A48C36BE205E2FD5003EBDDA /* JWButton.m in Sources */,
 				86B2BCF5230E6B5100273AA3 /* MWGridViewController.m in Sources */,
 				A48C36B8205E2FD5003EBDDA /* NSString+Verification.m in Sources */,
@@ -2522,6 +2551,7 @@
 				3130FC58243CADDC00B9A0D6 /* HTTPMessage.m in Sources */,
 				31C0AA792442370300110B18 /* KB_PersonalInformationVC.m in Sources */,
 				CBA1062A230E72D100CD84E9 /* RequesetApi.m in Sources */,
+				51C7281A2473769F00723475 /* KB_MessageListVC.m in Sources */,
 				51588CC2244197C700F120CB /* KBPickerModel.m in Sources */,
 				313A34A4243B3A2700A4F1F9 /* KB_MineTVC.m in Sources */,
 			);

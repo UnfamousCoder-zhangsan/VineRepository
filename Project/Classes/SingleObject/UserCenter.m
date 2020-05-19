@@ -53,12 +53,17 @@ static UserCenter *_sharedUserCenter;
      *  保留登录名清除其他保存到数据
      */
     NSString *userName = User_Center.username;
+    NSString *pass;
+    if (User_Center.pass.length > 0) {
+        pass = User_Center.pass;
+    }
     _sharedUserCenter = [[UserCenter alloc] init];
     _sharedUserCenter.username = userName;
+    _sharedUserCenter.pass     = pass;
 
     [UserCenter save];
 }
 
 
 MJCodingImplementation
-    @end
+@end

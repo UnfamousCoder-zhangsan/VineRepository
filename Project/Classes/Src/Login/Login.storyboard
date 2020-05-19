@@ -102,7 +102,7 @@
                                 <state key="selected" title="记住密码" image="记住密码"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgT-g8-FqP" customClass="QMUIButton">
-                                <rect key="frame" x="37" y="422" width="99" height="27"/>
+                                <rect key="frame" x="37" y="423" width="99" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="无账号？前往注册"/>
                                 <connections>
@@ -113,7 +113,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="agf-Ed-Hr7" firstAttribute="trailing" secondItem="NhQ-rh-moU" secondAttribute="trailing" id="0JB-Xc-GWm"/>
-                            <constraint firstItem="YgT-g8-FqP" firstAttribute="top" secondItem="n3h-1n-I4z" secondAttribute="bottom" constant="20" id="18v-og-7XQ"/>
                             <constraint firstItem="l4j-dP-ohW" firstAttribute="trailing" secondItem="n3h-1n-I4z" secondAttribute="trailing" id="3GH-dm-wPv"/>
                             <constraint firstItem="agf-Ed-Hr7" firstAttribute="top" secondItem="NhQ-rh-moU" secondAttribute="bottom" id="3RA-4d-Su3"/>
                             <constraint firstItem="NhQ-rh-moU" firstAttribute="centerY" secondItem="UqZ-50-h5e" secondAttribute="centerY" id="3v9-LF-EC2"/>
@@ -123,6 +122,7 @@
                             <constraint firstItem="agf-Ed-Hr7" firstAttribute="leading" secondItem="NhQ-rh-moU" secondAttribute="leading" id="DUd-I9-8w3"/>
                             <constraint firstItem="NhQ-rh-moU" firstAttribute="top" secondItem="ccw-IF-hr8" secondAttribute="bottom" constant="65" id="Iz9-4M-TZN"/>
                             <constraint firstItem="YgT-g8-FqP" firstAttribute="leading" secondItem="FST-cG-FMo" secondAttribute="leadingMargin" constant="21" id="Mup-st-OFW"/>
+                            <constraint firstItem="YgT-g8-FqP" firstAttribute="centerY" secondItem="isQ-ZK-ujW" secondAttribute="centerY" id="MzU-N4-exu"/>
                             <constraint firstItem="ccw-IF-hr8" firstAttribute="leading" secondItem="FST-cG-FMo" secondAttribute="leading" id="NBj-2P-WoS"/>
                             <constraint firstAttribute="trailing" secondItem="ccw-IF-hr8" secondAttribute="trailing" id="OjO-ZF-3kf"/>
                             <constraint firstItem="isQ-ZK-ujW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YgT-g8-FqP" secondAttribute="trailing" constant="10" id="U3s-Vo-v0b"/>

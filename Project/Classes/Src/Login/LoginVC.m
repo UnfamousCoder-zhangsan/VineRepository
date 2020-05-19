@@ -51,6 +51,9 @@
     if (User_Center.username.length > 0) {
         _userNameTextField.text = User_Center.username;
     }
+    if (User_Center.pass.length > 0) {
+        _passwordTextFiled.text = User_Center.pass;
+    }
     
     _userNameTextField.delegate = self;
     _passwordTextFiled.delegate = self;

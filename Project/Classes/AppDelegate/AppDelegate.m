@@ -161,8 +161,6 @@
             [UserCenter clearUserCenter];
             [PageRoutManeger gotoLoginVC];
         }
-   // }
-    // 开屏广告初始化
     
     [PageRout_Maneger.window makeKeyAndVisible];
 }
