@@ -31,7 +31,7 @@
 }
 - (void)initTableView{
     [super initTableView];
-    self.tableView.backgroundColor = [UIColor whiteColor];//UIColorMakeWithHex(@"#666666");
+    self.tableView.backgroundColor = [UIColor whiteColor];
     [self.tableView registerNib:[UINib nibWithNibName:@"KB_MessageListCell" bundle:nil] forCellReuseIdentifier:@"KB_MessageListCell"];
 }
 
@@ -45,6 +45,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KB_MessageListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KB_MessageListCell"];
     cell.model = self.dataArray[indexPath.row];
+    // 取消选中背景
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -111,7 +113,7 @@
     
     
     MessageListModel *model9 = [[MessageListModel alloc] init];
-    model9.headerUrl = @"http://thirdqq.qlogo.cn/g?b=oidb&amp;k=IXYXYnjFTRGWV18ibkgC6Kw&amp;s=100";
+    model9.headerUrl = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/34/user_head_31365520_20190516093434.jpg";
     model9.userName = @"测试";
     model9.comment = @"评论";
     model9.type = @"发表了评论";
@@ -119,7 +121,7 @@
     
     MessageListModel *model10 = [[MessageListModel alloc] init];
     
-    model10.headerUrl = @"http://thirdqq.qlogo.cn/g?b=oidb&amp;k=lzQZzzcCgg8j4XvcyPBGOA&amp;s=100";
+    model10.headerUrl = @"http://cdnuserprofilebd.shoujiduoduo.com/head_pic/34/user_head_31365520_20190516093434.jpg";
     model10.userName = @"测试";
     model10.comment = @"评论";
     model10.type = @"发表了评论";

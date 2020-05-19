@@ -102,13 +102,13 @@
 }
 
 - (NSArray *)setupChildVc {
-    //关注
+    //推荐
     [self getResource];
     KB_BaseViewController *vc1 = [KB_BaseViewController new];
     vc1.currentPlayIndex = 0;
     vc1.modelArray = self.modelArray;
 
-    //推荐
+    //关注
     KB_BaseViewController  *vc2 = [KB_BaseViewController new];
     vc1.currentPlayIndex = 0;
     vc2.modelArray = self.modelArray;

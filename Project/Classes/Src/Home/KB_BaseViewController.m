@@ -278,10 +278,6 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     return _preloadVideoPlayerManager;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    LQLog(@"触摸了屏幕");
-}
-
 #pragma mark - dealloc
 - (void)dealloc {
     [self.videoPlayerManager resetPlayer];
