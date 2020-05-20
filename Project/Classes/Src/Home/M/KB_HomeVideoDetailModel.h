@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *face_image;
 @property (nonatomic, strong) NSString *videoFilter;
 @property (nonatomic, assign) BOOL      isFoucs;
+@property(nonatomic, assign) BOOL       isLike;
 @end
 
 NS_ASSUME_NONNULL_END

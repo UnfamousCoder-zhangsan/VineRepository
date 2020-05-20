@@ -94,8 +94,9 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     }];
     
     self.commentButton = [QMUIButton buttonWithType:UIButtonTypeCustom];
-    [self.commentButton setTitle:@"说点什么吧" forState:UIControlStateNormal];
-    self.commentButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.commentButton setTitle:@"说点什么..." forState:UIControlStateNormal];
+    self.commentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.commentButton.titleLabel.font = UIFontMake(15);
     [self.commentButton addTarget:self action:@selector(commentAction) forControlEvents:UIControlEventTouchUpInside];
     [self.commentButton setTitleColor:UIColorMakeWithHex(@"666666") forState:UIControlStateNormal];
     [self.view addSubview:self.commentButton];
@@ -317,12 +318,17 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 //点赞
 - (void)handleFavoriteVdieoModel:(KB_HomeVideoDetailModel *)model{
-    
+    KB_HomeVideoDetailModel *videoModel = model;
+    videoModel.likeCounts += 1;
+    videoModel.isLike = YES;
+    self.modelArray[self.currentPlayIndex] = videoModel;
 }
 //取消点赞
 - (void)handleDeleteFavoriteVdieoModel:(KB_HomeVideoDetailModel *)model{
-    
-    
+    KB_HomeVideoDetailModel *videoModel = model;
+    videoModel.likeCounts -= 1;
+    videoModel.isLike = NO;
+    self.modelArray[self.currentPlayIndex] = videoModel;
 }
 - (void)handleShareVideoModel:(KB_HomeVideoDetailModel *)smallVideoModel{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
