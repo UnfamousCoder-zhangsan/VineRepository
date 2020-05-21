@@ -31,16 +31,19 @@
 - (IBAction)likeAction:(id)sender {
     KB_MessageListVC *vc = [[KB_MessageListVC alloc] init];
     vc.title = @"喜欢";
+    vc.type = CellType_Like;
     [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
 }
 - (IBAction)commentAction:(id)sender {
     KB_MessageListVC *vc = [[KB_MessageListVC alloc] init];
     vc.title = @"评论";
+    vc.type = CellType_Comment;
     [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
 }
 - (IBAction)fanAction:(id)sender {
     KB_MessageListVC *vc = [[KB_MessageListVC alloc] init];
     vc.title = @"粉丝";
+    vc.type = CellType_Comment;
     [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
 }
 @end

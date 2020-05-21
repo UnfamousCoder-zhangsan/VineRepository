@@ -85,7 +85,7 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
         
         self.numCommentLabel = [[UILabel alloc] init];
         self.numCommentLabel.textColor = [UIColor whiteColor];//ColorGray;
-        self.numCommentLabel.text = [NSString stringWithFormat:@"%@条评论",@(self.videoModel.status)];
+        self.numCommentLabel.text = [NSString stringWithFormat:@"-评论"];
         self.numCommentLabel.font = [UIFont systemFontOfSize:14];//SmallFont;
         self.numCommentLabel.textAlignment = NSTextAlignmentCenter;
         [_container addSubview:self.numCommentLabel];
@@ -93,11 +93,11 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
             make.top.left.right.equalTo(self.container);
             make.height.mas_equalTo(35  );
         }];
-        @weakify(self);
-        [RACObserve(self, videoModel.status) subscribeNext:^(NSNumber *x) {
-            @strongify(self);
-            self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",(long)x.integerValue];
-        }];
+//        @weakify(self);
+//        [RACObserve(self, videoModel.status) subscribeNext:^(NSNumber *x) {
+//            @strongify(self);
+//            self.numCommentLabel.text = [NSString stringWithFormat:@"%ld条评论",(long)x.integerValue];
+//        }];
         
         
         _closeBtn = [[UIButton alloc] init];

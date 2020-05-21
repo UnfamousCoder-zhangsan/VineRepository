@@ -9,8 +9,15 @@
 #import "QDCommonTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSInteger, CellType)
+{
+    CellType_Fan = 0,//
+    CellType_Like = 1,//
+    CellType_Comment = 2
+};
 
 @interface KB_MessageListVC : QDCommonTableViewController
+@property(nonatomic, assign) CellType type;
 
 @end
 

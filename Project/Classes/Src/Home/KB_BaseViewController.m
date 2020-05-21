@@ -39,7 +39,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     self.recognize = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pullDownToRefresh)];
     self.recognize.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:self.recognize];
-    //[self getDataList];
+    [self getDataList];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -294,26 +294,26 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
         if (isSuccess) {
             [self hideEmptyView];
             //[self.collectionView.mj_header endRefreshing];
-            NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
-            if (self.page == 1) {
-                [self.modelArray removeAllObjects];
-                self.modelArray = datas;
-            }else{
-                [self.modelArray addObjectsFromArray:datas];
-            }
-            if (datas.count == 5) {
-                //有下一页
-                self.tableView.mj_footer.hidden = NO;
-                [self.tableView.mj_footer endRefreshing];
-                self.page++;
-            }else{
-                self.tableView.mj_footer.hidden = YES;
-            }
-            if (self.modelArray.count == 0) {
-                [self showNoDataEmptyViewWithText:@"暂无附近数据" detailText:@"请前往首页观看更多视频"];
-            }else{
-                [self.tableView reloadData];
-            }
+//            NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
+//            if (self.page == 1) {
+//                [self.modelArray removeAllObjects];
+//                self.modelArray = datas;
+//            }else{
+//                [self.modelArray addObjectsFromArray:datas];
+//            }
+//            if (datas.count == 5) {
+//                //有下一页
+//                self.tableView.mj_footer.hidden = NO;
+//                [self.tableView.mj_footer endRefreshing];
+//                self.page++;
+//            }else{
+//                self.tableView.mj_footer.hidden = YES;
+//            }
+//            if (self.modelArray.count == 0) {
+//                [self showNoDataEmptyViewWithText:@"暂无数据" detailText:@""];
+//            }else{
+//                [self.tableView reloadData];
+//            }
             
         } else {
             [self hideEmptyView];
