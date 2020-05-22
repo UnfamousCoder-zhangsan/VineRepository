@@ -46,6 +46,8 @@
 /// 选择了第几种方式
 @property (nonatomic, assign) NSInteger selectedIndex;
 
+@property (nonatomic, assign) NSInteger shootCickNum;
+
 
 @end
 
@@ -397,6 +399,9 @@
             self.exchangeCamera.hidden = YES;
             self.pickerScrollView.hidden = YES;
             self.pointLabel.hidden = YES;
+            self.countDown.hidden = YES;
+            self.albumButton.hidden = YES;
+            self.shootCickNum = 1;
             
             NSURL *outputURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"video"] URLByAppendingPathExtension:@"mp4"];
             [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
@@ -409,10 +414,23 @@
             self.flashOnButton.hidden = NO;
             self.exchangeCamera.hidden = NO;
             self.pickerScrollView.hidden = NO;
+            self.countDown.hidden = NO;
             self.pointLabel.hidden = NO;
+            self.albumButton.hidden = NO;
             [self.camera stopRecording];
+            self.shootCickNum = 2;
         }
-        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%@",@(self.selectedIndex)]];
+        if (self.selectedIndex == 1 && self.shootCickNum != 2) {
+            //拍15s
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self clickShootBtn];
+            });
+        } else if (self.selectedIndex == 2 && self.shootCickNum != 2){
+            // 拍30s
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(29 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self clickShootBtn];
+            });
+        }
     }else {
         
         [self.camera capture:^(LLSimpleCamera *camera, UIImage *image, NSDictionary *metadata, NSError *error) {

@@ -391,7 +391,6 @@ static NSString *const replyCommentMessageCellIdentifier = @"replyCommentMessage
     [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/saveComments?comment=%@&videoId=%@&userId=%@",requestUrl,self.videoModel.id,User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             [self.hotCommentArray insertObject:model atIndex:0];
-            
             self.commentTextView.textView.text = @"";
             self.commentTextView.placeholderLabel.text = @"说点什么...";
             

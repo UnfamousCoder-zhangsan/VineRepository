@@ -102,5 +102,6 @@
 - (void)setModel:(InformationModel *)model{
     _model = model;
     self.contentView.model = model;
+    self.contentView.isFollowed = self.isFollowed;
 }
 @end

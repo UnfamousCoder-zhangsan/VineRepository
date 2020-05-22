@@ -101,6 +101,7 @@
 		313A34AC243B3BBA00A4F1F9 /* KB_ShootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AB243B3BBA00A4F1F9 /* KB_ShootVC.m */; };
 		313A34AF243B784400A4F1F9 /* KB_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */; };
 		313A7B3624630368003963A4 /* KB_XHLaunchAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */; };
+		313AD65E2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313AD65D2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m */; };
 		315CDE57246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 315CDE56246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m */; };
 		31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */; };
 		31C0AA6F24422DB100110B18 /* PersonalInformationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */; };
@@ -447,6 +448,8 @@
 		313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_BaseViewController.m; sourceTree = "<group>"; };
 		313A7B3424630368003963A4 /* KB_XHLaunchAdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_XHLaunchAdManager.h; sourceTree = "<group>"; };
 		313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_XHLaunchAdManager.m; sourceTree = "<group>"; };
+		313AD65C2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_KeyboardCustomVCViewController.h; sourceTree = "<group>"; };
+		313AD65D2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_KeyboardCustomVCViewController.m; sourceTree = "<group>"; };
 		315CDE55246ADD7900BE6D75 /* KB_PrivacyPolicyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PrivacyPolicyVC.h; sourceTree = "<group>"; };
 		315CDE56246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PrivacyPolicyVC.m; sourceTree = "<group>"; };
 		31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalInformation.storyboard; sourceTree = "<group>"; };
@@ -1184,6 +1187,8 @@
 			children = (
 				3130FBA1243CAD8100B9A0D6 /* SmallVideoPlayViewController.h */,
 				3130FBA0243CAD8100B9A0D6 /* SmallVideoPlayViewController.m */,
+				313AD65C2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.h */,
+				313AD65D2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -2378,6 +2383,7 @@
 				5EBF20C0237E52D9003DD0A7 /* NSString+Format.m in Sources */,
 				3130FC65243CADDC00B9A0D6 /* KTVHTTPCache.m in Sources */,
 				3130FB98243CAC2A00B9A0D6 /* CommentMessageCell.m in Sources */,
+				313AD65E2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m in Sources */,
 				A48C36C0205E2FD5003EBDDA /* JWCollectionViewController.m in Sources */,
 				865E92FB23164DA200F760C6 /* Attribute.m in Sources */,
 				865E92FA23164DA200F760C6 /* LayoutAttributeTools.m in Sources */,

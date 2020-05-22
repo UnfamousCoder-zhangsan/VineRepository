@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL otherHome;
 /// 用户id
 @property (nonatomic, strong) NSString *userId;
+/// 是否已经关注
+@property (nonatomic, assign) BOOL isFollowed;
 @end
 
 NS_ASSUME_NONNULL_END

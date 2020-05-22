@@ -13,18 +13,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, HomeType)
+{
+    HomeType_Recommend = 0,//
+    HomeType_Focus = 1//
+ 
+};
+
 @interface KB_BaseViewController : QDCommonViewController<ZJScrollPageViewChildVcDelegate>
 
 @property (nonatomic, strong) UITableView   *tableView;
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, strong) NSMutableArray *modelArray;
 @property (nonatomic, assign) NSInteger currentPlayIndex;
-@property (nonatomic) BOOL hasMore;
 
-@property (nonatomic, assign) NSInteger rid;
-
-///针对首页的是否自动播放
-@property (nonatomic, assign) BOOL isAutoPlay;
+@property (nonatomic, assign) HomeType homeType;
 @end
 
 NS_ASSUME_NONNULL_END

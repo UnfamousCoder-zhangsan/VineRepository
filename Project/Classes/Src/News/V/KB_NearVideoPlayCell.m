@@ -153,7 +153,7 @@
         _artistLabel = [[UILabel alloc] init];
         _artistLabel.numberOfLines = 0;
         _artistLabel.textColor = RGBA(255, 255, 255, 1);
-        _artistLabel.font = [UIFont systemFontOfSize:12];
+        _artistLabel.font = [UIFont systemFontOfSize:15];
         _artistLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
         _artistLabel.layer.shadowOpacity = 0.3;
         _artistLabel.layer.shadowOffset = CGSizeMake(0, 1);
@@ -290,7 +290,7 @@
             }
         } else {
             //关注失败
-            self.focus.hidden = YES;
+            self.focus.hidden = NO;
         }
     }];
     
@@ -298,11 +298,7 @@
 
 //进入个人主页
 - (void)pushToPersonalMessageVC {
-    
-    KB_MineTVC *vc = [[KB_MineTVC alloc] init];
-    vc.otherHome = YES;
-    vc.userId = self.videoModel.userId;
-    [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+    [self isFlolowed];
 }
 
 //收藏视频
@@ -328,6 +324,21 @@
     }
 }
 
+// 是否已经关注/user/queryIsFollowed?userId=200413HKRG042AK4&fanId=2005226Z97MX130H
+- (void)isFlolowed{
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/user/queryIsFollowed?userId=%@&fanId=%@",User_Center.id,self.videoModel.userId] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            KB_MineTVC *vc = [[KB_MineTVC alloc] init];
+            vc.otherHome = YES;
+            vc.isFollowed = apiResponseModel.data;
+            vc.userId = self.videoModel.userId;
+            [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"加载失败"];
+        }
+    }];
+}
 - (void)dealloc {
     DLog(@"销毁了");
 }

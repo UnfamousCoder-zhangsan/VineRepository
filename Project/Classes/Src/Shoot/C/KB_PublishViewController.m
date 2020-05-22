@@ -110,6 +110,10 @@
         }];
         return;
     }
+    if (!self.videoUrl) {
+        [SVProgressHUD showErrorWithStatus:@"还不能发送图片哦"];
+        return;
+    }
     AVAsset *asset = [AVAsset assetWithURL:self.videoUrl];
     NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
     AVAssetTrack *videoTrack = tracks[0];

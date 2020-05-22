@@ -45,12 +45,29 @@
         vc.model = self.model;
         [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
     } else {
-        //关注 取消关注
-//        if (<#condition#>) {
-//            <#statements#>
-//        } else {
-//            <#statements#>
-//        }
+        if (self.isFollowed) {
+            //取消关注
+            [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"user/userUnFollow?userId=%@&fanId=%@",self.model.id,User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+                if (isSuccess) {
+                    [self.modifyBtn setTitle:@"关注" forState:UIControlStateNormal];
+                    self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#DC143C");
+                    self.isFollowed = NO;
+                } else {
+                    
+                }
+            }];
+        } else {
+            //关注
+            [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"user/userFollow?userId=%@&fanId=%@",self.model.id,User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+                if (isSuccess) {
+                    [self.modifyBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                    self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#777777");
+                    self.isFollowed = YES;
+                } else {
+                    
+                }
+            }];
+        }
     }
 }
 
@@ -63,8 +80,14 @@
         [self.modifyBtn setTitle:@"编辑资料" forState:UIControlStateNormal];
         self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#777777");
     } else {
-        [self.modifyBtn setTitle:@"关注" forState:UIControlStateNormal];
-        self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#DC143C");
+        
+        if (self.isFollowed) {
+            [self.modifyBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+            self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#777777");
+        } else {
+            [self.modifyBtn setTitle:@"关注" forState:UIControlStateNormal];
+            self.modifyBtn.backgroundColor = UIColorMakeWithHex(@"#DC143C");
+        }
     }
     self.likeCount.text = [NSString stringWithFormat:@"%@获赞",@(model.receiveLikeCounts)];
     self.focusCount.text = [NSString stringWithFormat:@"%@关注",@(model.followCounts)];

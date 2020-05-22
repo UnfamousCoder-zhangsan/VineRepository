@@ -47,7 +47,7 @@
 
 - (void)loadData {
     [self showLoading];
-    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/queryVideosByUser?userId=%@",User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/queryVideosByUser?userId=%@",self.userId? self.userId:User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             [self hideLoading];
             NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data].mutableCopy;

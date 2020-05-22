@@ -111,6 +111,7 @@
 - (id<GKPageListViewDelegate>)pageScrollView:(GKPageScrollView *)pageScrollView initListAtIndex:(NSInteger)index{
     KB_BaseCollectionListViewController *listVC = [KB_BaseCollectionListViewController new];
     listVC.shouldLoadData = YES;
+    listVC.userId = self.userId;
     [self addChildViewController:listVC];
     return listVC;
 }
@@ -212,6 +213,7 @@
             // 请求成功
             InformationModel *model = [InformationModel modelWithDictionary:apiResponseModel.data];
             self.headerView.model = model;
+            self.headerView.isFollowed = self.isFollowed;
         } else {
             //加载失败
             [SVProgressHUD showErrorWithStatus:apiResponseModel.msg];

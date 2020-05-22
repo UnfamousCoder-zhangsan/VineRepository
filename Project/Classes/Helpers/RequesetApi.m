@@ -3,6 +3,7 @@
 #import <AFNetworking/AFNetworking.h>
 #ifdef DEBUG
 static NSString* kAPiHost = @"http://imwork.tpddns.cn:38765";
+//static NSString* kAPIHost = @"http://49.234.239.99:8082/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/";
 static NSString* kAPIHost = @"https://www.lotcloudy.com/scetc-show-videos-mini-api-0.0.1-SNAPSHOT/";
 
 #else

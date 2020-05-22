@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KB_MineInformationView : UIView
 @property (nonatomic, strong) InformationModel *model;
+@property (nonatomic, assign) BOOL  isFollowed;
 @end
 
 NS_ASSUME_NONNULL_END

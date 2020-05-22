@@ -12,6 +12,7 @@
 #import "SDImageCache.h"
 #import "CommentsPopView.h"
 #import "UMSocialWechatHandler.h"
+#import "KB_KeyboardCustomVCViewController.h"
 
 static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
@@ -30,6 +31,9 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 // 是否正在加载中
 @property (nonatomic, assign) BOOL isLoad;
+
+@property (nonatomic, strong) KB_KeyboardCustomVCViewController *customVC;
+
 @end
 
 @implementation SmallVideoPlayViewController
@@ -134,7 +138,7 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     DLog(@"快点播放下一个");
-    NSInteger currentIndex = round(self.tableView.contentOffset.y / SCREEN_HEIGHT);
+    NSInteger currentIndex = round(self.tableView.contentOffset.y / (SCREEN_HEIGHT - TabBarHeight));
     if(self.currentPlayIndex != currentIndex) {
         if(self.currentPlayIndex > currentIndex) {
             [self preLoadIndex:currentIndex-1];
@@ -157,7 +161,7 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    CGFloat currentIndex = self.tableView.contentOffset.y / SCREEN_HEIGHT;
+    CGFloat currentIndex = self.tableView.contentOffset.y / (SCREEN_HEIGHT - TabBarHeight);
     if(fabs(currentIndex - self.currentPlayIndex)>1) {
         [self.videoPlayerManager resetPlayer];
         [self.preloadVideoPlayerManager resetPlayer];
@@ -292,7 +296,6 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
                 self.isLoad = YES;
             }
             [self.tableView reloadData];
-            
         } else {
             [SVProgressHUD showErrorWithStatus:@"网络错误"];
         }
@@ -382,8 +385,46 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    if (self.customVC.view.superview) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return self.supportedOrientationMask;
+    }
+}
+
 - (void)commentAction{
-    [SVProgressHUD showSuccessWithStatus:@"开发中 评论功能"];
+    if (!self.customVC) {
+        self.customVC = [[KB_KeyboardCustomVCViewController alloc] init];
+    }
+    if (!self.customVC.view.superview) {
+        [self.customVC showInParentViewController:self.navigationController];
+    } else {
+        [self.customVC.textView resignFirstResponder];
+    }
+    @weakify(self)
+    self.customVC.sendTextBlock = ^(NSString * text) {
+        @strongify(self)
+        if ([text isEqualToString:@""]) {
+            [SVProgressHUD showErrorWithStatus:@"内容不能为空"];
+            return;
+        }
+        [self onSendText:text];
+    };
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+// 发表评论网络请求
+- (void)onSendText:(NSString *)text{
+    
+    KB_HomeVideoDetailModel *model = self.modelArray[self.currentPlayIndex];
+    NSString *requestUrl = [text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/video/saveComments?comment=%@&videoId=%@&userId=%@",requestUrl,model.id,User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"评论失败"];
+        }
+    }];
 }
 
 #pragma mark - LazyLoad

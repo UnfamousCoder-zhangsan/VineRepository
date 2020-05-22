@@ -15,7 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 #define kMineBgImgHeight  (SCREEN_WIDTH * 110.0f / 345.0f)
 
 @interface KB_MineHeaderView : UIView
+@property (nonatomic, assign) BOOL isFollowed;
+
 @property (nonatomic, strong) InformationModel *model;
+
 - (void)scrollViewDidScroll:(CGFloat)offsetY;
 
 @end

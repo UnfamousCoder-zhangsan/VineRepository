@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL  shouldLoadData;
 
+@property (nonatomic, strong) NSString *userId;
 - (void)addHeaderRefresh;
 
 @end
