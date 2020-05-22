@@ -139,7 +139,7 @@
     }
 }
 
-#pragma mark - 选择图片 -
+#pragma mark - 选择图库视频 -
 - (void)showImagePickerWith:(UIImagePickerControllerSourceType)sourceType {
     BOOL isAlbumAvailable = [UIImagePickerController isSourceTypeAvailable:sourceType];
     if (isAlbumAvailable) {
@@ -306,7 +306,7 @@
     
     self.contentView.layer.cornerRadius = 10;
     self.dataArray = [NSMutableArray array];
-    NSArray *titleArray = @[@"拍照",@"拍15秒",@"拍60秒"];
+    NSArray *titleArray = @[@"拍照",@"拍15秒",@"拍30秒"];
     for (int i = 0; i < titleArray.count; i++){
         KBPickerModel *model = [[KBPickerModel alloc] init];
         model.title = [titleArray objectAtIndex:i];

@@ -9,7 +9,6 @@
 #import "PersonalInformationHeaderView.h"
 
 @interface PersonalInformationHeaderView()<UINavigationControllerDelegate,QMUIImagePreviewViewDelegate,UIImagePickerControllerDelegate,TOCropViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
 @property (nonatomic, strong) QMUIImagePreviewViewController *imagePreviewViewController;
@@ -120,7 +119,7 @@
     
     //上传图片到服务器，上传成功才dismiss
     [SVProgressHUD showWithStatus:@"上传中"];
-    [RequesetApi requestAPIWithParams:nil andRequestUrl:[NSString stringWithFormat:@"/user/upload?userId=%@",User_Center.id] completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+    [RequesetApi post:[NSString stringWithFormat:@"/user/uploadFace?userId=%@",User_Center.id] image:image name:@"file" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             [cropViewController dismissViewControllerAnimated:YES completion:nil];
             self.headerImage.image = image;
@@ -129,15 +128,14 @@
             [SVProgressHUD showErrorWithStatus:@"上传失败"];
         }
     }];
-
     
 }
 
 #pragma mark - 设置头像 - 
-- (void)setAvatarWithAvatarImage:(UIImage *)avatarImage {
-   
-    self.headerImage.image = avatarImage;
-}
+//- (void)setAvatarWithAvatarImage:(UIImage *)avatarImage {
+//
+//    self.headerImage.image = avatarImage;
+//}
 
 #pragma mark - 点击查看大图 -
 - (void)handleImageBrowseEvent{

@@ -289,7 +289,7 @@ static NSString * const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
     if (self.page == 1) {
         [self showEmptyViewWithLoading];
     }
-    NSString *url = [NSString stringWithFormat:@"/video/showAll?page=%@&isSaveRecord=0&category=define",@(self.page)];
+    NSString *url = [NSString stringWithFormat:@"/video/showAll?page=%@&isSaveRecord=0&category=dress",@(self.page)];
     [RequesetApi requestAPIWithParams:nil andRequestUrl:url completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {
             [self hideEmptyView];

@@ -34,8 +34,8 @@
                         <action selector="modifyInforMationEvent:" destination="iN0-l3-epB" eventType="touchUpInside" id="qsl-8f-eBs"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="啥也不是" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUu-O8-rEw">
-                    <rect key="frame" x="15" y="91" width="89.5" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUu-O8-rEw">
+                    <rect key="frame" x="15" y="91" width="10.5" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="qWk-zM-O3Z"/>
                     </constraints>
@@ -43,8 +43,8 @@
                     <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号:douyin8888888" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wd7-qn-VEm">
-                    <rect key="frame" x="15" y="117" width="137.5" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wd7-qn-VEm">
+                    <rect key="frame" x="15" y="117" width="6.5" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="RMt-CC-VUU"/>
                     </constraints>
@@ -59,34 +59,38 @@
                         <constraint firstAttribute="height" constant="1" id="tBg-cY-DOR"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="I9o-u0-vGp">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9o-u0-vGp">
                     <rect key="frame" x="15" y="152" width="436" height="100"/>
                     <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="0Bd-FN-S9N"/>
                     </constraints>
-                    <string key="text">当xcode配置了,不起作用 ：1.清空xcode缓存 2.直接删掉程序 重新运行
+                    <string key="text">生活不可能像你想象得那么好，
 
-如果是通过LaunchImage设置启动界面,那么屏幕的可视范围由图片决定
+但也不会像你想象得那么糟。
 
-注意:如果使用LaunchImage,必须让你的美工提供各种尺寸的启动图片</string>
+我觉得人的脆弱和坚强都超乎自己的想象。
+
+有时，我可能脆弱得一句话就泪流满面；
+
+有时，也发现自己咬着牙走了很长的路。</string>
                     <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wwe-Bp-DKc" customClass="QMUIButton">
-                    <rect key="frame" x="15" y="262" width="33" height="20"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wwe-Bp-DKc" customClass="QMUIButton">
+                    <rect key="frame" x="15" y="262" width="30" height="20"/>
                     <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="OOK-aD-WDt"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="120岁">
+                    <state key="normal" title="22岁">
                         <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-ej-KgR" customClass="QMUIButton">
-                    <rect key="frame" x="58" y="262" width="53" height="20"/>
+                    <rect key="frame" x="55" y="262" width="53" height="20"/>
                     <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="B1a-MD-ucZ"/>
@@ -97,7 +101,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaB-Lg-Dsb" customClass="QMUIButton">
-                    <rect key="frame" x="121" y="262" width="123" height="20"/>
+                    <rect key="frame" x="118" y="262" width="123" height="20"/>
                     <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="nUe-6t-D9C"/>

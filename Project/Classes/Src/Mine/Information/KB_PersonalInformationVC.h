@@ -7,10 +7,11 @@
 //
 
 #import "JWTableViewController.h"
-
+#import "InformationModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KB_PersonalInformationVC : JWTableViewController
+@property (nonatomic, strong) InformationModel *model;
 
 @end
 

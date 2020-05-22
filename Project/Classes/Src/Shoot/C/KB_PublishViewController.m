@@ -110,13 +110,27 @@
         }];
         return;
     }
+    AVAsset *asset = [AVAsset assetWithURL:self.videoUrl];
+    NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+    AVAssetTrack *videoTrack = tracks[0];
+    CGSize videoSize = CGSizeApplyAffineTransform(videoTrack.naturalSize, videoTrack.preferredTransform);
+    videoSize = CGSizeMake(fabs(videoSize.width), fabs(videoSize.height));
+    AVURLAsset*audioAsset = [AVURLAsset URLAssetWithURL:self.videoUrl options:nil];
+    CMTime audioDuration = audioAsset.duration;
+    float audioDurationSeconds = CMTimeGetSeconds(audioDuration);
+
+    NSDictionary *param = @{@"userId":User_Center.id,@"videoCategory":@"define",@"duration":[NSString stringWithFormat:@"%.1f",audioDurationSeconds],@"tmpHeight":@(videoSize.height),@"videoFilter":@"define",@"tmpCoverUrl":@"",@"desc":self.titleText,@"tmpWidth":@(videoSize.width)};
     [SVProgressHUD showWithStatus:@"上传中"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [SVProgressHUD dismiss];
-        [PageRout_Maneger.currentNaviVC dismissViewControllerAnimated:YES completion:^{
-            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-        }];
-    });
+    [RequesetApi uploadVideoWith:@"/video/upload" video:self.videoUrl params:param name:@"file" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        if (isSuccess) {
+            [SVProgressHUD dismiss];
+            [PageRout_Maneger.currentNaviVC dismissViewControllerAnimated:YES completion:^{
+                [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            }];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"上传失败，请重试"];
+        }
+    }];
 }
 #pragma mark - 点击查看大图 -
 - (void)handleImageBrowseEventWith:(UIView *)view{

@@ -34,7 +34,7 @@
     self.modifyBtn.layer.cornerRadius = 5;
     self.modifyBtn.layer.masksToBounds = YES;
     [self.ageBtn setImagePosition:QMUIButtonImagePositionLeft];
-    [self.ageBtn setImage:UIImageMake(@"单选勾选") forState:UIControlStateNormal];
+    [self.ageBtn setImage:UIImageMake(@"女") forState:UIControlStateNormal];
     self.ageBtn.contentEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
     self.eareBtn.contentEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
     self.SchoolBtn.contentEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
@@ -42,9 +42,15 @@
 - (IBAction)modifyInforMationEvent:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"编辑资料"]) {
             KB_PersonalInformationVC *vc = [[UIStoryboard storyboardWithName:@"PersonalInformation" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PersonalInformationVC"];
+        vc.model = self.model;
         [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
     } else {
         //关注 取消关注
+//        if (<#condition#>) {
+//            <#statements#>
+//        } else {
+//            <#statements#>
+//        }
     }
 }
 

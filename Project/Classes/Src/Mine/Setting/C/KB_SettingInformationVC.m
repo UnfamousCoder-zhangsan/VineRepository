@@ -57,12 +57,13 @@
         switch (indexPath.row) {
             case 0:
                 //反馈与帮助
-                [SVProgressHUD showErrorWithStatus:@"开发小哥 还在掉头发中"];
+                [SVProgressHUD showErrorWithStatus:@"功能 研发中"];
                 break;
             case 1:
             {
                 // 社区自律公约
                 KB_PrivacyPolicyVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PrivacyPolicyVC"];
+                vc.type = TextType_Convention;
                 [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
                 break;
             }
@@ -70,6 +71,7 @@
             {
                 // 用户协议
                 KB_PrivacyPolicyVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PrivacyPolicyVC"];
+                vc.type = TextType_Protocol;
                 [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
                 break;
             }
@@ -77,6 +79,7 @@
             {
                 // 隐私政策
                 KB_PrivacyPolicyVC *vc = [[UIStoryboard storyboardWithName:@"Setting" bundle:nil] instantiateViewControllerWithIdentifier:@"KB_PrivacyPolicyVC"];
+                vc.type = TextType_privacy;
                 [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
                 break;
             }

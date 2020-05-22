@@ -109,6 +109,91 @@ static NSMutableArray <RequestObject *> *timeoutRequestMArr;
     [manager invalidateSessionCancelingTasks:NO];
 }
 
++ (void)post:(NSString *)url image:(UIImage *)image name:(NSString *)name completedBlock:(ApiCompletedBlock)block {
+    
+    NSString *URL = [NSString stringWithFormat:@"%@%@",kAPIHost, url];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+    requestSerializer = [AFJSONRequestSerializer serializer];
+    requestSerializer.timeoutInterval = 10;
+    [requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
+    LQLog(@"%@",[User_Center modelToJSONString]);
+    manager.requestSerializer = requestSerializer;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //NSDictionary *dict; // 这里按实际情况的用户id上传
+    
+    // 3.发送请求
+    [manager POST:URL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSData *imageData = UIImagePNGRepresentation(image);
+        // 使用日期生成图片名称
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *fileName = [NSString stringWithFormat:@"tmp_%@.jpg",[formatter stringFromDate:[NSDate date]]];
+        // 任意的二进制数据MIMEType application/octet-stream
+        [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"image/jpg"];
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        responseObject = [NSDictionary changeType:(NSDictionary*)responseObject];
+        ApiResponseModel *model = [ApiResponseModel modelWithJSON:responseObject];
+        if (model.status == 200) {
+            block ? block(model, YES): nil;
+        }else {
+            block ? block(model, NO): nil;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        ApiResponseModel *model = [[ApiResponseModel alloc] init];
+        model.status = -2000;
+        model.msg = @"请求连接失败";
+        block ? block(model,NO) : nil;
+    }];
+}
+
++ (void)uploadVideoWith:(NSString *)url video:(NSURL *)videoUrl params:(NSDictionary *)param name:(NSString *)name completedBlock:(ApiCompletedBlock)block{
+    
+    NSString *URL = [NSString stringWithFormat:@"%@%@",kAPIHost, url];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+    requestSerializer = [AFJSONRequestSerializer serializer];
+    requestSerializer.timeoutInterval = 10;
+    [requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    //[requestSerializer setValue:User_Center.userToken forHTTPHeaderField:@"userToken"];
+    manager.requestSerializer = requestSerializer;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    
+    //NSDictionary *params = @{@"userId":User_Center.id,@"videoCategory":@""};
+    //post请求
+    [manager POST:URL parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat   = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.mp4", str];
+        /*
+         此方法参数
+         1. 要上传的[二进制数据]
+         2. 我这里的imgFile是对应后台给你url里面的图片参数，别瞎带。
+         3. 要保存在服务器上的[文件名]
+         4. 上传文件的[mimeType]
+         */
+        [formData appendPartWithFileURL:videoUrl name:@"file" fileName:fileName mimeType:@"video/mp4" error:(nil)];
+
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        responseObject = [NSDictionary changeType:(NSDictionary*)responseObject];
+        ApiResponseModel *model = [ApiResponseModel modelWithJSON:responseObject];
+        if (model.status == 200) {
+            block ? block(model, YES): nil;
+        }else {
+            block ? block(model, NO): nil;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        ApiResponseModel *model = [[ApiResponseModel alloc] init];
+        model.status = -2000;
+        model.msg = @"请求连接失败";
+        block ? block(model,NO) : nil;
+    }];
+}
+
 + (void)requestApiWithBody:(id)body andRequestUrl:(NSString *)url completedBlock:(ApiCompletedBlock)block {
 
     NSString *URL = [NSString stringWithFormat:@"%@/%@/%@",kAPiHost, kAPiPath, url];

@@ -41,4 +41,23 @@ typedef void(^ApiCompletedBlock)(ApiResponseModel *apiResponseModel, BOOL isSucc
  *@param  block网络请求回调
  */
 + (void)requestAPIWithParams:(NSDictionary *)params andRequestUrl:(NSString *)url completedBlock:(ApiCompletedBlock)block;
+
+/**
+ *  上传图片的网络请求
+ *
+ *  @param url              上传图片的网络请求地址
+ *  @param name             和后台包名一致
+ *
+ */
++ (void)post:(NSString *)url image:(UIImage *)image name:(NSString *)name completedBlock:(ApiCompletedBlock)block;
+
+/**
+ *  上传图片的网络请求
+ *  @param dataUrl       视频地址
+ *  @param url              上传图片的网络请求地址
+ *  @param name             和后台包名一致
+ *
+*/
++ (void)uploadVideoWith:(NSString *)url  video:(NSURL *)videoUrl params:(NSDictionary *)param name:(NSString *)name completedBlock:(ApiCompletedBlock)block;
+
 @end
