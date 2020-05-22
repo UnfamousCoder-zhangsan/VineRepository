@@ -27,9 +27,6 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 //这个是预加载视频的管理器
 @property (nonatomic, strong) DDVideoPlayerManager *preloadVideoPlayerManager;
 
-// 是否正在加载中
-@property (nonatomic, assign) BOOL isLoad;
-
 @end
 
 @implementation KB_BaseViewController
@@ -39,7 +36,7 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     // Do any additional setup after loading the view.
     [self createUI];
     self.page = 1;
-    [self getDataList];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -75,7 +72,19 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
         make.top.left.right.mas_equalTo(self.view).offset(0);
         make.height.offset(SCREEN_HEIGHT - TabBarHeight);
     }];
-    
+    @weakify(self)
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        @strongify(self)
+        self.page = 1;
+        self.tableView.mj_footer.hidden = YES;
+        [self getDataList];
+    }];
+    self.tableView.mj_header.ignoredScrollViewContentInsetTop = 10;
+    ((MJRefreshNormalHeader *)self.tableView.mj_header).lastUpdatedTimeLabel.hidden = YES;
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        @strongify(self)
+        [self getDataList];
+    }];
 }
 
 #pragma mrak - UITableViewDataSource & UITableViewDelegate
@@ -108,13 +117,6 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
         self.currentPlayIndex = currentIndex;
         DLog(@"播放下一个");
         [self playIndex:self.currentPlayIndex];
-    }else {
-        if (self.currentPlayIndex + 1 == self.modelArray.count) {
-            LQLog(@"没有了");
-            if (!self.isLoad) {
-                [self getDataList];
-            }
-        }
     }
 }
 
@@ -333,10 +335,6 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
     if (self.page == 1) {
         [self showEmptyViewWithLoading];
     }
-    if (self.isLoad) {
-        return;
-    }
-    self.isLoad = YES;
     NSString *url;
     if (self.homeType == HomeType_Recommend) {
         //推荐
@@ -346,9 +344,9 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
         url = [NSString stringWithFormat:@"/video/showAll?page=%@&isSaveRecord=0&category=dress",@(self.page)];
     }
     [RequesetApi requestAPIWithParams:nil andRequestUrl:url completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
+        [self hideEmptyView];
         if (isSuccess) {
-            self.isLoad = NO;
-            [self hideEmptyView];
+            [self.tableView.mj_header endRefreshing];
             NSMutableArray *datas = [NSArray modelArrayWithClass:[KB_HomeVideoDetailModel class] json:apiResponseModel.data[@"rows"]].mutableCopy;
             if (self.page == 1) {
                 [self.modelArray removeAllObjects];
@@ -367,9 +365,14 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
             }
             if (datas.count == 5) {
                 //有下一页
+                self.tableView.mj_footer.hidden = NO;
+                [self.tableView.mj_footer endRefreshing];
                 self.page++;
             }else{
-                self.isLoad = YES;
+                [self.tableView.mj_footer endRefreshing];
+                // 通知已经全部加载完毕
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                self.tableView.mj_footer.hidden = YES;
             }
             if (self.modelArray.count == 0) {
                 [self showNoDataEmptyViewWithText:@"暂无数据" detailText:@""];
@@ -378,10 +381,13 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
             }
             
         } else {
-            [self hideEmptyView];
             self.tableView.mj_footer.hidden = YES;
             [self.tableView.mj_header endRefreshing];
-            [self showEmptyViewWithImage:UIImageMake(@"404") text:@"" detailText:@"加载失败" buttonTitle:@"点击重试" buttonAction:@selector(getDataList)];
+            if (self.page == 1) {
+                [self showEmptyViewWithImage:UIImageMake(@"404") text:@"" detailText:@"加载失败" buttonTitle:@"点击重试" buttonAction:@selector(getDataList)];
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            }
         }
     }];
 }
