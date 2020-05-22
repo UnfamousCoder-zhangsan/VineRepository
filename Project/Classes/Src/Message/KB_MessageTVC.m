@@ -24,8 +24,8 @@
     self.view.backgroundColor = UIColorMakeWithHex(@"#222222");
     self.titleView.title = @"消息";
     [self initUI];
-    [self getData];
-    //[self showNoDataEmptyViewWithText:@"暂无新消息" detailText:@"前往首页查看更多精彩内容"];
+   // [self getData];
+    [self showNoDataEmptyViewWithText:@"暂无新消息" detailText:@"前往首页查看更多精彩内容"];
 }
 - (NSMutableArray *)dataArray{
     if (!_dataArray) {

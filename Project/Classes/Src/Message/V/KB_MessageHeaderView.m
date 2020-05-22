@@ -43,7 +43,7 @@
 - (IBAction)fanAction:(id)sender {
     KB_MessageListVC *vc = [[KB_MessageListVC alloc] init];
     vc.title = @"粉丝";
-    vc.type = CellType_Comment;
+    vc.type = CellType_Fan;
     [PageRout_Maneger.currentNaviVC pushViewController:vc animated:YES];
 }
 @end

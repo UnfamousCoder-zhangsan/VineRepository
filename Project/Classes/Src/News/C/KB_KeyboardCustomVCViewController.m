@@ -17,6 +17,12 @@ static CGFloat const kToolbarHeight = 56;
 
 @implementation KB_KeyboardCustomVCViewController
 
+
+//设置导航栏背景色
+- (UIImage *)navigationBarBackgroundImage{
+   return [[UIImage alloc] init];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColorClear;
