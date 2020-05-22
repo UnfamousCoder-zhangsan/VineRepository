@@ -46,7 +46,7 @@ static NSString * const NearVideoCellIdentifier = @"NearVideoCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.videoPlayerManager autoPlay];
+    //[self.videoPlayerManager autoPlay];
 }
 
 - (void)zj_viewDidLoadForIndex:(NSInteger)index{
