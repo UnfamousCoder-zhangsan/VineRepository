@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="149" id="KGk-i7-Jjw" customClass="KB_SelectTypeCell">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="149"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="347" height="149"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIY-5G-8RP" customClass="QMUIButton">
+                        <rect key="frame" x="109" y="20" width="109" height="129"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="美拍" image="未选中">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected" image="选中"/>
+                        <connections>
+                            <action selector="beautyShotAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0hY-J9-GKP"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6s-vQ-NOE" customClass="QMUIButton">
+                        <rect key="frame" x="218" y="20" width="109" height="129"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="美食" image="未选中">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected" image="选中"/>
+                        <connections>
+                            <action selector="foodAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pQc-cd-ksR"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请为该视频选择一个合适的分类：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkB-2D-Sq0">
+                        <rect key="frame" x="10" y="0.0" width="230" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="nLa-TG-b75"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zhz-hd-gyO" customClass="QMUIButton">
+                        <rect key="frame" x="0.0" y="20" width="109" height="129"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="综合" image="未选中"/>
+                        <state key="selected" image="选中"/>
+                        <connections>
+                            <action selector="ComprehensiveAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8Xq-Tp-CtU"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="rIY-5G-8RP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="1dT-Sr-DOg"/>
+                    <constraint firstItem="rIY-5G-8RP" firstAttribute="width" secondItem="Zhz-hd-gyO" secondAttribute="width" id="2Sx-6K-Wah"/>
+                    <constraint firstItem="rIY-5G-8RP" firstAttribute="leading" secondItem="Zhz-hd-gyO" secondAttribute="trailing" id="3XJ-h6-laq"/>
+                    <constraint firstItem="RkB-2D-Sq0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9Yb-di-kDr"/>
+                    <constraint firstItem="Zhz-hd-gyO" firstAttribute="top" secondItem="RkB-2D-Sq0" secondAttribute="bottom" id="9aE-b1-SQz"/>
+                    <constraint firstAttribute="bottom" secondItem="rIY-5G-8RP" secondAttribute="bottom" id="Ape-sH-PiD"/>
+                    <constraint firstItem="M6s-vQ-NOE" firstAttribute="height" secondItem="Zhz-hd-gyO" secondAttribute="height" id="J79-KK-wze"/>
+                    <constraint firstItem="M6s-vQ-NOE" firstAttribute="width" secondItem="Zhz-hd-gyO" secondAttribute="width" id="S4J-0Z-h2r"/>
+                    <constraint firstAttribute="bottom" secondItem="Zhz-hd-gyO" secondAttribute="bottom" id="WuU-iM-kKk"/>
+                    <constraint firstAttribute="bottom" secondItem="M6s-vQ-NOE" secondAttribute="bottom" id="ZvL-aQ-av5"/>
+                    <constraint firstItem="rIY-5G-8RP" firstAttribute="height" secondItem="Zhz-hd-gyO" secondAttribute="height" id="c4E-BB-8Dc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="M6s-vQ-NOE" secondAttribute="trailing" id="fgF-ZH-qzj"/>
+                    <constraint firstItem="Zhz-hd-gyO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="k4Q-3l-YZG"/>
+                    <constraint firstItem="RkB-2D-Sq0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ouT-HJ-rHf"/>
+                    <constraint firstItem="M6s-vQ-NOE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="skw-gA-1vc"/>
+                    <constraint firstItem="Zhz-hd-gyO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="v87-gw-uLk"/>
+                    <constraint firstItem="M6s-vQ-NOE" firstAttribute="leading" secondItem="rIY-5G-8RP" secondAttribute="trailing" id="zSD-fg-dDC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="Comprehensive" destination="Zhz-hd-gyO" id="Mey-nq-nfg"/>
+                <outlet property="beautyShot" destination="rIY-5G-8RP" id="Yka-Pz-Dio"/>
+                <outlet property="food" destination="M6s-vQ-NOE" id="fsi-DR-s06"/>
+            </connections>
+            <point key="canvasLocation" x="157.24637681159422" y="132.92410714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="未选中" width="16" height="16"/>
+        <image name="选中" width="16" height="16"/>
+    </resources>
+</document>

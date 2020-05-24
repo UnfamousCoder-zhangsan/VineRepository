@@ -30,7 +30,7 @@ static NSString* const SmallVideoCellIdentifier = @"SmallVideoCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"附近";
+    self.title = @"美食";
     [self setupBaseView];
     
     self.dataArray = [NSMutableArray array];

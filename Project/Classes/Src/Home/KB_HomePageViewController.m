@@ -67,7 +67,7 @@
     //标题选中状态颜色 --- 注意一定要使用RGB空间的颜色值
     style.selectedTitleColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     
-    self.titles = @[@"推荐", @"关注"];
+    self.titles = @[@"综合", @"美拍"];
     
     // 注意: 一定要避免循环引用!!
     @weakify(self);

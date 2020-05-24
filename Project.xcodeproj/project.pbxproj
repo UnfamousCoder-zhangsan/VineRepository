@@ -102,6 +102,8 @@
 		313A34AF243B784400A4F1F9 /* KB_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A34AE243B784400A4F1F9 /* KB_BaseViewController.m */; };
 		313A7B3624630368003963A4 /* KB_XHLaunchAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */; };
 		313AD65E2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313AD65D2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m */; };
+		313DD945247ABA99006300DC /* KB_SelectTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313DD943247ABA99006300DC /* KB_SelectTypeCell.m */; };
+		313DD946247ABA99006300DC /* KB_SelectTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313DD944247ABA99006300DC /* KB_SelectTypeCell.xib */; };
 		315CDE57246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 315CDE56246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m */; };
 		31C0AA6D244227A800110B18 /* PersonalInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */; };
 		31C0AA6F24422DB100110B18 /* PersonalInformationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C0AA6E24422DB100110B18 /* PersonalInformationHeaderView.xib */; };
@@ -450,6 +452,9 @@
 		313A7B3524630368003963A4 /* KB_XHLaunchAdManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_XHLaunchAdManager.m; sourceTree = "<group>"; };
 		313AD65C2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_KeyboardCustomVCViewController.h; sourceTree = "<group>"; };
 		313AD65D2477A9F5003A8F33 /* KB_KeyboardCustomVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_KeyboardCustomVCViewController.m; sourceTree = "<group>"; };
+		313DD942247ABA99006300DC /* KB_SelectTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_SelectTypeCell.h; sourceTree = "<group>"; };
+		313DD943247ABA99006300DC /* KB_SelectTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_SelectTypeCell.m; sourceTree = "<group>"; };
+		313DD944247ABA99006300DC /* KB_SelectTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KB_SelectTypeCell.xib; sourceTree = "<group>"; };
 		315CDE55246ADD7900BE6D75 /* KB_PrivacyPolicyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KB_PrivacyPolicyVC.h; sourceTree = "<group>"; };
 		315CDE56246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KB_PrivacyPolicyVC.m; sourceTree = "<group>"; };
 		31C0AA6C244227A800110B18 /* PersonalInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalInformation.storyboard; sourceTree = "<group>"; };
@@ -1219,6 +1224,9 @@
 				313286BE244CAC700022E8EC /* KB_PublishCell.xib */,
 				515B380624528A2C00AFEFFA /* KB_CountDownLabel.h */,
 				515B380724528A2C00AFEFFA /* KB_CountDownLabel.m */,
+				313DD942247ABA99006300DC /* KB_SelectTypeCell.h */,
+				313DD943247ABA99006300DC /* KB_SelectTypeCell.m */,
+				313DD944247ABA99006300DC /* KB_SelectTypeCell.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -2272,6 +2280,7 @@
 				E6C8A4541D405B880075353A /* Assets.xcassets in Resources */,
 				3132596F2444CE02002ED40A /* KB_MineInformationView.xib in Resources */,
 				3130FC8C243E2D0900B9A0D6 /* Shoot.storyboard in Resources */,
+				313DD946247ABA99006300DC /* KB_SelectTypeCell.xib in Resources */,
 				CB86BC18231785430011207A /* PayInputItem.xib in Resources */,
 				31F8FB94244A0DDD0072609C /* KB_MineCollectionViewCell.xib in Resources */,
 				5E8E043623B068120023A484 /* UMCommonLog.bundle in Resources */,
@@ -2533,6 +2542,7 @@
 				3130FC6D243CADDC00B9A0D6 /* UIView+CustomControlView.m in Sources */,
 				315CDE57246ADD7900BE6D75 /* KB_PrivacyPolicyVC.m in Sources */,
 				3130FC4A243CADDB00B9A0D6 /* KTVHCDataCacheItem.m in Sources */,
+				313DD945247ABA99006300DC /* KB_SelectTypeCell.m in Sources */,
 				3130FC4E243CADDB00B9A0D6 /* KTVHCLog.m in Sources */,
 				3130FC64243CADDC00B9A0D6 /* GCDAsyncSocket.m in Sources */,
 				313286B7244CA8A10022E8EC /* KB_PublishViewController.m in Sources */,

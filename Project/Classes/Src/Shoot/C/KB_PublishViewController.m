@@ -8,6 +8,7 @@
 
 #import "KB_PublishViewController.h"
 #import "KB_PublishCell.h"
+#import "KB_SelectTypeCell.h"
 
 @interface KB_PublishViewController ()<UITableViewDelegate,UITableViewDataSource,QMUIImagePreviewViewDelegate>{
     QMUIButton *_publishBtn;
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) UIImageView *imageView;
 
 @property (nonatomic, assign) BOOL isShow;
+
+@property (nonatomic, strong) NSString *selectedtype;
 @end
 
 @implementation KB_PublishViewController
@@ -27,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布";
+    self.selectedtype = @"define";
     [self initUI];
 }
 - (void)initUI{
@@ -41,6 +45,7 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = UIColorMakeWithHex(@"#222222");
     [_tableView registerNib:[UINib nibWithNibName:@"KB_PublishCell" bundle:nil] forCellReuseIdentifier:@"KB_PublishCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"KB_SelectTypeCell" bundle:nil] forCellReuseIdentifier:@"KB_SelectTypeCell"];
     [self.view addSubview:_tableView];
     _publishBtn = [[QMUIButton alloc] init];
     [_publishBtn setTitle:@"发布" forState:UIControlStateNormal];
@@ -70,26 +75,40 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    KB_PublishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KB_PublishCell"];
-    cell.uploadImageView.image = self.image;
-    self.imageView = cell.uploadImageView;
-    @weakify(self)
-    cell.textViewBlock = ^(NSString * str) {
-        @strongify(self)
-        self.titleText = str;
-    };
-    cell.imageViewTapBlock = ^{
-        @strongify(self)
-        [self handleImageBrowseEventWith:self.imageView];
-    };
-    return cell;
+    if (indexPath.row == 0) {
+        KB_PublishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KB_PublishCell"];
+        cell.uploadImageView.image = self.image;
+        self.imageView = cell.uploadImageView;
+        @weakify(self)
+        cell.textViewBlock = ^(NSString * str) {
+            @strongify(self)
+            self.titleText = str;
+        };
+        cell.imageViewTapBlock = ^{
+            @strongify(self)
+            [self handleImageBrowseEventWith:self.imageView];
+        };
+        return cell;
+    } else {
+        KB_SelectTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KB_SelectTypeCell"];
+        @weakify(self)
+        cell.selectedBlock = ^(NSString * type) {
+            @strongify(self)
+            self.selectedtype = type;
+        };
+        return cell;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 132;
+    if (indexPath.row == 0) {
+        return 132;
+    }else{
+        return 50;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0;
@@ -123,7 +142,7 @@
     CMTime audioDuration = audioAsset.duration;
     float audioDurationSeconds = CMTimeGetSeconds(audioDuration);
 
-    NSDictionary *param = @{@"userId":User_Center.id,@"videoCategory":@"define",@"duration":[NSString stringWithFormat:@"%.1f",audioDurationSeconds],@"tmpHeight":@(videoSize.height),@"videoFilter":@"define",@"tmpCoverUrl":@"",@"desc":self.titleText,@"tmpWidth":@(videoSize.width)};
+    NSDictionary *param = @{@"userId":User_Center.id,@"videoCategory":self.selectedtype,@"duration":[NSString stringWithFormat:@"%.1f",audioDurationSeconds],@"tmpHeight":@(videoSize.height),@"videoFilter":@"define",@"tmpCoverUrl":@"",@"desc":self.titleText,@"tmpWidth":@(videoSize.width)};
     [SVProgressHUD showWithStatus:@"上传中"];
     [RequesetApi uploadVideoWith:@"/video/upload" video:self.videoUrl params:param name:@"file" completedBlock:^(ApiResponseModel *apiResponseModel, BOOL isSuccess) {
         if (isSuccess) {

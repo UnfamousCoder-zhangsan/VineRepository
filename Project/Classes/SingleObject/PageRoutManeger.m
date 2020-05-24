@@ -56,7 +56,7 @@ static PageRoutManeger *_sharedPageRoutManeger;
     KB_NewsTVC *newsTVC = [[KB_NewsTVC alloc] init];
     newsTVC.hidesBottomBarWhenPushed = NO;
     QDNavigationController *newsNavController = [[QDNavigationController alloc] initWithRootViewController:newsTVC];
-    newsNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"附近" image:[UIImageMake(@"tabbar_indicater_normal") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImageMake(@"tabbar_indicater_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:1];
+    newsNavController.tabBarItem = [QDUIHelper tabBarItemWithTitle:@"美食" image:[UIImageMake(@"tabbar_indicater_normal") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImageMake(@"tabbar_indicater_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:1];
     newsNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(20, 0, -20, 0);
     newsNavController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -20);
     
